@@ -19,7 +19,7 @@ class RecipeModel {
   final ReviewModels reviews;
   final CookingStepModels cookingSteps;
 
-  const RecipeModel(
+  RecipeModel(
       {required this.id,
       required this.title,
       required this.description,
@@ -30,7 +30,8 @@ class RecipeModel {
       required this.details,
       required this.tags,
       required this.reviews,
-      required this.cookingSteps});
+      required this.cookingSteps})
+      : assert(cookingSteps.isNotEmpty);
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) =>
       _$RecipeModelFromJson(json);

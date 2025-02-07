@@ -14,9 +14,9 @@ PortionBasedRecipeModel _$PortionBasedRecipeModelFromJson(
       maxPortionCount: (json['maxPortionCount'] as num?)?.toInt(),
       portionCount: (json['portionCount'] as num?)?.toInt(),
       difficulty: json['difficulty'] as String,
-      preparationHumanTime: json['preparationHumanTime'] as String,
-      bakingHumanTime: json['bakingHumanTime'] as String,
-      restingHumanTime: json['restingHumanTime'] as String,
+      preparationHumanTime: json['preparationHumanTime'] as String?,
+      bakingHumanTime: json['bakingHumanTime'] as String?,
+      restingHumanTime: json['restingHumanTime'] as String?,
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => WeightCountModel.fromJson(e as Map<String, dynamic>))
           .toList(),

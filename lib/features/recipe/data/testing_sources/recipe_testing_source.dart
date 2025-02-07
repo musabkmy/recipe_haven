@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/features/recipe/data/models/details/measuring_unit_model.dart';
 import 'package:recipe_haven/features/recipe/data/models/models.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
 
+@Injectable()
 class RecipeTestingSource {
   RecipeModels getAllRecipes() {
     return [
@@ -227,10 +229,7 @@ helps ot lighten pu na otherwise fairly heavy chicken dish.''',
         cookingSteps: [
           CookingStepModel(
               stepNumber: '1',
-              utensilsID: [
-                'ute-2'
-                    'ute-3'
-              ],
+              utensilsID: ['ute-2', 'ute-3'],
               ingredientsID: [
                 'ing-1',
                 'ing-2',
@@ -289,10 +288,8 @@ Sprinkle __ing_ing-9 over the top of the chicken and other ingredients.
           ),
           CookingStepModel(
             stepNumber: '4',
-            utensilsID: [
-              'ute-5' // Oven
-            ],
-            ingredientsID: [],
+            utensilsID: ['ute-5'],
+            ingredientsID: ['ing-3'],
             imagesUrl: [
               'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg'
             ],
@@ -645,7 +642,7 @@ Whisk in __ing_ing-3 (sugar), __ing_ing-4 (eggs), and __ing_ing-5 (flour) until 
           CookingStepModel(
             stepNumber: '3',
             utensilsID: ['ute-3', 'ute-4'],
-            ingredientsID: [],
+            ingredientsID: ['ing-6'],
             imagesUrl: [
               'https://i.pinimg.com/236x/31/f0/4d/31f04d9dea0f7c587cdcb8bb7eae18ac.jpg',
             ],
