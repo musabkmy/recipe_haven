@@ -14,10 +14,10 @@ RecipeModel _$RecipeModelFromJson(Map<String, dynamic> json) => RecipeModel(
       usersEngagement: EngagementModel.fromJson(
           json['usersEngagement'] as Map<String, dynamic>),
       creator: CreatorModel.fromJson(json['creator'] as Map<String, dynamic>),
-      details: DetailsModel.fromJson(json['details'] as Map<String, dynamic>),
-      baseUtils: (json['baseUtils'] as List<dynamic>)
+      utensils: (json['utensils'] as List<dynamic>)
           .map((e) => UtensilModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      details: DetailsModel.fromJson(json['details'] as Map<String, dynamic>),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
       reviews: (json['reviews'] as List<dynamic>)
           .map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
@@ -35,8 +35,8 @@ Map<String, dynamic> _$RecipeModelToJson(RecipeModel instance) =>
       'imageUrl': instance.imageUrl,
       'usersEngagement': instance.usersEngagement,
       'creator': instance.creator,
+      'utensils': instance.utensils,
       'details': instance.details,
-      'baseUtils': instance.baseUtils,
       'tags': instance.tags,
       'reviews': instance.reviews,
       'cookingSteps': instance.cookingSteps,

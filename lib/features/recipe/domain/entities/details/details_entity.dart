@@ -5,7 +5,7 @@ class Details extends Equatable {
   final Ingredients baseIngredients;
   final Nutritious baseNutritious;
   final PortionBasedRecipes servings;
-  final String chosenPortionBasedRecipeID;
+  final String? chosenPortionBasedRecipeID;
   final String defaultPortionBasedRecipeID;
 
   Details(

@@ -8,12 +8,10 @@ typedef MeasuringUnitModels = List<MeasuringUnitModel>;
 
 @JsonSerializable()
 class MeasuringUnitModel {
-  final String id;
   final String name;
   final String abbreviation;
 
   const MeasuringUnitModel({
-    required this.id,
     required this.name,
     required this.abbreviation,
   });
@@ -21,8 +19,7 @@ class MeasuringUnitModel {
       _$MeasuringUnitModelFromJson(json);
 
   factory MeasuringUnitModel.fromEntity(MeasuringUnit entity) =>
-      MeasuringUnitModel(
-          id: entity.id, name: entity.name, abbreviation: entity.abbreviation);
+      MeasuringUnitModel(name: entity.name, abbreviation: entity.abbreviation);
 
   static MeasuringUnitModels fromEntities(MeasuringUnits entities) => entities
       .map((element) => MeasuringUnitModel.fromEntity(element))
@@ -31,12 +28,11 @@ class MeasuringUnitModel {
   Map<String, dynamic> toJson() => _$MeasuringUnitModelToJson(this);
 
   MeasuringUnit toEntity() =>
-      MeasuringUnit(id: id, name: name, abbreviation: abbreviation);
+      MeasuringUnit(name: name, abbreviation: abbreviation);
 }
 
 extension MeasuringUnitModelEx on MeasuringUnitModels {
-  MeasuringUnits toEntity() => map((element) => MeasuringUnit(
-      id: element.id,
-      name: element.name,
-      abbreviation: element.abbreviation)).toList();
+  MeasuringUnits toEntity() => map((element) =>
+          MeasuringUnit(name: element.name, abbreviation: element.abbreviation))
+      .toList();
 }

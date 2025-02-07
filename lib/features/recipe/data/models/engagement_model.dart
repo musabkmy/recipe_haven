@@ -17,6 +17,11 @@ class EngagementModel {
   factory EngagementModel.fromJson(Map<String, dynamic> json) =>
       _$EngagementModelFromJson(json);
 
+  factory EngagementModel.fromEntity(Engagement entity) => EngagementModel(
+      rating: entity.rating,
+      ratingCount: entity.ratingCount,
+      likesCount: entity.likesCount);
+
   Map<String, dynamic> toJson() => _$EngagementModelToJson(this);
 
   Engagement toEntity() => Engagement(

@@ -9,14 +9,14 @@ class DetailsModel {
   final IngredientModels baseIngredients;
   final NutritionModels baseNutritious;
   final PortionBasedRecipeModels servings;
-  final String chosenPortionBasedRecipeID;
+  final String? chosenPortionBasedRecipeID;
   final String defaultPortionBasedRecipeID;
 
   DetailsModel(
       {required this.baseIngredients,
       required this.baseNutritious,
       required this.servings,
-      required this.chosenPortionBasedRecipeID,
+      this.chosenPortionBasedRecipeID,
       required this.defaultPortionBasedRecipeID})
       : assert(servings.isNotEmpty);
 
@@ -31,4 +31,11 @@ class DetailsModel {
       defaultPortionBasedRecipeID: entity.defaultPortionBasedRecipeID);
 
   Map<String, dynamic> toJson() => _$DetailsModelToJson(this);
+
+  Details toEntity() => Details(
+      baseIngredients: baseIngredients.toEntity(),
+      baseNutritious: baseNutritious.toEntity(),
+      servings: servings.toEntity(),
+      chosenPortionBasedRecipeID: chosenPortionBasedRecipeID,
+      defaultPortionBasedRecipeID: defaultPortionBasedRecipeID);
 }

@@ -12,12 +12,12 @@ class Recipe extends Equatable {
   final Engagement usersEngagement;
   final Creator creator;
   final Details details;
-  final Utensils baseUtils;
+  final Utensils utensils;
   final List<String> tags;
   final Reviews reviews;
   final CookingSteps cookingSteps;
 
-  const Recipe(
+  Recipe(
       {required this.id,
       required this.title,
       required this.description,
@@ -25,10 +25,11 @@ class Recipe extends Equatable {
       required this.usersEngagement,
       required this.creator,
       required this.details,
-      required this.baseUtils,
+      required this.utensils,
       required this.tags,
       required this.reviews,
-      required this.cookingSteps});
+      required this.cookingSteps})
+      : assert(cookingSteps.isNotEmpty);
 
   @override
   List<Object?> get props => [
@@ -39,7 +40,7 @@ class Recipe extends Equatable {
         usersEngagement,
         creator,
         details,
-        baseUtils,
+        utensils,
         tags,
         reviews,
         cookingSteps,

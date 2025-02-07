@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:recipe_haven/features/recipe/domain/entities/creator_entity.dart';
 
 part 'creator_model.g.dart';
 
@@ -20,5 +21,19 @@ class CreatorModel {
   factory CreatorModel.fromJson(Map<String, dynamic> json) =>
       _$CreatorModelFromJson(json);
 
+  factory CreatorModel.fromEntity(Creator entity) => CreatorModel(
+      id: entity.id,
+      name: entity.name,
+      profilePic: entity.profilePic,
+      profession: entity.profession,
+      portfolioLink: entity.portfolioLink);
+
   Map<String, dynamic> toJson() => _$CreatorModelToJson(this);
+
+  Creator toEntity() => Creator(
+      id: id,
+      name: name,
+      profilePic: profilePic,
+      profession: profession,
+      portfolioLink: portfolioLink);
 }

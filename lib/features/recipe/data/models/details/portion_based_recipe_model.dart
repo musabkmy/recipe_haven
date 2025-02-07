@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:recipe_haven/config/utils/duration_utils.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_difficulty.dart';
 import '../../../domain/entities/details/portion_based_recipe_entity.dart';
-import 'utensil_model.dart';
 import 'weight_count_model.dart';
 
 part 'portion_based_recipe_model.g.dart';
@@ -18,15 +17,14 @@ class PortionBasedRecipeModel {
   final int? minPortionCount;
   final int? maxPortionCount;
   final int? portionCount;
-  final Difficulty difficulty;
-  final String preparationHumanTime;
+  final String difficulty;
+  final String? preparationHumanTime;
 
   ///formula _h_m_s, ex: 1h30m40s
-  final String bakingHumanTime;
+  final String? bakingHumanTime;
 
   ///formula _h_m_s, ex: 1h30m40s
-  final String restingHumanTime;
-  final UtensilModels utensils;
+  final String? restingHumanTime;
   final WeightCountModels ingredients;
   final WeightCountModels nutritious;
   // final Ingredients? additionalIngredients;
@@ -38,10 +36,9 @@ class PortionBasedRecipeModel {
     this.maxPortionCount,
     this.portionCount,
     required this.difficulty,
-    required this.preparationHumanTime,
-    required this.bakingHumanTime,
-    required this.restingHumanTime,
-    required this.utensils,
+    this.preparationHumanTime,
+    this.bakingHumanTime,
+    this.restingHumanTime,
     required this.ingredients,
     required this.nutritious,
     // this.additionalIngredients,
@@ -55,14 +52,13 @@ class PortionBasedRecipeModel {
   factory PortionBasedRecipeModel.fromEntity(PortionBasedRecipe entity) =>
       PortionBasedRecipeModel(
           id: entity.id,
-          difficulty: entity.difficulty,
+          difficulty: entity.difficulty.name,
           minPortionCount: entity.minPortionCount,
           maxPortionCount: entity.maxPortionCount,
           portionCount: entity.portionCount,
           preparationHumanTime: toHumanDuration(entity.preparationTime),
           bakingHumanTime: toHumanDuration(entity.bakingTime),
           restingHumanTime: toHumanDuration(entity.restingTime),
-          utensils: UtensilModel.fromEntities(entity.utensils),
           ingredients: WeightCountModel.fromEntities(entity.ingredientsCount),
           nutritious: WeightCountModel.fromEntities(entity.nutritiousCount));
 
@@ -75,14 +71,15 @@ class PortionBasedRecipeModel {
 
   PortionBasedRecipe toEntity() => PortionBasedRecipe(
         id: id,
-        difficulty: difficulty,
+        difficulty: Difficulty.values.firstWhere(
+            (diff) => diff.name == difficulty,
+            orElse: () => Difficulty.unknown),
         minPortionCount: minPortionCount,
         maxPortionCount: maxPortionCount,
         portionCount: portionCount,
         preparationTime: parseHumanDuration(preparationHumanTime),
         bakingTime: parseHumanDuration(bakingHumanTime),
         restingTime: parseHumanDuration(restingHumanTime),
-        utensils: utensils.toEntity(),
         ingredientsCount: ingredients.toEntity(),
         nutritiousCount: nutritious.toEntity(),
       );

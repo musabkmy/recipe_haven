@@ -9,7 +9,7 @@ part of 'weight_count_model.dart';
 WeightCountModel _$WeightCountModelFromJson(Map<String, dynamic> json) =>
     WeightCountModel(
       id: json['id'] as String,
-      count: (json['count'] as num).toInt(),
+      count: (json['count'] as num).toDouble(),
       measuringUnit: json['measuringUnit'] == null
           ? null
           : MeasuringUnitModel.fromJson(

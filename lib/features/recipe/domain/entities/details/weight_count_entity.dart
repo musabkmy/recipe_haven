@@ -6,7 +6,7 @@ typedef WeightCounts = List<WeightCount>;
 
 class WeightCount extends Equatable {
   final String id;
-  final int count;
+  final double count;
   final MeasuringUnit? measuringUnit;
 
   const WeightCount(

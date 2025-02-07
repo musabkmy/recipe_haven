@@ -17,7 +17,7 @@ DetailsModel _$DetailsModelFromJson(Map<String, dynamic> json) => DetailsModel(
           .map((e) =>
               PortionBasedRecipeModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      chosenPortionBasedRecipeID: json['chosenPortionBasedRecipeID'] as String,
+      chosenPortionBasedRecipeID: json['chosenPortionBasedRecipeID'] as String?,
       defaultPortionBasedRecipeID:
           json['defaultPortionBasedRecipeID'] as String,
     );

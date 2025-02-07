@@ -10,7 +10,7 @@ typedef WeightCountModels = List<WeightCountModel>;
 @JsonSerializable()
 class WeightCountModel {
   final String id;
-  final int count;
+  final double count;
   final MeasuringUnitModel? measuringUnit;
 
   const WeightCountModel(

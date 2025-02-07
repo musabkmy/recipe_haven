@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_difficulty.dart';
 
-import 'utensil_entity.dart';
 import 'weight_count_entity.dart';
 
 typedef PortionBasedRecipes = List<PortionBasedRecipe>;
@@ -18,7 +17,6 @@ class PortionBasedRecipe extends Equatable {
   final Duration preparationTime;
   final Duration bakingTime;
   final Duration restingTime;
-  final Utensils utensils;
   final WeightCounts ingredientsCount;
   final WeightCounts nutritiousCount;
   // final Ingredients? additionalIngredients;
@@ -33,7 +31,6 @@ class PortionBasedRecipe extends Equatable {
     required this.preparationTime,
     required this.bakingTime,
     required this.restingTime,
-    required this.utensils,
     required this.ingredientsCount,
     required this.nutritiousCount,
     // this.additionalIngredients,
@@ -51,7 +48,6 @@ class PortionBasedRecipe extends Equatable {
         preparationTime,
         bakingTime,
         restingTime,
-        utensils,
         ingredientsCount,
         nutritiousCount,
       ];
