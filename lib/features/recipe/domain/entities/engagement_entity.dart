@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 
 class Engagement extends Equatable {
   final double rating;
-  final int ratingCount;
-  final double likesCount;
+  final double ratingCount;
+  final int likesCount;
 
   const Engagement(
       {required this.rating,

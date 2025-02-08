@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:recipe_haven/config/extentions/object_extentions.dart';
+import 'package:recipe_haven/config/extensions/object_extensions.dart';
 import '../../../domain/entities/details/nutrition_entity.dart';
 import 'measuring_unit_model.dart';
 

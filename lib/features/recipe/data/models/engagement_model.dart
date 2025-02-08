@@ -6,8 +6,8 @@ part 'engagement_model.g.dart';
 @JsonSerializable()
 class EngagementModel {
   final double rating;
-  final int ratingCount;
-  final double likesCount;
+  final double ratingCount;
+  final int likesCount;
 
   const EngagementModel(
       {required this.rating,

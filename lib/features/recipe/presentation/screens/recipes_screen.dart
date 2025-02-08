@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/features/recipe/presentation/get_recipes/get_recipes_cubit.dart';
 
 class RecipesScreen extends StatefulWidget {
@@ -20,10 +21,12 @@ class _RecipesScreenState extends State<RecipesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Logger logger = Logger('Recipes Screen');
     return BlocBuilder<GetRecipesCubit, GetRecipesState>(
         builder: (context, state) {
       debugPrint(state.toString());
       if (state case GetRecipesSuccess()) {
+        logger.fine('GetRecipesSuccess');
         return SafeArea(
           child: Center(
             child: GestureDetector(
@@ -33,10 +36,12 @@ class _RecipesScreenState extends State<RecipesScreen> {
           ),
         );
       } else if (state case GetRecipesFailure()) {
+        logger.warning('GetRecipesFailure: ${state.errorMsg}');
         return Center(
           child: Text(state.errorMsg),
         );
       } else {
+        logger.info('loading');
         return CircularProgressIndicator();
       }
     });

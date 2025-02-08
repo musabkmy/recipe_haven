@@ -43,13 +43,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i514.RecipeRepositoryImpl(gh<_i703.RecipeTestingSource>()),
       registerFor: {_prod},
     );
+    gh.singleton<_i408.GetRecipesCubit>(
+        () => _i408.GetRecipesCubit(gh<_i1012.RecipeRepository>()));
     gh.factory<_i1012.RecipeRepository>(
       () => _i976.RecipeRepositoryTestImpl(gh<_i697.RecipeTestingSource>()),
       registerFor: {_dev},
     );
-    gh.singleton<_i408.GetRecipesCubit>(
-        () => _i408.GetRecipesCubit(gh<_i1012.RecipeRepository>()));
-
     return this;
   }
 }

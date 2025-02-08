@@ -9,8 +9,8 @@ part of 'engagement_model.dart';
 EngagementModel _$EngagementModelFromJson(Map<String, dynamic> json) =>
     EngagementModel(
       rating: (json['rating'] as num).toDouble(),
-      ratingCount: (json['ratingCount'] as num).toInt(),
-      likesCount: (json['likesCount'] as num).toDouble(),
+      ratingCount: (json['ratingCount'] as num).toDouble(),
+      likesCount: (json['likesCount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$EngagementModelToJson(EngagementModel instance) =>
