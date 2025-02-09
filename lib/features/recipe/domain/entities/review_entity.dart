@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:logging/logging.dart';
 
 typedef Reviews = List<Review>;
 
@@ -24,4 +25,25 @@ class Review extends Equatable {
 
   @override
   List<Object?> get props => [id];
+}
+
+extension ReviewsEx on Reviews {
+  bool get hasImages => numOfReviewsImages() > 0;
+  int numOfReviewsImages() {
+    int count = 0;
+    forEach((review) {
+      count += review.imagesUrl.length;
+    });
+    return count;
+  }
+
+  List<String> reviewsImages([int length = 4]) {
+    List<String> images = [];
+
+    for (int i = 0; images.length < length || i < this.length; i++) {
+      images.addAll(this[i].imagesUrl);
+    }
+    Logger('reviewsImages').info(images.length);
+    return images;
+  }
 }

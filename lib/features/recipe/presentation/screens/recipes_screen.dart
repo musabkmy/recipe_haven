@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
-import 'package:recipe_haven/features/recipe/presentation/get_recipes/get_recipes_cubit.dart';
+import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart';
+import 'package:recipe_haven/features/recipe/presentation/screens/recipe_info_screen.dart';
 
-class RecipesScreen extends StatefulWidget {
+class RecipesScreen extends StatelessWidget {
   const RecipesScreen({super.key});
-
-  @override
-  State<RecipesScreen> createState() => _RecipesScreenState();
-}
-
-class _RecipesScreenState extends State<RecipesScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<GetRecipesCubit>().getRecipes();
-    });
-  }
-
+  static const id = 'RecipesScreen';
   @override
   Widget build(BuildContext context) {
     Logger logger = Logger('Recipes Screen');
@@ -31,7 +20,15 @@ class _RecipesScreenState extends State<RecipesScreen> {
           child: Center(
             child: GestureDetector(
               child: Text(state.recipes.first.title),
-              onTap: () {},
+              onTap: () {
+                context
+                    .read<RecipeInfoBloc>()
+                    .add(RecipeLoadEvent(state.recipes.first));
+                Navigator.pushNamed(
+                  context,
+                  RecipeInfoScreen.id,
+                );
+              },
             ),
           ),
         );

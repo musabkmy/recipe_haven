@@ -19,6 +19,24 @@ final class TextStyles {
     color: Colors.black,
   );
 
+  static const TextStyle displayLarge = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.black87,
+  );
+
+  static const TextStyle displayMedium = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: Colors.black87,
+  );
+
+  static const TextStyle displaySmall = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+    color: Colors.black87,
+  );
+
   static const TextStyle bodyLarge = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,

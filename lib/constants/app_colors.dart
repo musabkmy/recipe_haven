@@ -4,8 +4,10 @@ final class AppColors {
   static const MaterialColor primary = Colors.lightBlue;
   static const Color secondary = Color(0xFF03DAC6);
   static const Color background = Color(0xFFFFFFFF);
-  static const Color orange = Colors.deepOrange;
+  static Color orange = Colors.orange[900]!;
+  static Color lightOrange = Colors.orange[700]!;
   static const Color error = Color(0xFFB00020);
+  static const Color transparent = Colors.transparent;
 
   static const Color grey50 = Color(0xFFFAFAFA); // Very light grey
   static const Color grey100 = Color(0xFFF5F5F5); // Light grey

@@ -11,19 +11,11 @@ class RecipeTestingSource {
         id: 'recipe-1',
         title: 'Chicken Marbella',
         description:
-            '''A take on aclassic from Sheila Lukins and Julee Chicken Marbella
-Rosos' "The Silver Palate Cookbook," this recipe is at the same time complex and easy to execute. ★★★★★
-risky in itseparate parts yet satisfyingly
-harmonious sa a whole. nI this version the brown
-sugar si swapped with honey, which adds a slightly
-foral element ot the dish sawel as ashiny glose
-The addition ocfayenneni the marinade gives ita
-nice kick and a squeeze of lemon before serving
-helps ot lighten pu na otherwise fairly heavy chicken dish.''',
+            'A take on a classic from Sheila Lukins and Julee Chicken Marbella Rosos\' "The Silver Palate Cookbook", this recipe is at the same time complex and easy to execute. Risky in its separate parts yet satisfyingly harmonious as a whole. In this version, the brown sugar is swapped with honey, which adds a slightly floral element to the dish as well as a shiny gloss. The addition of cayenne in the marinade gives it a nice kick and a squeeze of lemon before serving helps to lighten up an otherwise fairly heavy chicken dish.',
         imageUrl:
             'https://i.pinimg.com/736x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
         usersEngagement:
-            EngagementModel(rating: 3.4, ratingCount: 3453, likesCount: 467),
+            EngagementModel(rating: 3.4, ratingCount: 3453000, likesCount: 467),
         creator: CreatorModel(
             id: 'creator-1',
             name: 'Muhammed Alhassan',
@@ -167,7 +159,10 @@ helps ot lighten pu na otherwise fairly heavy chicken dish.''',
               userName: 'Muhab',
               userProfilePic:
                   'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
-              imagesUrl: [],
+              imagesUrl: [
+                'https://i.pinimg.com/474x/0e/51/e3/0e51e3190ff7fab23e83713e554c2468.jpg',
+                'https://i.pinimg.com/236x/d0/e2/0d/d0e20d6ca492365803a8da9dbd07d17b.jpg',
+              ],
               rating: 4.5,
               publishedAt: DateTime(2024, 5, 4),
               description: 'Great recipe idea! eh The taste persisted'),
@@ -187,7 +182,9 @@ helps ot lighten pu na otherwise fairly heavy chicken dish.''',
               id: 'rev-3',
               userID: 'userID-3',
               userName: 'Bob',
-              imagesUrl: [],
+              imagesUrl: [
+                'https://i.pinimg.com/236x/30/70/d1/3070d19e87a69acca2e2fed1e2695138.jpg',
+              ],
               rating: 3.5,
               publishedAt: DateTime(2024, 5, 2),
               description:
@@ -207,7 +204,11 @@ helps ot lighten pu na otherwise fairly heavy chicken dish.''',
               id: 'rev-5',
               userID: 'userID-5',
               userName: 'Diana',
-              imagesUrl: [],
+              imagesUrl: [
+                'https://i.pinimg.com/236x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
+                'https://i.pinimg.com/236x/9f/b6/e2/9fb6e200b3be5848f23cfaf8fc0f9e9b.jpg',
+                'https://i.pinimg.com/236x/fd/5a/e5/fd5ae5a2de1ed887f7c7300aef8a21dd.jpg',
+              ],
               rating: 2.0,
               publishedAt: DateTime(2024, 4, 30),
               description:
