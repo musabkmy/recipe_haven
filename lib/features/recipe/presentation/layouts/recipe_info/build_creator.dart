@@ -19,13 +19,23 @@ class BuildCreator extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
       child: Row(
         children: [
-          ClipOval(
-            child: CachedNetworkImage(
-                height: 54.spMin,
-                width: 54.spMin,
-                imageUrl: creator.profilePic),
+          CachedNetworkImage(
+            imageUrl: creator.profilePic,
+            imageBuilder: (context, imageProvider) => Container(
+              height: 54.sp,
+              width: 54.sp,
+              constraints: BoxConstraints(
+                maxHeight: 100,
+                maxWidth: 100,
+              ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(image: imageProvider),
+              ),
+            ),
           ),
-          SizedBox(width: AppSpacing.md),
+          SizedBox(
+              width: AppSpacing.sm.sp), // Replace with appropriate width value
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -35,7 +35,7 @@ class BuildTop extends StatelessWidget {
             )),
         Text(recipe.title, style: context.headlineLarge),
         SizedBox(
-          height: 20,
+          height: 30,
           child: ListView.builder(
               itemCount: 5,
               shrinkWrap: true,
@@ -51,14 +51,16 @@ class BuildTop extends StatelessWidget {
                   color: (recipe.usersEngagement.rating - (index + 1)) < 0.1
                       ? AppColors.grey300
                       : AppColors.orange,
+                  size: 32.spMin,
                 );
               }),
         ),
         Text(
             'Based on ${recipe.usersEngagement.ratingCount.countFormat} ratings',
             style: context.caption),
+        SizedBox.shrink(),
         Row(
-          spacing: AppSpacing.md,
+          spacing: AppSpacing.md.sp,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BuildCircularButton(

@@ -25,3 +25,14 @@ class Details extends Equatable {
         defaultPortionBasedRecipeID,
       ];
 }
+
+extension DetailsEx on Details {
+  PortionBasedRecipe get selectedPortion {
+    return servings.firstWhere(
+      (element) =>
+          element.id ==
+          (chosenPortionBasedRecipeID ?? defaultPortionBasedRecipeID),
+      orElse: () => servings.first,
+    );
+  }
+}

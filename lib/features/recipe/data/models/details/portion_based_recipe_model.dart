@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:recipe_haven/config/extensions/duration_extensions.dart';
 import 'package:recipe_haven/config/utils/duration_utils.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_difficulty.dart';
 import '../../../domain/entities/details/portion_based_recipe_entity.dart';
@@ -56,9 +57,9 @@ class PortionBasedRecipeModel {
           minPortionCount: entity.minPortionCount,
           maxPortionCount: entity.maxPortionCount,
           portionCount: entity.portionCount,
-          preparationHumanTime: toHumanDuration(entity.preparationTime),
-          bakingHumanTime: toHumanDuration(entity.bakingTime),
-          restingHumanTime: toHumanDuration(entity.restingTime),
+          preparationHumanTime: entity.preparationTime.toHumanDuration(),
+          bakingHumanTime: entity.bakingTime.toHumanDuration(),
+          restingHumanTime: entity.restingTime.toHumanDuration(),
           ingredients: WeightCountModel.fromEntities(entity.ingredientsCount),
           nutritious: WeightCountModel.fromEntities(entity.nutritiousCount));
 

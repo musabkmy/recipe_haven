@@ -21,8 +21,12 @@ class BuildCircularButton extends StatelessWidget {
       child: Column(
         children: [
           Container(
-              height: 52.spMin,
-              width: 52.spMin,
+              height: 48.sp,
+              width: 48.sp,
+              constraints: BoxConstraints(
+                maxHeight: 52,
+                maxWidth: 52,
+              ),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.transparent,

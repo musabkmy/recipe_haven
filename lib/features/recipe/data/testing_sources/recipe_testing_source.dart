@@ -94,7 +94,7 @@ class RecipeTestingSource {
           PortionBasedRecipeModel(
               id: 'ser-1',
               portionCount: 4,
-              difficulty: 'medium',
+              difficulty: 'Medium',
               preparationHumanTime: '15m',
               bakingHumanTime: '40m',
               restingHumanTime: '24h',
@@ -114,15 +114,15 @@ class RecipeTestingSource {
               ],
               nutritious: [
                 WeightCountModel(id: 'nut-1', count: 965),
-                WeightCountModel(id: 'nut-1', count: 72),
-                WeightCountModel(id: 'nut-1', count: 60),
-                WeightCountModel(id: 'nut-1', count: 30),
+                WeightCountModel(id: 'nut-2', count: 72),
+                WeightCountModel(id: 'nut-3', count: 60),
+                WeightCountModel(id: 'nut-4', count: 30),
               ]),
           PortionBasedRecipeModel(
               id: 'ser-2',
               minPortionCount: 2,
               maxPortionCount: 3,
-              difficulty: 'medium',
+              difficulty: 'Medium',
               preparationHumanTime: '12m',
               bakingHumanTime: '37m',
               restingHumanTime: '24h',
@@ -146,9 +146,13 @@ class RecipeTestingSource {
               ],
               nutritious: [
                 WeightCountModel(id: 'nut-1', count: 820),
-                WeightCountModel(id: 'nut-1', count: 65),
-                WeightCountModel(id: 'nut-1', count: 55),
-                WeightCountModel(id: 'nut-1', count: 30),
+                WeightCountModel(id: 'nut-2', count: 65),
+                WeightCountModel(id: 'nut-3', count: 55),
+                WeightCountModel(
+                    id: 'nut-4',
+                    count: 1,
+                    measuringUnit: MeasuringUnitModel(
+                        name: 'kilogram', abbreviation: 'kg')),
               ]),
         ], defaultPortionBasedRecipeID: 'ser-1'),
         tags: ['herbs', 'dinner', '2024 trends'],
@@ -407,7 +411,7 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
             PortionBasedRecipeModel(
               id: 'ser-1',
               portionCount: 4,
-              difficulty: 'easy',
+              difficulty: 'Easy',
               preparationHumanTime: '10m',
               ingredients: [
                 WeightCountModel(id: 'ing-1', count: 400),
@@ -478,7 +482,7 @@ Add __ing_ing-1 (spaghetti) and cook until al dente. Reserve 1/2 cup of pasta wa
             ],
             fontSize: FontSize.large,
             paragraph: '''
-Heat a skillet over medium heat.__nl
+Heat a skillet over Medium heat.__nl
 Add __ing_ing-2 (pancetta) and cook until crispy.__nl
 Add __ing_ing-5 (garlic) and sauté for 1 minute.
 ''',
@@ -582,7 +586,7 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
             PortionBasedRecipeModel(
               id: 'ser-1',
               portionCount: 4,
-              difficulty: 'medium',
+              difficulty: 'Medium',
               preparationHumanTime: '15m',
               ingredients: [
                 WeightCountModel(id: 'ing-1', count: 200),

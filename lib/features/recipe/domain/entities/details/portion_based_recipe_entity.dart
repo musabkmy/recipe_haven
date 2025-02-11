@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_difficulty.dart';
-
 import 'weight_count_entity.dart';
 
 typedef PortionBasedRecipes = List<PortionBasedRecipe>;
@@ -51,4 +50,16 @@ class PortionBasedRecipe extends Equatable {
         ingredientsCount,
         nutritiousCount,
       ];
+}
+
+extension PortionBasedRecipeEx on PortionBasedRecipe {
+  String get servingsCount =>
+      portionCount?.toString() ?? '$minPortionCount - $maxPortionCount';
+
+  String get difficultyEmoji => switch (difficulty) {
+        Difficulty.easy => '👌',
+        Difficulty.medium => '👍',
+        Difficulty.hard => '🤜',
+        Difficulty.unknown => '🤷',
+      };
 }

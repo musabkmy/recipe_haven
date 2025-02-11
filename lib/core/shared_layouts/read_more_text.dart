@@ -67,7 +67,5 @@ bool isTextVisible(
     textDirection: TextDirection.ltr,
   );
   textPainter.layout(maxWidth: maxWidth);
-  debugPrint(
-      'textPainter.didExceedMaxLines: ${!textPainter.didExceedMaxLines}');
-  return !textPainter.didExceedMaxLines;
+  return textPainter.didExceedMaxLines;
 }

@@ -34,26 +34,30 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<GetRecipesCubit>(
-              create: (_) => getIt<GetRecipesCubit>()),
-          BlocProvider<RecipeInfoBloc>(create: (_) => getIt<RecipeInfoBloc>()),
-        ],
-        child: MaterialApp(
-          title: 'Recipe Haven',
-          theme: AppTheme.light,
-          initialRoute: App.id,
-          routes: {
-            App.id: (context) => App(),
-            RecipesScreen.id: (context) => RecipesScreen(),
-            RecipeInfoScreen.id: (context) => RecipeInfoScreen(),
-          },
-        ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<GetRecipesCubit>(create: (_) => getIt<GetRecipesCubit>()),
+        BlocProvider<RecipeInfoBloc>(create: (_) => getIt<RecipeInfoBloc>()),
+      ],
+      child: ScreenUtilInit(
+        designSize: Size(360, 690),
+        // ensureScreenSize: true,
+        // enableScaleWH: () => true,
+        // minTextAdapt: true,
+        enableScaleText: () => true,
+        builder: (_, __) {
+          return MaterialApp(
+            title: 'Recipe Haven',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.light,
+            initialRoute: App.id,
+            routes: {
+              App.id: (context) => App(),
+              RecipesScreen.id: (context) => RecipesScreen(),
+              RecipeInfoScreen.id: (context) => RecipeInfoScreen(),
+            },
+          );
+        },
       ),
     );
   }

@@ -22,22 +22,3 @@ Duration parseHumanDuration(String? input) {
   return Duration(
       hours: hours ?? 0, minutes: minutes ?? 0, seconds: seconds ?? 0);
 }
-
-String toHumanDuration(Duration input) {
-  if (input == Duration.zero) {
-    return '';
-  }
-  String humanDuration = '';
-
-  if (input.inHours > 0) {
-    humanDuration += '${input.inHours}h';
-  }
-  if ((input.inMinutes - input.inHours * 60) > 0) {
-    humanDuration += '${input.inMinutes - input.inHours * 60}m';
-  }
-  if ((input.inSeconds - input.inMinutes * 60) > 0) {
-    humanDuration += '${input.inSeconds - input.inMinutes * 60}s';
-  }
-
-  return humanDuration;
-}

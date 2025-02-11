@@ -4,4 +4,7 @@ extension FormatNumber on num {
       : this >= 1000
           ? '${(this / 1000).toStringAsFixed(1).replaceAll(RegExp(r'\.0$'), '')}K'
           : toString();
+
+  num get intOr2Decimals =>
+      this % 1 != 0 ? double.parse(toStringAsFixed(2)) : toInt();
 }

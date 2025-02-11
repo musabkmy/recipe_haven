@@ -1,83 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final class TextStyles {
-  static const TextStyle headingLarge = TextStyle(
-    fontSize: 32,
+  static TextStyle headingLarge = TextStyle(
+    fontSize: 32.0.h,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
 
-  static const TextStyle headingMedium = TextStyle(
-    fontSize: 24,
+  static TextStyle headingMedium = TextStyle(
+    fontSize: 24.0.h,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
 
-  static const TextStyle headingSmall = TextStyle(
-    fontSize: 20,
+  static TextStyle headingSmall = TextStyle(
+    fontSize: 20.0.h,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
 
-  static const TextStyle displayLarge = TextStyle(
-    fontSize: 16,
+  static TextStyle displayLarge = TextStyle(
+    fontSize: 16.0.h,
     fontWeight: FontWeight.bold,
     color: Colors.black87,
   );
 
-  static const TextStyle displayMedium = TextStyle(
-    fontSize: 14,
+  static TextStyle displayMedium = TextStyle(
+    fontSize: 14.0.h,
     fontWeight: FontWeight.bold,
     color: Colors.black87,
   );
 
-  static const TextStyle displaySmall = TextStyle(
-    fontSize: 12,
+  static TextStyle displaySmall = TextStyle(
+    fontSize: 12.0.h,
     fontWeight: FontWeight.bold,
     color: Colors.black87,
   );
 
-  static const TextStyle bodyLarge = TextStyle(
-    fontSize: 16,
+  static TextStyle bodyLarge = TextStyle(
+    fontSize: 16.0.h,
     fontWeight: FontWeight.normal,
     color: Colors.black87,
   );
 
-  static const TextStyle bodyMedium = TextStyle(
-    fontSize: 14,
+  static TextStyle bodyMedium = TextStyle(
+    fontSize: 14.0.h,
     fontWeight: FontWeight.normal,
     color: Colors.black87,
   );
 
-  static const TextStyle bodySmall = TextStyle(
-    fontSize: 12,
+  static TextStyle bodySmall = TextStyle(
+    fontSize: 12.0.h,
     fontWeight: FontWeight.normal,
     color: Colors.black87,
   );
 
-  static const TextStyle caption = TextStyle(
-    fontSize: 12,
+  static TextStyle caption = TextStyle(
+    fontSize: 12.0.h,
     fontWeight: FontWeight.w300,
     color: Colors.grey,
   );
 
-  static const TextStyle buttonLabel = TextStyle(
-    fontSize: 16,
+  static TextStyle buttonLabel = TextStyle(
+    fontSize: 16.0.h,
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
 
-  static TextStyle custom({
-    double fontSize = 14,
-    FontWeight fontWeight = FontWeight.normal,
-    Color color = Colors.black,
-  }) {
-    return TextStyle(
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-      color: color,
-    );
-  }
-
-  const TextStyles._();
+  TextStyles._();
 }
