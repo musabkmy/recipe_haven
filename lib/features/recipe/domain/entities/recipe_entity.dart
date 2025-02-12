@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-
 import 'entities.dart';
 
 typedef Recipes = List<Recipe>;
@@ -15,7 +14,7 @@ class Recipe extends Equatable {
   final Utensils utensils;
   final List<String> tags;
   final Reviews reviews;
-  final CookingSteps cookingSteps;
+  final CookingStepsMap cookingStepsMap;
 
   Recipe(
       {required this.id,
@@ -28,8 +27,8 @@ class Recipe extends Equatable {
       required this.utensils,
       required this.tags,
       required this.reviews,
-      required this.cookingSteps})
-      : assert(cookingSteps.isNotEmpty);
+      required this.cookingStepsMap})
+      : assert(cookingStepsMap.isNotEmpty);
 
   @override
   List<Object?> get props => [
@@ -43,6 +42,6 @@ class Recipe extends Equatable {
         utensils,
         tags,
         reviews,
-        cookingSteps,
+        cookingStepsMap,
       ];
 }

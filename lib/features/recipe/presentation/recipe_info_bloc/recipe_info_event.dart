@@ -8,9 +8,17 @@ sealed class RecipeInfoEvent extends Equatable {
 }
 
 final class RecipeLoadEvent extends RecipeInfoEvent {
-  final Recipe recipe;
   const RecipeLoadEvent(this.recipe);
+  final Recipe recipe;
 
   @override
   List<Object> get props => [recipe];
+}
+
+final class ChangeSelectedPortion extends RecipeInfoEvent {
+  const ChangeSelectedPortion({required this.next});
+  final bool next;
+
+  @override
+  List<Object> get props => [next];
 }

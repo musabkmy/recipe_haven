@@ -8,7 +8,7 @@ part of 'cooking_step_model.dart';
 
 CookingStepModel _$CookingStepModelFromJson(Map<String, dynamic> json) =>
     CookingStepModel(
-      stepNumber: json['stepNumber'] as String,
+      stepNumber: (json['stepNumber'] as num).toInt(),
       ingredientsID: (json['ingredientsID'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),

@@ -231,9 +231,9 @@ class RecipeTestingSource {
               description:
                   'Fantastic recipe! The dish was a hit at my dinner party. Will definitely make it again.'),
         ],
-        cookingSteps: [
+        CookingStepsMap: [
           CookingStepModel(
-              stepNumber: '1',
+              stepNumber: 1,
               utensilsID: ['ute-2', 'ute-3'],
               ingredientsID: [
                 'ing-1',
@@ -258,7 +258,7 @@ Add the __ing_ing-2, __ing_ing-3, __ing_ing-5, and __ing_ing-7. Mix well to ensu
 Cover the __utensil_ute-3 , and refrigerate for at least 4 hours (or overnight) to allow the flavors to meld.
 '''),
           CookingStepModel(
-              stepNumber: '2',
+              stepNumber: 2,
               utensilsID: ['ute-4'],
               ingredientsID: [
                 'ing-2',
@@ -276,7 +276,7 @@ Scatter the __ing_ing-2, __ing_ing-3, __ing_ing-5, and __ing_ing-7 over the chic
 Pour the remaining marinade over the chicken.
 '''),
           CookingStepModel(
-            stepNumber: '3',
+            stepNumber: 3,
             utensilsID: ['ute-4'],
             ingredientsID: [
               'ing-8',
@@ -292,7 +292,7 @@ Sprinkle __ing_ing-9 over the top of the chicken and other ingredients.
 ''',
           ),
           CookingStepModel(
-            stepNumber: '4',
+            stepNumber: 4,
             utensilsID: ['ute-5'],
             ingredientsID: ['ing-3'],
             imagesUrl: [
@@ -305,7 +305,7 @@ The chicken is done when it reaches an internal temperature of 165°F (74°C) an
 ''',
           ),
           CookingStepModel(
-            stepNumber: '5',
+            stepNumber: 5,
             utensilsID: ['ute-6'],
             ingredientsID: [
               'ing-2',
@@ -459,9 +459,9 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
                 'Delicious and easy to make. I added a bit more cheese for extra flavor.',
           ),
         ],
-        cookingSteps: [
+        CookingStepsMap: [
           CookingStepModel(
-            stepNumber: '1',
+            stepNumber: 1,
             utensilsID: ['ute-1'],
             ingredientsID: ['ing-1', 'ing-7'],
             imagesUrl: [
@@ -474,7 +474,7 @@ Add __ing_ing-1 (spaghetti) and cook until al dente. Reserve 1/2 cup of pasta wa
 ''',
           ),
           CookingStepModel(
-            stepNumber: '2',
+            stepNumber: 2,
             utensilsID: ['ute-2'],
             ingredientsID: ['ing-2', 'ing-5'],
             imagesUrl: [
@@ -488,7 +488,7 @@ Add __ing_ing-5 (garlic) and sauté for 1 minute.
 ''',
           ),
           CookingStepModel(
-            stepNumber: '3',
+            stepNumber: 3,
             utensilsID: ['ute-3', 'ute-4'],
             ingredientsID: ['ing-3', 'ing-4', 'ing-6'],
             imagesUrl: [
@@ -501,7 +501,7 @@ Slowly add the reserved pasta water to the egg mixture while whisking.
 ''',
           ),
           CookingStepModel(
-            stepNumber: '4',
+            stepNumber: 4,
             utensilsID: ['ute-2'],
             ingredientsID: ['ing-1', 'ing-2'],
             imagesUrl: [
@@ -619,9 +619,9 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
             description: 'Absolutely divine! The molten center is perfect.',
           ),
         ],
-        cookingSteps: [
+        CookingStepsMap: [
           CookingStepModel(
-            stepNumber: '1',
+            stepNumber: 1,
             utensilsID: ['ute-1'],
             ingredientsID: ['ing-1', 'ing-2'],
             imagesUrl: [
@@ -633,7 +633,7 @@ Melt __ing_ing-1 (dark chocolate) and __ing_ing-2 (butter) together in a mixing 
 ''',
           ),
           CookingStepModel(
-            stepNumber: '2',
+            stepNumber: 2,
             utensilsID: ['ute-1', 'ute-2'],
             ingredientsID: ['ing-3', 'ing-4', 'ing-5'],
             imagesUrl: [
@@ -645,7 +645,7 @@ Whisk in __ing_ing-3 (sugar), __ing_ing-4 (eggs), and __ing_ing-5 (flour) until 
 ''',
           ),
           CookingStepModel(
-            stepNumber: '3',
+            stepNumber: 3,
             utensilsID: ['ute-3', 'ute-4'],
             ingredientsID: ['ing-6'],
             imagesUrl: [

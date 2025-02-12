@@ -17,7 +17,7 @@ class RecipeModel {
   final DetailsModel details;
   final List<String> tags;
   final ReviewModels reviews;
-  final CookingStepModels cookingSteps;
+  final CookingStepModels CookingStepsMap;
 
   RecipeModel(
       {required this.id,
@@ -30,8 +30,8 @@ class RecipeModel {
       required this.details,
       required this.tags,
       required this.reviews,
-      required this.cookingSteps})
-      : assert(cookingSteps.isNotEmpty);
+      required this.CookingStepsMap})
+      : assert(CookingStepsMap.isNotEmpty);
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) =>
       _$RecipeModelFromJson(json);
@@ -47,7 +47,7 @@ class RecipeModel {
       details: DetailsModel.fromEntity(entity.details),
       tags: entity.tags,
       reviews: ReviewModel.fromEntities(entity.reviews),
-      cookingSteps: CookingStepModel.fromEntities(entity.cookingSteps));
+      CookingStepsMap: CookingStepModel.fromEntities(entity.cookingStepsMap));
 
   static RecipeModels fromEntities(Recipes entities) =>
       entities.map((element) => RecipeModel.fromEntity(element)).toList();
@@ -65,7 +65,7 @@ class RecipeModel {
       utensils: utensils.toEntity(),
       tags: tags,
       reviews: reviews.toEntity(),
-      cookingSteps: cookingSteps.toEntity());
+      cookingStepsMap: CookingStepsMap.toEntity());
 }
 
 extension RecipeModelEx on RecipeModels {

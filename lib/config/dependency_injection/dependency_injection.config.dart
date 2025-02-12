@@ -20,10 +20,10 @@ import '../../features/recipe/data/testing_sources/recipe_testing_source.dart'
     as _i703;
 import '../../features/recipe/data/testing_sources/testing_sources.dart'
     as _i697;
-import '../../features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart'
-    as _i939;
 import '../../features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart'
-    as _i408;
+    as _i226;
+import '../../features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart'
+    as _i242;
 import '../../features/recipe/recipe.dart' as _i1012;
 
 const String _prod = 'prod';
@@ -41,7 +41,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.factory<_i703.RecipeTestingSource>(() => _i703.RecipeTestingSource());
-    gh.singleton<_i939.RecipeInfoBloc>(() => _i939.RecipeInfoBloc());
+    gh.singleton<_i242.RecipeInfoBloc>(() => _i242.RecipeInfoBloc());
     gh.factory<_i1012.RecipeRepository>(
       () => _i514.RecipeRepositoryImpl(gh<_i703.RecipeTestingSource>()),
       registerFor: {_prod},
@@ -50,8 +50,8 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i976.RecipeRepositoryTestImpl(gh<_i697.RecipeTestingSource>()),
       registerFor: {_dev},
     );
-    gh.singleton<_i408.GetRecipesCubit>(
-        () => _i408.GetRecipesCubit(gh<_i1012.RecipeRepository>()));
+    gh.singleton<_i226.GetRecipesCubit>(
+        () => _i226.GetRecipesCubit(gh<_i1012.RecipeRepository>()));
 
     return this;
   }

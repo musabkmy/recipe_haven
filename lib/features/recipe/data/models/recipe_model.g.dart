@@ -22,8 +22,10 @@ RecipeModel _$RecipeModelFromJson(Map<String, dynamic> json) => RecipeModel(
       reviews: (json['reviews'] as List<dynamic>)
           .map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      cookingSteps: (json['cookingSteps'] as List<dynamic>)
-          .map((e) => CookingStepModel.fromJson(e as Map<String, dynamic>))
+      CookingStepsMap: (json['CookingStepsMap'] as List<dynamic>)
+          .map((e) => e == null
+              ? null
+              : CookingStepModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -39,5 +41,5 @@ Map<String, dynamic> _$RecipeModelToJson(RecipeModel instance) =>
       'details': instance.details,
       'tags': instance.tags,
       'reviews': instance.reviews,
-      'cookingSteps': instance.cookingSteps,
+      'CookingStepsMap': instance.CookingStepsMap,
     };

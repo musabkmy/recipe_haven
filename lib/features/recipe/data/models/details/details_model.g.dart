@@ -17,7 +17,6 @@ DetailsModel _$DetailsModelFromJson(Map<String, dynamic> json) => DetailsModel(
           .map((e) =>
               PortionBasedRecipeModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      chosenPortionBasedRecipeID: json['chosenPortionBasedRecipeID'] as String?,
       defaultPortionBasedRecipeID:
           json['defaultPortionBasedRecipeID'] as String,
     );
@@ -27,6 +26,5 @@ Map<String, dynamic> _$DetailsModelToJson(DetailsModel instance) =>
       'baseIngredients': instance.baseIngredients,
       'baseNutritious': instance.baseNutritious,
       'servings': instance.servings,
-      'chosenPortionBasedRecipeID': instance.chosenPortionBasedRecipeID,
       'defaultPortionBasedRecipeID': instance.defaultPortionBasedRecipeID,
     };

@@ -20,6 +20,9 @@ final class AppSpacing {
   ///56.0
   static const double x3l = 56.0;
 
+  ///68.0
+  static const double x4l = 68.0;
+
   ///24.0
   static const double minHorizontal = 24.0;
 

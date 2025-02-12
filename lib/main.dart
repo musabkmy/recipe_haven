@@ -5,7 +5,7 @@ import 'package:logging/logging.dart';
 import 'package:recipe_haven/app.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/config/theme/theme.dart';
-import 'package:recipe_haven/features/recipe/domain/repositories/recipe_repository.dart';
+import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
 import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/recipe/presentation/screens/recipe_info_screen.dart';
@@ -16,15 +16,11 @@ void main() async {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
     debugPrint(
-        '${record.level.name}: ${record.loggerName}: \n${record.message}\n\\\\\\\\\\');
+        '${record.level.name}:\n ${record.loggerName}: ${record.message}\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\');
   });
   await ScreenUtil.ensureScreenSize();
   configurationDependency(Env.dev);
-  if (getIt.isRegistered<RecipeRepository>()) {
-    debugPrint('RecipeRepository is registered!');
-  } else {
-    debugPrint('RecipeRepository is NOT registered.');
-  }
+  Bloc.observer = AppBlocObserver();
   runApp(MyApp());
 }
 

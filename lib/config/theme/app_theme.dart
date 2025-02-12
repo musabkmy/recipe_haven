@@ -23,6 +23,7 @@ final class AppTheme {
     return ThemeData(
       primarySwatch: AppColors.primary,
       textTheme: textTheme,
+      scaffoldBackgroundColor: AppColors.background,
       popupMenuTheme: PopupMenuThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSpacing.md),

@@ -5,14 +5,12 @@ class Details extends Equatable {
   final Ingredients baseIngredients;
   final Nutritious baseNutritious;
   final PortionBasedRecipes servings;
-  final String? chosenPortionBasedRecipeID;
   final String defaultPortionBasedRecipeID;
 
   Details(
       {required this.baseIngredients,
       required this.baseNutritious,
       required this.servings,
-      required this.chosenPortionBasedRecipeID,
       required this.defaultPortionBasedRecipeID})
       : assert(servings.isNotEmpty);
 
@@ -21,18 +19,6 @@ class Details extends Equatable {
         baseIngredients,
         baseNutritious,
         servings,
-        chosenPortionBasedRecipeID,
         defaultPortionBasedRecipeID,
       ];
-}
-
-extension DetailsEx on Details {
-  PortionBasedRecipe get selectedPortion {
-    return servings.firstWhere(
-      (element) =>
-          element.id ==
-          (chosenPortionBasedRecipeID ?? defaultPortionBasedRecipeID),
-      orElse: () => servings.first,
-    );
-  }
 }

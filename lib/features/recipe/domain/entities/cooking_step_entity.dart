@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
 
-typedef CookingSteps = List<CookingStep>;
+///cooking steps key:step number, value: data
+typedef CookingStepsMap = Map<int, CookingStep?>;
 
 class CookingStep extends Equatable {
-  final String stepNumber;
   final List<String> ingredientsID;
   final List<String> utensilsID;
   final List<String> imagesUrl;
@@ -17,8 +17,7 @@ class CookingStep extends Equatable {
   final String paragraph;
 
   CookingStep(
-      {required this.stepNumber,
-      required this.ingredientsID,
+      {required this.ingredientsID,
       required this.utensilsID,
       required this.imagesUrl,
       required this.fontSize,
@@ -27,5 +26,5 @@ class CookingStep extends Equatable {
 
   @override
   List<Object?> get props =>
-      [stepNumber, ingredientsID, utensilsID, imagesUrl, fontSize, paragraph];
+      [ingredientsID, utensilsID, imagesUrl, fontSize, paragraph];
 }

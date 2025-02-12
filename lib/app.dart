@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/features/recipe/presentation/screens/recipes_screen.dart';
 
 import 'features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart';
@@ -25,7 +24,6 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: RecipesScreen(),
       bottomNavigationBar: BottomNavigationBar(
         items: [

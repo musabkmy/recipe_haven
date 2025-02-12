@@ -6,7 +6,7 @@ final class AppColors {
   static const Color background = Color(0xFFFFFFFF);
   static Color orange = Colors.orange[900]!;
   static Color lightOrange = Colors.orange[700]!;
-  static Color lightOrangeAccent = Colors.orangeAccent[50]!;
+  static const Color lightAmberAccent = Color(0xFFFFF7EE);
 
   static const Color error = Color(0xFFB00020);
   static const Color transparent = Colors.transparent;

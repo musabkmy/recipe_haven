@@ -1,21 +1,30 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/duration_extensions.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/details/entities_details.dart';
-import 'package:recipe_haven/features/recipe/presentation/layouts/shared/build_circular_progress.dart';
+import 'package:recipe_haven/features/recipe/presentation/layouts/shared/shared_layouts.dart';
+import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 
 // ignore: must_be_immutable
 class BuildRecipeDetails extends StatelessWidget {
-  BuildRecipeDetails({
+  const BuildRecipeDetails({
     super.key,
     required this.recipeDetails,
-  }) : selectedPortion = recipeDetails.selectedPortion;
+    required this.selectedPortion,
+    required this.hasPrevious,
+    required this.hasNext,
+  });
 
   final Details recipeDetails;
-  late PortionBasedRecipe selectedPortion;
+  final PortionBasedRecipe selectedPortion;
+  final bool hasPrevious;
+  final bool hasNext;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +38,10 @@ class BuildRecipeDetails extends StatelessWidget {
           child: _buildDifficulty(context),
         ),
         AppSpacer(height: 100),
+        _buildIngredients(context),
+        AppSpacer(height: 100),
         //preparation/baking/resting
         _buildTiming(),
-        AppSpacer(height: 70),
-        _buildIngredients(context),
         AppSpacer(height: 70),
         //nutrition
         _buildNutritious(context),
@@ -44,37 +53,93 @@ class BuildRecipeDetails extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
       child: Column(
+        spacing: AppSpacing.xl,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Ingredients',
             style: context.displayLarge,
           ),
-          SizedBox(height: AppSpacing.md),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '${recipeDetails.selectedPortion.servingsCount} Servings',
-                style: context.displayMedium,
-              ),
-              Row(
-                children: [
-                  MaterialButton(
-                    onPressed: () {},
-                    child: Container(
-                      height: 24.sp,
-                      width: 32.sp,
-                      color: AppColors.lightOrangeAccent,
-                      child: Icon(Icons.arrow_back_ios_rounded),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          )
+          _buildChangeSelectedPortion(context),
+          _buildIngredientsList(context)
         ],
       ),
+    );
+  }
+
+  Row _buildIngredientsList(BuildContext context) {
+    return Row(
+      spacing: AppSpacing.x4l,
+      children: [
+        Column(
+          spacing: AppSpacing.xs,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: recipeDetails.baseIngredients.map((element) {
+            final count = selectedPortion.ingredientsCount.countIn(element.id);
+            return count == 0
+                ? SizedBox.shrink()
+                : Text(
+                    '${count.weightFormat} ${element.baseUnit?.abbreviation ?? ''}',
+                    style: context.bodyMedium);
+          }).toList(),
+        ),
+        Column(
+          spacing: AppSpacing.xs,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: recipeDetails.baseIngredients.map((element) {
+            final count = selectedPortion.ingredientsCount.countIn(element.id);
+            return count == 0
+                ? SizedBox.shrink()
+                : Text(element.name, style: context.bodyMedium);
+          }).toList(),
+        ),
+      ],
+    );
+  }
+
+  Row _buildChangeSelectedPortion(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '${selectedPortion.servingsCount} Servings',
+          style: context.displayMedium,
+        ),
+        Row(
+          spacing: AppSpacing.md.sp,
+          children: [
+            BuildChangeButton(
+              onPressed: hasPrevious
+                  ? () {
+                      context
+                          .read<RecipeInfoBloc>()
+                          .add(ChangeSelectedPortion(next: false));
+                    }
+                  : null,
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+                size: min(16.sp, 24),
+              ),
+            ),
+            Container(
+                width: min(38.sp, 58),
+                alignment: Alignment.center,
+                child: Text(selectedPortion.servingsCount)),
+            BuildChangeButton(
+                onPressed: hasNext
+                    ? () {
+                        context
+                            .read<RecipeInfoBloc>()
+                            .add(ChangeSelectedPortion(next: true));
+                      }
+                    : null,
+                child: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: min(16.sp, 24),
+                )),
+          ],
+        ),
+      ],
     );
   }
 
@@ -100,14 +165,12 @@ class BuildRecipeDetails extends StatelessWidget {
               ],
             );
           }),
-          AppSpacer(),
         ],
       ),
     );
   }
 
   Widget _buildTiming() {
-    final selectedPortion = recipeDetails.selectedPortion;
     return Row(
       spacing: AppSpacing.xxl.sp,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -141,11 +204,9 @@ class BuildRecipeDetails extends StatelessWidget {
     return Text.rich(
         TextSpan(text: 'Difficulty: ', style: context.displayLarge, children: [
       TextSpan(
-          text: '${recipeDetails.selectedPortion.difficulty.name} ',
+          text: '${selectedPortion.difficulty.name} ',
           style: context.bodyLarge),
-      TextSpan(
-          text: recipeDetails.selectedPortion.difficultyEmoji,
-          style: context.bodyLarge),
+      TextSpan(text: selectedPortion.difficultyEmoji, style: context.bodyLarge),
     ]));
   }
 }

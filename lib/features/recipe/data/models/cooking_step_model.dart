@@ -4,56 +4,74 @@ import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
 
 part 'cooking_step_model.g.dart';
 
-typedef CookingStepModels = List<CookingStepModel>;
+/// A typedef for a list of nullable `CookingStepModel` objects.
+typedef CookingStepModels = List<CookingStepModel?>;
 
+/// A model class representing a cooking step.
 @JsonSerializable()
 class CookingStepModel {
-  final String stepNumber;
+  final int stepNumber;
   final List<String> ingredientsID;
   final List<String> utensilsID;
   final List<String> imagesUrl;
   final FontSize fontSize;
 
-  ///to specify an ingredient write '__ing_ingredientID'
-  ///to specify a utensil write '__utensil_utensilID'
-  ///to specify a timer write '__timer_humanTime' ex: [__timer_30m40s]
-  ///for new line [__nl]
+  /// The paragraph describing the cooking step.
+  /// - To specify an ingredient, write `__ing_ingredientID`.
+  /// - To specify a utensil, write `__utensil_utensilID`.
+  /// - To specify a timer, write `__timer_humanTime` (e.g., `__timer_30m40s`).
+  /// - For a new line, use `[__nl]`.
   final String paragraph;
 
-  CookingStepModel(
-      {required this.stepNumber,
-      required this.ingredientsID,
-      required this.utensilsID,
-      required this.imagesUrl,
-      required this.fontSize,
-      required this.paragraph})
-      : assert(ingredientsID.isNotEmpty && utensilsID.isNotEmpty);
+  CookingStepModel({
+    required this.stepNumber,
+    required this.ingredientsID,
+    required this.utensilsID,
+    required this.imagesUrl,
+    required this.fontSize,
+    required this.paragraph,
+  }) : assert(ingredientsID.isNotEmpty && utensilsID.isNotEmpty);
 
   factory CookingStepModel.fromJson(Map<String, dynamic> json) =>
       _$CookingStepModelFromJson(json);
 
-  factory CookingStepModel.fromEntity(CookingStep entity) => CookingStepModel(
-      stepNumber: entity.stepNumber,
-      ingredientsID: entity.ingredientsID,
-      utensilsID: entity.utensilsID,
-      imagesUrl: entity.imagesUrl,
-      fontSize: entity.fontSize,
-      paragraph: entity.paragraph);
+  factory CookingStepModel.fromEntity(int stepNumber, CookingStep entity) =>
+      CookingStepModel(
+        stepNumber: stepNumber,
+        ingredientsID: entity.ingredientsID,
+        utensilsID: entity.utensilsID,
+        imagesUrl: entity.imagesUrl,
+        fontSize: entity.fontSize,
+        paragraph: entity.paragraph,
+      );
 
-  static CookingStepModels fromEntities(CookingSteps entities) =>
-      entities.map((element) => CookingStepModel.fromEntity(element)).toList();
+  static CookingStepModels fromEntities(CookingStepsMap entities) =>
+      entities.entries.map((entry) {
+        final stepNumber = entry.key;
+        final entity = entry.value;
+        return entity != null
+            ? CookingStepModel.fromEntity(stepNumber, entity)
+            : null;
+      }).toList();
 
   Map<String, dynamic> toJson() => _$CookingStepModelToJson(this);
 
   CookingStep toEntity() => CookingStep(
-      stepNumber: stepNumber,
-      ingredientsID: ingredientsID,
-      utensilsID: utensilsID,
-      imagesUrl: imagesUrl,
-      fontSize: fontSize,
-      paragraph: paragraph);
+        ingredientsID: ingredientsID,
+        utensilsID: utensilsID,
+        imagesUrl: imagesUrl,
+        fontSize: fontSize,
+        paragraph: paragraph,
+      );
 }
 
 extension CookingStepModelEx on CookingStepModels {
-  CookingSteps toEntity() => map((element) => element.toEntity()).toList();
+  CookingStepsMap toEntity() {
+    return Map.fromEntries(
+      map((model) {
+        if (model == null) return MapEntry(-1, null);
+        return MapEntry(model.stepNumber, model.toEntity());
+      }).where((entry) => entry.key != -1),
+    );
+  }
 }
