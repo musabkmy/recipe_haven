@@ -10,8 +10,8 @@ extension FormatNumber on num {
   String get weightFormat => this % 1 == 0
       ? toString()
       : this % 1 >= .75
-          ? '${toInt()} ¾'
+          ? '${toInt()}¾'
           : this % 1 >= .30
-              ? '${toInt()} ½'
-              : '${toInt()} ¼';
+              ? '${toInt()}½'
+              : '${toInt()}¼';
 }

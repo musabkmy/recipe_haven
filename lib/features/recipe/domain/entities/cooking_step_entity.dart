@@ -4,6 +4,16 @@ import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
 ///cooking steps key:step number, value: data
 typedef CookingStepsMap = Map<int, CookingStep?>;
 
+enum ParagraphKeys {
+  ingredient('__ing_'),
+  utensil('__utensil_'),
+  timer('__timer_');
+
+  const ParagraphKeys(this.key);
+
+  final String key;
+}
+
 class CookingStep extends Equatable {
   final List<String> ingredientsID;
   final List<String> utensilsID;
