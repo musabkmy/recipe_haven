@@ -12,8 +12,8 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../features/recipe/data/repositories/recipe_repository_impl.dart'
-    as _i514;
+import '../../features/recipe/data/repositories/recipe_repository_firebase_impl.dart'
+    as _i213;
 import '../../features/recipe/data/repositories/recipe_repository_test_impl.dart'
     as _i976;
 import '../../features/recipe/data/testing_sources/recipe_testing_source.dart'
@@ -43,7 +43,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i703.RecipeTestingSource>(() => _i703.RecipeTestingSource());
     gh.singleton<_i242.RecipeInfoBloc>(() => _i242.RecipeInfoBloc());
     gh.factory<_i1012.RecipeRepository>(
-      () => _i514.RecipeRepositoryImpl(gh<_i703.RecipeTestingSource>()),
+      () => _i213.RecipeRepositoryFirebaseImpl(gh<_i703.RecipeTestingSource>()),
       registerFor: {_prod},
     );
     gh.factory<_i1012.RecipeRepository>(

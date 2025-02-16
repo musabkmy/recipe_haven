@@ -17,19 +17,27 @@ class RecipesScreen extends StatelessWidget {
       if (state case GetRecipesSuccess()) {
         logger.fine('GetRecipesSuccess');
         return SafeArea(
-          child: Center(
-            child: GestureDetector(
-              child: Text(state.recipes.first.title),
-              onTap: () {
-                context
-                    .read<RecipeInfoBloc>()
-                    .add(RecipeLoadEvent(state.recipes.first));
-                Navigator.pushNamed(
-                  context,
-                  RecipeInfoScreen.id,
-                );
-              },
-            ),
+          child: Column(
+            children: [
+              GestureDetector(
+                child: Text(state.recipes.first.title),
+                onTap: () {
+                  context
+                      .read<RecipeInfoBloc>()
+                      .add(RecipeLoadEvent(state.recipes.first));
+                  Navigator.pushNamed(
+                    context,
+                    RecipeInfoScreen.id,
+                  );
+                },
+              ),
+              GestureDetector(
+                child: Text('create recipe'),
+                onTap: () {
+                  context.read<GetRecipesCubit>().createRecipe();
+                },
+              ),
+            ],
           ),
         );
       } else if (state case GetRecipesFailure()) {

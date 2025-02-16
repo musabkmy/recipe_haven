@@ -7,7 +7,8 @@ typedef CookingStepsMap = Map<int, CookingStep?>;
 enum ParagraphKeys {
   ingredient('__ing_'),
   utensil('__utensil_'),
-  timer('__timer_');
+  timer('__timer_'),
+  ln('__nl');
 
   const ParagraphKeys(this.key);
 

@@ -15,8 +15,16 @@ class MeasuringUnitModel {
     required this.name,
     required this.abbreviation,
   });
-  factory MeasuringUnitModel.fromJson(Map<String, dynamic> json) =>
+
+  factory MeasuringUnitModel.empty() {
+    return MeasuringUnitModel(name: '', abbreviation: '');
+  }
+  factory MeasuringUnitModel.fromJson(Map<String, dynamic>? json) {
+    if (json != null) {
       _$MeasuringUnitModelFromJson(json);
+    }
+    return MeasuringUnitModel.empty();
+  }
 
   factory MeasuringUnitModel.fromEntity(MeasuringUnit entity) =>
       MeasuringUnitModel(name: entity.name, abbreviation: entity.abbreviation);
@@ -25,14 +33,29 @@ class MeasuringUnitModel {
       .map((element) => MeasuringUnitModel.fromEntity(element))
       .toList();
 
-  Map<String, dynamic> toJson() => _$MeasuringUnitModelToJson(this);
+  static Map<String, dynamic>? toJson(MeasuringUnitModel? instance) {
+    if (instance != null) {
+      return _$MeasuringUnitModelToJson(instance);
+    }
+    return null;
+  }
 
   MeasuringUnit toEntity() =>
       MeasuringUnit(name: name, abbreviation: abbreviation);
+
+  //  static MeasuringUnitModels fromJsonS(List<dynamic> json) {
+  //   return json
+  //       .map((e) => MeasuringUnitModel.fromJson(e as Map<String, dynamic>))
+  //       .toList();
+  // }
+
+  // static List<Map<String, dynamic>> toJsonS(MeasuringUnitModels measuringUnitModels) {
+  //   return measuringUnitModels.map(MeasuringUnitModel.toJson).toList();
+  // }
 }
 
-extension MeasuringUnitModelEx on MeasuringUnitModels {
-  MeasuringUnits toEntity() => map((element) =>
-          MeasuringUnit(name: element.name, abbreviation: element.abbreviation))
-      .toList();
-}
+// extension MeasuringUnitModelEx on MeasuringUnitModels {
+//   MeasuringUnits toEntity() => map((element) =>
+//           MeasuringUnit(name: element.name, abbreviation: element.abbreviation))
+//       .toList();
+// }

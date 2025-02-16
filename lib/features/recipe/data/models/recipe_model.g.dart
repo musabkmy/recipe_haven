@@ -14,19 +14,12 @@ RecipeModel _$RecipeModelFromJson(Map<String, dynamic> json) => RecipeModel(
       usersEngagement: EngagementModel.fromJson(
           json['usersEngagement'] as Map<String, dynamic>),
       creator: CreatorModel.fromJson(json['creator'] as Map<String, dynamic>),
-      utensils: (json['utensils'] as List<dynamic>)
-          .map((e) => UtensilModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      utensils: UtensilModel.fromJsonS(json['utensils'] as List),
       details: DetailsModel.fromJson(json['details'] as Map<String, dynamic>),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-      reviews: (json['reviews'] as List<dynamic>)
-          .map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      CookingStepsMap: (json['CookingStepsMap'] as List<dynamic>)
-          .map((e) => e == null
-              ? null
-              : CookingStepModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      reviews: ReviewModel.fromJsonS(json['reviews'] as List),
+      cookingStepsMap:
+          CookingStepModel.fromJsonS(json['cookingStepsMap'] as List),
     );
 
 Map<String, dynamic> _$RecipeModelToJson(RecipeModel instance) =>
@@ -35,11 +28,11 @@ Map<String, dynamic> _$RecipeModelToJson(RecipeModel instance) =>
       'title': instance.title,
       'description': instance.description,
       'imageUrl': instance.imageUrl,
-      'usersEngagement': instance.usersEngagement,
-      'creator': instance.creator,
-      'utensils': instance.utensils,
-      'details': instance.details,
+      'usersEngagement': EngagementModel.toJson(instance.usersEngagement),
+      'creator': CreatorModel.toJson(instance.creator),
+      'utensils': UtensilModel.toJsonS(instance.utensils),
+      'details': DetailsModel.toJson(instance.details),
       'tags': instance.tags,
-      'reviews': instance.reviews,
-      'CookingStepsMap': instance.CookingStepsMap,
+      'reviews': ReviewModel.toJsonS(instance.reviews),
+      'cookingStepsMap': CookingStepModel.toJsonS(instance.cookingStepsMap),
     };

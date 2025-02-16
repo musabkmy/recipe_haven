@@ -28,7 +28,11 @@ class CreatorModel {
       profession: entity.profession,
       portfolioLink: entity.portfolioLink);
 
-  Map<String, dynamic> toJson() => _$CreatorModelToJson(this);
+  // Map<String, dynamic> toJson() => _$CreatorModelToJson(this);
+
+  static Map<String, dynamic> toJson(CreatorModel instance) {
+    return _$CreatorModelToJson(instance);
+  }
 
   Creator toEntity() => Creator(
       id: id,

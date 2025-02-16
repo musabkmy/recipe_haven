@@ -11,13 +11,20 @@ class RecipeModel {
   final String title;
   final String description;
   final String imageUrl;
+  @JsonKey(fromJson: EngagementModel.fromJson, toJson: EngagementModel.toJson)
   final EngagementModel usersEngagement;
+  @JsonKey(fromJson: CreatorModel.fromJson, toJson: CreatorModel.toJson)
   final CreatorModel creator;
+  @JsonKey(fromJson: UtensilModel.fromJsonS, toJson: UtensilModel.toJsonS)
   final UtensilModels utensils;
+  @JsonKey(fromJson: DetailsModel.fromJson, toJson: DetailsModel.toJson)
   final DetailsModel details;
   final List<String> tags;
+  @JsonKey(fromJson: ReviewModel.fromJsonS, toJson: ReviewModel.toJsonS)
   final ReviewModels reviews;
-  final CookingStepModels CookingStepsMap;
+  @JsonKey(
+      fromJson: CookingStepModel.fromJsonS, toJson: CookingStepModel.toJsonS)
+  final CookingStepModels cookingStepsMap;
 
   RecipeModel(
       {required this.id,
@@ -30,8 +37,10 @@ class RecipeModel {
       required this.details,
       required this.tags,
       required this.reviews,
-      required this.CookingStepsMap})
-      : assert(CookingStepsMap.isNotEmpty);
+      required this.cookingStepsMap})
+      : assert(cookingStepsMap.isNotEmpty);
+
+  static String collectionId = 'recipes';
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) =>
       _$RecipeModelFromJson(json);
@@ -47,7 +56,7 @@ class RecipeModel {
       details: DetailsModel.fromEntity(entity.details),
       tags: entity.tags,
       reviews: ReviewModel.fromEntities(entity.reviews),
-      CookingStepsMap: CookingStepModel.fromEntities(entity.cookingStepsMap));
+      cookingStepsMap: CookingStepModel.fromEntities(entity.cookingStepsMap));
 
   static RecipeModels fromEntities(Recipes entities) =>
       entities.map((element) => RecipeModel.fromEntity(element)).toList();
@@ -65,7 +74,7 @@ class RecipeModel {
       utensils: utensils.toEntity(),
       tags: tags,
       reviews: reviews.toEntity(),
-      cookingStepsMap: CookingStepsMap.toEntity());
+      cookingStepsMap: cookingStepsMap.toEntity());
 }
 
 extension RecipeModelEx on RecipeModels {

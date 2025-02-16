@@ -11,6 +11,8 @@ typedef WeightCountModels = List<WeightCountModel>;
 class WeightCountModel {
   final String id;
   final double count;
+  @JsonKey(
+      fromJson: MeasuringUnitModel.fromJson, toJson: MeasuringUnitModel.toJson)
   final MeasuringUnitModel? measuringUnit;
 
   const WeightCountModel(
@@ -32,6 +34,17 @@ class WeightCountModel {
 
   WeightCount toEntity() => WeightCount(
       id: id, count: count, measuringUnit: measuringUnit?.toEntity());
+
+  static WeightCountModels fromJsonS(List<dynamic> json) {
+    return json
+        .map((e) => WeightCountModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  static List<Map<String, dynamic>> toJsonS(
+      WeightCountModels weightCountModels) {
+    return weightCountModels.map((e) => e.toJson()).toList();
+  }
 }
 
 extension WeightCountModelEx on WeightCountModels {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "807455539979",
+    "project_id": "recipe-haven-c8169",
+    "storage_bucket": "recipe-haven-c8169.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807455539979:android:74e030493f7e96a78b180e",
+        "android_client_info": {
+          "package_name": "com.example.recipe_haven"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPpzoOpbZDyOVLd_LQ1Ry-XGsCX6nSghg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

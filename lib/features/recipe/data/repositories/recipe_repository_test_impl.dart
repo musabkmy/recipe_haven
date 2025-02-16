@@ -13,4 +13,7 @@ class RecipeRepositoryTestImpl implements RecipeRepository {
   Future<GetAllRecipesResponse> getAllRecipes() async {
     return Success<Recipes>(recipeTestingSource.getAllRecipes().toEntity());
   }
+
+  @override
+  Future<void> createRecipe(Map<String, dynamic> recipeData) async {}
 }

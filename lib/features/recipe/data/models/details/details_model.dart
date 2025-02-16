@@ -6,8 +6,13 @@ part 'details_model.g.dart';
 
 @JsonSerializable()
 class DetailsModel {
+  @JsonKey(fromJson: IngredientModel.fromJsonS, toJson: IngredientModel.toJsonS)
   final IngredientModels baseIngredients;
+  @JsonKey(fromJson: NutritionModel.fromJsonS, toJson: NutritionModel.toJsonS)
   final NutritionModels baseNutritious;
+  @JsonKey(
+      fromJson: PortionBasedRecipeModel.fromJsonS,
+      toJson: PortionBasedRecipeModel.toJsonS)
   final PortionBasedRecipeModels servings;
   final String defaultPortionBasedRecipeID;
 
@@ -27,7 +32,11 @@ class DetailsModel {
       servings: PortionBasedRecipeModel.fromEntities(entity.servings),
       defaultPortionBasedRecipeID: entity.defaultPortionBasedRecipeID);
 
-  Map<String, dynamic> toJson() => _$DetailsModelToJson(this);
+  // Map<String, dynamic> toJson() => _$DetailsModelToJson(this);
+
+  static Map<String, dynamic> toJson(DetailsModel instance) {
+    return _$DetailsModelToJson(instance);
+  }
 
   Details toEntity() => Details(
       baseIngredients: baseIngredients.toEntity(),

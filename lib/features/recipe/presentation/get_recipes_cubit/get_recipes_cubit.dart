@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:recipe_haven/features/recipe/data/testing_sources/recipe_testing_source.dart';
 import 'package:recipe_haven/features/recipe/recipe.dart';
 
 part 'get_recipes_state.dart';
@@ -26,5 +27,10 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
     } catch (e) {
       emit(GetRecipesFailure(e.toString()));
     }
+  }
+
+  Future<void> createRecipe() async {
+    await _recipeRepository
+        .createRecipe(RecipeTestingSource().getAllRecipes().first.toJson());
   }
 }

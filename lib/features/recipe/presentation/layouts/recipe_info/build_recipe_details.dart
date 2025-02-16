@@ -117,7 +117,7 @@ class BuildRecipeDetails extends StatelessWidget {
                     }
                   : null,
               child: Icon(
-                Icons.arrow_back_ios_rounded,
+                AppIcons.backArrow,
                 size: min(16.sp, 24),
               ),
             ),
@@ -134,7 +134,7 @@ class BuildRecipeDetails extends StatelessWidget {
                       }
                     : null,
                 child: Icon(
-                  Icons.arrow_forward_ios_rounded,
+                  AppIcons.forwardArrow,
                   size: min(16.sp, 24),
                 )),
           ],

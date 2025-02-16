@@ -26,7 +26,11 @@ class PortionBasedRecipeModel {
 
   ///formula _h_m_s, ex: 1h30m40s
   final String? restingHumanTime;
+  @JsonKey(
+      fromJson: WeightCountModel.fromJsonS, toJson: WeightCountModel.toJsonS)
   final WeightCountModels ingredients;
+  @JsonKey(
+      fromJson: WeightCountModel.fromJsonS, toJson: WeightCountModel.toJsonS)
   final WeightCountModels nutritious;
   // final Ingredients? additionalIngredients;
   // final Nutritious? additionalNutritious;
@@ -84,6 +88,17 @@ class PortionBasedRecipeModel {
         ingredientsCount: ingredients.toEntity(),
         nutritiousCount: nutritious.toEntity(),
       );
+
+  static PortionBasedRecipeModels fromJsonS(List<dynamic> json) {
+    return json
+        .map((e) => PortionBasedRecipeModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  static List<Map<String, dynamic>> toJsonS(
+      PortionBasedRecipeModels portionBasedRecipeModels) {
+    return portionBasedRecipeModels.map((e) => e.toJson()).toList();
+  }
 }
 
 extension PortionBasedRecipeModelEx on PortionBasedRecipeModels {

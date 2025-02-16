@@ -53,6 +53,16 @@ class ReviewModel {
       rating: rating,
       publishedAt: publishedAt,
       description: description);
+
+  static ReviewModels fromJsonS(List<dynamic> json) {
+    return json
+        .map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  static List<Map<String, dynamic>> toJsonS(ReviewModels reviewModels) {
+    return reviewModels.map((e) => e.toJson()).toList();
+  }
 }
 
 extension ReviewModelEx on ReviewModels {

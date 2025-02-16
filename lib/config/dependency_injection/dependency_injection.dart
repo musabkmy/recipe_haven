@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.config.dart';
+import 'package:recipe_haven/firebase_options.dart';
 
 final getIt = GetIt.instance;
 
@@ -9,12 +11,18 @@ final getIt = GetIt.instance;
   preferRelativeImports: true,
   asExtension: true,
 )
-void configurationDependency(String env) => getIt.init(environment: env);
+void configurationDependency(String env) {
+  if (env == Env.prod) {
+    setupFirebase();
+  }
+  getIt.init(environment: env);
+}
 
-//insure RecipeInfoBloc is properly registered
-// void setupDependencies() {
-//   getIt.registerSingleton<RecipeInfoBloc>(RecipeInfoBloc());
-// }
+Future<void> setupFirebase() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+}
 
 abstract class Env {
   static const dev = 'dev';

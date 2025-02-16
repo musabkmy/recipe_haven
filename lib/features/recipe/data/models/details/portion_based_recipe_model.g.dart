@@ -17,12 +17,8 @@ PortionBasedRecipeModel _$PortionBasedRecipeModelFromJson(
       preparationHumanTime: json['preparationHumanTime'] as String?,
       bakingHumanTime: json['bakingHumanTime'] as String?,
       restingHumanTime: json['restingHumanTime'] as String?,
-      ingredients: (json['ingredients'] as List<dynamic>)
-          .map((e) => WeightCountModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      nutritious: (json['nutritious'] as List<dynamic>)
-          .map((e) => WeightCountModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      ingredients: WeightCountModel.fromJsonS(json['ingredients'] as List),
+      nutritious: WeightCountModel.fromJsonS(json['nutritious'] as List),
     );
 
 Map<String, dynamic> _$PortionBasedRecipeModelToJson(
@@ -36,6 +32,6 @@ Map<String, dynamic> _$PortionBasedRecipeModelToJson(
       'preparationHumanTime': instance.preparationHumanTime,
       'bakingHumanTime': instance.bakingHumanTime,
       'restingHumanTime': instance.restingHumanTime,
-      'ingredients': instance.ingredients,
-      'nutritious': instance.nutritious,
+      'ingredients': WeightCountModel.toJsonS(instance.ingredients),
+      'nutritious': WeightCountModel.toJsonS(instance.nutritious),
     };

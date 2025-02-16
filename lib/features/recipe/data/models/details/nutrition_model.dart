@@ -11,6 +11,8 @@ typedef NutritionModels = List<NutritionModel>;
 class NutritionModel {
   final String id;
   final String name;
+  @JsonKey(
+      fromJson: MeasuringUnitModel.fromJson, toJson: MeasuringUnitModel.toJson)
   final MeasuringUnitModel? baseUnit;
 
   const NutritionModel({required this.id, required this.name, this.baseUnit});
@@ -31,6 +33,16 @@ class NutritionModel {
 
   Nutrition toEntity() =>
       Nutrition(id: id, name: name, baseUnit: baseUnit?.toEntity());
+
+  static NutritionModels fromJsonS(List<dynamic> json) {
+    return json
+        .map((e) => NutritionModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  static List<Map<String, dynamic>> toJsonS(NutritionModels nutritionModels) {
+    return nutritionModels.map((e) => e.toJson()).toList();
+  }
 }
 
 extension NutritionModelEx on NutritionModels {

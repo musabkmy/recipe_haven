@@ -18,4 +18,5 @@ typedef GetAllRecipesResponse = Result<Recipes>;
 
 abstract class RecipeRepository {
   Future<GetAllRecipesResponse> getAllRecipes();
+  Future<void> createRecipe(Map<String, dynamic> recipe);
 }

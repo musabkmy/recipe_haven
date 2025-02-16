@@ -231,7 +231,7 @@ class RecipeTestingSource {
               description:
                   'Fantastic recipe! The dish was a hit at my dinner party. Will definitely make it again.'),
         ],
-        CookingStepsMap: [
+        cookingStepsMap: [
           CookingStepModel(
               stepNumber: 1,
               utensilsID: ['ute-2', 'ute-3'],
@@ -287,8 +287,7 @@ Pour the remaining marinade over the chicken.
             ],
             fontSize: FontSize.large,
             paragraph: '''
-Pour __ing_ing-8 evenly over the chicken.__nl
-Sprinkle __ing_ing-9 over the top of the chicken and other ingredients.
+Pour __ing_ing-8 evenly over the chicken.__nl Sprinkle __ing_ing-9 over the top of the chicken and other ingredients.
 ''',
           ),
           CookingStepModel(
@@ -459,7 +458,7 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
                 'Delicious and easy to make. I added a bit more cheese for extra flavor.',
           ),
         ],
-        CookingStepsMap: [
+        cookingStepsMap: [
           CookingStepModel(
             stepNumber: 1,
             utensilsID: ['ute-1'],
@@ -619,7 +618,7 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
             description: 'Absolutely divine! The molten center is perfect.',
           ),
         ],
-        CookingStepsMap: [
+        cookingStepsMap: [
           CookingStepModel(
             stepNumber: 1,
             utensilsID: ['ute-1'],

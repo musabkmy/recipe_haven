@@ -103,7 +103,7 @@ class _RecipeInfoBody extends StatelessWidget {
             ),
             child: Icon(
               color: AppColors.grey900,
-              Icons.arrow_back_ios_new_rounded,
+              AppIcons.backArrow,
             )),
         onTap: () {
           Navigator.canPop(context);
@@ -116,12 +116,12 @@ class _RecipeInfoBody extends StatelessWidget {
       actions: innerBoxIsScrolled
           ? [
               IconButton(
-                icon: Icon(AppIcons.share_outlinedare_outlined),
+                icon: Icon(AppIcons.share),
                 onPressed: () {},
               ),
               IconButton(
                 color: AppColors.grey900,
-                icon: Icon(CupertinoIcons.heart),
+                icon: Icon(AppIcons.favorite),
                 onPressed: () {},
               ),
               SizedBox(width: AppSpacing.md),

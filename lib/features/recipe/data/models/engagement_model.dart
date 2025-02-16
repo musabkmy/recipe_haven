@@ -22,7 +22,11 @@ class EngagementModel {
       ratingCount: entity.ratingCount,
       likesCount: entity.likesCount);
 
-  Map<String, dynamic> toJson() => _$EngagementModelToJson(this);
+  // Map<String, dynamic> toJson() => _$EngagementModelToJson(this);
+
+  static Map<String, dynamic> toJson(EngagementModel instance) {
+    return _$EngagementModelToJson(instance);
+  }
 
   Engagement toEntity() => Engagement(
       rating: rating, ratingCount: ratingCount, likesCount: likesCount);

@@ -19,7 +19,7 @@ void main() async {
         '${record.level.name}:\n ${record.loggerName}: ${record.message}\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\');
   });
   await ScreenUtil.ensureScreenSize();
-  configurationDependency(Env.dev);
+  configurationDependency(Env.prod);
   Bloc.observer = AppBlocObserver();
   runApp(MyApp());
 }

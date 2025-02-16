@@ -10,15 +10,13 @@ NutritionModel _$NutritionModelFromJson(Map<String, dynamic> json) =>
     NutritionModel(
       id: json['id'] as String,
       name: json['name'] as String,
-      baseUnit: json['baseUnit'] == null
-          ? null
-          : MeasuringUnitModel.fromJson(
-              json['baseUnit'] as Map<String, dynamic>),
+      baseUnit: MeasuringUnitModel.fromJson(
+          json['baseUnit'] as Map<String, dynamic>?),
     );
 
 Map<String, dynamic> _$NutritionModelToJson(NutritionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'baseUnit': instance.baseUnit,
+      'baseUnit': MeasuringUnitModel.toJson(instance.baseUnit),
     };

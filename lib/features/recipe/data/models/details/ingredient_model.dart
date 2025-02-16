@@ -11,6 +11,8 @@ typedef IngredientModels = List<IngredientModel>;
 class IngredientModel {
   final String id;
   final String name;
+  @JsonKey(
+      fromJson: MeasuringUnitModel.fromJson, toJson: MeasuringUnitModel.toJson)
   final MeasuringUnitModel? baseUnit; // Nullable
 
   const IngredientModel({
@@ -35,6 +37,16 @@ class IngredientModel {
 
   Ingredient toEntity() =>
       Ingredient(id: id, name: name, baseUnit: baseUnit?.toEntity());
+
+  static IngredientModels fromJsonS(List<dynamic> json) {
+    return json
+        .map((e) => IngredientModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  static List<Map<String, dynamic>> toJsonS(IngredientModels ingredientModels) {
+    return ingredientModels.map((e) => e.toJson()).toList();
+  }
 }
 
 extension IngredientModelEx on IngredientModels {

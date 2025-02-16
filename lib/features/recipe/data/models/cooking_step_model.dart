@@ -63,6 +63,20 @@ class CookingStepModel {
         fontSize: fontSize,
         paragraph: paragraph,
       );
+
+  static CookingStepModels fromJsonS(List<dynamic> json) {
+    return json
+        .map((e) => CookingStepModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  static List<Map<String, dynamic>> toJsonS(
+      CookingStepModels cookingStepModels) {
+    return cookingStepModels
+        .where((e) => e != null)
+        .map((e) => e!.toJson())
+        .toList();
+  }
 }
 
 extension CookingStepModelEx on CookingStepModels {

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/context_extensions.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_icons.dart';
@@ -40,6 +41,9 @@ class BuildCookingStep extends StatelessWidget {
             color: AppColors.lightAmberAccent,
             margin: EdgeInsets.only(top: AppSpacing.xl),
             alignment: AlignmentDirectional.centerStart,
+            constraints: BoxConstraints(
+              minHeight: 52,
+            ),
             padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
             child: Text(
               'Step $stepNumber/$stepsCount',
@@ -69,6 +73,7 @@ class BuildCookingStep extends StatelessWidget {
   }
 
   Padding _buildParagraph(BuildContext context) {
+    Logger logger = Logger('buildParagraph');
     String paragraph = step.paragraph;
     ingredientsMap.forEach((key, value) {
       paragraph = paragraph.replaceAll(
@@ -78,8 +83,12 @@ class BuildCookingStep extends StatelessWidget {
       paragraph =
           paragraph.replaceAll('${ParagraphKeys.utensil.key}$key', '$value ');
     });
+    logger.info('before: $paragraph');
     //TODO: timer implementation
-    paragraph.replaceAll(ParagraphKeys.timer.key, '');
+    paragraph = paragraph
+        .replaceAll(ParagraphKeys.timer.key, '')
+        .replaceAll(ParagraphKeys.ln.key, '');
+    logger.info('after: $paragraph');
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal)

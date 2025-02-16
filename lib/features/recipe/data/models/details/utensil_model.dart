@@ -27,6 +27,16 @@ class UtensilModel {
   Map<String, dynamic> toJson() => _$UtensilModelToJson(this);
 
   Utensil toEntity() => Utensil(id: id, name: name);
+
+  static UtensilModels fromJsonS(List<dynamic> json) {
+    return json
+        .map((e) => UtensilModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  static List<Map<String, dynamic>> toJsonS(UtensilModels utensilModels) {
+    return utensilModels.map((e) => e.toJson()).toList();
+  }
 }
 
 extension UtensilModelEx on UtensilModels {
