@@ -22,8 +22,7 @@ class BuildDescription extends StatelessWidget {
       child: ReadMoreText(
         recipe.description,
         textStyle: context.bodyMedium,
-        textButtonStyle:
-            context.displayMedium.copyWith(color: AppColors.lightOrange),
+        textButtonStyle: context.displayMediumAction,
         maxLines: 5,
         maxWidth: 1.sw - AppSpacing.minHorizontal * 2,
       ),

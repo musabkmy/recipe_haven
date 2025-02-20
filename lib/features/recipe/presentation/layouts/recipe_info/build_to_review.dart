@@ -44,8 +44,7 @@ class BuildToReviews extends StatelessWidget {
                       },
                       child: Text(
                         'Read',
-                        style: context.displayMedium
-                            .copyWith(color: AppColors.lightOrange),
+                        style: context.displayMediumAction,
                       ),
                     )
                   ],
@@ -74,7 +73,7 @@ class BuildToReviews extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: imageProvider, fit: BoxFit.fill),
-                                  borderRadius: BorderRadius.circular(8.sp),
+                                  borderRadius: AppStyles.borderRadiusM,
                                 ),
                                 child: element.key == 3
                                     //  &&
@@ -92,7 +91,7 @@ class BuildToReviews extends StatelessWidget {
                                               decoration: BoxDecoration(
                                                 color: AppColors.overlayColor,
                                                 borderRadius:
-                                                    BorderRadius.circular(8.sp),
+                                                    AppStyles.borderRadiusM,
                                               ),
                                             ),
                                           ),

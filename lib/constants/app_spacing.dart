@@ -5,6 +5,9 @@ final class AppSpacing {
   ///8.0
   static const double sm = 8.0;
 
+  ///12.0
+  static const double sl = 12.0;
+
   ///16.0
   static const double md = 16.0;
 

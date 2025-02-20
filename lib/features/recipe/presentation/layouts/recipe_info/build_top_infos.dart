@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
@@ -13,6 +12,7 @@ class BuildTopInfos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      key: Key('BuildTopInfos'),
       spacing: AppSpacing.md,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

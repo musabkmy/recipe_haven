@@ -9,7 +9,7 @@ import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
 import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/recipe/presentation/screens/recipe_info_screen.dart';
-import 'package:recipe_haven/features/recipe/presentation/screens/recipes_screen.dart';
+import 'package:recipe_haven/features/recipe/presentation/screens/home_screen.dart';
 
 void main() async {
   //Initialize logging
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
             initialRoute: App.id,
             routes: {
               App.id: (context) => App(),
-              RecipesScreen.id: (context) => RecipesScreen(),
+              HomeScreen.id: (context) => HomeScreen(),
               RecipeInfoScreen.id: (context) => RecipeInfoScreen(),
             },
           );
