@@ -7,13 +7,11 @@ part of 'details_model.dart';
 // **************************************************************************
 
 DetailsModel _$DetailsModelFromJson(Map<String, dynamic> json) => DetailsModel(
-      baseIngredients:
-          IngredientModel.fromJsonS(json['baseIngredients'] as List),
-      baseNutritious: NutritionModel.fromJsonS(json['baseNutritious'] as List),
-      servings: PortionBasedRecipeModel.fromJsonS(json['servings'] as List),
-      defaultPortionBasedRecipeID:
-          json['defaultPortionBasedRecipeID'] as String,
-    );
+  baseIngredients: IngredientModel.fromJsonS(json['baseIngredients'] as List),
+  baseNutritious: NutritionModel.fromJsonS(json['baseNutritious'] as List),
+  servings: PortionBasedRecipeModel.fromJsonS(json['servings'] as List),
+  defaultPortionBasedRecipeID: json['defaultPortionBasedRecipeID'] as String,
+);
 
 Map<String, dynamic> _$DetailsModelToJson(DetailsModel instance) =>
     <String, dynamic>{

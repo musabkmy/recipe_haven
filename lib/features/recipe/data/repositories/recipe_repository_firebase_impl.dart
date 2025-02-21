@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/features/recipe/data/testing_sources/recipe_testing_source.dart';
+
 import 'package:recipe_haven/features/recipe/recipe.dart';
 
 @Injectable(as: RecipeRepository, env: [Env.prod])
@@ -13,28 +13,42 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
   @factoryMethod
   const RecipeRepositoryFirebaseImpl(this.recipeTestingSource);
   @override
-  Future<GetAllRecipesResponse> getAllRecipes() async {
+  Stream<GetAllRecipesResponse> getAllRecipes() async* {
+    final Logger logger = Logger('RecipeRepositoryFirebaseImpl/getAllRecipes');
     final db = FirebaseFirestore.instance;
 
-    db.collection(RecipeModel.collectionId).get().then((recipe) {
-      for (var doc in recipe.docs) {
-        // final recipe = RecipeModel.fromJson(doc.data());
-        debugPrint(doc.id);
+    try {
+      // Listen to the Firestore collection for real-time updates
+      await for (final querySnapshot
+          in db.collection(RecipeModel.collectionId).snapshots()) {
+        final recipes =
+            querySnapshot.docs
+                .map((doc) => RecipeModel.fromJson(doc.data()))
+                .toList();
+        logger.info('RETRIEVED RECIPES: ${recipes.length}');
+
+        yield Success<Recipes>(recipes.toEntity());
       }
-    });
-    return Success<Recipes>(
-        recipeTestingSource.getAllRecipes().toEntity().sublist(0, 1));
+    } catch (e) {
+      logger.log(Level.WARNING, 'Error: ${e.toString()}');
+
+      yield Failure<Recipes>(Exception(e.toString()));
+    }
   }
 
   @override
   Future<void> createRecipe(Map<String, dynamic> recipe) async {
-    final Logger logger = Logger('RecipeRepositoryFirebaseImpl');
-    logger.info('in');
+    final Logger logger = Logger('RecipeRepositoryFirebaseImpl/createRecipe');
 
     final db = FirebaseFirestore.instance;
-    db.collection(RecipeModel.collectionId).add(recipe).then(
-        (DocumentReference doc) =>
-            debugPrint('DocumentSnapshot added with ID: ${doc.id}'),
-        onError: (error) => logger.warning('error adding recipe: $error'));
+    try {
+      await db
+          .collection(RecipeModel.collectionId)
+          .doc(recipe['id'])
+          .set(recipe);
+      logger.info('ADDED RECIPE: ${recipe['id']}');
+    } catch (e) {
+      logger.log(Level.WARNING, 'e.code: ${e.toString()}');
+    }
   }
 }

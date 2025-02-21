@@ -11,7 +11,8 @@ WeightCountModel _$WeightCountModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       count: (json['count'] as num).toDouble(),
       measuringUnit: MeasuringUnitModel.fromJson(
-          json['measuringUnit'] as Map<String, dynamic>?),
+        json['measuringUnit'] as Map<String, dynamic>?,
+      ),
     );
 
 Map<String, dynamic> _$WeightCountModelToJson(WeightCountModel instance) =>

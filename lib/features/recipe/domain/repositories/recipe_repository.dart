@@ -17,6 +17,6 @@ class Failure<T> extends Result<T> {
 typedef GetAllRecipesResponse = Result<Recipes>;
 
 abstract class RecipeRepository {
-  Future<GetAllRecipesResponse> getAllRecipes();
+  Stream<GetAllRecipesResponse> getAllRecipes();
   Future<void> createRecipe(Map<String, dynamic> recipe);
 }

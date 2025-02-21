@@ -20,11 +20,11 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
 
   void onLoadRecipe(RecipeLoadEvent event, Emitter<RecipeInfoState> emit) {
     final receiveDetails = event.recipe.details;
-    final selectedPortion = receiveDetails.servings.firstWhere(
-        (element) => element.id == receiveDetails.defaultPortionBasedRecipeID,
-        orElse: () => receiveDetails.servings.first);
-    final selectedPortionIndex =
-        findIndex(receiveDetails.servings, selectedPortion.id);
+    final selectedPortion = event.recipe.selectedPortion;
+    final selectedPortionIndex = findIndex(
+      receiveDetails.servings,
+      selectedPortion.id,
+    );
     final hasPrevious = (selectedPortionIndex - 1) >= 0;
     final hasNext = (selectedPortionIndex + 1) < receiveDetails.servings.length;
     emit(
@@ -38,7 +38,9 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
   }
 
   void onChangeSelectedPortion(
-      ChangeSelectedPortion event, Emitter<RecipeInfoState> emit) {
+    ChangeSelectedPortion event,
+    Emitter<RecipeInfoState> emit,
+  ) {
     if (state is! RecipeInfoSuccess) return;
 
     final successState = state as RecipeInfoSuccess;
@@ -46,11 +48,12 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
     final servings = successState.recipe.details.servings;
     final currentIndex = findIndex(servings, currentSelectedId);
 
-    final newPortion = event.next
-        ? (currentIndex != -1 && currentIndex < servings.length - 1)
-            ? servings[currentIndex + 1]
-            : servings.first
-        : (currentIndex != -1 &&
+    final newPortion =
+        event.next
+            ? (currentIndex != -1 && currentIndex < servings.length - 1)
+                ? servings[currentIndex + 1]
+                : servings.first
+            : (currentIndex != -1 &&
                 currentIndex > 1 &&
                 currentIndex < servings.length)
             ? servings[currentIndex - 1]
@@ -60,13 +63,19 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
     final hasPrevious = (findIndex(servings, newPortion.id) - 1) >= 0;
     final hasNext = (findIndex(servings, newPortion.id) + 1) < servings.length;
     event.next
-        ? emit(successState.copyWith(
+        ? emit(
+          successState.copyWith(
             selectedPortion: newPortion,
             hasPrevious: hasPrevious,
-            hasNext: hasNext))
-        : emit(successState.copyWith(
+            hasNext: hasNext,
+          ),
+        )
+        : emit(
+          successState.copyWith(
             selectedPortion: newPortion,
             hasPrevious: hasPrevious,
-            hasNext: hasNext));
+            hasNext: hasNext,
+          ),
+        );
   }
 }

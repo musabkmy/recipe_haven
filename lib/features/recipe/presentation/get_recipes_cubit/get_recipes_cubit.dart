@@ -1,6 +1,6 @@
+import 'dart:async' show StreamSubscription;
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/features/recipe/data/testing_sources/recipe_testing_source.dart';
 import 'package:recipe_haven/features/recipe/recipe.dart';
@@ -12,25 +12,36 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
   final RecipeRepository _recipeRepository;
   GetRecipesCubit(this._recipeRepository) : super(GetRecipesInitial());
 
-  Future<void> getRecipes() async {
+  StreamSubscription? _subscription;
+
+  void getRecipes() {
     emit(GetRecipesLoading());
-    try {
-      final result = await _recipeRepository.getAllRecipes();
-      debugPrint(result.toString());
-      if (result case Success<Recipes> success) {
-        emit(GetRecipesSuccess(success.value));
-      } else if (result case Failure<Exception> failure) {
-        emit(GetRecipesFailure(failure.error.toString()));
-      } else {
-        emit(GetRecipesFailure('Unknown'));
-      }
-    } catch (e) {
-      emit(GetRecipesFailure(e.toString()));
-    }
+    _subscription?.cancel();
+
+    _subscription = _recipeRepository.getAllRecipes().listen(
+      (response) {
+        if (response is Success<Recipes>) {
+          emit(GetRecipesSuccess(response.value));
+        } else if (response is Failure<Recipes>) {
+          emit(GetRecipesFailure(response.error.toString()));
+        }
+      },
+      onError: (error) {
+        emit(GetRecipesFailure(error.toString()));
+      },
+    );
   }
 
   Future<void> createRecipe() async {
-    await _recipeRepository
-        .createRecipe(RecipeTestingSource().getAllRecipes().first.toJson());
+    await _recipeRepository.createRecipe(
+      RecipeTestingSource().getAllRecipes()[0].toJson(),
+    );
+  }
+
+  @override
+  Future<void> close() {
+    // Cancel the subscription when the Cubit is closed
+    _subscription?.cancel();
+    return super.close();
   }
 }

@@ -1,7 +1,7 @@
 import 'package:logging/logging.dart';
 
 extension DurationEx on Duration {
-  String toHumanDuration() {
+  String toJsonDuration() {
     if (this == Duration.zero) {
       return '';
     }

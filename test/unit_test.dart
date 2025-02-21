@@ -6,14 +6,15 @@ import 'package:recipe_haven/config/extensions/duration_extensions.dart';
 void main() {
   test('from human Duration to Duration class', () {
     // debugdebugPrint(parseHumanDuration('1h30m40s').toString());
-    debugPrint(Duration(hours: 2, minutes: 3, seconds: 1)
-        .toHumanDuration()
-        .toString());
+    debugPrint(
+      Duration(hours: 2, minutes: 3, seconds: 1).toJsonDuration().toString(),
+    );
   });
 
   test('get recipes', () async {
     var url = Uri.parse(
-        'https://45c0a0b7-bf37-4a43-b941-599f9b0358cc.mock.pstmn.io/recipes');
+      'https://45c0a0b7-bf37-4a43-b941-599f9b0358cc.mock.pstmn.io/recipes',
+    );
     final response = await http.get(
       url,
       // headers: {

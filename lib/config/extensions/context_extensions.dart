@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
+import 'package:recipe_haven/constants/app_constants.dart';
 
 extension ContextEx on BuildContext {
-  // Device dimensions
-  // double get deviceWidth => MediaQuery.of(this).size.width;
-  // double get deviceHeight => MediaQuery.of(this).size.height;
+  double get deviceWidth => MediaQuery.of(this).size.width;
+  double get deviceHeight => MediaQuery.of(this).size.height;
+  bool get isTablet => deviceHeight >= AppConstants.smallTabletMaxHeight;
+  bool get isMobile => deviceHeight < AppConstants.smallTabletMaxHeight;
 
   TextStyle get headlineLarge => Theme.of(this).textTheme.headlineLarge!;
   TextStyle get headlineMedium => Theme.of(this).textTheme.headlineMedium!;

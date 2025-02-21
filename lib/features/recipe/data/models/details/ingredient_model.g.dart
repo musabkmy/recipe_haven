@@ -11,7 +11,8 @@ IngredientModel _$IngredientModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       baseUnit: MeasuringUnitModel.fromJson(
-          json['baseUnit'] as Map<String, dynamic>?),
+        json['baseUnit'] as Map<String, dynamic>?,
+      ),
     );
 
 Map<String, dynamic> _$IngredientModelToJson(IngredientModel instance) =>

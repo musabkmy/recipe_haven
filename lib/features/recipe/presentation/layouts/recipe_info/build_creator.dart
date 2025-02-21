@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/context_extensions.dart';
@@ -7,10 +6,7 @@ import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dar
 import 'package:recipe_haven/features/recipe/domain/entities/creator_entity.dart';
 
 class BuildCreator extends StatelessWidget {
-  const BuildCreator({
-    super.key,
-    required this.creator,
-  });
+  const BuildCreator({super.key, required this.creator});
 
   final Creator creator;
 
@@ -20,11 +16,10 @@ class BuildCreator extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
       child: Row(
         children: [
-          AppNetworkCircularAvatar(
-            imageUrl: creator.profilePic,
-          ),
+          AppNetworkCircularAvatar(imageUrl: creator.profilePic),
           SizedBox(
-              width: AppSpacing.sm.sp), // Replace with appropriate width value
+            width: AppSpacing.sm.sp,
+          ), // Replace with appropriate width value
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,7 +27,7 @@ class BuildCreator extends StatelessWidget {
               Text(creator.profession, style: context.bodyMedium),
               Text(creator.portfolioLink, style: context.displayMediumAction),
             ],
-          )
+          ),
         ],
       ),
     );

@@ -43,8 +43,10 @@ final class AppTheme {
 
     final tabBarTheme = TabBarTheme(
       // indicatorColor: AppColors.lightOrange,
+      overlayColor: WidgetStateProperty.all(AppColors.transparent),
       labelColor: AppColors.deepOrange,
       labelStyle: TextStyles.bodySmall,
+      unselectedLabelStyle: TextStyles.bodySmall,
       indicatorSize: TabBarIndicatorSize.tab,
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(

@@ -14,15 +14,19 @@ class RecipeTestingSource {
             'A take on a classic from Sheila Lukins and Julee Chicken Marbella Rosos\' "The Silver Palate Cookbook", this recipe is at the same time complex and easy to execute. Risky in its separate parts yet satisfyingly harmonious as a whole. In this version, the brown sugar is swapped with honey, which adds a slightly floral element to the dish as well as a shiny gloss. The addition of cayenne in the marinade gives it a nice kick and a squeeze of lemon before serving helps to lighten up an otherwise fairly heavy chicken dish.',
         imageUrl:
             'https://i.pinimg.com/736x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
-        usersEngagement:
-            EngagementModel(rating: 3.4, ratingCount: 3453000, likesCount: 467),
+        usersEngagement: EngagementModel(
+          rating: 3.4,
+          ratingCount: 3453000,
+          likesCount: 467,
+        ),
         creator: CreatorModel(
-            id: 'creator-1',
-            name: 'Muhammed Alhassan',
-            profilePic:
-                'https://i.pinimg.com/474x/f2/ec/bc/f2ecbcde9918a1b5f0806fd001c6fd7a.jpg',
-            profession: 'Contributor',
-            portfolioLink: 'adas-deli.de'),
+          id: 'creator-1',
+          name: 'Muhammed Alhassan',
+          profilePic:
+              'https://i.pinimg.com/474x/f2/ec/bc/f2ecbcde9918a1b5f0806fd001c6fd7a.jpg',
+          profession: 'Contributor',
+          portfolioLink: 'adas-deli.de',
+        ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'knife'),
           UtensilModel(id: 'ute-2', name: 'cutting board'),
@@ -31,67 +35,87 @@ class RecipeTestingSource {
           UtensilModel(id: 'ute-5', name: 'whisk'),
           UtensilModel(id: 'ute-6', name: 'food thermometer'),
         ],
-        details: DetailsModel(baseIngredients: [
-          IngredientModel(
+        details: DetailsModel(
+          baseIngredients: [
+            IngredientModel(
               id: 'ing-1',
               name: 'whole chickens',
-              baseUnit:
-                  MeasuringUnitModel(name: 'kilogram', abbreviation: 'kg')),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(
+                name: 'kilogram',
+                abbreviation: 'kg',
+              ),
+            ),
+            IngredientModel(
               id: 'ing-2',
               name: 'prunes',
-              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            IngredientModel(
               id: 'ing-3',
               name: 'jarred pitted green olives',
-              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            IngredientModel(
               id: 'ing-4',
               name: 'garlic',
-              baseUnit:
-                  MeasuringUnitModel(name: 'clovers', abbreviation: 'clovers')),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(
+                name: 'clovers',
+                abbreviation: 'clovers',
+              ),
+            ),
+            IngredientModel(
               id: 'ing-5',
               name: 'capers',
-              baseUnit: MeasuringUnitModel(name: 'tbsp', abbreviation: 'tbsp')),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(name: 'tbsp', abbreviation: 'tbsp'),
+            ),
+            IngredientModel(
               id: 'ing-6',
               name: 'dried oregano',
-              baseUnit: MeasuringUnitModel(name: 'tbsp', abbreviation: 'tbsp')),
-          IngredientModel(id: 'ing-7', name: 'bay leaves'),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(name: 'tbsp', abbreviation: 'tbsp'),
+            ),
+            IngredientModel(id: 'ing-7', name: 'bay leaves'),
+            IngredientModel(
               id: 'ing-8',
               name: 'chili powder',
-              baseUnit: MeasuringUnitModel(name: 'tsp', abbreviation: 'tsp')),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(name: 'tsp', abbreviation: 'tsp'),
+            ),
+            IngredientModel(
               id: 'ing-9',
               name: 'honey',
-              baseUnit: MeasuringUnitModel(name: 'tbsp', abbreviation: 'tbsp')),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(name: 'tbsp', abbreviation: 'tbsp'),
+            ),
+            IngredientModel(
               id: 'ing-10',
               name: 'salt',
-              baseUnit: MeasuringUnitModel(name: 'tbsp', abbreviation: 'tbsp')),
-          IngredientModel(
+              baseUnit: MeasuringUnitModel(name: 'tbsp', abbreviation: 'tbsp'),
+            ),
+            IngredientModel(
               id: 'ing-11',
               name: 'pepper',
-              baseUnit: MeasuringUnitModel(name: 'tsp', abbreviation: 'tsp')),
-          IngredientModel(id: 'ing-12', name: 'lemon'),
-        ], baseNutritious: [
-          NutritionModel(id: 'nut-1', name: 'Cal'),
-          NutritionModel(
+              baseUnit: MeasuringUnitModel(name: 'tsp', abbreviation: 'tsp'),
+            ),
+            IngredientModel(id: 'ing-12', name: 'lemon'),
+          ],
+          baseNutritious: [
+            NutritionModel(id: 'nut-1', name: 'Cal'),
+            NutritionModel(
               id: 'nut-2',
               name: 'Protein',
-              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
-          NutritionModel(
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            NutritionModel(
               id: 'nut-3',
               name: 'Fat',
-              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
-          NutritionModel(
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            NutritionModel(
               id: 'nut-4',
               name: 'Carb',
-              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
-        ], servings: [
-          PortionBasedRecipeModel(
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+          ],
+          servings: [
+            PortionBasedRecipeModel(
               id: 'ser-1',
               portionCount: 4,
               difficulty: 'Medium',
@@ -117,8 +141,9 @@ class RecipeTestingSource {
                 WeightCountModel(id: 'nut-2', count: 72),
                 WeightCountModel(id: 'nut-3', count: 60),
                 WeightCountModel(id: 'nut-4', count: 30),
-              ]),
-          PortionBasedRecipeModel(
+              ],
+            ),
+            PortionBasedRecipeModel(
               id: 'ser-2',
               minPortionCount: 2,
               maxPortionCount: 3,
@@ -137,10 +162,13 @@ class RecipeTestingSource {
                 WeightCountModel(id: 'ing-8', count: 1),
                 WeightCountModel(id: 'ing-9', count: 2),
                 WeightCountModel(
-                    id: 'ing-10',
-                    count: 1.5,
-                    measuringUnit:
-                        MeasuringUnitModel(name: 'tsp', abbreviation: 'tsp')),
+                  id: 'ing-10',
+                  count: 1.5,
+                  measuringUnit: MeasuringUnitModel(
+                    name: 'tsp',
+                    abbreviation: 'tsp',
+                  ),
+                ),
                 WeightCountModel(id: 'ing-11', count: 2),
                 WeightCountModel(id: 'ing-12', count: 1),
               ],
@@ -149,141 +177,147 @@ class RecipeTestingSource {
                 WeightCountModel(id: 'nut-2', count: 65),
                 WeightCountModel(id: 'nut-3', count: 55),
                 WeightCountModel(
-                    id: 'nut-4',
-                    count: 1,
-                    measuringUnit: MeasuringUnitModel(
-                        name: 'kilogram', abbreviation: 'kg')),
-              ]),
-        ], defaultPortionBasedRecipeID: 'ser-1'),
+                  id: 'nut-4',
+                  count: 1,
+                  measuringUnit: MeasuringUnitModel(
+                    name: 'kilogram',
+                    abbreviation: 'kg',
+                  ),
+                ),
+              ],
+            ),
+          ],
+          defaultPortionBasedRecipeID: 'ser-1',
+        ),
         tags: ['herbs', 'dinner', '2024 trends'],
         reviews: [
           ReviewModel(
-              id: 'rev-1',
-              userID: 'userID-1',
-              userName: 'Muhab',
-              userProfilePic:
-                  'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
-              imagesUrl: [
-                'https://i.pinimg.com/474x/0e/51/e3/0e51e3190ff7fab23e83713e554c2468.jpg',
-                'https://i.pinimg.com/236x/d0/e2/0d/d0e20d6ca492365803a8da9dbd07d17b.jpg',
-              ],
-              rating: 4.5,
-              publishedAt: DateTime(2024, 5, 4),
-              description: 'Great recipe idea! eh The taste persisted'),
+            id: 'rev-1',
+            userID: 'userID-1',
+            userName: 'Muhab',
+            userProfilePic:
+                'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
+            imagesUrl: [
+              'https://i.pinimg.com/474x/0e/51/e3/0e51e3190ff7fab23e83713e554c2468.jpg',
+              'https://i.pinimg.com/236x/d0/e2/0d/d0e20d6ca492365803a8da9dbd07d17b.jpg',
+            ],
+            rating: 4.5,
+            publishedAt: DateTime(2024, 5, 4),
+            description: 'Great recipe idea! eh The taste persisted',
+          ),
           ReviewModel(
-              id: 'rev-2',
-              userID: 'userID-2',
-              userName: 'Alice',
-              imagesUrl: [
-                'https://i.pinimg.com/236x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
-                'https://i.pinimg.com/236x/f7/c6/24/f7c6242addd8a1ebc91e07c69c2954e0.jpg'
-              ],
-              rating: 5.0,
-              publishedAt: DateTime(2024, 5, 3),
-              description:
-                  'Absolutely loved it! The flavors were amazing and the instructions were easy to follow.'),
+            id: 'rev-2',
+            userID: 'userID-2',
+            userName: 'Alice',
+            imagesUrl: [
+              'https://i.pinimg.com/236x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
+              'https://i.pinimg.com/236x/f7/c6/24/f7c6242addd8a1ebc91e07c69c2954e0.jpg',
+            ],
+            rating: 5.0,
+            publishedAt: DateTime(2024, 5, 3),
+            description:
+                'Absolutely loved it! The flavors were amazing and the instructions were easy to follow.',
+          ),
           ReviewModel(
-              id: 'rev-3',
-              userID: 'userID-3',
-              userName: 'Bob',
-              imagesUrl: [
-                'https://i.pinimg.com/236x/30/70/d1/3070d19e87a69acca2e2fed1e2695138.jpg',
-              ],
-              rating: 3.5,
-              publishedAt: DateTime(2024, 5, 2),
-              description:
-                  'Good recipe, but it took longer to cook than expected. The taste was decent though.'),
+            id: 'rev-3',
+            userID: 'userID-3',
+            userName: 'Bob',
+            imagesUrl: [
+              'https://i.pinimg.com/236x/30/70/d1/3070d19e87a69acca2e2fed1e2695138.jpg',
+            ],
+            rating: 3.5,
+            publishedAt: DateTime(2024, 5, 2),
+            description:
+                'Good recipe, but it took longer to cook than expected. The taste was decent though.',
+          ),
           ReviewModel(
-              id: 'rev-4',
-              userID: 'userID-4',
-              userName: 'Charlie',
-              imagesUrl: [
-                'https://i.pinimg.com/236x/8d/cb/e7/8dcbe74e933d192bd2029874d9a30578.jpg'
-              ],
-              rating: 4.0,
-              publishedAt: DateTime(2024, 5, 1),
-              description:
-                  'Solid recipe. I would recommend adding a bit more seasoning for extra flavor.'),
+            id: 'rev-4',
+            userID: 'userID-4',
+            userName: 'Charlie',
+            imagesUrl: [
+              'https://i.pinimg.com/236x/8d/cb/e7/8dcbe74e933d192bd2029874d9a30578.jpg',
+            ],
+            rating: 4.0,
+            publishedAt: DateTime(2024, 5, 1),
+            description:
+                'Solid recipe. I would recommend adding a bit more seasoning for extra flavor.',
+          ),
           ReviewModel(
-              id: 'rev-5',
-              userID: 'userID-5',
-              userName: 'Diana',
-              imagesUrl: [
-                'https://i.pinimg.com/236x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
-                'https://i.pinimg.com/236x/9f/b6/e2/9fb6e200b3be5848f23cfaf8fc0f9e9b.jpg',
-                'https://i.pinimg.com/236x/fd/5a/e5/fd5ae5a2de1ed887f7c7300aef8a21dd.jpg',
-              ],
-              rating: 2.0,
-              publishedAt: DateTime(2024, 4, 30),
-              description:
-                  'Not a fan. The dish was too bland and the instructions were unclear.'),
+            id: 'rev-5',
+            userID: 'userID-5',
+            userName: 'Diana',
+            imagesUrl: [
+              'https://i.pinimg.com/236x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
+              'https://i.pinimg.com/236x/9f/b6/e2/9fb6e200b3be5848f23cfaf8fc0f9e9b.jpg',
+              'https://i.pinimg.com/236x/fd/5a/e5/fd5ae5a2de1ed887f7c7300aef8a21dd.jpg',
+            ],
+            rating: 2.0,
+            publishedAt: DateTime(2024, 4, 30),
+            description:
+                'Not a fan. The dish was too bland and the instructions were unclear.',
+          ),
           ReviewModel(
-              id: 'rev-6',
-              userID: 'userID-6',
-              userName: 'Eve',
-              userProfilePic:
-                  'https://i.pinimg.com/236x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg',
-              imagesUrl: [
-                'https://i.pinimg.com/236x/ff/b1/36/ffb136af8fc1c2125a2fbf2b5eca8d0f.jpg',
-              ],
-              rating: 4.8,
-              publishedAt: DateTime(2024, 4, 29),
-              description:
-                  'Fantastic recipe! The dish was a hit at my dinner party. Will definitely make it again.'),
+            id: 'rev-6',
+            userID: 'userID-6',
+            userName: 'Eve',
+            userProfilePic:
+                'https://i.pinimg.com/236x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg',
+            imagesUrl: [
+              'https://i.pinimg.com/236x/ff/b1/36/ffb136af8fc1c2125a2fbf2b5eca8d0f.jpg',
+            ],
+            rating: 4.8,
+            publishedAt: DateTime(2024, 4, 29),
+            description:
+                'Fantastic recipe! The dish was a hit at my dinner party. Will definitely make it again.',
+          ),
         ],
         cookingStepsMap: [
           CookingStepModel(
-              stepNumber: 1,
-              utensilsID: ['ute-2', 'ute-3'],
-              ingredientsID: [
-                'ing-1',
-                'ing-2',
-                'ing-3',
-                'ing-4',
-                'ing-5',
-                'ing-6',
-                'ing-7',
-                'ing-9',
-                'ing-10',
-              ],
-              imagesUrl: [
-                'https://i.pinimg.com/236x/00/08/b2/0008b2e89b6bb952492a81d47be284c0.jpg',
-                'https://i.pinimg.com/236x/d5/16/8b/d5168b74359b82489f77bf14968b6adf.jpg',
-                'https://i.pinimg.com/236x/31/f0/4d/31f04d9dea0f7c587cdcb8bb7eae18ac.jpg',
-              ],
-              fontSize: FontSize.large,
-              paragraph: '''
+            stepNumber: 1,
+            utensilsID: ['ute-2', 'ute-3'],
+            ingredientsID: [
+              'ing-1',
+              'ing-2',
+              'ing-3',
+              'ing-4',
+              'ing-5',
+              'ing-6',
+              'ing-7',
+              'ing-9',
+              'ing-10',
+            ],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/00/08/b2/0008b2e89b6bb952492a81d47be284c0.jpg',
+              'https://i.pinimg.com/236x/d5/16/8b/d5168b74359b82489f77bf14968b6adf.jpg',
+              'https://i.pinimg.com/236x/31/f0/4d/31f04d9dea0f7c587cdcb8bb7eae18ac.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
 In a __utensil_ute-2, combine the __ing_ing-1, __ing_ing-4, __ing_ing-6, __ing_ing-9 and __ing_ing-10.
 Add the __ing_ing-2, __ing_ing-3, __ing_ing-5, and __ing_ing-7. Mix well to ensure the chicken is evenly coated.
 Cover the __utensil_ute-3 , and refrigerate for at least 4 hours (or overnight) to allow the flavors to meld.
-'''),
+''',
+          ),
           CookingStepModel(
-              stepNumber: 2,
-              utensilsID: ['ute-4'],
-              ingredientsID: [
-                'ing-2',
-                'ing-3',
-                'ing-5',
-                'ing-7',
-              ],
-              imagesUrl: [
-                'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg'
-              ],
-              fontSize: FontSize.large,
-              paragraph: '''
+            stepNumber: 2,
+            utensilsID: ['ute-4'],
+            ingredientsID: ['ing-2', 'ing-3', 'ing-5', 'ing-7'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
 Preheat your oven to 350°F (175°C).__nlRemove the chicken from the marinade and place it in a single layer in a large __utensil_ute_4 or roasting pan.
 Scatter the __ing_ing-2, __ing_ing-3, __ing_ing-5, and __ing_ing-7 over the chicken.
 Pour the remaining marinade over the chicken.
-'''),
+''',
+          ),
           CookingStepModel(
             stepNumber: 3,
             utensilsID: ['ute-4'],
-            ingredientsID: [
-              'ing-8',
-              'ing-9',
-            ],
+            ingredientsID: ['ing-8', 'ing-9'],
             imagesUrl: [
-              'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg'
+              'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg',
             ],
             fontSize: FontSize.large,
             paragraph: '''
@@ -295,7 +329,7 @@ Pour __ing_ing-8 evenly over the chicken.__nl Sprinkle __ing_ing-9 over the top 
             utensilsID: ['ute-5'],
             ingredientsID: ['ing-3'],
             imagesUrl: [
-              'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg'
+              'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg',
             ],
             fontSize: FontSize.large,
             paragraph: '''
@@ -306,14 +340,9 @@ The chicken is done when it reaches an internal temperature of 165°F (74°C) an
           CookingStepModel(
             stepNumber: 5,
             utensilsID: ['ute-6'],
-            ingredientsID: [
-              'ing-2',
-              'ing-3',
-              'ing-6',
-              'ing-10',
-            ],
+            ingredientsID: ['ing-2', 'ing-3', 'ing-6', 'ing-10'],
             imagesUrl: [
-              'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg'
+              'https://i.pinimg.com/236x/c6/51/f1/c651f16a0b7154beedc9890491d66109.jpg',
             ],
             fontSize: FontSize.large,
             paragraph: '''
@@ -333,8 +362,11 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
 ''',
         imageUrl:
             'https://i.pinimg.com/736x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
-        usersEngagement:
-            EngagementModel(rating: 4.7, ratingCount: 2890, likesCount: 1200),
+        usersEngagement: EngagementModel(
+          rating: 4.7,
+          ratingCount: 2890,
+          likesCount: 1200,
+        ),
         creator: CreatorModel(
           id: 'creator-2',
           name: 'Giulia Rossi',
@@ -375,36 +407,45 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
             IngredientModel(
               id: 'ing-5',
               name: 'Garlic',
-              baseUnit:
-                  MeasuringUnitModel(name: 'clove', abbreviation: 'clove'),
+              baseUnit: MeasuringUnitModel(
+                name: 'clove',
+                abbreviation: 'clove',
+              ),
             ),
             IngredientModel(
               id: 'ing-6',
               name: 'Black pepper',
-              baseUnit:
-                  MeasuringUnitModel(name: 'teaspoon', abbreviation: 'tsp'),
+              baseUnit: MeasuringUnitModel(
+                name: 'teaspoon',
+                abbreviation: 'tsp',
+              ),
             ),
             IngredientModel(
               id: 'ing-7',
               name: 'Salt',
-              baseUnit:
-                  MeasuringUnitModel(name: 'teaspoon', abbreviation: 'tsp'),
+              baseUnit: MeasuringUnitModel(
+                name: 'teaspoon',
+                abbreviation: 'tsp',
+              ),
             ),
           ],
           baseNutritious: [
             NutritionModel(id: 'nut-1', name: 'Calories'),
             NutritionModel(
-                id: 'nut-2',
-                name: 'Protein',
-                baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
+              id: 'nut-2',
+              name: 'Protein',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
             NutritionModel(
-                id: 'nut-3',
-                name: 'Fat',
-                baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
+              id: 'nut-3',
+              name: 'Fat',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
             NutritionModel(
-                id: 'nut-4',
-                name: 'Carbs',
-                baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
+              id: 'nut-4',
+              name: 'Carbs',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
           ],
           servings: [
             PortionBasedRecipeModel(
@@ -466,7 +507,7 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
             imagesUrl: [
               'https://i.pinimg.com/236x/00/08/b2/0008b2e89b6bb952492a81d47be284c0.jpg',
             ],
-            fontSize: FontSize.large,
+            fontSize: FontSize.medium,
             paragraph: '''
 Bring a large pot of salted water to a boil.__nl
 Add __ing_ing-1 (spaghetti) and cook until al dente. Reserve 1/2 cup of pasta water, then drain.
@@ -522,8 +563,11 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
 ''',
         imageUrl:
             'https://i.pinimg.com/736x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
-        usersEngagement:
-            EngagementModel(rating: 4.9, ratingCount: 4500, likesCount: 2500),
+        usersEngagement: EngagementModel(
+          rating: 4.9,
+          ratingCount: 4500,
+          likesCount: 2500,
+        ),
         creator: CreatorModel(
           id: 'creator-3',
           name: 'Sophie Laurent',
@@ -569,17 +613,20 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
           baseNutritious: [
             NutritionModel(id: 'nut-1', name: 'Calories'),
             NutritionModel(
-                id: 'nut-2',
-                name: 'Protein',
-                baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
+              id: 'nut-2',
+              name: 'Protein',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
             NutritionModel(
-                id: 'nut-3',
-                name: 'Fat',
-                baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
+              id: 'nut-3',
+              name: 'Fat',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
             NutritionModel(
-                id: 'nut-4',
-                name: 'Carbs',
-                baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g')),
+              id: 'nut-4',
+              name: 'Carbs',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
           ],
           servings: [
             PortionBasedRecipeModel(

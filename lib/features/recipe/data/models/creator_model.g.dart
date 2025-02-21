@@ -7,12 +7,12 @@ part of 'creator_model.dart';
 // **************************************************************************
 
 CreatorModel _$CreatorModelFromJson(Map<String, dynamic> json) => CreatorModel(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      profilePic: json['profilePic'] as String,
-      profession: json['profession'] as String,
-      portfolioLink: json['portfolioLink'] as String,
-    );
+  id: json['id'] as String,
+  name: json['name'] as String,
+  profilePic: json['profilePic'] as String,
+  profession: json['profession'] as String,
+  portfolioLink: json['portfolioLink'] as String,
+);
 
 Map<String, dynamic> _$CreatorModelToJson(CreatorModel instance) =>
     <String, dynamic>{

@@ -27,10 +27,14 @@ class PortionBasedRecipeModel {
   ///formula _h_m_s, ex: 1h30m40s
   final String? restingHumanTime;
   @JsonKey(
-      fromJson: WeightCountModel.fromJsonS, toJson: WeightCountModel.toJsonS)
+    fromJson: WeightCountModel.fromJsonS,
+    toJson: WeightCountModel.toJsonS,
+  )
   final WeightCountModels ingredients;
   @JsonKey(
-      fromJson: WeightCountModel.fromJsonS, toJson: WeightCountModel.toJsonS)
+    fromJson: WeightCountModel.fromJsonS,
+    toJson: WeightCountModel.toJsonS,
+  )
   final WeightCountModels nutritious;
   // final Ingredients? additionalIngredients;
   // final Nutritious? additionalNutritious;
@@ -48,24 +52,27 @@ class PortionBasedRecipeModel {
     required this.nutritious,
     // this.additionalIngredients,
     // this.additionalNutritious,
-  }) : assert((minPortionCount != null && maxPortionCount != null) ||
-            portionCount != null);
+  }) : assert(
+         (minPortionCount != null && maxPortionCount != null) ||
+             portionCount != null,
+       );
 
   factory PortionBasedRecipeModel.fromJson(Map<String, dynamic> json) =>
       _$PortionBasedRecipeModelFromJson(json);
 
   factory PortionBasedRecipeModel.fromEntity(PortionBasedRecipe entity) =>
       PortionBasedRecipeModel(
-          id: entity.id,
-          difficulty: entity.difficulty.name,
-          minPortionCount: entity.minPortionCount,
-          maxPortionCount: entity.maxPortionCount,
-          portionCount: entity.portionCount,
-          preparationHumanTime: entity.preparationTime.toHumanDuration(),
-          bakingHumanTime: entity.bakingTime.toHumanDuration(),
-          restingHumanTime: entity.restingTime.toHumanDuration(),
-          ingredients: WeightCountModel.fromEntities(entity.ingredientsCount),
-          nutritious: WeightCountModel.fromEntities(entity.nutritiousCount));
+        id: entity.id,
+        difficulty: entity.difficulty.name,
+        minPortionCount: entity.minPortionCount,
+        maxPortionCount: entity.maxPortionCount,
+        portionCount: entity.portionCount,
+        preparationHumanTime: entity.preparationTime.toJsonDuration(),
+        bakingHumanTime: entity.bakingTime.toJsonDuration(),
+        restingHumanTime: entity.restingTime.toJsonDuration(),
+        ingredients: WeightCountModel.fromEntities(entity.ingredientsCount),
+        nutritious: WeightCountModel.fromEntities(entity.nutritiousCount),
+      );
 
   static PortionBasedRecipeModels fromEntities(PortionBasedRecipes entities) =>
       entities
@@ -75,19 +82,20 @@ class PortionBasedRecipeModel {
   Map<String, dynamic> toJson() => _$PortionBasedRecipeModelToJson(this);
 
   PortionBasedRecipe toEntity() => PortionBasedRecipe(
-        id: id,
-        difficulty: Difficulty.values.firstWhere(
-            (diff) => diff.name == difficulty,
-            orElse: () => Difficulty.unknown),
-        minPortionCount: minPortionCount,
-        maxPortionCount: maxPortionCount,
-        portionCount: portionCount,
-        preparationTime: parseHumanDuration(preparationHumanTime),
-        bakingTime: parseHumanDuration(bakingHumanTime),
-        restingTime: parseHumanDuration(restingHumanTime),
-        ingredientsCount: ingredients.toEntity(),
-        nutritiousCount: nutritious.toEntity(),
-      );
+    id: id,
+    difficulty: Difficulty.values.firstWhere(
+      (diff) => diff.name == difficulty,
+      orElse: () => Difficulty.unknown,
+    ),
+    minPortionCount: minPortionCount,
+    maxPortionCount: maxPortionCount,
+    portionCount: portionCount,
+    preparationTime: parseHumanDuration(preparationHumanTime),
+    bakingTime: parseHumanDuration(bakingHumanTime),
+    restingTime: parseHumanDuration(restingHumanTime),
+    ingredientsCount: ingredients.toEntity(),
+    nutritiousCount: nutritious.toEntity(),
+  );
 
   static PortionBasedRecipeModels fromJsonS(List<dynamic> json) {
     return json
@@ -96,7 +104,8 @@ class PortionBasedRecipeModel {
   }
 
   static List<Map<String, dynamic>> toJsonS(
-      PortionBasedRecipeModels portionBasedRecipeModels) {
+    PortionBasedRecipeModels portionBasedRecipeModels,
+  ) {
     return portionBasedRecipeModels.map((e) => e.toJson()).toList();
   }
 }

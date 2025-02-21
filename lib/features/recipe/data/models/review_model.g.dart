@@ -7,16 +7,16 @@ part of 'review_model.dart';
 // **************************************************************************
 
 ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) => ReviewModel(
-      id: json['id'] as String,
-      userID: json['userID'] as String,
-      userName: json['userName'] as String,
-      userProfilePic: json['userProfilePic'] as String?,
-      imagesUrl:
-          (json['imagesUrl'] as List<dynamic>).map((e) => e as String).toList(),
-      rating: (json['rating'] as num).toDouble(),
-      publishedAt: DateTime.parse(json['publishedAt'] as String),
-      description: json['description'] as String,
-    );
+  id: json['id'] as String,
+  userID: json['userID'] as String,
+  userName: json['userName'] as String,
+  userProfilePic: json['userProfilePic'] as String?,
+  imagesUrl:
+      (json['imagesUrl'] as List<dynamic>).map((e) => e as String).toList(),
+  rating: (json['rating'] as num).toDouble(),
+  publishedAt: DateTime.parse(json['publishedAt'] as String),
+  description: json['description'] as String,
+);
 
 Map<String, dynamic> _$ReviewModelToJson(ReviewModel instance) =>
     <String, dynamic>{
