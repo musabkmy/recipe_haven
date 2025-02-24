@@ -8,28 +8,33 @@ import 'package:recipe_haven/features/recipe/domain/entities/creator_entity.dart
 class BuildCreator extends StatelessWidget {
   const BuildCreator({super.key, required this.creator});
 
-  final Creator creator;
+  final Creator? creator;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
-      child: Row(
-        children: [
-          AppNetworkCircularAvatar(imageUrl: creator.profilePic),
-          SizedBox(
-            width: AppSpacing.sm.sp,
-          ), // Replace with appropriate width value
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return creator == null
+        ? SizedBox.shrink()
+        : Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
+          child: Row(
             children: [
-              Text(creator.name, style: context.displayMedium),
-              Text(creator.profession, style: context.bodyMedium),
-              Text(creator.portfolioLink, style: context.displayMediumAction),
+              AppNetworkCircularAvatar(imageUrl: creator!.profilePic),
+              SizedBox(
+                width: AppSpacing.sm.sp,
+              ), // Replace with appropriate width value
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(creator!.name, style: context.displayMedium),
+                  Text(creator!.profession, style: context.bodyMedium),
+                  Text(
+                    creator!.portfolioLink,
+                    style: context.displayMediumAction,
+                  ),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
-    );
+        );
   }
 }

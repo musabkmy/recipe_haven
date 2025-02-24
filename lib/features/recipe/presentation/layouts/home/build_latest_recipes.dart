@@ -78,20 +78,20 @@ class BuildLatestRecipes extends StatelessWidget {
     );
   }
 
-  SizedBox _buildRecipeCreatorName(Creator creator, BuildContext context) {
+  SizedBox _buildRecipeCreatorName(Creator? creator, BuildContext context) {
     return SizedBox(
       width: .5.sw,
       child: Row(
         spacing: AppSpacing.sm,
         children: [
           AppNetworkCircularAvatar(
-            imageUrl: creator.profilePic,
+            imageUrl: creator?.profilePic ?? '',
             size: 28.sp,
             maxSize: 50,
           ),
           Expanded(
             child: Text(
-              creator.name,
+              creator?.name ?? '',
               style: context.bodySmallAction,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

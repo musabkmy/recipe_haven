@@ -9,7 +9,7 @@ class Recipe extends Equatable {
   final String description;
   final String imageUrl;
   final Engagement usersEngagement;
-  final Creator creator;
+  final Creator? creator;
   final Details details;
   final Utensils utensils;
   final List<String> tags;

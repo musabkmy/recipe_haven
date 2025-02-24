@@ -16,7 +16,7 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
   Stream<GetAllRecipesResponse> getAllRecipes() async* {
     final Logger logger = Logger('RecipeRepositoryFirebaseImpl/getAllRecipes');
     final db = FirebaseFirestore.instance;
-
+    logger.info('in firebase getAllRecipes');
     try {
       // Listen to the Firestore collection for real-time updates
       await for (final querySnapshot
@@ -41,6 +41,8 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
     final Logger logger = Logger('RecipeRepositoryFirebaseImpl/createRecipe');
 
     final db = FirebaseFirestore.instance;
+
+    final creatorRef = FirebaseFirestore.instance.doc('creators/creator1');
     try {
       await db
           .collection(RecipeModel.collectionId)

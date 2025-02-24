@@ -8,15 +8,16 @@ import 'package:recipe_haven/config/theme/theme.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
 import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart';
-import 'package:recipe_haven/features/recipe/presentation/screens/recipe_info_screen.dart';
-import 'package:recipe_haven/features/recipe/presentation/screens/home_screen.dart';
+import 'package:recipe_haven/features/recipe/presentation/screens/screens.dart';
+import 'package:recipe_haven/features/user/presentation/screens/screens.dart';
 
 void main() async {
   //Initialize logging
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
     debugPrint(
-        '${record.level.name}:\n ${record.loggerName}: ${record.message}\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\');
+      '${record.level.name}:\n ${record.loggerName}: ${record.message}\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
+    );
   });
   await ScreenUtil.ensureScreenSize();
   configurationDependency(Env.prod);
@@ -46,11 +47,13 @@ class MyApp extends StatelessWidget {
             title: 'Recipe Haven',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.light,
-            initialRoute: App.id,
+            initialRoute: SignupOptionsScreen.id,
             routes: {
               App.id: (context) => App(),
               HomeScreen.id: (context) => HomeScreen(),
               RecipeInfoScreen.id: (context) => RecipeInfoScreen(),
+              SignupOptionsScreen.id: (context) => SignupOptionsScreen(),
+              SignupWithEmailScreen.id: (context) => SignupWithEmailScreen(),
             },
           );
         },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-final class TextStyles {
+final class AppTextStyles {
   static TextStyle headingLarge = TextStyle(
     fontSize: 32.0.sp,
     fontWeight: FontWeight.bold,
@@ -63,10 +63,10 @@ final class TextStyles {
   );
 
   static TextStyle buttonLabel = TextStyle(
-    fontSize: 16.0.sp,
-    fontWeight: FontWeight.bold,
+    fontSize: 14.0.sp,
+    fontWeight: FontWeight.w500,
     color: Colors.white,
   );
 
-  TextStyles._();
+  AppTextStyles._();
 }

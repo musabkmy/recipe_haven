@@ -22,6 +22,5 @@ extension ContextEx on BuildContext {
 
   TextStyle get bodySmallAction =>
       bodySmall.copyWith(color: AppColors.deepOrange);
-  TextStyle get buttonLabel => Theme.of(this).textTheme.labelLarge!;
   TextStyle get caption => Theme.of(this).textTheme.labelSmall!;
 }
