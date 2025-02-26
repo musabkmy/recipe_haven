@@ -42,7 +42,7 @@ class RecipeModel {
     required this.cookingStepsMap,
   }) : assert(cookingStepsMap.isNotEmpty);
 
-  static String collectionId = 'recipes';
+  static const String collectionId = 'recipes';
   factory RecipeModel.fromJson(Map<String, dynamic> json) =>
       _$RecipeModelFromJson(json);
 

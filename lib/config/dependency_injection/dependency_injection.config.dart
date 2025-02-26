@@ -23,9 +23,17 @@ import '../../features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.d
 import '../../features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart'
     as _i242;
 import '../../features/recipe/recipe.dart' as _i1012;
+import '../../features/user/data/repositories/user_repository_firebase_impl.dart'
+    as _i431;
+import '../../features/user/domain/repositories/repositories.dart' as _i587;
+import '../../features/user/domain/repositories/user_repository.dart' as _i237;
+import '../../features/user/presentation/state_management/bloc/user_bloc.dart'
+    as _i809;
+import '../../features/user/presentation/state_management/providers/form_provider.dart'
+    as _i307;
 
-const String _prod = 'prod';
 const String _dev = 'dev';
+const String _prod = 'prod';
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -36,18 +44,22 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.factory<_i703.RecipeTestingSource>(() => _i703.RecipeTestingSource());
     gh.singleton<_i242.RecipeInfoBloc>(() => _i242.RecipeInfoBloc());
-    gh.factory<_i1012.RecipeRepository>(
-      () => _i213.RecipeRepositoryFirebaseImpl(gh<_i703.RecipeTestingSource>()),
-      registerFor: {_prod},
-    );
+    gh.singleton<_i307.FormProvider>(() => _i307.FormProvider());
+    gh.factory<_i237.UserRepository>(() => _i431.UserRepositoryFirebaseImpl());
     gh.factory<_i1012.RecipeRepository>(
       () => _i976.RecipeRepositoryTestImpl(gh<_i703.RecipeTestingSource>()),
       registerFor: {_dev},
     );
+    gh.factory<_i1012.RecipeRepository>(
+      () => _i213.RecipeRepositoryFirebaseImpl(),
+      registerFor: {_prod},
+    );
+    gh.singleton<_i809.UserBloc>(
+      () => _i809.UserBloc(gh<_i587.UserRepository>()),
+    );
     gh.singleton<_i226.GetRecipesCubit>(
       () => _i226.GetRecipesCubit(gh<_i1012.RecipeRepository>()),
     );
-
     return this;
   }
 }

@@ -8,12 +8,11 @@ class UserCreationModel extends UserBaseModel {
   final String password;
 
   UserCreationModel({
-    required super.firstName,
-    required super.lastName,
+    required super.name,
     required this.password,
     required super.email,
-    required super.photoUrl,
-    required super.bio,
+    super.photoUrl,
+    super.bio,
   });
 
   Map<String, dynamic> toJson() => _$UserCreationModelToJson(this);

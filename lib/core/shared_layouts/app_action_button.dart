@@ -6,8 +6,8 @@ class AppActionButton extends StatelessWidget {
   const AppActionButton({
     super.key,
     required this.title,
-    required this.backgroundColor,
-    required this.textColor,
+    this.backgroundColor = AppColors.secondary,
+    this.textColor = AppColors.background,
     this.iconSvg,
     this.withBorderSide = false,
     required this.onPressed,

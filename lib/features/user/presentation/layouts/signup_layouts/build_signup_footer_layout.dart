@@ -12,10 +12,11 @@ class BuildSignupFooterLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: AppSpacing.sl,
+      spacing: AppSpacing.xl,
       children: [
         SizedBox(),
         _buildTermsAndPrivacy(context),
+        SizedBox(),
         _buildToLogin(context),
       ],
     );

@@ -66,7 +66,7 @@ class BuildLatestRecipes extends StatelessWidget {
                         style: context.bodySmall,
                         maxLines: null,
                       ),
-                      _buildRecipeCreatorName(creator, context),
+                      // _buildRecipeCreatorName(creator, context),
                     ],
                   ),
                 ),

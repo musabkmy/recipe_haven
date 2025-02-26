@@ -8,8 +8,7 @@ part of 'user_creation_model.dart';
 
 Map<String, dynamic> _$UserCreationModelToJson(UserCreationModel instance) =>
     <String, dynamic>{
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
+      'name': instance.name,
       'email': instance.email,
       'photoUrl': instance.photoUrl,
       'bio': instance.bio,

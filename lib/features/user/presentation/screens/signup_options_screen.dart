@@ -21,7 +21,6 @@ class SignupOptionsScreen extends StatelessWidget {
           spacing: AppSpacing.x3l,
           children: [
             BuildTopLayout(
-              hasPreviousScreen: Navigator.canPop(context),
               onSkipPressed: () => Navigator.pushNamed(context, App.id),
             ),
             SingleChildScrollView(

@@ -1,17 +1,18 @@
 //EXCEPTIONS
 
 class UserException implements Exception {
-  UserException();
+  UserException(this.message);
+  final String message;
 }
 
-class AuthenticationFailureException extends UserException {
-  AuthenticationFailureException();
-}
+// class AuthenticationFailureException extends UserException {
+//   AuthenticationFailureException(super.message);
+// }
 
-class CreateUserFailureException extends UserException {
-  CreateUserFailureException();
-}
+// class CreateUserFailureException extends UserException {
+//   CreateUserFailureException(super.message);
+// }
 
-class UnknownUserException implements UserException {
-  UnknownUserException();
-}
+// class UnknownUserException extends UserException {
+//   UnknownUserException(super.message);
+// }

@@ -24,7 +24,13 @@ class BuildTopLayout extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      title: title.let((title) => Text(title, style: context.headlineSmall)),
+      title: title.let(
+        (title) => Text(
+          title,
+          style: context.headlineSmall,
+          textAlign: TextAlign.center,
+        ),
+      ),
       trailing:
           trailing ??
           onSkipPressed.let(

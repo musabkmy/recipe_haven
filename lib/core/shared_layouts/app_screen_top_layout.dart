@@ -17,7 +17,7 @@ class AppScreenTopLayout extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           leading ?? SizedBox.shrink(),

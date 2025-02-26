@@ -11,6 +11,7 @@ final class AppColors {
 
   static const Color error = Color(0xFFB00020);
   static const Color errorOnFocused = Color.fromARGB(255, 136, 0, 25);
+  static const Color valid = Color.fromARGB(255, 54, 179, 143);
   static const Color transparent = Colors.transparent;
 
   static const Color grey50 = Color(0xFFFAFAFA); // Very light grey

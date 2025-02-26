@@ -1,11 +1,10 @@
-class User {
+class UserData {
   final String id;
-  final String firstName;
-  final String lastName;
+  final String name;
   final String email;
   final String? photoUrl;
-  final String bio;
-  final String joinedDate;
+  final String? bio;
+  final DateTime? joinedDate;
   final int followers;
   final int following;
   final int recipesCount;
@@ -14,10 +13,9 @@ class User {
   final int reviewsCount;
   final int ratingsCount;
 
-  User({
+  UserData({
     required this.id,
-    required this.firstName,
-    required this.lastName,
+    required this.name,
     required this.email,
     required this.photoUrl,
     required this.bio,
