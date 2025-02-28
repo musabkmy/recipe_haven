@@ -1,5 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:recipe_haven/config/extensions/object_extensions.dart';
+
 import '../../../domain/entities/details/ingredient_entity.dart';
 import 'measuring_unit_model.dart';
 
@@ -12,23 +15,23 @@ class IngredientModel {
   final String id;
   final String name;
   @JsonKey(
-      fromJson: MeasuringUnitModel.fromJson, toJson: MeasuringUnitModel.toJson)
+    fromJson: MeasuringUnitModel.fromJson,
+    toJson: MeasuringUnitModel.toJson,
+  )
   final MeasuringUnitModel? baseUnit; // Nullable
 
-  const IngredientModel({
-    required this.id,
-    required this.name,
-    this.baseUnit,
-  });
+  const IngredientModel({required this.id, required this.name, this.baseUnit});
 
   factory IngredientModel.fromJson(Map<String, dynamic> json) =>
       _$IngredientModelFromJson(json);
 
   factory IngredientModel.fromEntity(Ingredient entity) => IngredientModel(
-      id: entity.id,
-      name: entity.name,
-      baseUnit: entity.baseUnit
-          ?.let((value) => MeasuringUnitModel.fromEntity(value)));
+    id: entity.id,
+    name: entity.name,
+    baseUnit: entity.baseUnit?.let(
+      (value) => MeasuringUnitModel.fromEntity(value),
+    ),
+  );
 
   static IngredientModels fromEntities(Ingredients entities) =>
       entities.map((element) => IngredientModel.fromEntity(element)).toList();
@@ -47,6 +50,10 @@ class IngredientModel {
   static List<Map<String, dynamic>> toJsonS(IngredientModels ingredientModels) {
     return ingredientModels.map((e) => e.toJson()).toList();
   }
+
+  @override
+  String toString() =>
+      'IngredientModel(id: $id, name: $name, baseUnit: $baseUnit)';
 }
 
 extension IngredientModelEx on IngredientModels {

@@ -18,7 +18,9 @@ class BuildCreator extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
           child: Row(
             children: [
-              AppNetworkCircularAvatar(imageUrl: creator!.profilePic),
+              creator!.profilePic != null
+                  ? AppNetworkCircularAvatar(imageUrl: creator!.profilePic!)
+                  : SizedBox.shrink(),
               SizedBox(
                 width: AppSpacing.sm.sp,
               ), // Replace with appropriate width value
@@ -26,9 +28,9 @@ class BuildCreator extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(creator!.name, style: context.displayMedium),
-                  Text(creator!.profession, style: context.bodyMedium),
+                  Text(creator!.profession ?? '', style: context.bodyMedium),
                   Text(
-                    creator!.portfolioLink,
+                    creator!.portfolioLink ?? '',
                     style: context.displayMediumAction,
                   ),
                 ],

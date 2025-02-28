@@ -15,7 +15,7 @@ final class AppTextStyles {
   );
 
   static TextStyle headingSmall = TextStyle(
-    fontSize: 20.0.sp,
+    fontSize: 18.0.sp,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );

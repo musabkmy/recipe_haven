@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:recipe_haven/features/recipe/domain/entities/cooking_step_entity.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
 
@@ -57,12 +59,12 @@ class CookingStepModel {
   Map<String, dynamic> toJson() => _$CookingStepModelToJson(this);
 
   CookingStep toEntity() => CookingStep(
-        ingredientsID: ingredientsID,
-        utensilsID: utensilsID,
-        imagesUrl: imagesUrl,
-        fontSize: fontSize,
-        paragraph: paragraph,
-      );
+    ingredientsID: ingredientsID,
+    utensilsID: utensilsID,
+    imagesUrl: imagesUrl,
+    fontSize: fontSize,
+    paragraph: paragraph,
+  );
 
   static CookingStepModels fromJsonS(List<dynamic> json) {
     return json
@@ -71,11 +73,17 @@ class CookingStepModel {
   }
 
   static List<Map<String, dynamic>> toJsonS(
-      CookingStepModels cookingStepModels) {
+    CookingStepModels cookingStepModels,
+  ) {
     return cookingStepModels
         .where((e) => e != null)
         .map((e) => e!.toJson())
         .toList();
+  }
+
+  @override
+  String toString() {
+    return 'CookingStepModel(stepNumber: $stepNumber, ingredientsID: $ingredientsID, utensilsID: $utensilsID, imagesUrl: $imagesUrl, fontSize: $fontSize, paragraph: $paragraph)';
   }
 }
 

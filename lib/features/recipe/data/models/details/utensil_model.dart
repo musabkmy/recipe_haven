@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../domain/entities/details/utensil_entity.dart';
+
 part 'utensil_model.g.dart';
 
 typedef UtensilModels = List<UtensilModel>;
@@ -10,10 +12,7 @@ class UtensilModel {
   final String id;
   final String name;
 
-  const UtensilModel({
-    required this.id,
-    required this.name,
-  });
+  const UtensilModel({required this.id, required this.name});
 
   factory UtensilModel.fromJson(Map<String, dynamic> json) =>
       _$UtensilModelFromJson(json);
@@ -37,6 +36,9 @@ class UtensilModel {
   static List<Map<String, dynamic>> toJsonS(UtensilModels utensilModels) {
     return utensilModels.map((e) => e.toJson()).toList();
   }
+
+  @override
+  String toString() => 'UtensilModel(id: $id, name: $name)';
 }
 
 extension UtensilModelEx on UtensilModels {

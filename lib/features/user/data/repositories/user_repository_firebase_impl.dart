@@ -1,13 +1,45 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+import 'package:recipe_haven/core/exceptions/creator_exceptions.dart';
 import 'package:recipe_haven/core/exceptions/user_exceptions.dart';
 import 'package:recipe_haven/core/recourses/data_state.dart';
+import 'package:recipe_haven/features/recipe/data/data.dart';
 import 'package:recipe_haven/features/user/data/models/models.dart';
 import 'package:recipe_haven/features/user/domain/repositories/user_repository.dart';
 
 @Injectable(as: UserRepository)
 class UserRepositoryFirebaseImpl extends UserRepository {
+  @override
+  Future<UserResponse> getUserData() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return Failure(UserException('No authenticated user found.'));
+    }
+
+    final firestore = FirebaseFirestore.instance;
+
+    try {
+      final userDoc =
+          await firestore
+              .collection(UserFetchModel.collectionId)
+              .doc(user.uid)
+              .get();
+
+      if (!userDoc.exists || userDoc.data() == null) {
+        return Failure(UserException('No user record found.'));
+      }
+
+      final fetchedUser = UserFetchModel.fromJson(userDoc.data()!);
+
+      return Success(fetchedUser.toEntity());
+    } catch (e) {
+      return Failure(
+        UserException('Failed to fetch user data: ${e.toString()}'),
+      );
+    }
+  }
+
   @override
   Future<UserResponse> createUserWithEmailAndPassword(
     UserCreationModel userCreation,
@@ -73,6 +105,30 @@ class UserRepositoryFirebaseImpl extends UserRepository {
       return Failure(UserException('Unknown Error.'));
     } catch (e) {
       return Failure(UserException(e.toString()));
+    }
+  }
+
+  @override
+  Future<CreatorsResponse> getCreators() async {
+    try {
+      final db = FirebaseFirestore.instance;
+      final querySnapshot =
+          await db
+              .collection(UserFetchModel.collectionId)
+              .where('createdRecipes', isGreaterThan: [])
+              .get();
+      if (querySnapshot.size > 0) {
+        final creatorModels =
+            querySnapshot.docs
+                .map((doc) => CreatorModel.fromUser(doc.data()))
+                .toList();
+
+        return Success(creatorModels.toEntity());
+      } else {
+        return Failure(CreatorException('Couldn\'t find a creators.'));
+      }
+    } catch (e) {
+      return Failure(CreatorException(e.toString()));
     }
   }
 }

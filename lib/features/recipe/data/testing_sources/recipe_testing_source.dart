@@ -1,11 +1,9 @@
-import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/features/recipe/data/models/details/measuring_unit_model.dart';
 import 'package:recipe_haven/features/recipe/data/models/models.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
 
-@Injectable()
 class RecipeTestingSource {
-  RecipeModels getAllRecipes() {
+  static RecipeModels getAllRecipes() {
     return [
       RecipeModel(
         id: 'recipe-1',
@@ -19,13 +17,14 @@ class RecipeTestingSource {
           ratingCount: 3453000,
           likesCount: 467,
         ),
-        creator: CreatorModel(
+        userData: CreatorModel(
           id: 'creator-1',
           name: 'Muhammed Alhassan',
           profilePic:
               'https://i.pinimg.com/474x/f2/ec/bc/f2ecbcde9918a1b5f0806fd001c6fd7a.jpg',
           profession: 'Contributor',
           portfolioLink: 'adas-deli.de',
+          createdRecipes: [],
         ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'knife'),
@@ -367,13 +366,14 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
           ratingCount: 2890,
           likesCount: 1200,
         ),
-        creator: CreatorModel(
+        userData: CreatorModel(
           id: 'creator-2',
           name: 'Giulia Rossi',
           profilePic:
               'https://i.pinimg.com/474x/f2/ec/bc/f2ecbcde9918a1b5f0806fd001c6fd7a.jpg',
           profession: 'Chef',
           portfolioLink: 'giulia-rossi.com',
+          createdRecipes: [],
         ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'Large pot'),
@@ -568,13 +568,14 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
           ratingCount: 4500,
           likesCount: 2500,
         ),
-        creator: CreatorModel(
+        userData: CreatorModel(
           id: 'creator-3',
           name: 'Sophie Laurent',
           profilePic:
               'https://i.pinimg.com/474x/f2/ec/bc/f2ecbcde9918a1b5f0806fd001c6fd7a.jpg',
           profession: 'Pastry Chef',
           portfolioLink: 'sophie-laurent.com',
+          createdRecipes: [],
         ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'Mixing bowl'),

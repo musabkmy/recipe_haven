@@ -14,6 +14,7 @@ RecipeModel _$RecipeModelFromJson(Map<String, dynamic> json) => RecipeModel(
   usersEngagement: EngagementModel.fromJson(
     json['usersEngagement'] as Map<String, dynamic>,
   ),
+  userData: CreatorModel.fromUser(json['userData'] as Map<String, dynamic>),
   utensils: UtensilModel.fromJsonS(json['utensils'] as List),
   details: DetailsModel.fromJson(json['details'] as Map<String, dynamic>),
   tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),

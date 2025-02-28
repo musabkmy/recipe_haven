@@ -6,10 +6,14 @@ import 'package:provider/provider.dart';
 import 'package:recipe_haven/app.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/config/theme/theme.dart';
+import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
+import 'package:recipe_haven/core/home/presentation/screens/home_screen.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
 import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
-import 'package:recipe_haven/features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart';
+import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/recipe/presentation/screens/screens.dart';
+import 'package:recipe_haven/features/user/presentation/screens/auth_wrapper.dart';
+import 'package:recipe_haven/features/user/presentation/screens/profile_screen.dart';
 import 'package:recipe_haven/features/user/presentation/screens/screens.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/providers/form_provider.dart';
@@ -39,6 +43,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<GetRecipesCubit>(create: (_) => getIt<GetRecipesCubit>()),
         BlocProvider<RecipeInfoBloc>(create: (_) => getIt<RecipeInfoBloc>()),
         BlocProvider<UserBloc>(create: (_) => getIt<UserBloc>()),
+        BlocProvider<GetCreatorsCubit>(
+          create: (_) => getIt<GetCreatorsCubit>(),
+        ),
       ],
       child: MultiProvider(
         providers: [
@@ -57,11 +64,13 @@ class MyApp extends StatelessWidget {
               title: 'Recipe Haven',
               debugShowCheckedModeBanner: false,
               theme: AppTheme.light,
-              initialRoute: SignupOptionsScreen.id,
+              initialRoute: App.id,
               routes: {
                 App.id: (context) => App(),
                 HomeScreen.id: (context) => HomeScreen(),
                 RecipeInfoScreen.id: (context) => RecipeInfoScreen(),
+                AuthWrapper.id: (context) => AuthWrapper(),
+                ProfileScreen.id: (context) => ProfileScreen(),
                 SignupOptionsScreen.id: (context) => SignupOptionsScreen(),
                 SignupWithEmailScreen.id: (context) => SignupWithEmailScreen(),
               },

@@ -51,6 +51,7 @@ class AppTextFormField extends StatelessWidget {
       enableInteractiveSelection: enableInteractiveSelection,
       inputFormatters: inputFormatters,
       decoration: _inputDecoration(hintText: hintText, suffixIcon: suffixIcon),
+
       //override default on long press layout
       // contextMenuBuilder: (context, editableTextState) {
       //   return AdaptiveTextSelectionToolbar(
@@ -152,7 +153,7 @@ class AppTextFormField extends StatelessWidget {
     return InputDecoration(
       hintText: hintText,
       suffixIcon: suffixIcon,
-
+      errorMaxLines: 4,
       errorBorder: AppStyles.outlineInputBorderXS(color: AppColors.error),
       focusedBorder: AppStyles.outlineInputBorderM(color: AppColors.grey400),
       focusedErrorBorder: AppStyles.outlineInputBorderM(

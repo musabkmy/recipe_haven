@@ -13,8 +13,8 @@ class RecipeModel {
   final String imageUrl;
   @JsonKey(fromJson: EngagementModel.fromJson, toJson: EngagementModel.toJson)
   final EngagementModel usersEngagement;
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  final CreatorModel? creator;
+  @JsonKey(fromJson: CreatorModel.fromUser, includeToJson: false)
+  final CreatorModel? userData;
   @JsonKey(fromJson: UtensilModel.fromJsonS, toJson: UtensilModel.toJsonS)
   final UtensilModels utensils;
   @JsonKey(fromJson: DetailsModel.fromJson, toJson: DetailsModel.toJson)
@@ -34,7 +34,7 @@ class RecipeModel {
     required this.description,
     required this.imageUrl,
     required this.usersEngagement,
-    this.creator,
+    this.userData,
     required this.utensils,
     required this.details,
     required this.tags,
@@ -52,7 +52,7 @@ class RecipeModel {
     description: entity.description,
     imageUrl: entity.imageUrl,
     usersEngagement: EngagementModel.fromEntity(entity.usersEngagement),
-    creator: CreatorModel.fromEntity(entity.creator!),
+    userData: CreatorModel.fromEntity(entity.creator!),
     utensils: UtensilModel.fromEntities(entity.utensils),
     details: DetailsModel.fromEntity(entity.details),
     tags: entity.tags,
@@ -71,7 +71,7 @@ class RecipeModel {
     description: description,
     imageUrl: imageUrl,
     usersEngagement: usersEngagement.toEntity(),
-    creator: creator?.toEntity(),
+    creator: userData?.toEntity(),
     details: details.toEntity(),
     utensils: utensils.toEntity(),
     tags: tags,

@@ -5,6 +5,7 @@ class UserData {
   final String? photoUrl;
   final String? bio;
   final DateTime? joinedDate;
+  final List<String> createdRecipes;
   final int followers;
   final int following;
   final int recipesCount;
@@ -20,6 +21,7 @@ class UserData {
     required this.photoUrl,
     required this.bio,
     required this.joinedDate,
+    required this.createdRecipes,
     required this.followers,
     required this.following,
     required this.recipesCount,

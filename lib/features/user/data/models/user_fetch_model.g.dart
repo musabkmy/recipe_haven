@@ -16,6 +16,10 @@ UserFetchModel _$UserFetchModelFromJson(Map<String, dynamic> json) =>
       joinedDate: UserFetchModel._fromTimestamp(
         json['joinedDate'] as Timestamp?,
       ),
+      createdRecipes:
+          (json['createdRecipes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
       followers: (json['followers'] as num).toInt(),
       following: (json['following'] as num).toInt(),
       recipesCount: (json['recipesCount'] as num).toInt(),
@@ -32,6 +36,9 @@ Map<String, dynamic> _$UserFetchModelToJson(UserFetchModel instance) =>
       'photoUrl': instance.photoUrl,
       'bio': instance.bio,
       'id': instance.id,
+      'createdRecipes': UserFetchModel._createdRecipesToJson(
+        instance.createdRecipes,
+      ),
       'followers': instance.followers,
       'following': instance.following,
       'recipesCount': instance.recipesCount,

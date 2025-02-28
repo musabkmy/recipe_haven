@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
-import 'package:recipe_haven/core/shared_layouts/app_info_highlight.dart';
-import 'package:recipe_haven/features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart';
-import 'package:recipe_haven/features/recipe/presentation/layouts/home/build_latest_recipes.dart';
+import 'package:recipe_haven/core/home/presentation/layouts/editors_choice_layouts/editors_choice_layouts.dart';
+import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 
 class BuildEditorChoiceLayout extends StatelessWidget {
   const BuildEditorChoiceLayout({super.key});
@@ -41,6 +41,7 @@ class BuildEditorChoiceLayout extends StatelessWidget {
             },
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Wrap only _buildTop with ValueListenableBuilder
                   // to not building unnecessary widgets
@@ -56,6 +57,7 @@ class BuildEditorChoiceLayout extends StatelessWidget {
                     },
                   ),
                   BuildLatestRecipes(state: state, recipes: recipes),
+                  BuildBestCreators(),
                 ],
               ),
             ),
@@ -117,13 +119,7 @@ class BuildEditorChoiceLayout extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextButton(
-                          onPressed: null,
-                          child: Text(
-                            'Qienuhe',
-                            style: context.bodySmallAction,
-                          ),
-                        ),
+                        AppTextButton(label: 'Qienuhe'),
                         GestureDetector(
                           child: AppInfoHighlight(
                             child: Text.rich(

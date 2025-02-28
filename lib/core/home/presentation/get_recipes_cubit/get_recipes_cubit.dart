@@ -1,4 +1,5 @@
 import 'dart:async' show StreamSubscription;
+import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
@@ -14,17 +15,17 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
 
   StreamSubscription? _subscription;
 
-  void getRecipes() {
+  void getLatestRecipes() {
     emit(GetRecipesLoading());
     _subscription?.cancel();
+    //  emit.forEach(stream, onData: onData)
 
     _subscription = _recipeRepository.getAllRecipes().listen(
       (response) {
-        if (response is Success<Recipes>) {
-          emit(GetRecipesSuccess(response.value));
-        } else if (response is Failure<Recipes>) {
-          emit(GetRecipesFailure(response.error.toString()));
-        }
+        response.when(
+          success: (value) => emit(GetRecipesSuccess(value)),
+          failure: (error) => emit(GetRecipesFailure(error.message)),
+        );
       },
       onError: (error) {
         emit(GetRecipesFailure(error.toString()));
@@ -33,8 +34,9 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
   }
 
   Future<void> createRecipe() async {
+    final recipes = RecipeTestingSource.getAllRecipes();
     await _recipeRepository.createRecipe(
-      RecipeTestingSource().getAllRecipes()[0].toJson(),
+      recipes[Random(4).nextInt(recipes.length)].toJson(),
     );
   }
 

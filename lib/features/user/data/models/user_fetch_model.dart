@@ -10,6 +10,8 @@ class UserFetchModel extends UserBaseModel {
   final String id;
   @JsonKey(includeToJson: false, fromJson: _fromTimestamp)
   final DateTime? joinedDate;
+  @JsonKey(toJson: _createdRecipesToJson)
+  final List<String> createdRecipes;
   final int followers;
   final int following;
   final int recipesCount;
@@ -25,6 +27,7 @@ class UserFetchModel extends UserBaseModel {
     required super.bio,
     required this.id,
     required this.joinedDate,
+    required this.createdRecipes,
     required this.followers,
     required this.following,
     required this.recipesCount,
@@ -57,6 +60,7 @@ class UserFetchModel extends UserBaseModel {
     madeRecipesCount: 0,
     reviewsCount: 0,
     ratingsCount: 0,
+    createdRecipes: [],
   );
 
   UserData toEntity() => UserData(
@@ -66,6 +70,7 @@ class UserFetchModel extends UserBaseModel {
     photoUrl: photoUrl,
     bio: bio,
     joinedDate: joinedDate,
+    createdRecipes: createdRecipes,
     followers: followers,
     following: following,
     recipesCount: recipesCount,
@@ -77,4 +82,6 @@ class UserFetchModel extends UserBaseModel {
   static DateTime? _fromTimestamp(Timestamp? timestamp) {
     return timestamp?.toDate();
   }
+
+  static List<String> _createdRecipesToJson(List<String> list) => list;
 }

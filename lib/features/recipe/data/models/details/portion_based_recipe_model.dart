@@ -1,7 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
+
 import 'package:recipe_haven/config/extensions/duration_extensions.dart';
 import 'package:recipe_haven/config/utils/duration_utils.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_difficulty.dart';
+
 import '../../../domain/entities/details/portion_based_recipe_entity.dart';
 import 'weight_count_model.dart';
 
@@ -107,6 +110,11 @@ class PortionBasedRecipeModel {
     PortionBasedRecipeModels portionBasedRecipeModels,
   ) {
     return portionBasedRecipeModels.map((e) => e.toJson()).toList();
+  }
+
+  @override
+  String toString() {
+    return 'PortionBasedRecipeModel(id: $id, minPortionCount: $minPortionCount, maxPortionCount: $maxPortionCount, portionCount: $portionCount, difficulty: $difficulty, preparationHumanTime: $preparationHumanTime, bakingHumanTime: $bakingHumanTime, restingHumanTime: $restingHumanTime, ingredients: $ingredients, nutritious: $nutritious)';
   }
 }
 

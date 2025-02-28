@@ -1,14 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:recipe_haven/features/recipe/domain/entities/creator_entity.dart';
 
+typedef CreatorModels = List<CreatorModel>;
 // part 'creator_model.g.dart';
 
 // @JsonSerializable()
 class CreatorModel {
   final String id;
   final String name;
-  final String profilePic;
-  final String profession;
-  final String portfolioLink;
+  final String? profilePic;
+  final String? profession;
+  final String? portfolioLink;
+  final List<dynamic> createdRecipes;
 
   const CreatorModel({
     required this.id,
@@ -16,10 +19,20 @@ class CreatorModel {
     required this.profilePic,
     required this.profession,
     required this.portfolioLink,
+    required this.createdRecipes,
   });
 
   // factory CreatorModel.fromJson(Map<String, dynamic> json) =>
   //     _$CreatorModelFromJson(json);
+
+  factory CreatorModel.fromUser(Map<String, dynamic> json) => CreatorModel(
+    id: json['id'],
+    name: json['name'],
+    profilePic: json['photoUrl'],
+    profession: json['bio'],
+    portfolioLink: json['bio'],
+    createdRecipes: json['createdRecipes'],
+  );
 
   factory CreatorModel.fromEntity(Creator entity) => CreatorModel(
     id: entity.id,
@@ -27,6 +40,7 @@ class CreatorModel {
     profilePic: entity.profilePic,
     profession: entity.profession,
     portfolioLink: entity.portfolioLink,
+    createdRecipes: [],
   );
 
   // Map<String, dynamic> toJson() => _$CreatorModelToJson(this);
@@ -41,5 +55,15 @@ class CreatorModel {
     profilePic: profilePic,
     profession: profession,
     portfolioLink: portfolioLink,
+    createdRecipes: createdRecipes,
   );
+
+  @override
+  String toString() {
+    return 'CreatorModel(id: $id, name: $name, profilePic: $profilePic, profession: $profession, portfolioLink: $portfolioLink)';
+  }
+}
+
+extension CreatorsEx on CreatorModels {
+  Creators toEntity() => map((item) => item.toEntity()).toList();
 }

@@ -4,11 +4,9 @@ import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/duration_extensions.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
-import 'package:recipe_haven/core/shared_layouts/app_info_highlight.dart';
-import 'package:recipe_haven/core/shared_layouts/app_item_network_image.dart';
-import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
+import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
-import 'package:recipe_haven/features/recipe/presentation/get_recipes_cubit/get_recipes_cubit.dart';
+import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 
 class BuildLatestRecipes extends StatelessWidget {
   const BuildLatestRecipes({
@@ -28,22 +26,18 @@ class BuildLatestRecipes extends StatelessWidget {
       spacing: AppSpacing.md,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: EdgeInsetsDirectional.only(start: AppSpacing.minHorizontal),
-          child: Text('Our Latest Recipes', style: context.headlineSmall),
+        AppSectionTitle(
+          title: 'Our Latest Recipes',
+          onActionLabel: 'See all',
         ),
         SizedBox(
-          height: .5.sh,
+          height: .4.sh,
           child: ListView.builder(
             scrollDirection: Axis.horizontal, // Make it horizontal
             itemCount: length,
             itemBuilder: (context, index) {
               final item = recipes[index];
               final creator = item.creator;
-
-              logger.info(
-                'Building latest recipe at index: $index of ${state.recipes.length}',
-              );
 
               return GestureDetector(
                 key: Key(item.id),
@@ -56,18 +50,17 @@ class BuildLatestRecipes extends StatelessWidget {
                             ? AppSpacing.minHorizontal
                             : AppSpacing.sm,
                   ),
-                  child: Column(
-                    spacing: AppSpacing.sm,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildLatestRecipeImage(item, context),
-                      Text(
-                        item.title,
-                        style: context.bodySmall,
-                        maxLines: null,
-                      ),
-                      // _buildRecipeCreatorName(creator, context),
-                    ],
+                  child: SizedBox(
+                    width: .5.sw,
+                    child: Column(
+                      spacing: AppSpacing.sm,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildLatestRecipeImage(item, context),
+                        Text(item.title, style: context.bodySmall, maxLines: 2),
+                        _buildRecipeCreatorName(creator, context),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -85,7 +78,8 @@ class BuildLatestRecipes extends StatelessWidget {
         spacing: AppSpacing.sm,
         children: [
           AppNetworkCircularAvatar(
-            imageUrl: creator?.profilePic ?? '',
+            imageUrl: creator?.profilePic,
+            name: creator?.name,
             size: 28.sp,
             maxSize: 50,
           ),
