@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
-import 'package:recipe_haven/features/recipe/data/mocking_sources/recipe_mock_source.dart';
+import 'package:recipe_haven/core/data/mocking_sources/recipe_mock_source.dart';
 import 'package:recipe_haven/features/recipe/recipe.dart';
 
 part 'get_recipes_state.dart';

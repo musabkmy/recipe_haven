@@ -10,15 +10,16 @@ class UserFetchModel extends UserBaseModel {
   final String id;
   @JsonKey(includeToJson: false, fromJson: _fromTimestamp)
   final DateTime? joinedDate;
-  @JsonKey(toJson: _createdRecipesToJson)
-  final List<String> createdRecipes;
-  final int followers;
-  final int following;
-  final int recipesCount;
-  final int savedRecipesCount;
-  final int madeRecipesCount;
+  @JsonKey(toJson: _toEmptyArrayJson)
+  final List<dynamic> recipesRef;
+  @JsonKey(toJson: _toEmptyArrayJson)
+  final List<dynamic> savedRecipesRef;
+  @JsonKey(toJson: _toEmptyArrayJson)
+  final List<dynamic> followersRef;
+  @JsonKey(toJson: _toEmptyArrayJson)
+  final List<dynamic> followingRef;
   final int reviewsCount;
-  final int ratingsCount;
+  final int? ratingsCount;
 
   UserFetchModel({
     required super.name,
@@ -27,12 +28,10 @@ class UserFetchModel extends UserBaseModel {
     required super.bio,
     required this.id,
     required this.joinedDate,
-    required this.createdRecipes,
-    required this.followers,
-    required this.following,
-    required this.recipesCount,
-    required this.savedRecipesCount,
-    required this.madeRecipesCount,
+    required this.followersRef,
+    required this.followingRef,
+    required this.recipesRef,
+    required this.savedRecipesRef,
     required this.reviewsCount,
     required this.ratingsCount,
   });
@@ -53,14 +52,12 @@ class UserFetchModel extends UserBaseModel {
     photoUrl: userCreationModel.photoUrl,
     bio: userCreationModel.bio,
     joinedDate: null,
-    followers: 0,
-    following: 0,
-    recipesCount: 0,
-    savedRecipesCount: 0,
-    madeRecipesCount: 0,
+    recipesRef: [],
+    savedRecipesRef: [],
+    followersRef: [],
+    followingRef: [],
     reviewsCount: 0,
-    ratingsCount: 0,
-    createdRecipes: [],
+    ratingsCount: null,
   );
 
   UserData toEntity() => UserData(
@@ -70,18 +67,16 @@ class UserFetchModel extends UserBaseModel {
     photoUrl: photoUrl,
     bio: bio,
     joinedDate: joinedDate,
-    createdRecipes: createdRecipes,
-    followers: followers,
-    following: following,
-    recipesCount: recipesCount,
-    savedRecipesCount: savedRecipesCount,
-    madeRecipesCount: madeRecipesCount,
+    recipesRef: recipesRef,
+    savedRecipesRef: savedRecipesRef,
+    followersRef: followersRef,
+    followingRef: followingRef,
     reviewsCount: reviewsCount,
     ratingsCount: ratingsCount,
   );
+  static List<dynamic> _toEmptyArrayJson(List<dynamic> list) => [];
+
   static DateTime? _fromTimestamp(Timestamp? timestamp) {
     return timestamp?.toDate();
   }
-
-  static List<String> _createdRecipesToJson(List<String> list) => list;
 }

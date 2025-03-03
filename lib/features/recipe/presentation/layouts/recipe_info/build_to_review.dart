@@ -45,82 +45,86 @@ class BuildToReviews extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: .25.sw,
-                width: double.maxFinite,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final itemSize = constraints.maxWidth / 4 - AppSpacing.sm;
-                    return Row(
-                      spacing: AppSpacing.sm,
-                      children:
-                          reviews.reviewsImages().take(4).toList().asMap().entries.map((
-                            element,
-                          ) {
-                            return Expanded(
-                              child: CachedNetworkImage(
-                                imageUrl: element.value,
-                                imageBuilder: (context, imageProvider) {
-                                  return Container(
-                                    height: itemSize,
-                                    width: itemSize,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.fill,
-                                      ),
-                                      borderRadius: AppStyles.borderRadiusM,
-                                    ),
-                                    child:
-                                        element.key == 3
-                                            //  &&
-                                            //         reviews.numOfReviewsImages() > 4
-                                            ? Stack(
-                                              children: [
-                                                // Dark overlay
-                                                Positioned(
-                                                  bottom: 0,
-                                                  left: 0,
-                                                  right: 0,
-                                                  child: Container(
-                                                    height: itemSize,
-                                                    width: itemSize,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          AppColors
-                                                              .lightOverlayColor,
-                                                      borderRadius:
-                                                          AppStyles
-                                                              .borderRadiusM,
-                                                    ),
-                                                  ),
-                                                ),
-                                                // Text on top of the overlay
-                                                Align(
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                    '+${reviews.numOfReviewsImages() - 4}',
-                                                    style: context
-                                                        .headlineMedium
-                                                        .copyWith(
+              reviews.reviewsImages() == []
+                  ? SizedBox.shrink()
+                  : SizedBox(
+                    height: .25.sw,
+                    width: double.maxFinite,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final itemSize =
+                            constraints.maxWidth / 4 - AppSpacing.sm;
+                        return Row(
+                          spacing: AppSpacing.sm,
+                          children:
+                              reviews.reviewsImages().asMap().entries.map((
+                                element,
+                              ) {
+                                return Expanded(
+                                  child: CachedNetworkImage(
+                                    imageUrl: element.value,
+                                    imageBuilder: (context, imageProvider) {
+                                      return Container(
+                                        height: itemSize,
+                                        width: itemSize,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.fill,
+                                          ),
+                                          borderRadius: AppStyles.borderRadiusM,
+                                        ),
+                                        child:
+                                            element.key == 3
+                                                //  &&
+                                                //         reviews.numOfReviewsImages() > 4
+                                                ? Stack(
+                                                  children: [
+                                                    // Dark overlay
+                                                    Positioned(
+                                                      bottom: 0,
+                                                      left: 0,
+                                                      right: 0,
+                                                      child: Container(
+                                                        height: itemSize,
+                                                        width: itemSize,
+                                                        decoration: BoxDecoration(
                                                           color:
                                                               AppColors
-                                                                  .background,
+                                                                  .lightOverlayColor,
+                                                          borderRadius:
+                                                              AppStyles
+                                                                  .borderRadiusM,
                                                         ),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                            : SizedBox.shrink(),
-                                  );
-                                },
-                              ),
-                            );
-                          }).toList(),
-                    );
-                  },
-                ),
-              ),
+                                                      ),
+                                                    ),
+                                                    // Text on top of the overlay
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        '+${reviews.numOfReviewsImages() - 4}',
+                                                        style: context
+                                                            .headlineMedium
+                                                            .copyWith(
+                                                              color:
+                                                                  AppColors
+                                                                      .background,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                                : SizedBox.shrink(),
+                                      );
+                                    },
+                                  ),
+                                );
+                              }).toList(),
+                        );
+                      },
+                    ),
+                  ),
             ],
           ),
         );

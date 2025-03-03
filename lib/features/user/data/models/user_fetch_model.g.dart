@@ -16,34 +16,26 @@ UserFetchModel _$UserFetchModelFromJson(Map<String, dynamic> json) =>
       joinedDate: UserFetchModel._fromTimestamp(
         json['joinedDate'] as Timestamp?,
       ),
-      createdRecipes:
-          (json['createdRecipes'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
-      followers: (json['followers'] as num).toInt(),
-      following: (json['following'] as num).toInt(),
-      recipesCount: (json['recipesCount'] as num).toInt(),
-      savedRecipesCount: (json['savedRecipesCount'] as num).toInt(),
-      madeRecipesCount: (json['madeRecipesCount'] as num).toInt(),
+      followersRef: json['followersRef'] as List<dynamic>,
+      followingRef: json['followingRef'] as List<dynamic>,
+      recipesRef: json['recipesRef'] as List<dynamic>,
+      savedRecipesRef: json['savedRecipesRef'] as List<dynamic>,
       reviewsCount: (json['reviewsCount'] as num).toInt(),
-      ratingsCount: (json['ratingsCount'] as num).toInt(),
+      ratingsCount: (json['ratingsCount'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$UserFetchModelToJson(UserFetchModel instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'email': instance.email,
-      'photoUrl': instance.photoUrl,
-      'bio': instance.bio,
-      'id': instance.id,
-      'createdRecipes': UserFetchModel._createdRecipesToJson(
-        instance.createdRecipes,
-      ),
-      'followers': instance.followers,
-      'following': instance.following,
-      'recipesCount': instance.recipesCount,
-      'savedRecipesCount': instance.savedRecipesCount,
-      'madeRecipesCount': instance.madeRecipesCount,
-      'reviewsCount': instance.reviewsCount,
-      'ratingsCount': instance.ratingsCount,
-    };
+Map<String, dynamic> _$UserFetchModelToJson(
+  UserFetchModel instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'email': instance.email,
+  'photoUrl': instance.photoUrl,
+  'bio': instance.bio,
+  'id': instance.id,
+  'recipesRef': UserFetchModel._toEmptyArrayJson(instance.recipesRef),
+  'savedRecipesRef': UserFetchModel._toEmptyArrayJson(instance.savedRecipesRef),
+  'followersRef': UserFetchModel._toEmptyArrayJson(instance.followersRef),
+  'followingRef': UserFetchModel._toEmptyArrayJson(instance.followingRef),
+  'reviewsCount': instance.reviewsCount,
+  'ratingsCount': instance.ratingsCount,
+};

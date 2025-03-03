@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/core/exceptions/recipe_exceptions.dart';
-import 'package:recipe_haven/features/recipe/data/models/tag_model.dart';
+import 'package:recipe_haven/core/data/models/tag_model.dart';
 import 'package:recipe_haven/features/recipe/recipe.dart';
 import 'package:recipe_haven/features/user/data/models/user_fetch_model.dart';
 
@@ -18,10 +18,11 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
   Stream<GetAllRecipesResponse> getAllRecipes() async* {
     final Logger logger = Logger('RecipeRepositoryFirebaseImpl/getAllRecipes');
     final db = FirebaseFirestore.instance;
-    logger.info('in firebase getAllRecipes');
     try {
       await for (final querySnapshot
           in db.collection(RecipeModel.collectionId).snapshots()) {
+        logger.info('added: ${querySnapshot.runtimeType}');
+
         yield await _getRecipeResponse(querySnapshot);
       }
     } catch (e) {
@@ -97,12 +98,15 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
           final userDoc = await creatorRef.get();
           if (userDoc.exists) {
             userData = userDoc.data() as Map<String, dynamic>;
+
+            recipeData['userData'] = userData;
+
+            final recipe = RecipeModel.fromJson(recipeData);
+
+            recipes.add(recipe);
+          } else {
+            return Failure(RecipeException('no user found.'));
           }
-          recipeData['userData'] = userData;
-
-          final recipe = RecipeModel.fromJson(recipeData);
-
-          recipes.add(recipe);
         }
       }
       return Success(recipes.toEntity());

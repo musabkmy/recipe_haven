@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'package:recipe_haven/config/extensions/object_extensions.dart';
 
-import '../../../domain/entities/details/ingredient_entity.dart';
+import '../../../../features/recipe/domain/entities/details/ingredient_entity.dart';
 import 'measuring_unit_model.dart';
 
 part 'ingredient_model.g.dart';

@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/core/exceptions/creator_exceptions.dart';
 import 'package:recipe_haven/core/exceptions/user_exceptions.dart';
 import 'package:recipe_haven/core/recourses/data_state.dart';
-import 'package:recipe_haven/features/recipe/data/data.dart';
+import 'package:recipe_haven/core/data/data.dart';
 import 'package:recipe_haven/features/user/data/models/models.dart';
 import 'package:recipe_haven/features/user/domain/repositories/user_repository.dart';
 
@@ -115,7 +115,7 @@ class UserRepositoryFirebaseImpl extends UserRepository {
       final querySnapshot =
           await db
               .collection(UserFetchModel.collectionId)
-              .where('createdRecipes', isGreaterThan: [])
+              // .where('createdRecipes', isGreaterThan: [])
               .get();
       if (querySnapshot.size > 0) {
         final creatorModels =

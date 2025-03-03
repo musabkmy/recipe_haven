@@ -1,5 +1,5 @@
-import 'package:recipe_haven/features/recipe/data/models/details/measuring_unit_model.dart';
-import 'package:recipe_haven/features/recipe/data/models/models.dart';
+import 'package:recipe_haven/core/data/models/details/measuring_unit_model.dart';
+import 'package:recipe_haven/core/data/models/models.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
 
 class RecipeMockSource {
@@ -24,7 +24,7 @@ class RecipeMockSource {
               'https://i.pinimg.com/474x/f2/ec/bc/f2ecbcde9918a1b5f0806fd001c6fd7a.jpg',
           profession: 'Contributor',
           portfolioLink: 'adas-deli.de',
-          createdRecipes: [],
+          recipesRef: [],
         ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'knife'),
@@ -373,7 +373,7 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
               'https://i.pinimg.com/474x/f2/ec/bc/f2ecbcde9918a1b5f0806fd001c6fd7a.jpg',
           profession: 'Chef',
           portfolioLink: 'giulia-rossi.com',
-          createdRecipes: [],
+          recipesRef: [],
         ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'Large pot'),
@@ -575,7 +575,7 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
               'https://i.pinimg.com/474x/f2/ec/bc/f2ecbcde9918a1b5f0806fd001c6fd7a.jpg',
           profession: 'Pastry Chef',
           portfolioLink: 'sophie-laurent.com',
-          createdRecipes: [],
+          recipesRef: [],
         ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'Mixing bowl'),
@@ -725,7 +725,7 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
               'https://i.pinimg.com/236x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg',
           profession: 'Food Blogger',
           portfolioLink: 'cuisineadventures.com',
-          createdRecipes: [],
+          recipesRef: [],
         ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'Wok'),
@@ -1005,7 +1005,7 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
               'https://i.pinimg.com/236x/67/89/cc/6789ccc33fea3feae36d6617a57dc827.jpg',
           profession: 'Home Baker',
           portfolioLink: 'emmabakes.com',
-          createdRecipes: [],
+          recipesRef: [],
         ),
         utensils: [
           UtensilModel(id: 'ute-1', name: 'Rolling pin'),

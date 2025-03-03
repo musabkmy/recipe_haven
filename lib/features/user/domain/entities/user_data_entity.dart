@@ -5,14 +5,12 @@ class UserData {
   final String? photoUrl;
   final String? bio;
   final DateTime? joinedDate;
-  final List<String> createdRecipes;
-  final int followers;
-  final int following;
-  final int recipesCount;
-  final int savedRecipesCount;
-  final int madeRecipesCount;
+  final List<dynamic> recipesRef;
+  final List<dynamic> savedRecipesRef;
+  final List<dynamic> followersRef;
+  final List<dynamic> followingRef;
   final int reviewsCount;
-  final int ratingsCount;
+  final int? ratingsCount;
 
   UserData({
     required this.id,
@@ -21,12 +19,10 @@ class UserData {
     required this.photoUrl,
     required this.bio,
     required this.joinedDate,
-    required this.createdRecipes,
-    required this.followers,
-    required this.following,
-    required this.recipesCount,
-    required this.savedRecipesCount,
-    required this.madeRecipesCount,
+    required this.recipesRef,
+    required this.savedRecipesRef,
+    required this.followersRef,
+    required this.followingRef,
     required this.reviewsCount,
     required this.ratingsCount,
   });

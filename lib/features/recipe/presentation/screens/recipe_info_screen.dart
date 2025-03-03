@@ -68,9 +68,8 @@ class _RecipeInfoBody extends StatelessWidget {
               ),
             ),
           );
-        } else {
-          return Center(child: Text('Failed Loading'));
         }
+        return Center(child: Text('Failed Loading'));
       },
     );
   }

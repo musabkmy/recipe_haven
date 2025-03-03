@@ -10,16 +10,10 @@ sealed class UserEvent extends Equatable {
 class GetUser extends UserEvent {}
 
 class CreateAccountWithEmailAndPassword extends UserEvent {
-  final String email;
-  final String password;
-  final String name;
+  final UserCreationModel userCreation;
 
-  const CreateAccountWithEmailAndPassword({
-    required this.email,
-    required this.password,
-    required this.name,
-  });
+  const CreateAccountWithEmailAndPassword({required this.userCreation});
 
   @override
-  List<Object> get props => [email, password, name];
+  List<Object> get props => [userCreation];
 }

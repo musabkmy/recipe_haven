@@ -19,6 +19,7 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
   }
 
   void onLoadRecipe(RecipeLoadEvent event, Emitter<RecipeInfoState> emit) {
+    emit(RecipeInfoLoading());
     final receiveDetails = event.recipe.details;
     final selectedPortion = event.recipe.selectedPortion;
     final selectedPortionIndex = findIndex(

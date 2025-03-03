@@ -5,7 +5,7 @@ import 'package:recipe_haven/config/extensions/duration_extensions.dart';
 import 'package:recipe_haven/config/utils/duration_utils.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_difficulty.dart';
 
-import '../../../domain/entities/details/portion_based_recipe_entity.dart';
+import '../../../../features/recipe/domain/entities/details/portion_based_recipe_entity.dart';
 import 'weight_count_model.dart';
 
 part 'portion_based_recipe_model.g.dart';

@@ -8,7 +8,7 @@ class Creator extends Equatable {
   final String? profilePic;
   final String? profession;
   final String? portfolioLink;
-  final List<dynamic> createdRecipes;
+  final List<dynamic> recipesRef;
 
   const Creator({
     required this.id,
@@ -16,7 +16,7 @@ class Creator extends Equatable {
     required this.profilePic,
     required this.profession,
     required this.portfolioLink,
-    required this.createdRecipes,
+    required this.recipesRef,
   });
 
   @override
@@ -26,6 +26,6 @@ class Creator extends Equatable {
     profilePic,
     profession,
     portfolioLink,
-    createdRecipes,
+    recipesRef,
   ];
 }

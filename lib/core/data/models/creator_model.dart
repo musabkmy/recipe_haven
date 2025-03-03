@@ -11,7 +11,7 @@ class CreatorModel {
   final String? profilePic;
   final String? profession;
   final String? portfolioLink;
-  final List<dynamic> createdRecipes;
+  final List<dynamic> recipesRef;
 
   const CreatorModel({
     required this.id,
@@ -19,7 +19,7 @@ class CreatorModel {
     required this.profilePic,
     required this.profession,
     required this.portfolioLink,
-    required this.createdRecipes,
+    required this.recipesRef,
   });
 
   // factory CreatorModel.fromJson(Map<String, dynamic> json) =>
@@ -31,7 +31,7 @@ class CreatorModel {
     profilePic: json['photoUrl'],
     profession: json['bio'],
     portfolioLink: json['bio'],
-    createdRecipes: json['createdRecipes'],
+    recipesRef: json['recipesRef'],
   );
 
   factory CreatorModel.fromEntity(Creator entity) => CreatorModel(
@@ -40,7 +40,7 @@ class CreatorModel {
     profilePic: entity.profilePic,
     profession: entity.profession,
     portfolioLink: entity.portfolioLink,
-    createdRecipes: [],
+    recipesRef: [],
   );
 
   // Map<String, dynamic> toJson() => _$CreatorModelToJson(this);
@@ -55,7 +55,7 @@ class CreatorModel {
     profilePic: profilePic,
     profession: profession,
     portfolioLink: portfolioLink,
-    createdRecipes: createdRecipes,
+    recipesRef: recipesRef,
   );
 
   @override

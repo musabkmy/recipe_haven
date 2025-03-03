@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:recipe_haven/config/extensions/object_extensions.dart';
-import '../../../domain/entities/details/weight_count_entity.dart';
+import '../../../../features/recipe/domain/entities/details/weight_count_entity.dart';
 import 'measuring_unit_model.dart';
 
 part 'weight_count_model.g.dart';
@@ -12,20 +12,27 @@ class WeightCountModel {
   final String id;
   final double count;
   @JsonKey(
-      fromJson: MeasuringUnitModel.fromJson, toJson: MeasuringUnitModel.toJson)
+    fromJson: MeasuringUnitModel.fromJson,
+    toJson: MeasuringUnitModel.toJson,
+  )
   final MeasuringUnitModel? measuringUnit;
 
-  const WeightCountModel(
-      {required this.id, required this.count, this.measuringUnit});
+  const WeightCountModel({
+    required this.id,
+    required this.count,
+    this.measuringUnit,
+  });
 
   factory WeightCountModel.fromJson(Map<String, dynamic> json) =>
       _$WeightCountModelFromJson(json);
 
   factory WeightCountModel.fromEntity(WeightCount entity) => WeightCountModel(
-      id: entity.id,
-      count: entity.count,
-      measuringUnit: entity.measuringUnit
-          ?.let((value) => MeasuringUnitModel.fromEntity(value)));
+    id: entity.id,
+    count: entity.count,
+    measuringUnit: entity.measuringUnit?.let(
+      (value) => MeasuringUnitModel.fromEntity(value),
+    ),
+  );
 
   static WeightCountModels fromEntities(WeightCounts entities) =>
       entities.map((element) => WeightCountModel.fromEntity(element)).toList();
@@ -33,7 +40,10 @@ class WeightCountModel {
   Map<String, dynamic> toJson() => _$WeightCountModelToJson(this);
 
   WeightCount toEntity() => WeightCount(
-      id: id, count: count, measuringUnit: measuringUnit?.toEntity());
+    id: id,
+    count: count,
+    measuringUnit: measuringUnit?.toEntity(),
+  );
 
   static WeightCountModels fromJsonS(List<dynamic> json) {
     return json
@@ -42,7 +52,8 @@ class WeightCountModel {
   }
 
   static List<Map<String, dynamic>> toJsonS(
-      WeightCountModels weightCountModels) {
+    WeightCountModels weightCountModels,
+  ) {
     return weightCountModels.map((e) => e.toJson()).toList();
   }
 }

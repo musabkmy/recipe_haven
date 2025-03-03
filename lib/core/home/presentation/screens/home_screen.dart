@@ -43,29 +43,7 @@ class HomeScreen extends StatelessWidget {
       child: TabBarView(
         physics: NeverScrollableScrollPhysics(),
 
-        children: [
-          BuildEditorChoiceLayout(),
-          // GestureDetector(
-          //   key: Key('GestureDetector get recipe'),
-          //   child: Text(state.recipes.first.title),
-          //   onTap: () {
-          //     context
-          //         .read<RecipeInfoBloc>()
-          //         .add(RecipeLoadEvent(state.recipes.first));
-          //     Navigator.pushNamed(
-          //       context,
-          //       RecipeInfoScreen.id,
-          //     );
-          //   },
-          // ),
-          GestureDetector(
-            key: Key('GestureDetector create recipe'),
-            child: Text('create recipe'),
-            onTap: () {
-              context.read<GetRecipesCubit>().createRecipe();
-            },
-          ),
-        ],
+        children: [BuildEditorChoiceLayout(), BuildForYouLayout()],
       ),
     );
   }

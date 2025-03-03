@@ -20,7 +20,7 @@ import '../../core/home/presentation/get_tags_cubit/get_tags_cubit.dart'
     as _i296;
 import '../../core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart'
     as _i1048;
-import '../../features/recipe/data/repositories/recipe_repository_firebase_impl.dart'
+import '../../core/data/repositories/recipe_repository_firebase_impl.dart'
     as _i213;
 import '../../features/recipe/domain/repositories/recipe_repository.dart'
     as _i76;

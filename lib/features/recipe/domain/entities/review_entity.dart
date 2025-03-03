@@ -13,15 +13,16 @@ class Review extends Equatable {
   final DateTime publishedAt;
   final String description;
 
-  const Review(
-      {required this.id,
-      required this.userID,
-      required this.userName,
-      required this.userProfilePic,
-      required this.imagesUrl,
-      required this.rating,
-      required this.publishedAt,
-      required this.description});
+  const Review({
+    required this.id,
+    required this.userID,
+    required this.userName,
+    required this.userProfilePic,
+    required this.imagesUrl,
+    required this.rating,
+    required this.publishedAt,
+    required this.description,
+  });
 
   @override
   List<Object?> get props => [id];
@@ -37,13 +38,20 @@ extension ReviewsEx on Reviews {
     return count;
   }
 
-  List<String> reviewsImages([int length = 4]) {
+  List<String> reviewsImages() {
     List<String> images = [];
 
-    for (int i = 0; images.length < length || i < this.length; i++) {
-      images.addAll(this[i].imagesUrl);
+    if (isNotEmpty) {
+      for (int i = 0; i < length; i++) {
+        if (this[i].imagesUrl.isNotEmpty) {
+          images.addAll(this[i].imagesUrl);
+        }
+      }
     }
     Logger('reviewsImages').info(images.length);
+    if (images.length > 4) {
+      return images.take(4).toList();
+    }
     return images;
   }
 }

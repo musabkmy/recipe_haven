@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../domain/entities/details/measuring_unit_entity.dart';
+import '../../../../features/recipe/domain/entities/details/measuring_unit_entity.dart';
 
 part 'measuring_unit_model.g.dart';
 
@@ -11,10 +11,7 @@ class MeasuringUnitModel {
   final String name;
   final String abbreviation;
 
-  const MeasuringUnitModel({
-    required this.name,
-    required this.abbreviation,
-  });
+  const MeasuringUnitModel({required this.name, required this.abbreviation});
 
   factory MeasuringUnitModel.empty() {
     return MeasuringUnitModel(name: '', abbreviation: '');
@@ -29,9 +26,10 @@ class MeasuringUnitModel {
   factory MeasuringUnitModel.fromEntity(MeasuringUnit entity) =>
       MeasuringUnitModel(name: entity.name, abbreviation: entity.abbreviation);
 
-  static MeasuringUnitModels fromEntities(MeasuringUnits entities) => entities
-      .map((element) => MeasuringUnitModel.fromEntity(element))
-      .toList();
+  static MeasuringUnitModels fromEntities(MeasuringUnits entities) =>
+      entities
+          .map((element) => MeasuringUnitModel.fromEntity(element))
+          .toList();
 
   static Map<String, dynamic>? toJson(MeasuringUnitModel? instance) {
     if (instance != null) {

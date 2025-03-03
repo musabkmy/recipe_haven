@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:recipe_haven/app.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+import 'package:recipe_haven/features/user/data/models/user_creation_model.dart';
 import 'package:recipe_haven/features/user/presentation/layouts/signup_layouts/build_signup_footer_layout.dart';
 import 'package:recipe_haven/features/user/presentation/layouts/text_form_field_suffix_layout.dart';
 import 'package:recipe_haven/features/user/presentation/layouts/user_layouts.dart';
@@ -146,9 +147,11 @@ class SignupWithEmailScreen extends StatelessWidget {
 
           context.read<UserBloc>().add(
             CreateAccountWithEmailAndPassword(
-              email: email,
-              password: password,
-              name: name,
+              userCreation: UserCreationModel(
+                name: name,
+                password: password,
+                email: email,
+              ),
             ),
           );
         } else {

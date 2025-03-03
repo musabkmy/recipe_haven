@@ -30,19 +30,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     CreateAccountWithEmailAndPassword event,
     Emitter<UserState> emit,
   ) async {
-    if (!(state is UserDataInitial || state is UserDataFailure)) {
-      return;
-    }
+    //TODO: uncomment
+    // if (!(state is UserDataInitial || state is UserDataFailure)) {
+    //   return;
+    // }
     Logger logger = Logger('_onCreateAccountWithEmailAndPassword');
     emit(UserDataLoading());
 
-    final userCreation = UserCreationModel(
-      name: event.name,
-      password: event.password,
-      email: event.email,
-    );
     final userData = await _userRepository.createUserWithEmailAndPassword(
-      userCreation,
+      event.userCreation,
     );
     userData.when(
       success: (value) {

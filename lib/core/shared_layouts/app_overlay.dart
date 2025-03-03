@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_haven/constants/app_colors.dart';
 
 ///Global loading overlay that is sit above all widget tree
 ///Show loading overlay [LoadingOverlay.show]
@@ -12,7 +13,7 @@ final class LoadingOverlay {
     _overlayEntry = OverlayEntry(
       builder:
           (context) => Container(
-            color: Colors.black.withAlpha(120), // Semi-transparent background
+            color: AppColors.lightOverlayColor, // Semi-transparent background
             child: Center(
               child: CircularProgressIndicator(), // Loading indicator
             ),

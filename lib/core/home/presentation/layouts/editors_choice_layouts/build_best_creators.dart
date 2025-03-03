@@ -20,37 +20,41 @@ class BuildBestCreators extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppSectionTitle('Explore the best recipes from'),
-              ...creators.asMap().entries.map((element) {
-                final index = element.key;
-                final creator = element.value;
-                return Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    start: index == 0 ? AppSpacing.minHorizontal : 0,
-                    end:
-                        index == creators.length - 1
-                            ? AppSpacing.minHorizontal
-                            : 0,
-                  ),
-                  child: Column(
-                    spacing: AppSpacing.md,
-                    children: [
-                      AppNetworkCircularAvatar(
-                        size: 68.sp,
-                        imageUrl: creator.profilePic,
-                        name: creator.name,
-                      ),
-                      SizedBox(
-                        width: 68.sp,
-                        child: Text(
-                          creator.name,
-                          style: context.bodyMedium,
-                          textAlign: TextAlign.center,
+              Row(
+                spacing: AppSpacing.md,
+                children:
+                    creators.asMap().entries.map((element) {
+                      final index = element.key;
+                      final creator = element.value;
+                      return Padding(
+                        padding: EdgeInsetsDirectional.only(
+                          start: index == 0 ? AppSpacing.minHorizontal : 0,
+                          end:
+                              index == creators.length - 1
+                                  ? AppSpacing.minHorizontal
+                                  : 0,
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
+                        child: Column(
+                          spacing: AppSpacing.md,
+                          children: [
+                            AppNetworkCircularAvatar(
+                              size: 68.sp,
+                              imageUrl: creator.profilePic,
+                              name: creator.name,
+                            ),
+                            SizedBox(
+                              width: 68.sp,
+                              child: Text(
+                                creator.name,
+                                style: context.bodyMedium,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+              ),
             ],
           );
         }
