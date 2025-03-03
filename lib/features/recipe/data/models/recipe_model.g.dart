@@ -11,6 +11,7 @@ RecipeModel _$RecipeModelFromJson(Map<String, dynamic> json) => RecipeModel(
   title: json['title'] as String,
   description: json['description'] as String,
   imageUrl: json['imageUrl'] as String,
+  joinedDate: RecipeModel._fromTimestamp(json['joinedDate'] as Timestamp?),
   usersEngagement: EngagementModel.fromJson(
     json['usersEngagement'] as Map<String, dynamic>,
   ),

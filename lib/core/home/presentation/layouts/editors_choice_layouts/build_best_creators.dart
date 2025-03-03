@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
+import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
 
@@ -14,34 +16,41 @@ class BuildBestCreators extends StatelessWidget {
         if (state is GetCreatorsSuccess && state.creators.isNotEmpty) {
           final creators = state.creators;
           return Column(
+            spacing: AppSpacing.sm,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppSectionTitle
-
-
-
-
-
-
-              (
-                'Explore the best recipes from',
-                style: context.headlineSmall,
-              ),
-              ...creators.map(
-                (element) => Column(
-                  children: [
-                    AppNetworkCircularAvatar(
-                      imageUrl: element.profilePic,
-                      name: element.name,
-                    ),
-                    Text(
-                      element.name,
-                      style: context.bodyMedium,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
+              AppSectionTitle('Explore the best recipes from'),
+              ...creators.asMap().entries.map((element) {
+                final index = element.key;
+                final creator = element.value;
+                return Padding(
+                  padding: EdgeInsetsDirectional.only(
+                    start: index == 0 ? AppSpacing.minHorizontal : 0,
+                    end:
+                        index == creators.length - 1
+                            ? AppSpacing.minHorizontal
+                            : 0,
+                  ),
+                  child: Column(
+                    spacing: AppSpacing.md,
+                    children: [
+                      AppNetworkCircularAvatar(
+                        size: 68.sp,
+                        imageUrl: creator.profilePic,
+                        name: creator.name,
+                      ),
+                      SizedBox(
+                        width: 68.sp,
+                        child: Text(
+                          creator.name,
+                          style: context.bodyMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
             ],
           );
         }

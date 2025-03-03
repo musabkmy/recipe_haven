@@ -1,5 +1,5 @@
 //final
 class RecipeException implements Exception {
-  RecipeException(this.message);
+  const RecipeException(this.message);
   final String message;
 }

@@ -5,13 +5,13 @@
 
 // @Injectable(as: RecipeRepository, env: [Env.dev])
 // class RecipeRepositoryTestImpl implements RecipeRepository {
-//   final RecipeTestingSource recipeTestingSource;
+//   final RecipeMockSource RecipeMockSource;
 //   @factoryMethod
-//   RecipeRepositoryTestImpl(this.recipeTestingSource);
+//   RecipeRepositoryTestImpl(this.RecipeMockSource);
 
 //   @override
 //   Stream<GetAllRecipesResponse> getAllRecipes() async* {
-//     yield Success(recipeTestingSource.getAllRecipes().toEntity());
+//     yield Success(RecipeMockSource.getAllRecipes().toEntity());
 //   }
 
 //   @override

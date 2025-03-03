@@ -30,7 +30,7 @@ class AppItemNetworkImage extends StatelessWidget {
                 Positioned.fill(
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: AppStyles.borderRadiusM,
+                      borderRadius: AppStyles.borderRadiusML,
                       image: DecorationImage(
                         image: imageProvider,
                         fit: BoxFit.cover,

@@ -1,4 +1,4 @@
 class CreatorException implements Exception {
-  CreatorException(this.message);
+  const CreatorException(this.message);
   final String message;
 }

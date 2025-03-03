@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:recipe_haven/config/extensions/context_extensions.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
@@ -6,20 +5,25 @@ import 'package:recipe_haven/core/shared_layouts/app_text_button.dart';
 import 'package:recipe_haven/config/extensions/object_extensions.dart';
 
 class AppSectionTitle extends StatelessWidget {
-  const AppSectionTitle({
+  const AppSectionTitle(
+    this.title, {
     super.key,
-    required this.title,
     this.onActionLabel,
     this.onActionPressed,
+    this.withPadding = true,
   });
   final String title;
   final String? onActionLabel;
   final void Function()? onActionPressed;
+  final bool withPadding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(start: AppSpacing.minHorizontal),
+      padding:
+          withPadding
+              ? EdgeInsetsDirectional.only(start: AppSpacing.minHorizontal)
+              : EdgeInsets.zero,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -19,19 +19,16 @@ class BuildLatestRecipes extends StatelessWidget {
   final Recipes recipes;
   @override
   Widget build(BuildContext context) {
-    Logger logger = Logger('_buildLatestRecipes');
-    logger.info('state.recipes.length: ${state.recipes.length}');
+    // Logger logger = Logger('_buildLatestRecipes');
+    // logger.info('state.recipes.length: ${state.recipes.length}');
     final length = state.recipes.length;
     return Column(
       spacing: AppSpacing.md,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppSectionTitle(
-          title: 'Our Latest Recipes',
-          onActionLabel: 'See all',
-        ),
-        SizedBox(
-          height: .4.sh,
+        AppSectionTitle('Our Latest Recipes', onActionLabel: 'See all'),
+        ConstrainedBox(
+          constraints: BoxConstraints(minHeight: .3.sh, maxHeight: .4.sh),
           child: ListView.builder(
             scrollDirection: Axis.horizontal, // Make it horizontal
             itemCount: length,
@@ -118,7 +115,7 @@ class BuildLatestRecipes extends StatelessWidget {
           child: AppInfoHighlight(
             withMargin: true,
             color: AppColors.lightAmberAccent,
-            child: Text(item.selectedPortion.preparationTime.toTextDuration()),
+            child: Text(item.selectedPortion.preparationTime.inTextDuration()),
           ),
         ),
         Positioned(

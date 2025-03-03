@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
           return Center(child: Text(state.errorMsg));
         } else {
           logger.info('loading');
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         }
       },
     );

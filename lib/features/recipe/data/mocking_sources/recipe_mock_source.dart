@@ -2,7 +2,7 @@ import 'package:recipe_haven/features/recipe/data/models/details/measuring_unit_
 import 'package:recipe_haven/features/recipe/data/models/models.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
 
-class RecipeTestingSource {
+class RecipeMockSource {
   static RecipeModels getAllRecipes() {
     return [
       RecipeModel(
@@ -188,7 +188,7 @@ class RecipeTestingSource {
           ],
           defaultPortionBasedRecipeID: 'ser-1',
         ),
-        tags: ['herbs', 'dinner', '2024 trends'],
+        tags: ['herbs', 'Packed dinner', '2024 trends'],
         reviews: [
           ReviewModel(
             id: 'rev-1',
@@ -267,7 +267,7 @@ class RecipeTestingSource {
             rating: 4.8,
             publishedAt: DateTime(2024, 4, 29),
             description:
-                'Fantastic recipe! The dish was a hit at my dinner party. Will definitely make it again.',
+                'Fantastic recipe! The dish was a hit at my Packed dinner party. Will definitely make it again.',
           ),
         ],
         cookingStepsMap: [
@@ -360,7 +360,7 @@ A timeless Italian pasta dish made with eggs, cheese, pancetta, and black pepper
 Simple yet rich in flavor, this recipe is perfect for a quick and satisfying meal. ★★★★★
 ''',
         imageUrl:
-            'https://i.pinimg.com/736x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
+            'https://i.pinimg.com/236x/a2/26/07/a226076c1498919907ff9596acfb0874.jpg',
         usersEngagement: EngagementModel(
           rating: 4.7,
           ratingCount: 2890,
@@ -562,7 +562,7 @@ Remove from heat and pour the egg mixture over the pasta, tossing quickly to com
 A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate lovers and special occasions. ★★★★★
 ''',
         imageUrl:
-            'https://i.pinimg.com/736x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
+            'https://i.pinimg.com/474x/32/32/b3/3232b30401529f3fce3022771324a7ab.jpg',
         usersEngagement: EngagementModel(
           rating: 4.9,
           ratingCount: 4500,
@@ -701,6 +701,579 @@ Whisk in __ing_ing-3 (sugar), __ing_ing-4 (eggs), and __ing_ing-5 (flour) until 
             fontSize: FontSize.large,
             paragraph: '''
 Pour the batter into greased ramekins and bake in a preheated oven at 200°C for 10 minutes.
+''',
+          ),
+        ],
+      ),
+      RecipeModel(
+        id: 'recipe-4',
+        title: 'Spicy Thai Green Curry',
+        description: '''
+A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and savory notes. Made with fresh ingredients and authentic spices, this vibrant curry will transport you straight to Thailand. Serve with steamed jasmine rice for a complete meal that's sure to impress. ★★★★★
+''',
+        imageUrl:
+            'https://i.pinimg.com/736x/03/3f/cc/033fcc670a1e1833fc1ca94847c59366.jpg',
+        usersEngagement: EngagementModel(
+          rating: 4.8,
+          ratingCount: 3785,
+          likesCount: 1890,
+        ),
+        userData: CreatorModel(
+          id: 'creator-4',
+          name: 'Priya Patel',
+          profilePic:
+              'https://i.pinimg.com/236x/ad/73/1c/ad731cd0da0641bb16090f25778ef0fd.jpg',
+          profession: 'Food Blogger',
+          portfolioLink: 'cuisineadventures.com',
+          createdRecipes: [],
+        ),
+        utensils: [
+          UtensilModel(id: 'ute-1', name: 'Wok'),
+          UtensilModel(id: 'ute-2', name: 'Knife'),
+          UtensilModel(id: 'ute-3', name: 'Cutting board'),
+          UtensilModel(id: 'ute-4', name: 'Wooden spoon'),
+          UtensilModel(id: 'ute-5', name: 'Measuring cups'),
+        ],
+        details: DetailsModel(
+          baseIngredients: [
+            IngredientModel(
+              id: 'ing-1',
+              name: 'Green curry paste',
+              baseUnit: MeasuringUnitModel(
+                name: 'tablespoon',
+                abbreviation: 'tbsp',
+              ),
+            ),
+            IngredientModel(
+              id: 'ing-2',
+              name: 'Coconut milk',
+              baseUnit: MeasuringUnitModel(
+                name: 'milliliter',
+                abbreviation: 'ml',
+              ),
+            ),
+            IngredientModel(
+              id: 'ing-3',
+              name: 'Chicken breast',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            IngredientModel(
+              id: 'ing-4',
+              name: 'Thai eggplant',
+              baseUnit: MeasuringUnitModel(name: 'piece', abbreviation: 'pc'),
+            ),
+            IngredientModel(
+              id: 'ing-5',
+              name: 'Bell pepper',
+              baseUnit: MeasuringUnitModel(name: 'piece', abbreviation: 'pc'),
+            ),
+            IngredientModel(
+              id: 'ing-6',
+              name: 'Kaffir lime leaves',
+              baseUnit: MeasuringUnitModel(name: 'piece', abbreviation: 'pc'),
+            ),
+            IngredientModel(
+              id: 'ing-7',
+              name: 'Thai basil',
+              baseUnit: MeasuringUnitModel(name: 'cup', abbreviation: 'cup'),
+            ),
+            IngredientModel(
+              id: 'ing-8',
+              name: 'Fish sauce',
+              baseUnit: MeasuringUnitModel(
+                name: 'tablespoon',
+                abbreviation: 'tbsp',
+              ),
+            ),
+            IngredientModel(
+              id: 'ing-9',
+              name: 'Palm sugar',
+              baseUnit: MeasuringUnitModel(
+                name: 'teaspoon',
+                abbreviation: 'tsp',
+              ),
+            ),
+            IngredientModel(
+              id: 'ing-10',
+              name: 'Vegetable oil',
+              baseUnit: MeasuringUnitModel(
+                name: 'tablespoon',
+                abbreviation: 'tbsp',
+              ),
+            ),
+          ],
+          baseNutritious: [
+            NutritionModel(id: 'nut-1', name: 'Calories'),
+            NutritionModel(
+              id: 'nut-2',
+              name: 'Protein',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            NutritionModel(
+              id: 'nut-3',
+              name: 'Fat',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            NutritionModel(
+              id: 'nut-4',
+              name: 'Carbs',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+          ],
+          servings: [
+            PortionBasedRecipeModel(
+              id: 'ser-1',
+              portionCount: 4,
+              difficulty: 'Medium',
+              preparationHumanTime: '20m',
+              // cookingHumanTime: '25m',
+              ingredients: [
+                WeightCountModel(id: 'ing-1', count: 3),
+                WeightCountModel(id: 'ing-2', count: 400),
+                WeightCountModel(id: 'ing-3', count: 500),
+                WeightCountModel(id: 'ing-4', count: 6),
+                WeightCountModel(id: 'ing-5', count: 1),
+                WeightCountModel(id: 'ing-6', count: 4),
+                WeightCountModel(id: 'ing-7', count: 0.5),
+                WeightCountModel(id: 'ing-8', count: 2),
+                WeightCountModel(id: 'ing-9', count: 2),
+                WeightCountModel(id: 'ing-10', count: 1),
+              ],
+              nutritious: [
+                WeightCountModel(id: 'nut-1', count: 420),
+                WeightCountModel(id: 'nut-2', count: 28),
+                WeightCountModel(id: 'nut-3', count: 25),
+                WeightCountModel(id: 'nut-4', count: 18),
+              ],
+            ),
+            PortionBasedRecipeModel(
+              id: 'ser-2',
+              portionCount: 2,
+              difficulty: 'Medium',
+              preparationHumanTime: '15m',
+              // cookingHumanTime: '20m',
+              ingredients: [
+                WeightCountModel(id: 'ing-1', count: 1.5),
+                WeightCountModel(id: 'ing-2', count: 200),
+                WeightCountModel(id: 'ing-3', count: 250),
+                WeightCountModel(id: 'ing-4', count: 3),
+                WeightCountModel(id: 'ing-5', count: 0.5),
+                WeightCountModel(id: 'ing-6', count: 2),
+                WeightCountModel(id: 'ing-7', count: 0.25),
+                WeightCountModel(id: 'ing-8', count: 1),
+                WeightCountModel(id: 'ing-9', count: 1),
+                WeightCountModel(id: 'ing-10', count: 0.5),
+              ],
+              nutritious: [
+                WeightCountModel(id: 'nut-1', count: 210),
+                WeightCountModel(id: 'nut-2', count: 14),
+                WeightCountModel(id: 'nut-3', count: 12.5),
+                WeightCountModel(id: 'nut-4', count: 9),
+              ],
+            ),
+          ],
+          defaultPortionBasedRecipeID: 'ser-1',
+        ),
+        tags: ['Thai', 'spicy', 'curry', 'Packed dinner', 'Asian'],
+        reviews: [
+          ReviewModel(
+            id: 'rev-1',
+            userID: 'userID-10',
+            userName: 'James',
+            userProfilePic:
+                'https://i.pinimg.com/236x/7c/19/99/7c1999c9b66a24b58207b4c5d639edad.jpg',
+            imagesUrl: [
+              'https://i.pinimg.com/236x/11/80/d0/1180d08e44209b9b9774720e4555c3b2.jpg',
+            ],
+            rating: 5.0,
+            publishedAt: DateTime(2024, 4, 28),
+            description:
+                'Bursting with authentic flavors! Reminds me of my trip to Thailand. A favorite in our household now.',
+          ),
+          ReviewModel(
+            id: 'rev-2',
+            userID: 'userID-11',
+            userName: 'Lila',
+            imagesUrl: [],
+            rating: 4.5,
+            publishedAt: DateTime(2024, 4, 20),
+            description:
+                'Delicious and fairly easy to make! I had trouble finding kaffir lime leaves so used lime zest instead.',
+          ),
+          ReviewModel(
+            id: 'rev-3',
+            userID: 'userID-12',
+            userName: 'Michael',
+            userProfilePic:
+                'https://i.pinimg.com/236x/4c/8d/e5/4c8de5e103723d152c072c7a5795ac11.jpg',
+            imagesUrl: [],
+            rating: 4.0,
+            publishedAt: DateTime(2024, 4, 15),
+            description:
+                'Great flavors but a bit too spicy for my taste. Will reduce the curry paste next time.',
+          ),
+        ],
+        cookingStepsMap: [
+          CookingStepModel(
+            stepNumber: 1,
+            utensilsID: ['ute-2', 'ute-3'],
+            ingredientsID: ['ing-3', 'ing-4', 'ing-5'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/e4/7d/2a/e47d2a005b7b80100e293a0e74d31e9f.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Cut __ing_ing-3 (chicken breast) into bite-sized pieces.__nl
+Slice __ing_ing-4 (Thai eggplant) into quarters.__nl
+Cut __ing_ing-5 (bell pepper) into thin strips.
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 2,
+            utensilsID: ['ute-1', 'ute-4'],
+            ingredientsID: ['ing-1', 'ing-10'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/f8/a1/28/f8a128808f76c73b626b5c3c464ac9f3.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Heat __ing_ing-10 (vegetable oil) in a __utensil_ute-1 (wok) over medium heat.__nl
+Add __ing_ing-1 (green curry paste) and stir-fry for 1-2 minutes until fragrant.
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 3,
+            utensilsID: ['ute-1', 'ute-4'],
+            ingredientsID: ['ing-2', 'ing-3', 'ing-6'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/c9/2a/7e/c92a7e341e69244a4e696b06c3179c04.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Add __ing_ing-3 (chicken) and cook for 3-4 minutes until partially cooked.__nl
+Pour in __ing_ing-2 (coconut milk) and bring to a gentle simmer.__nl
+Add __ing_ing-6 (kaffir lime leaves).
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 4,
+            utensilsID: ['ute-1', 'ute-4'],
+            ingredientsID: ['ing-4', 'ing-5', 'ing-8', 'ing-9'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/1a/0d/2c/1a0d2c8f9ee067b7e80e78e4bfe0c179.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Add __ing_ing-4 (Thai eggplant) and __ing_ing-5 (bell pepper).__nl
+Season with __ing_ing-8 (fish sauce) and __ing_ing-9 (palm sugar).__nl
+Simmer for __timer_15m until vegetables are tender and chicken is fully cooked.
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 5,
+            utensilsID: ['ute-4'],
+            ingredientsID: ['ing-7'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/47/ec/26/47ec26a0e3f1983883d8348921857c53.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Stir in __ing_ing-7 (Thai basil) just before serving.__nl
+Adjust seasoning to taste and serve hot with steamed jasmine rice.
+''',
+          ),
+        ],
+      ),
+
+      RecipeModel(
+        id: 'recipe-5',
+        title: 'Rustic Apple Galette',
+        description: '''
+A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-tart apple filling. The rustic presentation makes this dessert both impressive and approachable. Finish with a dusting of powdered sugar or a scoop of vanilla ice cream for the perfect treat. ★★★★☆
+''',
+        imageUrl:
+            'https://i.pinimg.com/474x/e0/6d/1c/e06d1c7743d5a89db86d2f19ce7a3ea1.jpg',
+        usersEngagement: EngagementModel(
+          rating: 4.6,
+          ratingCount: 2130,
+          likesCount: 980,
+        ),
+        userData: CreatorModel(
+          id: 'creator-5',
+          name: 'Emma Baker',
+          profilePic:
+              'https://i.pinimg.com/236x/67/89/cc/6789ccc33fea3feae36d6617a57dc827.jpg',
+          profession: 'Home Baker',
+          portfolioLink: 'emmabakes.com',
+          createdRecipes: [],
+        ),
+        utensils: [
+          UtensilModel(id: 'ute-1', name: 'Rolling pin'),
+          UtensilModel(id: 'ute-2', name: 'Baking sheet'),
+          UtensilModel(id: 'ute-3', name: 'Parchment paper'),
+          UtensilModel(id: 'ute-4', name: 'Mixing bowl'),
+          UtensilModel(id: 'ute-5', name: 'Pastry brush'),
+          UtensilModel(id: 'ute-6', name: 'Apple peeler'),
+        ],
+        details: DetailsModel(
+          baseIngredients: [
+            IngredientModel(
+              id: 'ing-1',
+              name: 'All-purpose flour',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            IngredientModel(
+              id: 'ing-2',
+              name: 'Unsalted butter',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            IngredientModel(
+              id: 'ing-3',
+              name: 'Ice water',
+              baseUnit: MeasuringUnitModel(
+                name: 'tablespoon',
+                abbreviation: 'tbsp',
+              ),
+            ),
+            IngredientModel(
+              id: 'ing-4',
+              name: 'Granulated sugar',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            IngredientModel(
+              id: 'ing-5',
+              name: 'Salt',
+              baseUnit: MeasuringUnitModel(
+                name: 'teaspoon',
+                abbreviation: 'tsp',
+              ),
+            ),
+            IngredientModel(
+              id: 'ing-6',
+              name: 'Apples',
+              baseUnit: MeasuringUnitModel(name: 'piece', abbreviation: 'pc'),
+            ),
+            IngredientModel(
+              id: 'ing-7',
+              name: 'Lemon juice',
+              baseUnit: MeasuringUnitModel(
+                name: 'tablespoon',
+                abbreviation: 'tbsp',
+              ),
+            ),
+            IngredientModel(
+              id: 'ing-8',
+              name: 'Ground cinnamon',
+              baseUnit: MeasuringUnitModel(
+                name: 'teaspoon',
+                abbreviation: 'tsp',
+              ),
+            ),
+            IngredientModel(
+              id: 'ing-9',
+              name: 'Egg',
+              baseUnit: MeasuringUnitModel(name: 'piece', abbreviation: 'pc'),
+            ),
+            IngredientModel(
+              id: 'ing-10',
+              name: 'Apricot jam',
+              baseUnit: MeasuringUnitModel(
+                name: 'tablespoon',
+                abbreviation: 'tbsp',
+              ),
+            ),
+          ],
+          baseNutritious: [
+            NutritionModel(id: 'nut-1', name: 'Calories'),
+            NutritionModel(
+              id: 'nut-2',
+              name: 'Protein',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            NutritionModel(
+              id: 'nut-3',
+              name: 'Fat',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+            NutritionModel(
+              id: 'nut-4',
+              name: 'Carbs',
+              baseUnit: MeasuringUnitModel(name: 'gram', abbreviation: 'g'),
+            ),
+          ],
+          servings: [
+            PortionBasedRecipeModel(
+              id: 'ser-1',
+              portionCount: 8,
+              difficulty: 'Medium',
+              preparationHumanTime: '30m',
+              bakingHumanTime: '35m',
+              // chillHumanTime: '1h',
+              ingredients: [
+                WeightCountModel(id: 'ing-1', count: 200),
+                WeightCountModel(id: 'ing-2', count: 115),
+                WeightCountModel(id: 'ing-3', count: 4),
+                WeightCountModel(id: 'ing-4', count: 100),
+                WeightCountModel(id: 'ing-5', count: 0.25),
+                WeightCountModel(id: 'ing-6', count: 4),
+                WeightCountModel(id: 'ing-7', count: 1),
+                WeightCountModel(id: 'ing-8', count: 1),
+                WeightCountModel(id: 'ing-9', count: 1),
+                WeightCountModel(id: 'ing-10', count: 2),
+              ],
+              nutritious: [
+                WeightCountModel(id: 'nut-1', count: 320),
+                WeightCountModel(id: 'nut-2', count: 3),
+                WeightCountModel(id: 'nut-3', count: 15),
+                WeightCountModel(id: 'nut-4', count: 45),
+              ],
+            ),
+          ],
+          defaultPortionBasedRecipeID: 'ser-1',
+        ),
+        tags: ['dessert', 'fruit', 'pastry', 'baking', 'fall'],
+        reviews: [
+          ReviewModel(
+            id: 'rev-1',
+            userID: 'userID-13',
+            userName: 'Sarah',
+            userProfilePic:
+                'https://i.pinimg.com/236x/29/8d/22/298d227d55e78f2985803ad79f3a6f08.jpg',
+            imagesUrl: [
+              'https://i.pinimg.com/474x/51/0d/2e/510d2e84bfb8a156e9538847935fa392.jpg',
+              'https://i.pinimg.com/236x/e2/a3/71/e2a371c196f3f2b7e8869b34bbecbd48.jpg',
+            ],
+            rating: 5.0,
+            publishedAt: DateTime(2024, 4, 10),
+            description:
+                'So much easier than a traditional pie but tastes just as good! The pastry was perfectly flaky.',
+          ),
+          ReviewModel(
+            id: 'rev-2',
+            userID: 'userID-14',
+            userName: 'Daniel',
+            imagesUrl: [],
+            rating: 4.0,
+            publishedAt: DateTime(2024, 4, 5),
+            description:
+                'Delicious flavor but my crust leaked a bit. Will try chilling it longer next time.',
+          ),
+          ReviewModel(
+            id: 'rev-3',
+            userID: 'userID-15',
+            userName: 'Olivia',
+            imagesUrl: [
+              'https://i.pinimg.com/236x/aa/ba/6e/aaba6ec5335f914ef5e37177fdd0e431.jpg',
+            ],
+            rating: 5.0,
+            publishedAt: DateTime(2024, 3, 20),
+            description:
+                'Perfect for autumn! I used a mix of Honeycrisp and Granny Smith apples which gave a nice balance of sweet and tart.',
+          ),
+        ],
+        cookingStepsMap: [
+          CookingStepModel(
+            stepNumber: 1,
+            utensilsID: ['ute-4'],
+            ingredientsID: ['ing-1', 'ing-2', 'ing-5'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/a1/d5/54/a1d5549e1ba7be959a29e5c8ab9aee6c.jpg',
+            ],
+            fontSize: FontSize.medium,
+            paragraph: '''
+In a mixing bowl, combine __ing_ing-1 (all-purpose flour) and __ing_ing-5 (salt).__nl
+Cut in cold __ing_ing-2 (unsalted butter) until mixture resembles coarse crumbs.
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 2,
+            utensilsID: ['ute-4'],
+            ingredientsID: ['ing-3'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/45/6c/fe/456cfe8f40c6ca7d22fd1f0a151a63d5.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Gradually add __ing_ing-3 (ice water), 1 tablespoon at a time, stirring until dough holds together.__nl
+Form dough into a disk, wrap in plastic, and refrigerate for __timer_1h.
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 3,
+            utensilsID: ['ute-6'],
+            ingredientsID: ['ing-6', 'ing-7', 'ing-8', 'ing-4'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/c7/c1/de/c7c1de5cb44c01338151a64336eba3a8.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Peel, core, and thinly slice __ing_ing-6 (apples).__nl
+Toss apple slices with __ing_ing-7 (lemon juice), __ing_ing-8 (cinnamon), and 50g of __ing_ing-4 (sugar).
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 4,
+            utensilsID: ['ute-1', 'ute-2', 'ute-3'],
+            ingredientsID: ['ing-1', 'ing-2'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/64/e3/f4/64e3f4a8a2a0b0f957be5a4e2c9038fe.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Preheat oven to 375°F (190°C).__nl
+On a lightly floured surface, roll dough into a 12-inch circle.__nl
+Transfer to a baking sheet lined with parchment paper.
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 5,
+            utensilsID: ['ute-2'],
+            ingredientsID: ['ing-4', 'ing-6'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/15/9a/89/159a89f9f97dd9a886c2815e34e38fb5.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Arrange __ing_ing-6 (apple) slices in the center of the dough, leaving a 2-inch border.__nl
+Sprinkle remaining __ing_ing-4 (sugar) over the apples.
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 6,
+            utensilsID: ['ute-5'],
+            ingredientsID: ['ing-9'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/e7/d2/d1/e7d2d16cf5b44571c38ea97c7fa22b3f.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Fold the edges of the dough over the apples, pleating as you go.__nl
+Brush the crust with beaten __ing_ing-9 (egg).
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 7,
+            utensilsID: ['ute-2'],
+            ingredientsID: ['ing-1'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/5a/ea/ce/5aeace72ca1b83c0c1e1cd13a38c8984.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Bake for __timer_35m until crust is golden and apples are tender.
+''',
+          ),
+          CookingStepModel(
+            stepNumber: 8,
+            utensilsID: ['ute-5'],
+            ingredientsID: ['ing-10'],
+            imagesUrl: [
+              'https://i.pinimg.com/236x/79/46/cf/7946cf468cdf18c921fca4f32fe1ad7d.jpg',
+            ],
+            fontSize: FontSize.large,
+            paragraph: '''
+Heat __ing_ing-10 (apricot jam) until liquid and brush over warm galette for a glossy finish.__nl
+Let cool slightly before serving.
 ''',
           ),
         ],

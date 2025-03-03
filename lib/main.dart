@@ -6,7 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:recipe_haven/app.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/config/theme/theme.dart';
+import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
+import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/screens/home_screen.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
 import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
@@ -38,21 +40,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final getRecipesCubit = getIt<GetRecipesCubit>();
+    final recipeInfoBloc = getIt<RecipeInfoBloc>();
+    final userBloc = getIt<UserBloc>();
+    final getCreatorsCubit = getIt<GetCreatorsCubit>();
+    final getTonightCookCubit = getIt<GetTonightCookCubit>();
+    final getTagsCubit = getIt<GetTagsCubit>();
+
+    final formProvider = getIt<FormProvider>();
     return MultiBlocProvider(
       providers: [
-        BlocProvider<GetRecipesCubit>(create: (_) => getIt<GetRecipesCubit>()),
-        BlocProvider<RecipeInfoBloc>(create: (_) => getIt<RecipeInfoBloc>()),
-        BlocProvider<UserBloc>(create: (_) => getIt<UserBloc>()),
-        BlocProvider<GetCreatorsCubit>(
-          create: (_) => getIt<GetCreatorsCubit>(),
-        ),
+        BlocProvider(create: (_) => getRecipesCubit),
+        BlocProvider(create: (_) => recipeInfoBloc),
+        BlocProvider(create: (_) => userBloc),
+        BlocProvider(create: (_) => getCreatorsCubit),
+        BlocProvider(create: (_) => getTonightCookCubit),
+        BlocProvider(create: (_) => getTagsCubit),
       ],
       child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<FormProvider>(
-            create: (_) => getIt<FormProvider>(),
-          ),
-        ],
+        providers: [ChangeNotifierProvider(create: (_) => formProvider)],
         child: ScreenUtilInit(
           designSize: Size(360, 690),
           // ensureScreenSize: true,

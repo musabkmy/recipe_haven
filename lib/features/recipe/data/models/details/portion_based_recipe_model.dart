@@ -70,9 +70,9 @@ class PortionBasedRecipeModel {
         minPortionCount: entity.minPortionCount,
         maxPortionCount: entity.maxPortionCount,
         portionCount: entity.portionCount,
-        preparationHumanTime: entity.preparationTime.toJsonDuration(),
-        bakingHumanTime: entity.bakingTime.toJsonDuration(),
-        restingHumanTime: entity.restingTime.toJsonDuration(),
+        preparationHumanTime: entity.preparationTime.inJsonDuration(),
+        bakingHumanTime: entity.bakingTime.inJsonDuration(),
+        restingHumanTime: entity.restingTime.inJsonDuration(),
         ingredients: WeightCountModel.fromEntities(entity.ingredientsCount),
         nutritious: WeightCountModel.fromEntities(entity.nutritiousCount),
       );

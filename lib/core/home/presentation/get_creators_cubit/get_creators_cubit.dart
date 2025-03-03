@@ -11,7 +11,7 @@ class GetCreatorsCubit extends Cubit<GetCreatorsState> {
   final UserRepository _userRepository;
   GetCreatorsCubit(this._userRepository) : super(GetCreatorsInitial());
 
-  Future<void> getBestCreators() async {
+  void getBestCreators() async {
     emit(GetCreatorsLoading());
     try {
       final creators = await _userRepository.getCreators();

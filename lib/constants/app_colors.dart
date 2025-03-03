@@ -26,6 +26,7 @@ final class AppColors {
   static const Color grey700 = Color(0xFF616161); // Dark grey for headings
   static const Color grey800 = Color(0xFF424242); // Very dark grey
   static const Color grey900 = Color(0xFF212121); // Almost black
-  static const Color overlayColor = Color(0x70000000);
+  static const Color lightOverlayColor = Color(0x70000000);
+  static const Color mediumOverlayColor = Color.fromARGB(136, 0, 0, 0);
   const AppColors._();
 }

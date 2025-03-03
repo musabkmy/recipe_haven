@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/home/presentation/layouts/editors_choice_layouts/editors_choice_layouts.dart';
+import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 
@@ -13,9 +15,11 @@ class BuildEditorChoiceLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Logger logger = Logger('Editor\'s Choice');
-    return BlocBuilder<GetRecipesCubit, GetRecipesState>(
+    return BlocConsumer<GetRecipesCubit, GetRecipesState>(
       builder: (context, state) {
         if (state is GetRecipesSuccess) {
+          // logger.info('state is: ${state.runtimeType}');
+          // debugPrintStack();
           final recipes = state.recipes;
           final mainDishImageHeight = .6.sh;
           final maxMainDishCardPosition = .45.sh;
@@ -41,6 +45,7 @@ class BuildEditorChoiceLayout extends StatelessWidget {
             },
             child: SingleChildScrollView(
               child: Column(
+                spacing: AppSpacing.xl,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Wrap only _buildTop with ValueListenableBuilder
@@ -58,12 +63,24 @@ class BuildEditorChoiceLayout extends StatelessWidget {
                   ),
                   BuildLatestRecipes(state: state, recipes: recipes),
                   BuildBestCreators(),
+                  BuildTodaysRecipe(),
+                  BuildTonightCook(),
+                  BuildTagsQuickLinks(),
+
+                  SizedBox(),
                 ],
               ),
             ),
           );
         }
         return SizedBox.shrink(); // Handle other states if needed
+      },
+      listener: (BuildContext context, GetRecipesState state) {
+        if (state is GetRecipesLoading) {
+          LoadingOverlay.show(context);
+        } else {
+          LoadingOverlay.hide(context);
+        }
       },
     );
   }
@@ -75,7 +92,7 @@ class BuildEditorChoiceLayout extends StatelessWidget {
     double cardValue,
   ) {
     return SizedBox(
-      height: imageHeight + (context.isTablet ? cardValue / 3 : cardValue / 4),
+      height: imageHeight + (context.isTablet ? cardValue / 5 : cardValue / 6),
       child: Stack(
         children: [
           Image.asset(

@@ -12,7 +12,7 @@ final class LoadingOverlay {
     _overlayEntry = OverlayEntry(
       builder:
           (context) => Container(
-            color: Colors.black.withOpacity(0.5), // Semi-transparent background
+            color: Colors.black.withAlpha(120), // Semi-transparent background
             child: Center(
               child: CircularProgressIndicator(), // Loading indicator
             ),

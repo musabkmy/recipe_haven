@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_haven/constants/constants.dart';
+import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
+import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/screens/home_screen.dart';
 import 'package:recipe_haven/features/user/presentation/screens/auth_wrapper.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
@@ -23,11 +25,23 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+    //run after the first frame to avoid unnecessary rebuild issues.
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      //delay until the widget is fully built
+      Future.microtask(() => _initialApp());
+    });
+  }
+
+  void _initialApp() {
+    try {
       context.read<GetRecipesCubit>().getLatestRecipes();
       context.read<UserBloc>().add(GetUser());
       context.read<GetCreatorsCubit>().getBestCreators();
-    });
+      context.read<GetTonightCookCubit>().getWhatToCookTonight();
+      context.read<GetTagsCubit>().getTags();
+    } catch (e) {
+      debugPrint('Error initializing app: $e');
+    }
   }
 
   final List<Widget> _pages = [

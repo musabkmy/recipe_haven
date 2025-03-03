@@ -1,6 +1,6 @@
 //final
 class UserException implements Exception {
-  UserException(this.message);
+  const UserException(this.message);
   final String message;
 }
 

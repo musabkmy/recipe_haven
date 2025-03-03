@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:recipe_haven/features/recipe/recipe.dart';
 
@@ -11,6 +12,8 @@ class RecipeModel {
   final String title;
   final String description;
   final String imageUrl;
+  @JsonKey(includeToJson: false, fromJson: _fromTimestamp)
+  final DateTime? joinedDate;
   @JsonKey(fromJson: EngagementModel.fromJson, toJson: EngagementModel.toJson)
   final EngagementModel usersEngagement;
   @JsonKey(fromJson: CreatorModel.fromUser, includeToJson: false)
@@ -33,6 +36,7 @@ class RecipeModel {
     required this.title,
     required this.description,
     required this.imageUrl,
+    this.joinedDate,
     required this.usersEngagement,
     this.userData,
     required this.utensils,
@@ -51,6 +55,7 @@ class RecipeModel {
     title: entity.title,
     description: entity.description,
     imageUrl: entity.imageUrl,
+    joinedDate: entity.joinedDate,
     usersEngagement: EngagementModel.fromEntity(entity.usersEngagement),
     userData: CreatorModel.fromEntity(entity.creator!),
     utensils: UtensilModel.fromEntities(entity.utensils),
@@ -70,6 +75,7 @@ class RecipeModel {
     title: title,
     description: description,
     imageUrl: imageUrl,
+    joinedDate: joinedDate,
     usersEngagement: usersEngagement.toEntity(),
     creator: userData?.toEntity(),
     details: details.toEntity(),
@@ -78,6 +84,9 @@ class RecipeModel {
     reviews: reviews.toEntity(),
     cookingStepsMap: cookingStepsMap.toEntity(),
   );
+  static DateTime? _fromTimestamp(Timestamp? timestamp) {
+    return timestamp?.toDate();
+  }
 }
 
 extension RecipeModelEx on RecipeModels {

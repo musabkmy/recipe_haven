@@ -8,6 +8,7 @@ class Recipe extends Equatable {
   final String title;
   final String description;
   final String imageUrl;
+  final DateTime? joinedDate;
   final Engagement usersEngagement;
   final Creator? creator;
   final Details details;
@@ -21,6 +22,7 @@ class Recipe extends Equatable {
     required this.title,
     required this.description,
     required this.imageUrl,
+    required this.joinedDate,
     required this.usersEngagement,
     required this.creator,
     required this.details,
