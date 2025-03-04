@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubit.dart';
@@ -21,10 +22,22 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int _selectedIndex = 0;
+  // void setStatusBarStyle() {
+  //   SystemChrome.setSystemUIOverlayStyle(
+  //     SystemUiOverlayStyle(
+  //       statusBarColor: Colors.transparent, // Transparent status bar
+  //       statusBarIconBrightness:
+  //           Brightness.light, // Light icons (for dark backgrounds)
+  //       statusBarBrightness:
+  //           Brightness.dark, // Dark status bar (for light backgrounds)
+  //     ),
+  //   );
+  // }
 
   @override
   void initState() {
     super.initState();
+    // setStatusBarStyle();
     //run after the first frame to avoid unnecessary rebuild issues.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //delay until the widget is fully built

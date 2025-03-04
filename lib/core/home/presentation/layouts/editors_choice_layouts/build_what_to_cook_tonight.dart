@@ -21,7 +21,7 @@ class BuildTonightCook extends StatelessWidget {
         if (state is GetTonightCookSuccess && state.recipes.isNotEmpty) {
           final recipes = state.recipes;
           return ConstrainedBox(
-            constraints: BoxConstraints(minHeight: .35.sh, maxHeight: .47.sh),
+            constraints: BoxConstraints(minHeight: .35.sh, maxHeight: .5.sh),
             child: Column(
               spacing: AppSpacing.md,
               children: [

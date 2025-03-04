@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
         if (state case GetRecipesSuccess()) {
           logger.fine('GetRecipesSuccess');
           return Scaffold(
+            appBar: AppBar(),
             body: SafeArea(
               child: SizedBox(
                 height: double.maxFinite,

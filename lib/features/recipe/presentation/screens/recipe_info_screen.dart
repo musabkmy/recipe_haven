@@ -177,6 +177,7 @@ class _RecipeInfoBody extends StatelessWidget {
       if (hasStep) {
         stepsWidgets.add(
           BuildCookingStep(
+            initVisible: stepNumber == 1,
             step: steps[stepNumber]!,
             stepNumber: stepNumber,
             stepsCount: stepsLength,
