@@ -25,4 +25,4 @@ Welcome to Recipe Haven, which was inspired by the well-known Kitchen Stories ap
 ![2](assets/images/screenshots/recipe_info_2.PNG)
 ![3](assets/images/screenshots/recipe_info_3.PNG)
 ![4](assets/images/screenshots/recipe_info_4.PNG)
-![5](assets/images/screenshots/recipe_info_5.PNG)
+![5](assets/images/screenshots/recipe_info_5.png)
