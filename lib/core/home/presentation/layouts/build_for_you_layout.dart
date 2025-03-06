@@ -10,7 +10,11 @@ class BuildForYouLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< Updated upstream
     final user = UserMockSource.userFetchModels[4];
+=======
+    final user = UserMockSource().getUserFetchModels[4];
+>>>>>>> Stashed changes
     return Center(
       child: Column(
         spacing: AppSpacing.minHorizontal,

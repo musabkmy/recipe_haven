@@ -36,6 +36,7 @@ import '../../features/user/presentation/state_management/bloc/user_bloc.dart'
 import '../../features/user/presentation/state_management/providers/form_provider.dart'
     as _i307;
 
+const String _dev = 'dev';
 const String _prod = 'prod';
 
 extension GetItInjectableX on _i174.GetIt {

@@ -9,7 +9,11 @@ class BuildTodaysRecipe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< Updated upstream
     final recipe = RecipeMockSource.getAllRecipes()[4].toEntity();
+=======
+    final recipe = RecipeMockSource().getAllRecipes[4].toEntity();
+>>>>>>> Stashed changes
     return Column(
       spacing: AppSpacing.md,
       children: [

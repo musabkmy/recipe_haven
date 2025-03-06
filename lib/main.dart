@@ -21,8 +21,12 @@ import 'package:recipe_haven/features/user/presentation/state_management/provide
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+<<<<<<< Updated upstream
   configurationDependency(Env.prod);
   await Firebase.initializeApp();
+=======
+  await configurationDependency(Env.dev);
+>>>>>>> Stashed changes
 
   //Initialize logging
   Logger.root.level = Level.ALL;
