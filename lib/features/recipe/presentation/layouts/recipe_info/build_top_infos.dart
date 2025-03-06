@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
@@ -13,6 +12,7 @@ class BuildTopInfos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      key: Key('BuildTopInfos'),
       spacing: AppSpacing.md,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -31,7 +31,7 @@ Row _buildShareAndFav(Recipe recipe) {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       BuildCircularButton(
-        iconData: AppIcons.share_outlinedare_outlined,
+        iconData: AppIcons.share,
         label: 'Share',
         onTap: () {},
       ),
@@ -57,10 +57,10 @@ Column _buildRating(Recipe recipe, BuildContext context) {
               return Icon(
                 0.9 >= (recipe.usersEngagement.rating - (index + 1)) &&
                         0.1 <= (recipe.usersEngagement.rating - (index + 1))
-                    ? Icons.star_half_rounded
+                    ? AppIcons.halfStar
                     : (recipe.usersEngagement.rating - (index + 1)) < 0.1
-                        ? Icons.star_border_rounded
-                        : Icons.star_rounded,
+                        ? AppIcons.noStar
+                        : AppIcons.fullStar,
                 color: (recipe.usersEngagement.rating - (index + 1)) < 0.1
                     ? AppColors.grey300
                     : AppColors.orange,

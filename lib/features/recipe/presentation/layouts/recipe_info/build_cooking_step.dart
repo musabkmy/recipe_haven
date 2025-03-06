@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/context_extensions.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_icons.dart';
@@ -16,6 +17,7 @@ class BuildCookingStep extends StatelessWidget {
     required this.stepsCount,
     required this.ingredientsMap,
     required this.utensilsMap,
+    required this.initVisible,
   });
 
   final CookingStep step;
@@ -23,10 +25,11 @@ class BuildCookingStep extends StatelessWidget {
   final int stepsCount;
   final Map<String, String> ingredientsMap;
   final Map<String, String> utensilsMap;
+  final bool initVisible;
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<bool> isVisible = ValueNotifier<bool>(true);
+    ValueNotifier<bool> isVisible = ValueNotifier<bool>(initVisible);
 
     // Logger('stepImages').info(stepImages.toString());
     return Column(
@@ -40,6 +43,7 @@ class BuildCookingStep extends StatelessWidget {
             color: AppColors.lightAmberAccent,
             margin: EdgeInsets.only(top: AppSpacing.xl),
             alignment: AlignmentDirectional.centerStart,
+            constraints: BoxConstraints(minHeight: 52),
             padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
             child: Text(
               'Step $stepNumber/$stepsCount',
@@ -48,43 +52,58 @@ class BuildCookingStep extends StatelessWidget {
           ),
         ),
         ValueListenableBuilder<bool>(
-            valueListenable: isVisible,
-            builder: (context, value, child) {
-              return Visibility(
-                visible: value,
-                maintainState: true,
-                maintainAnimation: true,
-                child: Column(
-                  children: [
-                    _buildImages(),
-                    _buildIngredients(),
-                    _buildUtensils(),
-                    _buildParagraph(context),
-                  ],
-                ),
-              );
-            }),
+          valueListenable: isVisible,
+          builder: (context, value, child) {
+            return Visibility(
+              visible: value,
+              maintainState: true,
+              maintainAnimation: true,
+              child: Column(
+                spacing: AppSpacing.sm,
+                children: [
+                  _buildImages(),
+                  _buildIngredients(),
+                  _buildUtensils(),
+                  _buildParagraph(context),
+                ],
+              ),
+            );
+          },
+        ),
       ],
     );
   }
 
   Padding _buildParagraph(BuildContext context) {
+    Logger logger = Logger('buildParagraph');
     String paragraph = step.paragraph;
     ingredientsMap.forEach((key, value) {
       paragraph = paragraph.replaceAll(
-          '${ParagraphKeys.ingredient.key}$key', '$value ');
+        '${ParagraphKeys.ingredient.key}$key',
+        '$value ',
+      );
     });
     utensilsMap.forEach((key, value) {
-      paragraph =
-          paragraph.replaceAll('${ParagraphKeys.utensil.key}$key', '$value ');
+      paragraph = paragraph.replaceAll(
+        '${ParagraphKeys.utensil.key}$key',
+        '$value ',
+      );
     });
+    logger.info('before: $paragraph');
     //TODO: timer implementation
-    paragraph.replaceAll(ParagraphKeys.timer.key, '');
+    paragraph = paragraph
+        .replaceAll(ParagraphKeys.timer.key, '')
+        .replaceAll(ParagraphKeys.ln.key, '');
+    logger.info('after: $paragraph');
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal)
-          .copyWith(top: AppSpacing.lg),
-      child: SelectableText(paragraph, style: context.bodyMedium),
+      padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
+      // .copyWith(top: AppSpacing.lg),
+      child: SelectableText(
+        paragraph,
+        style: context.bodyMedium,
+        textAlign: TextAlign.justify,
+      ),
     );
   }
 
@@ -122,11 +141,13 @@ class BuildCookingStep extends StatelessWidget {
     List<String> stepImages = step.imagesUrl;
     return CachedNetworkImage(
       imageUrl: stepImages.first,
-      imageBuilder: (context, imageProvider) => Image(
-          height: .6.sw,
-          width: double.maxFinite,
-          image: imageProvider,
-          fit: BoxFit.fitWidth),
+      imageBuilder:
+          (context, imageProvider) => Image(
+            height: .6.sw,
+            width: double.maxFinite,
+            image: imageProvider,
+            fit: BoxFit.fitWidth,
+          ),
       placeholder: (context, url) => CircularProgressIndicator(),
     );
   }

@@ -1,21 +1,14 @@
+import 'package:recipe_haven/core/exceptions/recipe_exceptions.dart';
+import 'package:recipe_haven/features/recipe/domain/entities/tag_entity.dart';
 import 'package:recipe_haven/features/recipe/recipe.dart';
 
-abstract class Result<T> {
-  const Result();
-}
-
-class Success<T> extends Result<T> {
-  final T value;
-  const Success(this.value);
-}
-
-class Failure<T> extends Result<T> {
-  final Exception error;
-  const Failure(this.error);
-}
-
-typedef GetAllRecipesResponse = Result<Recipes>;
+typedef GetAllRecipesResponse = Result<Recipes, RecipeException>;
+typedef GetAllTagsResponse = Result<Tags, RecipeException>;
 
 abstract class RecipeRepository {
-  Future<GetAllRecipesResponse> getAllRecipes();
+  Stream<GetAllRecipesResponse> getAllRecipes();
+  Future<GetAllRecipesResponse> getTonightRecipes();
+  Future<void> createRecipe(Map<String, dynamic> recipe);
+
+  Future<GetAllTagsResponse> getTags();
 }

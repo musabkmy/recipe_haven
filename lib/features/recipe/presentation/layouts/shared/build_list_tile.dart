@@ -12,12 +12,17 @@ class BuildListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal)
-          .copyWith(top: AppSpacing.sm.sp),
+      dense: true,
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: AppSpacing.minHorizontal,
+      ),
+      // .copyWith(top: AppSpacing.sm.sp),
       titleAlignment: ListTileTitleAlignment.titleHeight,
       leading: Padding(
-        padding:
-            EdgeInsetsDirectional.only(top: AppSpacing.xs, end: AppSpacing.xs),
+        padding: EdgeInsetsDirectional.only(
+          top: AppSpacing.xs,
+          end: AppSpacing.xs,
+        ),
         child: Icon(iconData, size: 16.sp, color: AppColors.grey900),
       ),
       title: Text(info, style: context.bodyMedium),

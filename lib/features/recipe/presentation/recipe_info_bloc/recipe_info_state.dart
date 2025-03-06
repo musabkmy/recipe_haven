@@ -10,15 +10,19 @@ sealed class RecipeInfoState extends Equatable {
 
 final class RecipeInfoInitial extends RecipeInfoState {}
 
+final class RecipeInfoLoading extends RecipeInfoState {}
+
 class RecipeInfoSuccess extends RecipeInfoState {
   final Recipe recipe;
   final PortionBasedRecipe selectedPortion;
   final bool hasNext;
   final bool hasPrevious;
-  const RecipeInfoSuccess(this.recipe,
-      {required this.selectedPortion,
-      required this.hasPrevious,
-      required this.hasNext});
+  const RecipeInfoSuccess(
+    this.recipe, {
+    required this.selectedPortion,
+    required this.hasPrevious,
+    required this.hasNext,
+  });
 
   @override
   List<Object> get props => [recipe, selectedPortion];

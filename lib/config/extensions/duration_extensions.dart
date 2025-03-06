@@ -1,7 +1,7 @@
 import 'package:logging/logging.dart';
 
 extension DurationEx on Duration {
-  String toHumanDuration() {
+  String inJsonDuration() {
     if (this == Duration.zero) {
       return '';
     }
@@ -20,7 +20,7 @@ extension DurationEx on Duration {
     return humanDuration;
   }
 
-  String toTextDuration() {
+  String inTextDuration() {
     if (this == Duration.zero) {
       return '';
     }
@@ -39,8 +39,8 @@ extension DurationEx on Duration {
     return humanDuration;
   }
 
-  double durationPercentage() {
-    Logger('durationPercentage').info((inMinutes / 60).toStringAsFixed(1));
+  double inDurationPercentage() {
+    Logger('ininDurationPercentage').info((inMinutes / 60).toStringAsFixed(1));
 
     if (this == Duration.zero) {
       return 0;

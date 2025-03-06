@@ -23,7 +23,7 @@ class BuildChangeButton extends StatelessWidget {
       disabledColor: AppColors.grey300,
       color: AppColors.lightAmberAccent,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0), // Apply border radius
+        borderRadius: AppStyles.borderRadiusM, // Apply border radius
       ),
       onPressed: onPressed,
       child: Padding(
