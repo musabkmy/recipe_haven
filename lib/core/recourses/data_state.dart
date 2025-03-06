@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 sealed class Result<T, K> {
   const Result();
   R when<R>({
@@ -17,6 +18,9 @@ class Success<T, K> extends Result<T, K> {
   }) {
     return success(value);
   }
+
+  @override
+  String toString() => 'Success(value: $value)';
 }
 
 class Failure<T, K> extends Result<T, K> {
@@ -30,4 +34,7 @@ class Failure<T, K> extends Result<T, K> {
   }) {
     return failure(error);
   }
+
+  @override
+  String toString() => 'Failure(error: $error)';
 }

@@ -1,28 +1,42 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/numbers_extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
+import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/recipe_info/recipe_info_layouts.dart';
 import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 
+@RoutePage()
 class RecipeInfoScreen extends StatelessWidget {
-  const RecipeInfoScreen({super.key});
-  static const id = 'RecipesInfoScreen';
+  const RecipeInfoScreen({super.key, required this.id, this.recipe});
+  final String id;
+  final Recipe? recipe;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _RecipeInfoBody());
+    return BlocProvider(
+      create: (context) => RecipeInfoBloc()..initRecipe(id, recipe),
+      child: _RecipeInfoBody(),
+    );
   }
 }
 
 class _RecipeInfoBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RecipeInfoBloc, RecipeInfoState>(
+    return BlocConsumer<RecipeInfoBloc, RecipeInfoState>(
+      listener: (context, state) {
+        if (state is RecipeInfoLoading) {
+          LoadingOverlay.show(context);
+        } else {
+          LoadingOverlay.hide(context);
+        }
+      },
       builder: (context, state) {
         if (state is RecipeInfoSuccess) {
           final recipe = state.recipe;
@@ -68,6 +82,8 @@ class _RecipeInfoBody extends StatelessWidget {
               ),
             ),
           );
+        } else if (state is RecipeInfoLoading) {
+          return SizedBox.shrink();
         }
         return Center(child: Text('Failed Loading'));
       },

@@ -15,6 +15,13 @@ final class RecipeLoadEvent extends RecipeInfoEvent {
   List<Object> get props => [recipe];
 }
 
+final class FetchRecipe extends RecipeInfoEvent {
+  final String id;
+  const FetchRecipe(this.id);
+  @override
+  List<Object> get props => [id];
+}
+
 final class ChangeSelectedPortion extends RecipeInfoEvent {
   const ChangeSelectedPortion({required this.next});
   final bool next;

@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/core/utils/find_id_index.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
@@ -11,14 +10,12 @@ part 'recipe_info_state.dart';
 @singleton
 class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
   RecipeInfoBloc() : super(RecipeInfoInitial()) {
-    on<RecipeInfoEvent>((event, emit) {
-      debugPrint('in RecipeInfoEvent');
-    });
-    on<RecipeLoadEvent>(onLoadRecipe);
-    on<ChangeSelectedPortion>(onChangeSelectedPortion);
+    on<RecipeLoadEvent>(_onLoadRecipe);
+    on<FetchRecipe>(_onFetchRecipe);
+    on<ChangeSelectedPortion>(_onChangeSelectedPortion);
   }
 
-  void onLoadRecipe(RecipeLoadEvent event, Emitter<RecipeInfoState> emit) {
+  void _onLoadRecipe(RecipeLoadEvent event, Emitter<RecipeInfoState> emit) {
     emit(RecipeInfoLoading());
     final receiveDetails = event.recipe.details;
     final selectedPortion = event.recipe.selectedPortion;
@@ -38,7 +35,12 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
     );
   }
 
-  void onChangeSelectedPortion(
+  void _onFetchRecipe(FetchRecipe event, Emitter<RecipeInfoState> emit) {
+    //TODO: fetch when recip not passed
+    emit(RecipeInfoFailure('Not implemented yet'));
+  }
+
+  void _onChangeSelectedPortion(
     ChangeSelectedPortion event,
     Emitter<RecipeInfoState> emit,
   ) {
@@ -78,5 +80,14 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
             hasNext: hasNext,
           ),
         );
+  }
+
+  void initRecipe(String id, Recipe? recipe) {
+    if (recipe != null) {
+      add(RecipeLoadEvent(recipe));
+    } else {
+      // Fetch from Firestore
+      add(FetchRecipe(id));
+    }
   }
 }

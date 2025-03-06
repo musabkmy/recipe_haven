@@ -1,11 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_haven/app.dart';
+import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/constants.dart';
+import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
 import 'package:recipe_haven/features/user/data/models/user_creation_model.dart';
 import 'package:recipe_haven/features/user/presentation/layouts/signup_layouts/build_signup_footer_layout.dart';
@@ -14,9 +16,9 @@ import 'package:recipe_haven/features/user/presentation/layouts/user_layouts.dar
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/providers/form_provider.dart';
 
+@RoutePage()
 class SignupWithEmailScreen extends StatelessWidget {
   SignupWithEmailScreen({super.key});
-  static const String id = 'SignupWithEmailScreen';
   final _formKey = GlobalKey<FormState>();
   final _logger = Logger('SignupWithEmailScreen');
   // final _emailController = TextEditingController();
@@ -28,9 +30,13 @@ class SignupWithEmailScreen extends StatelessWidget {
     return Scaffold(
       body: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
-          if (state is UserDataSuccess) {
-            Navigator.pop(context);
+          if (state is UserDataLoading) {
+            LoadingOverlay.show(context);
+          } else if (state is UserDataSuccess) {
+            LoadingOverlay.hide(context);
+            context.router.replace(AppRoute());
           } else if (state is UserDataFailure) {
+            LoadingOverlay.hide(context);
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text('Error: ${state.error}')));
@@ -46,7 +52,7 @@ class SignupWithEmailScreen extends StatelessWidget {
                 BuildTopLayout(
                   hasPreviousScreen: Navigator.canPop(context),
                   title: 'Sign up',
-                  onSkipPressed: () => Navigator.pushNamed(context, App.id),
+                  // onSkipPressed: () => context.router.push(AppRoute()),
                 ),
                 Expanded(
                   child: SingleChildScrollView(

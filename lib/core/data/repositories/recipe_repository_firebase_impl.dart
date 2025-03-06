@@ -137,4 +137,11 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
       return Failure(RecipeException(e.toString()));
     }
   }
+
+  // final _cache = <String, Recipe>{};
+
+  //   Future<Recipe> getRecipe(String id) async {
+  //     if (_cache.containsKey(id)) {
+  //       return _cache[id]!;
+  //     }
 }

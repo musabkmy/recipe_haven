@@ -1,28 +1,27 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:recipe_haven/app.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/app_logos.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_action_button.dart';
-import 'package:recipe_haven/features/user/presentation/layouts/signup_layouts/singup_layouts.dart';
-import 'package:recipe_haven/features/user/presentation/layouts/user_layouts.dart';
-import 'package:recipe_haven/features/user/presentation/screens/signup_with_email_screen.dart';
+import 'package:recipe_haven/features/user/presentation/layouts/signup_layouts/signup_layouts.dart';
 
+@RoutePage()
 class SignupOptionsScreen extends StatelessWidget {
   const SignupOptionsScreen({super.key});
-  static const String id = 'SignupOptionsScreen';
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('SignupOptionsScreen rebuilt');
     return Scaffold(
+      key: const ValueKey('SignupOptionsScreen'),
       body: SafeArea(
+        minimum: EdgeInsets.only(top: AppSpacing.xxl),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           spacing: AppSpacing.x3l,
           children: [
-            BuildTopLayout(
-              onSkipPressed: () => Navigator.pushNamed(context, App.id),
-            ),
+            // BuildTopLayout(onSkipPressed: () => context.router.push(AppRoute())),
             SingleChildScrollView(
               padding: EdgeInsets.symmetric(
                 horizontal: AppSpacing.minHorizontal,
@@ -59,7 +58,7 @@ class SignupOptionsScreen extends StatelessWidget {
                   ),
                   AppActionButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, SignupWithEmailScreen.id);
+                      context.router.pushPath('signupWithEmailRoute');
                     },
                     textColor: AppColors.grey100,
                     backgroundColor: AppColors.secondary,

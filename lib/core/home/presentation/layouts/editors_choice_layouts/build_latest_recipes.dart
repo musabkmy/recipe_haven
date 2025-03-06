@@ -1,15 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/duration_extensions.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
+import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/constants.dart';
-import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
-import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
-import 'package:recipe_haven/features/recipe/presentation/screens/recipe_info_screen.dart';
 
 class BuildLatestRecipes extends StatelessWidget {
   const BuildLatestRecipes({
@@ -25,68 +23,55 @@ class BuildLatestRecipes extends StatelessWidget {
     // Logger logger = Logger('_buildLatestRecipes');
     // logger.info('state.recipes.length: ${state.recipes.length}');
     final length = state.recipes.length;
-    return BlocListener<RecipeInfoBloc, RecipeInfoState>(
-      listener: (BuildContext context, RecipeInfoState state) {
-        if (state is RecipeInfoLoading) {
-          LoadingOverlay.show(context);
-          Navigator.pushNamed(context, RecipeInfoScreen.id);
-        } else {
-          LoadingOverlay.hide(context);
-        }
-      },
-      child: Column(
-        spacing: AppSpacing.md,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppSectionTitle('Our Latest Recipes', onActionLabel: 'See all'),
-          ConstrainedBox(
-            constraints: BoxConstraints(minHeight: .3.sh, maxHeight: .4.sh),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal, // Make it horizontal
-              itemCount: length,
-              itemBuilder: (context, index) {
-                final item = recipes[index];
-                final creator = item.creator;
+    return Column(
+      spacing: AppSpacing.md,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppSectionTitle('Our Latest Recipes', onActionLabel: 'See all'),
+        ConstrainedBox(
+          constraints: BoxConstraints(minHeight: .3.sh, maxHeight: .4.sh),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal, // Make it horizontal
+            itemCount: length,
+            itemBuilder: (context, index) {
+              final item = recipes[index];
+              final creator = item.creator;
 
-                return GestureDetector(
-                  key: Key(item.id),
-                  onTap:
-                      () => context.read<RecipeInfoBloc>().add(
-                        RecipeLoadEvent(item),
-                      ),
+              return GestureDetector(
+                key: Key(item.id),
+                onTap: () {
+                  context.router.push(
+                    RecipeInfoRoute(id: item.id, recipe: item),
+                  );
+                },
 
-                  child: Container(
-                    margin: EdgeInsetsDirectional.only(
-                      start:
-                          index == 0 ? AppSpacing.minHorizontal : AppSpacing.sm,
-                      end:
-                          index == length - 1
-                              ? AppSpacing.minHorizontal
-                              : AppSpacing.sm,
-                    ),
-                    child: SizedBox(
-                      width: .5.sw,
-                      child: Column(
-                        spacing: AppSpacing.sm,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildLatestRecipeImage(item, context),
-                          Text(
-                            item.title,
-                            style: context.bodySmall,
-                            maxLines: 2,
-                          ),
-                          _buildRecipeCreatorName(creator, context),
-                        ],
-                      ),
+                child: Container(
+                  margin: EdgeInsetsDirectional.only(
+                    start:
+                        index == 0 ? AppSpacing.minHorizontal : AppSpacing.sm,
+                    end:
+                        index == length - 1
+                            ? AppSpacing.minHorizontal
+                            : AppSpacing.sm,
+                  ),
+                  child: SizedBox(
+                    width: .5.sw,
+                    child: Column(
+                      spacing: AppSpacing.sm,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildLatestRecipeImage(item, context),
+                        Text(item.title, style: context.bodySmall, maxLines: 2),
+                        _buildRecipeCreatorName(creator, context),
+                      ],
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

@@ -19,7 +19,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   Future<void> _onGetUser(GetUser event, Emitter<UserState> emit) async {
+    Logger logger = Logger('_onGetUser');
+    logger.info('entered');
     final userData = await _userRepository.getUserData();
+    logger.info(userData.toString());
     userData.when(
       success: (value) => emit(UserDataSuccess(value)),
       failure: (error) => emit(UserDataFailure(error.message)),

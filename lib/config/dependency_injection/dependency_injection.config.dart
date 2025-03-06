@@ -12,6 +12,8 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../core/data/repositories/recipe_repository_firebase_impl.dart'
+    as _i766;
 import '../../core/home/presentation/get_creators_cubit/get_creators_cubit.dart'
     as _i579;
 import '../../core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart'
@@ -20,8 +22,6 @@ import '../../core/home/presentation/get_tags_cubit/get_tags_cubit.dart'
     as _i296;
 import '../../core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart'
     as _i1048;
-import '../../core/data/repositories/recipe_repository_firebase_impl.dart'
-    as _i213;
 import '../../features/recipe/domain/repositories/recipe_repository.dart'
     as _i76;
 import '../../features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart'
@@ -52,7 +52,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i809.UserBloc(gh<_i587.UserRepository>()),
     );
     gh.factory<_i1012.RecipeRepository>(
-      () => _i213.RecipeRepositoryFirebaseImpl(),
+      () => _i766.RecipeRepositoryFirebaseImpl(),
       registerFor: {_prod},
     );
     gh.singleton<_i579.GetCreatorsCubit>(
@@ -61,11 +61,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i1048.GetTonightCookCubit>(
       () => _i1048.GetTonightCookCubit(gh<_i76.RecipeRepository>()),
     );
-    gh.singleton<_i414.GetRecipesCubit>(
-      () => _i414.GetRecipesCubit(gh<_i1012.RecipeRepository>()),
-    );
     gh.singleton<_i296.GetTagsCubit>(
       () => _i296.GetTagsCubit(gh<_i76.RecipeRepository>()),
+    );
+    gh.singleton<_i414.GetRecipesCubit>(
+      () => _i414.GetRecipesCubit(gh<_i1012.RecipeRepository>()),
     );
     return this;
   }

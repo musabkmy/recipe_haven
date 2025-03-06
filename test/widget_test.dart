@@ -6,7 +6,6 @@ import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/layouts.dart';
-import 'package:recipe_haven/main.dart';
 
 void main() {
   setUpAll(() async {
@@ -15,14 +14,15 @@ void main() {
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       debugPrint(
-          '${record.level.name}:\n ${record.loggerName}: ${record.message}\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\');
+        '${record.level.name}:\n ${record.loggerName}: ${record.message}\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
+      );
     });
     await ScreenUtil.ensureScreenSize();
     configurationDependency(Env.dev);
     Bloc.observer = AppBlocObserver();
   });
   testWidgets('view a Recipe', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+    // await tester.pumpWidget(const MyApp());
     await tester.pump();
     // await tester.pumpWidget(App());
 

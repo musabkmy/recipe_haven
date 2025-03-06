@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
+import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
@@ -19,7 +21,11 @@ class BuildBestCreators extends StatelessWidget {
             spacing: AppSpacing.sm,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppSectionTitle('Explore the best recipes from'),
+              AppSectionTitle(
+                'Explore the best recipes from',
+                onActionLabel: 'Explore all',
+                onActionPressed: () => context.router.push(CreatorsRoute()),
+              ),
               ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: 68.sp * 2.5),
                 child: ListView.separated(
