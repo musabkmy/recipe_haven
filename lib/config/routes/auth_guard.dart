@@ -1,8 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-<<<<<<< Updated upstream
 import 'package:flutter/widgets.dart';
-=======
->>>>>>> Stashed changes
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
@@ -22,12 +19,10 @@ class AuthGuard extends AutoRouteGuard {
     final route = resolver.route;
     final userBloc = getIt<UserBloc>();
 
-<<<<<<< Updated upstream
     debugPrint(
       'userBloc is UserDataSuccess: ${userBloc.state is UserDataSuccess} \n resolver.route: ${resolver.route.name}',
     );
-=======
->>>>>>> Stashed changes
+
     if (publicRoutes.contains(route.name)) {
       resolver.next(true); // Allow navigation
       return;

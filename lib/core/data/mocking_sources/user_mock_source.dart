@@ -1,16 +1,9 @@
-<<<<<<< Updated upstream
 import 'package:recipe_haven/features/user/data/models/models.dart';
-
-class UserMockSource {
-  static List<UserCreationModel> userFetchModels = [
-=======
 import 'package:injectable/injectable.dart';
-import 'package:recipe_haven/features/user/data/models/models.dart';
 
 @singleton
 class UserMockSource {
   final List<UserCreationModel> getUserFetchModels = [
->>>>>>> Stashed changes
     UserCreationModel(
       password: '12345678',
       name: "Alice Johnson",
@@ -51,8 +44,6 @@ class UserMockSource {
       bio: "BBQ master and grilling expert.",
     ),
   ];
-<<<<<<< Updated upstream
-=======
 
   final UserFetchModel getUserData = UserFetchModel(
     name: 'Yahia Yunes',
@@ -72,5 +63,4 @@ I thrive in fast-paced environments and enjoy experimenting with bold flavors an
     reviewsCount: 8,
     ratingsCount: null,
   );
->>>>>>> Stashed changes
 }

@@ -38,11 +38,8 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
     // final previousState = state;
     emit(GetRecipesLoading());
 
-<<<<<<< Updated upstream
-    final recipes = RecipeMockSource.getAllRecipes();
-=======
     final recipes = RecipeMockSource().getAllRecipes;
->>>>>>> Stashed changes
+
     final randomRecipe = Random().nextInt(recipes.length);
     debugPrint('createRecipe, in index: $randomRecipe');
     await _recipeRepository.createRecipe(recipes[randomRecipe].toJson());

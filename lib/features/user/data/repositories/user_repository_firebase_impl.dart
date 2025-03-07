@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-<<<<<<< Updated upstream
-=======
+
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
->>>>>>> Stashed changes
+
 import 'package:recipe_haven/core/exceptions/creator_exceptions.dart';
 import 'package:recipe_haven/core/exceptions/user_exceptions.dart';
 import 'package:recipe_haven/core/recourses/data_state.dart';
@@ -12,11 +11,7 @@ import 'package:recipe_haven/core/data/data.dart';
 import 'package:recipe_haven/features/user/data/models/models.dart';
 import 'package:recipe_haven/features/user/domain/repositories/user_repository.dart';
 
-<<<<<<< Updated upstream
-@Injectable(as: UserRepository)
-=======
 @Injectable(as: UserRepository, env: [Env.prod])
->>>>>>> Stashed changes
 class UserRepositoryFirebaseImpl extends UserRepository {
   @override
   Future<UserResponse> getUserData() async {
