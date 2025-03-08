@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
-import 'package:recipe_haven/config/extensions/numbers_extensions.dart';
+import 'package:recipe_haven/config/extensions/numbers_extension.dart';
 
 import 'measuring_unit_entity.dart';
 
@@ -11,26 +11,31 @@ class WeightCount extends Equatable {
   final double count;
   final MeasuringUnit? measuringUnit;
 
-  const WeightCount(
-      {required this.id, required this.count, required this.measuringUnit});
+  const WeightCount({
+    required this.id,
+    required this.count,
+    required this.measuringUnit,
+  });
 
   factory WeightCount.empty() =>
       WeightCount(id: '0', count: 0, measuringUnit: null);
 
   @override
-  List<Object?> get props => [
-        id,
-        count,
-      ];
+  List<Object?> get props => [id, count];
 
   @override
   bool get stringify => true;
 }
 
 extension WeightCountEx on WeightCounts {
-  num countIn(String id) => firstWhere((element) => element.id == id,
-      orElse: () => WeightCount.empty()).count.intOr2Decimals;
+  num countIn(String id) =>
+      firstWhere(
+        (element) => element.id == id,
+        orElse: () => WeightCount.empty(),
+      ).count.intOr2Decimals;
   MeasuringUnit? measuringUnitIn(String id) =>
-      firstWhere((element) => element.id == id,
-          orElse: () => WeightCount.empty()).measuringUnit;
+      firstWhere(
+        (element) => element.id == id,
+        orElse: () => WeightCount.empty(),
+      ).measuringUnit;
 }

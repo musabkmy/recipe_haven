@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:logging/logging.dart';
 
 typedef Reviews = List<Review>;
 
@@ -9,9 +8,10 @@ class Review extends Equatable {
   final String userName;
   final String? userProfilePic;
   final List<String> imagesUrl;
-  final double rating;
+  final double? rating;
   final DateTime publishedAt;
   final String description;
+  final int favCount;
 
   const Review({
     required this.id,
@@ -19,9 +19,10 @@ class Review extends Equatable {
     required this.userName,
     required this.userProfilePic,
     required this.imagesUrl,
-    required this.rating,
+    this.rating,
     required this.publishedAt,
     required this.description,
+    this.favCount = 0,
   });
 
   @override
@@ -48,7 +49,7 @@ extension ReviewsEx on Reviews {
         }
       }
     }
-    Logger('reviewsImages').info(images.length);
+    // Logger('reviewsImages').info(images.length);
     if (images.length > 4) {
       return images.take(4).toList();
     }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_haven/config/extensions/context_extensions.dart';
+import 'package:recipe_haven/config/extensions/context_extension.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/core/shared_layouts/app_text_button.dart';
-import 'package:recipe_haven/config/extensions/object_extensions.dart';
+import 'package:recipe_haven/config/extensions/object_extension.dart';
 
 class AppSectionTitle extends StatelessWidget {
   const AppSectionTitle(

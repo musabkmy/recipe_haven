@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show TextInputFormatter;
-import 'package:recipe_haven/config/extensions/context_extensions.dart';
+import 'package:recipe_haven/config/extensions/context_extension.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_styles.dart';
 

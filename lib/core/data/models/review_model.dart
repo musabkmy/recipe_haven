@@ -14,7 +14,9 @@ class ReviewModel {
   final String? userProfilePic;
   final String userName;
   final List<String> imagesUrl;
-  final double rating;
+  final double? rating;
+  //change to hard typed
+  //Ex: a month ago, a year ago
   final DateTime publishedAt;
   final String description;
 

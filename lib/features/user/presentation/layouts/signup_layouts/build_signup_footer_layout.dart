@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart';
-import 'package:recipe_haven/config/extensions/context_extensions.dart';
+import 'package:recipe_haven/config/extensions/context_extension.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/constants/placement_text.dart';

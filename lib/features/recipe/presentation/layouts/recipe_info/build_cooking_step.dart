@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logging/logging.dart';
-import 'package:recipe_haven/config/extensions/context_extensions.dart';
+import 'package:recipe_haven/config/extensions/context_extension.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_icons.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
@@ -137,18 +137,14 @@ class BuildCookingStep extends StatelessWidget {
     );
   }
 
-  CachedNetworkImage _buildImages() {
+  Widget _buildImages() {
     List<String> stepImages = step.imagesUrl;
-    return CachedNetworkImage(
+    //TODO: make list of images
+
+    return BuildRecipeImageLayout(
       imageUrl: stepImages.first,
-      imageBuilder:
-          (context, imageProvider) => Image(
-            height: .6.sw,
-            width: double.maxFinite,
-            image: imageProvider,
-            fit: BoxFit.fitWidth,
-          ),
-      placeholder: (context, url) => CircularProgressIndicator(),
+      height: .6.sw,
+      width: double.maxFinite,
     );
   }
 }

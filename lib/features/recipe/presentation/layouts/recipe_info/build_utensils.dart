@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_haven/config/extensions/context_extensions.dart';
-import 'package:recipe_haven/config/extensions/string_extensions.dart';
+import 'package:recipe_haven/config/extensions/context_extension.dart';
+import 'package:recipe_haven/config/extensions/string_extension.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/recipe_entity.dart';
 
 class BuildUtensils extends StatelessWidget {
-  const BuildUtensils({
-    super.key,
-    required this.recipe,
-  });
+  const BuildUtensils({super.key, required this.recipe});
 
   final Recipe recipe;
 
@@ -22,11 +19,12 @@ class BuildUtensils extends StatelessWidget {
         children: [
           Text('Utensils', style: context.displayLarge),
           Text(
-              recipe.utensils
-                  .map((element) => element.name.capitalizeEachWord)
-                  .toList()
-                  .join(', '),
-              style: context.bodyMedium)
+            recipe.utensils
+                .map((element) => element.name.capitalizeEachWord)
+                .toList()
+                .join(', '),
+            style: context.bodyMedium,
+          ),
         ],
       ),
     );

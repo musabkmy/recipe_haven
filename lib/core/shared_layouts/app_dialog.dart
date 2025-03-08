@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_haven/config/extensions/context_extensions.dart';
+import 'package:recipe_haven/config/extensions/context_extension.dart';
 import 'package:recipe_haven/constants/constants.dart';
 
 class AppDialog extends StatelessWidget {

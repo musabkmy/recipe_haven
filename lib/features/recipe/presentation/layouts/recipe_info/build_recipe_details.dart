@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_haven/config/extensions/duration_extensions.dart';
+import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
@@ -35,7 +35,7 @@ class BuildRecipeDetails extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
           child: _buildDifficulty(context),
         ),
-        AppSpacer(height: 100),
+        AppSpacer(),
         _buildIngredients(context),
         AppSpacer(height: 100),
         //preparation/baking/resting

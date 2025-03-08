@@ -7,3 +7,4 @@ export 'app_action_button.dart';
 export 'app_text_form_field.dart';
 export 'app_text_button.dart';
 export 'app_section_title.dart';
+export 'app_icon_text.dart';

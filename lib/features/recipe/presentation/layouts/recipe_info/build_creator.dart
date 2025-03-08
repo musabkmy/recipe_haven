@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_haven/config/extensions/context_extensions.dart';
+import 'package:recipe_haven/config/extensions/context_extension.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/creator_entity.dart';

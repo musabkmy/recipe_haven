@@ -1,14 +1,20 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
+import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/review_entity.dart';
+import 'package:recipe_haven/features/recipe/presentation/layouts/shared/build_reviews_thumbs_gallery.dart';
 
 class BuildToReviews extends StatelessWidget {
-  const BuildToReviews({super.key, required this.reviews});
+  const BuildToReviews({
+    super.key,
+    required this.reviews,
+    // required this.router,
+  });
 
   final Reviews reviews;
+  // final StackRouter router;
 
   @override
   Widget build(BuildContext context) {
@@ -39,92 +45,14 @@ class BuildToReviews extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      //TODO: reviews screen
+                      debugPrint(context.routeData.parent?.name ?? 'no parent');
+                      context.navigateTo(ReviewsRoute(reviews: reviews));
                     },
                     child: Text('Read', style: context.displayMediumAction),
                   ),
                 ],
               ),
-              reviews.reviewsImages() == []
-                  ? SizedBox.shrink()
-                  : SizedBox(
-                    height: .25.sw,
-                    width: double.maxFinite,
-                    child: LayoutBuilder(
-                      builder: (context, constraints) {
-                        final itemSize =
-                            constraints.maxWidth / 4 - AppSpacing.sm;
-                        return Row(
-                          spacing: AppSpacing.sm,
-                          children:
-                              reviews.reviewsImages().asMap().entries.map((
-                                element,
-                              ) {
-                                return Expanded(
-                                  child: CachedNetworkImage(
-                                    imageUrl: element.value,
-                                    imageBuilder: (context, imageProvider) {
-                                      return Container(
-                                        height: itemSize,
-                                        width: itemSize,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: imageProvider,
-                                            fit: BoxFit.fill,
-                                          ),
-                                          borderRadius: AppStyles.borderRadiusM,
-                                        ),
-                                        child:
-                                            element.key == 3
-                                                //  &&
-                                                //         reviews.numOfReviewsImages() > 4
-                                                ? Stack(
-                                                  children: [
-                                                    // Dark overlay
-                                                    Positioned(
-                                                      bottom: 0,
-                                                      left: 0,
-                                                      right: 0,
-                                                      child: Container(
-                                                        height: itemSize,
-                                                        width: itemSize,
-                                                        decoration: BoxDecoration(
-                                                          color:
-                                                              AppColors
-                                                                  .lightOverlayColor,
-                                                          borderRadius:
-                                                              AppStyles
-                                                                  .borderRadiusM,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    // Text on top of the overlay
-                                                    Align(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: Text(
-                                                        '+${reviews.numOfReviewsImages() - 4}',
-                                                        style: context
-                                                            .headlineMedium
-                                                            .copyWith(
-                                                              color:
-                                                                  AppColors
-                                                                      .background,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                                : SizedBox.shrink(),
-                                      );
-                                    },
-                                  ),
-                                );
-                              }).toList(),
-                        );
-                      },
-                    ),
-                  ),
+              BuildReviewsThumbsGallery(reviews.reviewsImages()),
             ],
           ),
         );

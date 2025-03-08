@@ -14,6 +14,8 @@ final class AppIcons {
   static const halfStar = Icons.star_half_rounded;
   static const noStar = Icons.star_border_rounded;
   static const fullStar = Icons.star_rounded;
+  static const replay = Icons.autorenew_sharp;
+  static const uploadImage = Icons.camera_alt_outlined;
   static const favorite = CupertinoIcons.heart;
 
   const AppIcons._();

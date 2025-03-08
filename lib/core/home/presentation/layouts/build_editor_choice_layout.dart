@@ -138,17 +138,15 @@ class BuildEditorChoiceLayout extends StatelessWidget {
                         AppTextButton(label: 'Qienuhe'),
                         GestureDetector(
                           child: AppInfoHighlight(
-                            child: Text.rich(
-                              TextSpan(
-                                text: '♡ ',
-                                style: context.bodyLarge,
-                                children: [
-                                  TextSpan(
-                                    text: '1.64k',
-                                    style: context.bodySmall,
-                                  ),
-                                ],
-                              ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: AppSpacing.sm,
+                              horizontal: AppSpacing.sl,
+                            ),
+                            child: AppIconText(
+                              iconSize: 20,
+                              icon: AppIcons.favorite,
+                              labelStyle: context.bodyMedium,
+                              label: '1.64k',
                             ),
                           ),
                         ),

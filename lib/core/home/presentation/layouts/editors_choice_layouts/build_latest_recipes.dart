@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_haven/config/extensions/duration_extensions.dart';
+import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/constants.dart';
@@ -130,17 +130,13 @@ class BuildLatestRecipes extends StatelessWidget {
           right: 0,
           child: AppInfoHighlight(
             withMargin: true,
-            child: Text.rich(
-              TextSpan(
-                text: '♡ ',
-                style: context.bodyLarge,
-                children: [
-                  TextSpan(
-                    text: item.usersEngagement.likesCount.toString(),
-                    style: context.bodySmall,
-                  ),
-                ],
-              ),
+            padding: EdgeInsets.symmetric(
+              vertical: AppSpacing.sm,
+              horizontal: AppSpacing.sl,
+            ),
+            child: AppIconText(
+              icon: AppIcons.favorite,
+              label: item.usersEngagement.likesCount.toString(),
             ),
           ),
         ),

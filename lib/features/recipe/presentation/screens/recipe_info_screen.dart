@@ -3,12 +3,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_haven/config/extensions/numbers_extensions.dart';
+import 'package:recipe_haven/config/extensions/numbers_extension.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
 import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/recipe_info/recipe_info_layouts.dart';
+import 'package:recipe_haven/features/recipe/presentation/layouts/shared/recipe_shared_layouts.dart';
 import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 
 @RoutePage()
@@ -61,7 +62,7 @@ class _RecipeInfoBody extends StatelessWidget {
                     BuildCreator(creator: recipe.creator),
                     BuildDescription(recipe: recipe),
                     BuildToReviews(reviews: recipe.reviews),
-                    AppSpacer(height: 100),
+                    AppSpacer(),
                     BuildRecipeDetails(
                       recipeDetails: recipe.details,
                       selectedPortion: selectedPortion,
@@ -105,42 +106,10 @@ class _RecipeInfoBody extends StatelessWidget {
       surfaceTintColor: AppColors.background,
       toolbarHeight: 52,
       leadingWidth: 84,
-      leading: GestureDetector(
-        child: Container(
-          height: 24.sp,
-          width: 24.sp,
-          alignment: Alignment.center,
-          // margin: EdgeInsets.symmetric(horizontal: AppSpacing.md),
-          decoration: BoxDecoration(
-            color: AppColors.background,
-            shape: BoxShape.circle,
-          ),
-          child: Icon(color: AppColors.grey900, AppIcons.backArrow),
-        ),
-        onTap: () {
-          Navigator.pop(context);
-        },
-      ),
-      actionsIconTheme: IconThemeData(color: AppColors.grey900, size: 32),
-      actions:
-          innerBoxIsScrolled
-              ? [
-                IconButton(icon: Icon(AppIcons.share), onPressed: () {}),
-                IconButton(
-                  color: AppColors.grey900,
-                  icon: Icon(AppIcons.favorite),
-                  onPressed: () {},
-                ),
-                SizedBox(width: AppSpacing.md),
-              ]
-              : null,
-      bottom:
-          innerBoxIsScrolled
-              ? PreferredSize(
-                preferredSize: Size.fromHeight(8.0),
-                child: Container(color: AppColors.grey700, height: 1.0),
-              )
-              : null,
+      leading: RecipeAppBarLeading(),
+      actionsIconTheme: recipeAppBarActionsTheme(),
+      actions: innerBoxIsScrolled ? recipeAppBarActions() : null,
+      bottom: innerBoxIsScrolled ? recipeAppBarBottom() : null,
       flexibleSpace: FlexibleSpaceBar(background: _buildRecipeImage(recipe)),
     );
   }

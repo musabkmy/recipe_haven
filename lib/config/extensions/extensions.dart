@@ -1,3 +1,3 @@
-export 'context_extensions.dart';
-export 'object_extensions.dart';
-export 'numbers_extensions.dart';
+export 'context_extension.dart';
+export 'object_extension.dart';
+export 'numbers_extension.dart';

@@ -5,6 +5,8 @@ import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 
 class AppNetworkCircularAvatar extends StatelessWidget {
+  ///imageUrl != null || name != null
+
   const AppNetworkCircularAvatar({
     super.key,
     this.imageUrl,

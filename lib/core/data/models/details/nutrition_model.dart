@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:recipe_haven/config/extensions/object_extensions.dart';
+import 'package:recipe_haven/config/extensions/object_extension.dart';
 
 import '../../../../features/recipe/domain/entities/details/nutrition_entity.dart';
 import 'measuring_unit_model.dart';

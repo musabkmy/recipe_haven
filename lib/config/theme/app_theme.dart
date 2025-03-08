@@ -24,7 +24,7 @@ final class AppTheme {
     final appBarTheme = AppBarTheme(
       // color: AppColors.background,
       backgroundColor: AppColors.background,
-      // foregroundColor:,
+      surfaceTintColor: AppColors.background,
       elevation: 0,
       // scrolledUnderElevation:,
       // shadowColor:,
@@ -68,8 +68,10 @@ final class AppTheme {
       primarySwatch: AppColors.primary,
       textTheme: textTheme,
       scaffoldBackgroundColor: AppColors.background,
-      splashColor: AppColors.transparent, // Change splash color
+      splashColor: AppColors.transparent,
       highlightColor: AppColors.transparent,
+      // remove ripple effect
+      splashFactory: NoSplash.splashFactory,
       popupMenuTheme: PopupMenuThemeData(
         shape: RoundedRectangleBorder(borderRadius: AppStyles.borderRadiusM),
       ),
@@ -83,6 +85,7 @@ final class AppTheme {
       ),
       appBarTheme: appBarTheme,
       tabBarTheme: tabBarTheme,
+
       bottomNavigationBarTheme: bottomNavigationBarThemeData,
     );
   }

@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:recipe_haven/config/extensions/duration_extensions.dart';
+import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/utils/duration_utils.dart';
 import 'package:recipe_haven/features/recipe/enums/recipe_difficulty.dart';
 

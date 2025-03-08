@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_haven/config/extensions/duration_extensions.dart';
+import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';

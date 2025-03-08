@@ -7,23 +7,29 @@ class AppInfoHighlight extends StatelessWidget {
     required this.child,
     this.color = AppColors.background,
     this.withMargin = false,
+    this.padding,
+    this.borderRadius,
   });
   final Widget child;
   final Color color;
   final bool withMargin;
+  final EdgeInsetsGeometry? padding;
+  final BorderRadiusGeometry? borderRadius;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: color,
-        borderRadius: AppStyles.borderRadiusML,
+        borderRadius: borderRadius ?? AppStyles.borderRadiusML,
       ),
       margin: withMargin ? EdgeInsets.all(AppSpacing.sm) : EdgeInsets.zero,
-      padding: EdgeInsets.symmetric(
-        vertical: AppSpacing.xs,
-        horizontal: AppSpacing.sl,
-      ),
+      padding:
+          padding ??
+          EdgeInsets.symmetric(
+            vertical: AppSpacing.xs,
+            horizontal: AppSpacing.sl,
+          ),
       child: child,
     );
   }

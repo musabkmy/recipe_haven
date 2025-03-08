@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:recipe_haven/config/extensions/duration_extensions.dart';
+import 'package:recipe_haven/config/extensions/duration_extension.dart';
 
 void main() {
   test('from human Duration to Duration class', () {
