@@ -6,7 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/numbers_extension.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
-import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
+
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/recipe_info/recipe_info_layouts.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/shared/recipe_shared_layouts.dart';

@@ -4,7 +4,10 @@ import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
-import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+import 'package:recipe_haven/core/shared_layouts/app_info_highlight.dart';
+import 'package:recipe_haven/core/shared_layouts/app_item_network_image.dart';
+import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
+
 import 'package:recipe_haven/features/recipe/domain/entities/creator_entity.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/recipe_entity.dart';
 

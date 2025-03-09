@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
@@ -9,10 +8,11 @@ import 'package:recipe_haven/features/recipe/presentation/layouts/shared/build_r
 
 class BuildReviewsThumbsGallery extends StatelessWidget {
   const BuildReviewsThumbsGallery(this.reviewsImages, {super.key});
-  final List<String> reviewsImages;
+  //key: creator, value: images Url
+  final Map<String, List<String>> reviewsImages;
   @override
   Widget build(BuildContext context) {
-    return reviewsImages == []
+    return reviewsImages.isEmpty
         ? SizedBox.shrink()
         : GestureDetector(
           onTap:
@@ -28,19 +28,30 @@ class BuildReviewsThumbsGallery extends StatelessWidget {
                 return Row(
                   spacing: AppSpacing.sm,
                   children:
-                      reviewsImages.asMap().entries.map((element) {
-                        return Expanded(
-                          child: BuildRecipeImageLayout(
-                            height: itemSize,
-                            width: itemSize,
-                            imageUrl: element.value,
-                            child:
-                                element.key == 3 && reviewsImages.length >= 5
-                                    ? _buildToGalleryImage(itemSize, context)
-                                    : SizedBox.shrink(),
-                          ),
-                        );
-                      }).toList(),
+                      reviewsImages.values
+                          .map((list) => list.first)
+                          .take(4)
+                          .toList()
+                          .asMap()
+                          .entries
+                          .map(
+                            (element) => Expanded(
+                              child: BuildRecipeImageLayout(
+                                height: itemSize,
+                                width: itemSize,
+                                imageUrl: element.value,
+                                child:
+                                    element.key == 3 &&
+                                            reviewsImages.length >= 5
+                                        ? _buildToGalleryImage(
+                                          itemSize,
+                                          context,
+                                        )
+                                        : SizedBox.shrink(),
+                              ),
+                            ),
+                          )
+                          .toList(),
                 );
               },
             ),

@@ -52,7 +52,7 @@ class BuildToReviews extends StatelessWidget {
                   ),
                 ],
               ),
-              BuildReviewsThumbsGallery(reviews.reviewsImages()),
+              BuildReviewsThumbsGallery(reviews.creatorsReviewImages()),
             ],
           ),
         );

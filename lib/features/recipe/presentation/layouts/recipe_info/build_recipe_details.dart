@@ -6,7 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
-import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
+
 import 'package:recipe_haven/features/recipe/domain/entities/details/entities_details.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/shared/shared_layouts.dart';
 import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';

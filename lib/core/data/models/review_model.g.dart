@@ -13,7 +13,7 @@ ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) => ReviewModel(
   userProfilePic: json['userProfilePic'] as String?,
   imagesUrl:
       (json['imagesUrl'] as List<dynamic>).map((e) => e as String).toList(),
-  rating: (json['rating'] as num).toDouble(),
+  rating: (json['rating'] as num?)?.toDouble(),
   publishedAt: DateTime.parse(json['publishedAt'] as String),
   description: json['description'] as String,
 );

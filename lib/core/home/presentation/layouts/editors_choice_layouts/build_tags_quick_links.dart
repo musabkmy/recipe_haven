@@ -8,7 +8,7 @@ import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/constants/app_styles.dart';
 import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubit.dart';
-import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+import 'package:recipe_haven/core/shared_layouts/app_section_title.dart';
 
 class BuildTagsQuickLinks extends StatelessWidget {
   const BuildTagsQuickLinks({super.key});

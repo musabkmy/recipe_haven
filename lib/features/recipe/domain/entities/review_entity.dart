@@ -39,19 +39,15 @@ extension ReviewsEx on Reviews {
     return count;
   }
 
-  List<String> reviewsImages() {
-    List<String> images = [];
+  Map<String, List<String>> creatorsReviewImages() {
+    Map<String, List<String>> images = {};
 
     if (isNotEmpty) {
       for (int i = 0; i < length; i++) {
         if (this[i].imagesUrl.isNotEmpty) {
-          images.addAll(this[i].imagesUrl);
+          images[this[i].userID] = this[i].imagesUrl;
         }
       }
-    }
-    // Logger('reviewsImages').info(images.length);
-    if (images.length > 4) {
-      return images.take(4).toList();
     }
     return images;
   }

@@ -5,7 +5,7 @@ import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/layouts/editors_choice_layouts/recipe_layout.dart';
 import 'package:recipe_haven/core/shared_layouts/app_section_title.dart';
-import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BuildTonightCook extends StatelessWidget {

@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
-import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
+import 'package:recipe_haven/core/shared_layouts/app_section_title.dart';
 
 class BuildBestCreators extends StatelessWidget {
   const BuildBestCreators({super.key});

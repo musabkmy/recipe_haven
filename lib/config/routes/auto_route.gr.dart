@@ -234,7 +234,7 @@ class RegisterRoute extends _i14.PageRouteInfo<void> {
 class ReviewsImagesGalleryRoute
     extends _i14.PageRouteInfo<ReviewsImagesGalleryRouteArgs> {
   ReviewsImagesGalleryRoute({
-    required List<String> reviewsImages,
+    required Map<String, List<String>> reviewsImages,
     _i15.Key? key,
     List<_i14.PageRouteInfo>? children,
   }) : super(
@@ -260,7 +260,7 @@ class ReviewsImagesGalleryRoute
 class ReviewsImagesGalleryRouteArgs {
   const ReviewsImagesGalleryRouteArgs({required this.reviewsImages, this.key});
 
-  final List<String> reviewsImages;
+  final Map<String, List<String>> reviewsImages;
 
   final _i15.Key? key;
 

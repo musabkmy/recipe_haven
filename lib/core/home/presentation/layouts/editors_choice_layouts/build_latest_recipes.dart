@@ -5,7 +5,12 @@ import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/constants.dart';
-import 'package:recipe_haven/core/shared_layouts/shared_layouts.dart';
+import 'package:recipe_haven/core/shared_layouts/app_icon_text.dart';
+import 'package:recipe_haven/core/shared_layouts/app_info_highlight.dart';
+import 'package:recipe_haven/core/shared_layouts/app_item_network_image.dart';
+import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
+import 'package:recipe_haven/core/shared_layouts/app_section_title.dart';
+
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 
