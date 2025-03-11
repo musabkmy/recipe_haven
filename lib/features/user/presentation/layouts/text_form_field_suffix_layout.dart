@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/core/enums/validation_type.dart';
+import 'package:recipe_haven/core/shared_layouts/app_loading_layout.dart';
 
 extension ValidationTypeEx on ValidationType {
   Widget? get suffixLayout {
@@ -34,9 +35,6 @@ final class _BuildValidSuffix extends StatelessWidget {
 final class _BuildProcessingSuffix extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CircularProgressIndicator(
-      color: AppColors.grey400,
-      constraints: BoxConstraints(maxHeight: 24, maxWidth: 24),
-    );
+    return AppLoadingLayout(color: AppColors.grey400);
   }
 }

@@ -3,9 +3,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/config/extensions/numbers_extension.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
+import 'package:recipe_haven/core/shared_layouts/app_loading_layout.dart';
 import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
 
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
@@ -22,7 +24,7 @@ class RecipeInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RecipeInfoBloc()..initRecipe(id, recipe),
+      create: (_) => getIt<RecipeInfoBloc>()..initRecipe(id, recipe),
       child: _RecipeInfoBody(),
     );
   }
@@ -122,9 +124,8 @@ class _RecipeInfoBody extends StatelessWidget {
           (context, imageProvider) =>
               Image(fit: BoxFit.cover, image: imageProvider),
       progressIndicatorBuilder:
-          (context, url, progress) => Center(
-            child: CircularProgressIndicator(value: progress.progress),
-          ),
+          (context, url, progress) =>
+              Center(child: AppLoadingLayout(value: progress.progress)),
     );
   }
 

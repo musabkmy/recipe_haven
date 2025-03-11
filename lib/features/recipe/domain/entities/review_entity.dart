@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 typedef Reviews = List<Review>;
@@ -27,6 +28,21 @@ class Review extends Equatable {
 
   @override
   List<Object?> get props => [id];
+
+  factory Review.empty() {
+    return Review(
+      id: '',
+      userID: '',
+      userName: 'Unknown',
+      userProfilePic: '',
+      imagesUrl: [],
+      publishedAt: DateTime.now(),
+      description: '',
+    );
+  }
+
+  @override
+  bool get stringify => true;
 }
 
 extension ReviewsEx on Reviews {
@@ -39,13 +55,13 @@ extension ReviewsEx on Reviews {
     return count;
   }
 
-  Map<String, List<String>> creatorsReviewImages() {
+  Map<String, List<String>> reviewsImages() {
     Map<String, List<String>> images = {};
 
     if (isNotEmpty) {
       for (int i = 0; i < length; i++) {
         if (this[i].imagesUrl.isNotEmpty) {
-          images[this[i].userID] = this[i].imagesUrl;
+          images[this[i].id] = this[i].imagesUrl;
         }
       }
     }

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/core/utils/find_id_index.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
 
@@ -16,6 +17,7 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
   }
 
   void _onLoadRecipe(RecipeLoadEvent event, Emitter<RecipeInfoState> emit) {
+    Logger logger = Logger('_onLoadRecipe');
     emit(RecipeInfoLoading());
     final receiveDetails = event.recipe.details;
     final selectedPortion = event.recipe.selectedPortion;
@@ -25,9 +27,12 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
     );
     final hasPrevious = (selectedPortionIndex - 1) >= 0;
     final hasNext = (selectedPortionIndex + 1) < receiveDetails.servings.length;
+    final reviewsMap = _getReviewsMap(event.recipe.reviews);
+    logger.info(reviewsMap.toString());
     emit(
       RecipeInfoSuccess(
         event.recipe,
+        reviewsMap: reviewsMap,
         selectedPortion: selectedPortion,
         hasPrevious: hasPrevious,
         hasNext: hasNext,
@@ -89,5 +94,13 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
       // Fetch from Firestore
       add(FetchRecipe(id));
     }
+  }
+
+  Map<String, Review> _getReviewsMap(Reviews reviews) {
+    final Map<String, Review> reviewsMap = {};
+    for (var element in reviews) {
+      reviewsMap[element.id] = element;
+    }
+    return reviewsMap;
   }
 }

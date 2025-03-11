@@ -36,7 +36,7 @@ Row _buildShareAndFav(Recipe recipe) {
         onTap: () {},
       ),
       BuildCircularButton(
-        iconData: CupertinoIcons.heart,
+        iconData: AppIcons.favorite,
         label: recipe.usersEngagement.likesCount.countFormat,
         onTap: () {},
       ),
@@ -50,26 +50,30 @@ Column _buildRating(Recipe recipe, BuildContext context) {
       SizedBox(
         height: 30,
         child: ListView.builder(
-            itemCount: 5,
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Icon(
-                0.9 >= (recipe.usersEngagement.rating - (index + 1)) &&
-                        0.1 <= (recipe.usersEngagement.rating - (index + 1))
-                    ? AppIcons.halfStar
-                    : (recipe.usersEngagement.rating - (index + 1)) < 0.1
-                        ? AppIcons.noStar
-                        : AppIcons.fullStar,
-                color: (recipe.usersEngagement.rating - (index + 1)) < 0.1
-                    ? AppColors.grey300
-                    : AppColors.orange,
-                size: 32.spMin,
-              );
-            }),
+          itemCount: 5,
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Icon(
+              0.9 >= (recipe.usersEngagement.rating - (index + 1)) &&
+                      0.1 <= (recipe.usersEngagement.rating - (index + 1))
+                  ? AppIcons.halfStar
+                  : (recipe.usersEngagement.rating - (index + 1)) < 0.1
+                  ? AppIcons.noStar
+                  : AppIcons.fullStar,
+              color:
+                  (recipe.usersEngagement.rating - (index + 1)) < 0.1
+                      ? AppColors.grey300
+                      : AppColors.orange,
+              size: 32.spMin,
+            );
+          },
+        ),
       ),
-      Text('Based on ${recipe.usersEngagement.ratingCount.countFormat} ratings',
-          style: context.caption),
+      Text(
+        'Based on ${recipe.usersEngagement.ratingCount.countFormat} ratings',
+        style: context.caption,
+      ),
     ],
   );
 }
@@ -86,7 +90,7 @@ Column _buildRating(Recipe recipe, BuildContext context) {
 //               imageBuilder: (context, imageProvider) =>
 //                   Image(fit: BoxFit.cover, image: imageProvider),
 //               progressIndicatorBuilder: (context, url, progress) => Center(
-//                 child: CircularProgressIndicator(value: progress.progress),
+//                 child: AppLoadingLayout(value: progress.progress),
 //               ),
 //             )),
 //         Text(recipe.title, style: context.headlineLarge),

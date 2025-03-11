@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/constants/constants.dart';
 
 class RecipeAppBarLeading extends StatelessWidget {
-  const RecipeAppBarLeading({super.key});
-
+  const RecipeAppBarLeading({super.key, this.color = AppColors.background});
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return context.router.canPop()
@@ -15,10 +15,7 @@ class RecipeAppBarLeading extends StatelessWidget {
             width: 24.sp,
             alignment: Alignment.center,
             // margin: EdgeInsets.symmetric(horizontal: AppSpacing.md),
-            decoration: BoxDecoration(
-              color: AppColors.background,
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
             child: Icon(color: AppColors.grey900, AppIcons.backArrow),
           ),
           onTap: () {

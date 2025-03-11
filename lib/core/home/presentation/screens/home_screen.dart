@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/core/home/presentation/layouts/home_layouts.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
+import 'package:recipe_haven/core/shared_layouts/app_loading_layout.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -34,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           return Center(child: Text(state.errorMsg));
         } else {
           logger.info('loading');
-          return Center(child: CircularProgressIndicator());
+          return Center(child: AppLoadingLayout());
         }
       },
     );

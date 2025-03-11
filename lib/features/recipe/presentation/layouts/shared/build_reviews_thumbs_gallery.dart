@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/constants.dart';
-import 'package:recipe_haven/features/recipe/presentation/layouts/shared/build_recipe_image_layout.dart';
+import 'package:recipe_haven/core/shared_layouts/app_recipe_image_layout.dart';
 
 class BuildReviewsThumbsGallery extends StatelessWidget {
   const BuildReviewsThumbsGallery(this.reviewsImages, {super.key});
@@ -36,7 +36,7 @@ class BuildReviewsThumbsGallery extends StatelessWidget {
                           .entries
                           .map(
                             (element) => Expanded(
-                              child: BuildRecipeImageLayout(
+                              child: AppImageLayout(
                                 height: itemSize,
                                 width: itemSize,
                                 imageUrl: element.value,

@@ -140,7 +140,7 @@ class BuildCookingStep extends StatelessWidget {
     List<String> stepImages = step.imagesUrl;
     //TODO: make list of images
 
-    return BuildRecipeImageLayout(
+    return AppImageLayout(
       imageUrl: stepImages.first,
       height: .6.sw,
       width: double.maxFinite,

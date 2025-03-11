@@ -17,6 +17,8 @@ final class AppIcons {
   static const replay = Icons.autorenew_sharp;
   static const uploadImage = Icons.camera_alt_outlined;
   static const favorite = CupertinoIcons.heart;
+  static const time = CupertinoIcons.clock;
+  static const flag = Icons.flag;
 
   const AppIcons._();
 }

@@ -14,27 +14,32 @@ final class RecipeInfoLoading extends RecipeInfoState {}
 
 class RecipeInfoSuccess extends RecipeInfoState {
   final Recipe recipe;
+  final Map<String, Review> reviewsMap;
   final PortionBasedRecipe selectedPortion;
   final bool hasNext;
   final bool hasPrevious;
   const RecipeInfoSuccess(
     this.recipe, {
+    required this.reviewsMap,
     required this.selectedPortion,
     required this.hasPrevious,
     required this.hasNext,
   });
 
   @override
-  List<Object> get props => [recipe, selectedPortion];
+  List<Object> get props => [recipe, selectedPortion, reviewsMap];
 
   RecipeInfoSuccess copyWith({
     Recipe? recipe,
+    Map<String, Review>? reviewsMap,
     PortionBasedRecipe? selectedPortion,
     bool? hasNext,
     bool? hasPrevious,
   }) {
     return RecipeInfoSuccess(
       recipe ?? this.recipe,
+      reviewsMap: reviewsMap ?? this.reviewsMap,
+
       selectedPortion: selectedPortion ?? this.selectedPortion,
       hasPrevious: hasPrevious ?? this.hasPrevious,
       hasNext: hasNext ?? this.hasNext,

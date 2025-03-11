@@ -55,6 +55,12 @@ class AppRouter extends RootStackRouter {
       path: '/reviewsImagesGalleryRoute',
       page: ReviewsImagesGalleryRoute.page,
     ),
+    CustomRoute(
+      path: '/reviewFullRouteImageRoute',
+      page: ReviewFullRouteImageRoute.page,
+      fullscreenDialog: true,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
   ];
   @override
   List<AutoRouteGuard> get guards => [AuthGuard()];

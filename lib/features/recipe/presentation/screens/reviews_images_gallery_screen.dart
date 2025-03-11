@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/core/shared_layouts/app_base_bar.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/layouts.dart';
@@ -27,9 +28,9 @@ class _ReviewsImagesGalleryScreenState
 
   List<_BuildImage> _buildWidgets(Map<String, List<String>> reviewsImages) {
     final widgets = <_BuildImage>[];
-    reviewsImages.forEach((creator, images) {
+    reviewsImages.forEach((reviewId, images) {
       for (var imageUrl in images) {
-        widgets.add(_BuildImage(creator, imageUrl));
+        widgets.add(_BuildImage(reviewId, imageUrl));
       }
     });
     return widgets;
@@ -62,15 +63,36 @@ class _ReviewsImagesGalleryScreenState
 }
 
 class _BuildImage extends StatelessWidget {
-  const _BuildImage(this.creatorId, this.image);
-  final String creatorId;
-  final String image;
+  const _BuildImage(this.reviewId, this.imageUrl);
+  final String reviewId;
+  final String imageUrl;
   @override
   Widget build(BuildContext context) {
-    return BuildRecipeImageLayout(
-      height: double.maxFinite,
-      width: double.maxFinite,
-      imageUrl: image,
+    final tag = '$reviewId/$imageUrl';
+    return GestureDetector(
+      onTap:
+          () => context.router.push(
+            ReviewFullRouteImageRoute(
+              imageUrl: imageUrl,
+              reviewId: reviewId,
+              tag: tag,
+            ),
+          ),
+      child: Hero(
+        tag: tag,
+        transitionOnUserGestures: true,
+        // createRectTween: (begin, end) {
+        //   return RectTween(
+        //     begin: Rect.fromCircle(center: Offset(100, 150), radius: 250),
+        //     end: end,
+        //   );
+        // },
+        child: AppImageLayout(
+          height: double.maxFinite,
+          width: double.maxFinite,
+          imageUrl: imageUrl,
+        ),
+      ),
     );
   }
 }

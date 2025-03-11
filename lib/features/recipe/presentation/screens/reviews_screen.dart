@@ -106,7 +106,7 @@ class BuildCommentsListLayout extends StatelessWidget {
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: AppSpacing.minHorizontal),
             sliver: SliverToBoxAdapter(
-              child: BuildReviewsThumbsGallery(reviews.creatorsReviewImages()),
+              child: BuildReviewsThumbsGallery(reviews.reviewsImages()),
             ),
           ),
           SliverToBoxAdapter(child: AppSpacer(height: AppSpacing.xxl)),
@@ -176,7 +176,7 @@ class BuildCommentLayout extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Icon(Icons.flag),
+                    Icon(AppIcons.flag),
                   ],
                 ),
                 Column(
@@ -195,7 +195,7 @@ class BuildCommentLayout extends StatelessWidget {
                                 children:
                                     imagesUrl
                                         .map(
-                                          (item) => BuildRecipeImageLayout(
+                                          (item) => AppImageLayout(
                                             height: .4.sh,
                                             width: double.maxFinite,
                                             imageUrl: item,
