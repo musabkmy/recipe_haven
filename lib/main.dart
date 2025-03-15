@@ -11,14 +11,14 @@ import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubi
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
-import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/recipe/presentation/blocs/create_comment_bloc/create_comment_bloc.dart';
+import 'package:recipe_haven/features/recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/providers/form_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await configurationDependency(Env.dev);
 
   //Initialize logging

@@ -37,21 +37,21 @@ class ReadMoreText extends StatelessWidget {
             );
           },
         ),
-        isTextVisible(text, textStyle, maxLines, maxWidth)
+        _isTextVisible(text, textStyle, maxLines, maxWidth)
             ? GestureDetector(
-                onTap: () {
-                  isExpanded.value = !isExpanded.value;
+              onTap: () {
+                isExpanded.value = !isExpanded.value;
+              },
+              child: ValueListenableBuilder(
+                valueListenable: isExpanded,
+                builder: (context, value, child) {
+                  return Text(
+                    value ? readLessText : readMoreText,
+                    style: textButtonStyle,
+                  );
                 },
-                child: ValueListenableBuilder(
-                  valueListenable: isExpanded,
-                  builder: (context, value, child) {
-                    return Text(
-                      value ? readLessText : readMoreText,
-                      style: textButtonStyle,
-                    );
-                  },
-                ),
-              )
+              ),
+            )
             : SizedBox.shrink(),
       ],
     );
@@ -59,8 +59,12 @@ class ReadMoreText extends StatelessWidget {
 }
 
 ///check if the text can take all the available space
-bool isTextVisible(
-    String text, TextStyle textStyle, int maxLines, double maxWidth) {
+bool _isTextVisible(
+  String text,
+  TextStyle textStyle,
+  int maxLines,
+  double maxWidth,
+) {
   final TextPainter textPainter = TextPainter(
     text: TextSpan(text: text, style: textStyle),
     maxLines: maxLines,

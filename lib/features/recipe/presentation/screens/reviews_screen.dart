@@ -1,22 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/date_time_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
-import 'package:recipe_haven/constants/app_box_shadows.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_base_bar.dart';
 import 'package:recipe_haven/core/shared_layouts/app_icon_text.dart';
 import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
 import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
 import 'package:recipe_haven/core/shared_layouts/app_text_button.dart';
-import 'package:recipe_haven/core/shared_layouts/app_text_form_field.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/review_entity.dart';
+import 'package:recipe_haven/features/recipe/presentation/blocs/create_comment_bloc/create_comment_bloc.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/layouts.dart';
+import 'package:recipe_haven/features/recipe/presentation/layouts/reviews/reviews_layouts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 const double _profileImageSize = 42;
 final _commentSectionHeight = .14.sh;
+final _createCommentImageSectionHeight = .07.sh;
 
 @RoutePage()
 class ReviewsScreen extends StatelessWidget {
@@ -29,58 +31,18 @@ class ReviewsScreen extends StatelessWidget {
         // leading: RecipeAppBarLeading(),
         title: 'Comments',
       ),
-      body: Stack(
-        children: [
-          reviews.isNotEmpty
-              ? BuildCommentsListLayout(reviews: reviews)
-              : Center(child: Text('There is no Reviews yet')),
-          BuildWriteCommentLayout(),
-        ],
-      ),
-    );
-  }
-}
-
-class BuildWriteCommentLayout extends StatelessWidget {
-  const BuildWriteCommentLayout({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      right: 0,
-      left: 0,
-      bottom: 0,
-      height: _commentSectionHeight,
-      child: Container(
-        alignment: Alignment.topCenter,
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.sl,
-        ).copyWith(top: AppSpacing.md),
-        decoration: BoxDecoration(
-          color: AppColors.background,
-          boxShadow: [AppBoxShadows.soft],
-        ),
-        child: Row(
-          spacing: AppSpacing.sl,
+      body: BlocProvider(
+        //do not need to add it as a dependency, because its usage is limited to this part only
+        create: (context) => CreateCommentBloc(),
+        child: Stack(
           children: [
-            GestureDetector(
-              onTap: () {},
-              child: Icon(
-                AppIcons.uploadImage,
-                size: 32,
-                color: AppColors.deepOrange,
-              ),
+            reviews.isNotEmpty
+                ? BuildCommentsListLayout(reviews: reviews)
+                : Center(child: Text('There is no Reviews yet')),
+            BuildInReviewsWriteCommentLayout(
+              _commentSectionHeight,
+              _createCommentImageSectionHeight,
             ),
-            Expanded(
-              child: AppTextFormField(
-                hintText: 'write a comment',
-                initialValue: '',
-                onChanged: (p0) {
-                  //TODO: Add Comment
-                },
-              ),
-            ),
-            AppTextButton(label: 'Send', onPressed: null),
           ],
         ),
       ),
@@ -99,7 +61,7 @@ class BuildCommentsListLayout extends StatelessWidget {
       top: 0,
       left: 0,
       right: 0,
-      bottom: _commentSectionHeight,
+      bottom: 0,
       child: CustomScrollView(
         // spacing: AppSpacing.md,
         slivers: [
@@ -115,6 +77,9 @@ class BuildCommentsListLayout extends StatelessWidget {
             delegate: SliverChildBuilderDelegate((context, index) {
               return BuildCommentLayout(reviews[index]);
             }, childCount: reviews.length),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(bottom: _commentSectionHeight),
           ),
         ],
       ),
@@ -133,7 +98,7 @@ class BuildCommentLayout extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: AppSpacing.minHorizontal,
-      ).copyWith(bottom: AppSpacing.xxl),
+      ).copyWith(bottom: AppSpacing.xl),
       child: Row(
         spacing: AppSpacing.md,
         mainAxisSize: MainAxisSize.min,

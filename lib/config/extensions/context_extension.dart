@@ -22,5 +22,7 @@ extension ContextEx on BuildContext {
 
   TextStyle get bodySmallAction =>
       bodySmall.copyWith(color: AppColors.deepOrange);
+  TextStyle get bodySmallCancelAction =>
+      bodySmall.copyWith(color: AppColors.grey700);
   TextStyle get caption => Theme.of(this).textTheme.labelSmall!;
 }

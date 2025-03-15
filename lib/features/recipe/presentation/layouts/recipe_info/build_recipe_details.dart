@@ -10,7 +10,7 @@ import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
 
 import 'package:recipe_haven/features/recipe/domain/entities/details/entities_details.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/shared/shared_layouts.dart';
-import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
 
 // ignore: must_be_immutable
 class BuildRecipeDetails extends StatelessWidget {

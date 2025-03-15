@@ -19,6 +19,7 @@ final class AppIcons {
   static const favorite = CupertinoIcons.heart;
   static const time = CupertinoIcons.clock;
   static const flag = Icons.flag;
+  static const removeCircle = Icons.remove_circle_rounded;
 
   const AppIcons._();
 }

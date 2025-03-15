@@ -9,7 +9,7 @@ import 'package:recipe_haven/constants/app_icons.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/core/shared_layouts/app_recipe_image_layout.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/review_entity.dart';
-import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
 
 @RoutePage()
 class ReviewFullScreenImageScreen extends StatelessWidget {

@@ -13,7 +13,7 @@ import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
 import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/recipe_info/recipe_info_layouts.dart';
 import 'package:recipe_haven/features/recipe/presentation/layouts/shared/recipe_shared_layouts.dart';
-import 'package:recipe_haven/features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
 
 @RoutePage()
 class RecipeInfoScreen extends StatelessWidget {

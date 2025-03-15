@@ -12,6 +12,9 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../core/animation/animation_service.dart' as _i644;
+import '../../core/animation/animation_service_auto_animate_service_impl.dart'
+    as _i513;
 import '../../core/data/mocking_sources/recipe_mock_source.dart' as _i779;
 import '../../core/data/mocking_sources/user_mock_source.dart' as _i430;
 import '../../core/data/repositories/recipe_repository_firebase_impl.dart'
@@ -27,8 +30,8 @@ import '../../core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cub
     as _i1048;
 import '../../features/recipe/domain/repositories/recipe_repository.dart'
     as _i76;
-import '../../features/recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart'
-    as _i242;
+import '../../features/recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart'
+    as _i220;
 import '../../features/recipe/recipe.dart' as _i1012;
 import '../../features/user/data/repositories/user_repository_firebase_impl.dart'
     as _i431;
@@ -53,8 +56,9 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.singleton<_i430.UserMockSource>(() => _i430.UserMockSource());
     gh.singleton<_i779.RecipeMockSource>(() => _i779.RecipeMockSource());
-    gh.singleton<_i242.RecipeInfoBloc>(() => _i242.RecipeInfoBloc());
+    gh.singleton<_i220.RecipeInfoBloc>(() => _i220.RecipeInfoBloc());
     gh.singleton<_i307.FormProvider>(() => _i307.FormProvider());
+    gh.factory<_i644.AnimationService>(() => _i513.AutoAnimateServiceImpl());
     gh.factory<_i237.UserRepository>(
       () => _i890.UserRepositoryTestImpl(gh<_i430.UserMockSource>()),
       registerFor: {_dev},
