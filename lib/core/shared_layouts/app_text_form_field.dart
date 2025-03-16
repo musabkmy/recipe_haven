@@ -7,8 +7,10 @@ import 'package:recipe_haven/constants/app_styles.dart';
 class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
     super.key,
+    this.controller,
     this.hintText,
-    required this.initialValue,
+
+    this.initialValue,
     this.keyboardType = TextInputType.text,
     required this.onChanged,
     this.validator,
@@ -19,9 +21,10 @@ class AppTextFormField extends StatelessWidget {
     this.enableInteractiveSelection = true,
     this.autovalidateMode = AutovalidateMode.onUnfocus,
     this.autofillHints,
+    this.onFieldSubmitted,
   });
   final String? hintText;
-  final String initialValue;
+  final String? initialValue;
   final TextInputType keyboardType;
   final void Function(String) onChanged;
   final String? Function(String?)? validator;
@@ -32,12 +35,16 @@ class AppTextFormField extends StatelessWidget {
   final bool enableInteractiveSelection;
   final AutovalidateMode autovalidateMode;
   final Iterable<String>? autofillHints;
+  final void Function(String?)? onFieldSubmitted;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       initialValue: initialValue,
       onChanged: onChanged,
+      onFieldSubmitted: onFieldSubmitted,
       validator: validator,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
@@ -85,7 +92,7 @@ class AppTextFormField extends StatelessWidget {
       // onTapUpOutside:,
       // onEditingComplete:,
       // onFieldSubmitted:,
-      // onSaved:,
+      // onFieldSubmitted:,
       // enabled,
       // cursorWidth = 2.0,
       // cursorHeight:,

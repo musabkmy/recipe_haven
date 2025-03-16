@@ -8,8 +8,8 @@ import 'package:recipe_haven/core/shared_layouts/app_info_highlight.dart';
 import 'package:recipe_haven/core/shared_layouts/app_item_network_image.dart';
 import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
 
-import 'package:recipe_haven/features/recipe/domain/entities/creator_entity.dart';
-import 'package:recipe_haven/features/recipe/domain/entities/recipe_entity.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/creator_entity.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/recipe_entity.dart';
 
 class RecipeLayout extends StatelessWidget {
   const RecipeLayout({super.key, required this.recipe});

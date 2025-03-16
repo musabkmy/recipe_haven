@@ -17,20 +17,6 @@ import 'package:recipe_haven/core/home/presentation/screens/creators_screen.dart
     as _i2;
 import 'package:recipe_haven/core/home/presentation/screens/home_screen.dart'
     as _i4;
-import 'package:recipe_haven/features/recipe/domain/entities/entities.dart'
-    as _i17;
-import 'package:recipe_haven/features/recipe/domain/entities/review_entity.dart'
-    as _i18;
-import 'package:recipe_haven/features/recipe/presentation/screens/recipe_info_screen.dart'
-    as _i7;
-import 'package:recipe_haven/features/recipe/presentation/screens/recipe_parent_route.dart'
-    as _i8;
-import 'package:recipe_haven/features/recipe/presentation/screens/review_full_screen_image_screen.dart'
-    as _i10;
-import 'package:recipe_haven/features/recipe/presentation/screens/reviews_images_gallery_screen.dart'
-    as _i11;
-import 'package:recipe_haven/features/recipe/presentation/screens/reviews_screen.dart'
-    as _i12;
 import 'package:recipe_haven/features/user/presentation/screens/profile_screen.dart'
     as _i5;
 import 'package:recipe_haven/features/user/presentation/screens/profile_settings_screen.dart'
@@ -41,6 +27,20 @@ import 'package:recipe_haven/features/user/presentation/screens/signup_options_s
     as _i13;
 import 'package:recipe_haven/features/user/presentation/screens/signup_with_email_screen.dart'
     as _i14;
+import 'package:recipe_haven/features/view_recipe/domain/entities/entities.dart'
+    as _i17;
+import 'package:recipe_haven/features/view_recipe/domain/entities/review_entity.dart'
+    as _i18;
+import 'package:recipe_haven/features/view_recipe/presentation/screens/recipe_info_screen.dart'
+    as _i7;
+import 'package:recipe_haven/features/view_recipe/presentation/screens/recipe_parent_route.dart'
+    as _i8;
+import 'package:recipe_haven/features/view_recipe/presentation/screens/review_full_screen_image_screen.dart'
+    as _i10;
+import 'package:recipe_haven/features/view_recipe/presentation/screens/reviews_images_gallery_screen.dart'
+    as _i11;
+import 'package:recipe_haven/features/view_recipe/presentation/screens/reviews_screen.dart'
+    as _i12;
 import 'package:recipe_haven/tabs_parent_route.dart' as _i3;
 
 /// generated route for
@@ -335,12 +335,17 @@ class ReviewsImagesGalleryRouteArgs {
 /// [_i12.ReviewsScreen]
 class ReviewsRoute extends _i15.PageRouteInfo<ReviewsRouteArgs> {
   ReviewsRoute({
-    required _i18.Reviews reviews,
+    required dynamic recipeRef,
+    required _i18.Reviews currentReviews,
     _i16.Key? key,
     List<_i15.PageRouteInfo>? children,
   }) : super(
          ReviewsRoute.name,
-         args: ReviewsRouteArgs(reviews: reviews, key: key),
+         args: ReviewsRouteArgs(
+           recipeRef: recipeRef,
+           currentReviews: currentReviews,
+           key: key,
+         ),
          initialChildren: children,
        );
 
@@ -350,21 +355,31 @@ class ReviewsRoute extends _i15.PageRouteInfo<ReviewsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ReviewsRouteArgs>();
-      return _i12.ReviewsScreen(args.reviews, key: args.key);
+      return _i12.ReviewsScreen(
+        args.recipeRef,
+        args.currentReviews,
+        key: args.key,
+      );
     },
   );
 }
 
 class ReviewsRouteArgs {
-  const ReviewsRouteArgs({required this.reviews, this.key});
+  const ReviewsRouteArgs({
+    required this.recipeRef,
+    required this.currentReviews,
+    this.key,
+  });
 
-  final _i18.Reviews reviews;
+  final dynamic recipeRef;
+
+  final _i18.Reviews currentReviews;
 
   final _i16.Key? key;
 
   @override
   String toString() {
-    return 'ReviewsRouteArgs{reviews: $reviews, key: $key}';
+    return 'ReviewsRouteArgs{recipeRef: $recipeRef, currentReviews: $currentReviews, key: $key}';
   }
 }
 

@@ -20,6 +20,10 @@ import '../../core/data/mocking_sources/user_mock_source.dart' as _i430;
 import '../../core/data/repositories/recipe_repository_firebase_impl.dart'
     as _i766;
 import '../../core/data/repositories/recipe_repository_test_impl.dart' as _i650;
+import '../../core/data/repositories/recipe_upload_files_repository_supabase_impl.dart'
+    as _i682;
+import '../../core/data/repositories/recipe_upload_files_repository_test_impl.dart'
+    as _i938;
 import '../../core/home/presentation/get_creators_cubit/get_creators_cubit.dart'
     as _i579;
 import '../../core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart'
@@ -28,11 +32,6 @@ import '../../core/home/presentation/get_tags_cubit/get_tags_cubit.dart'
     as _i296;
 import '../../core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart'
     as _i1048;
-import '../../features/recipe/domain/repositories/recipe_repository.dart'
-    as _i76;
-import '../../features/recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart'
-    as _i220;
-import '../../features/recipe/recipe.dart' as _i1012;
 import '../../features/user/data/repositories/user_repository_firebase_impl.dart'
     as _i431;
 import '../../features/user/data/repositories/user_repository_test_impl.dart'
@@ -43,6 +42,15 @@ import '../../features/user/presentation/state_management/bloc/user_bloc.dart'
     as _i809;
 import '../../features/user/presentation/state_management/providers/form_provider.dart'
     as _i307;
+import '../../features/view_recipe/domain/repositories/recipe_repository.dart'
+    as _i208;
+import '../../features/view_recipe/domain/repositories/recipe_upload_files_repository.dart'
+    as _i998;
+import '../../features/view_recipe/presentation/blocs/create_review_bloc/create_review_bloc.dart'
+    as _i820;
+import '../../features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart'
+    as _i35;
+import '../../features/view_recipe/recipe.dart' as _i964;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -56,22 +64,39 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.singleton<_i430.UserMockSource>(() => _i430.UserMockSource());
     gh.singleton<_i779.RecipeMockSource>(() => _i779.RecipeMockSource());
-    gh.singleton<_i220.RecipeInfoBloc>(() => _i220.RecipeInfoBloc());
     gh.singleton<_i307.FormProvider>(() => _i307.FormProvider());
+    gh.singleton<_i35.RecipeInfoBloc>(() => _i35.RecipeInfoBloc());
+    gh.factory<_i998.RecipeUploadFilesRepository>(
+      () => _i938.RecipeUploadFilesRepositoryTestImpl(),
+      registerFor: {_dev},
+    );
     gh.factory<_i644.AnimationService>(() => _i513.AutoAnimateServiceImpl());
     gh.factory<_i237.UserRepository>(
       () => _i890.UserRepositoryTestImpl(gh<_i430.UserMockSource>()),
       registerFor: {_dev},
     );
-    gh.factory<_i1012.RecipeRepository>(
+    gh.factory<_i998.RecipeUploadFilesRepository>(
+      () => _i682.RecipeUploadFilesRepositorySupabaseImpl(),
+      registerFor: {_prod},
+    );
+    gh.factory<_i964.RecipeRepository>(
       () => _i650.RecipeRepositoryTestImpl(gh<_i779.RecipeMockSource>()),
       registerFor: {_dev},
+    );
+    gh.singleton<_i1048.GetTonightCookCubit>(
+      () => _i1048.GetTonightCookCubit(gh<_i208.RecipeRepository>()),
+    );
+    gh.singleton<_i296.GetTagsCubit>(
+      () => _i296.GetTagsCubit(gh<_i208.RecipeRepository>()),
+    );
+    gh.singleton<_i414.GetRecipesCubit>(
+      () => _i414.GetRecipesCubit(gh<_i964.RecipeRepository>()),
     );
     gh.factory<_i237.UserRepository>(
       () => _i431.UserRepositoryFirebaseImpl(),
       registerFor: {_prod},
     );
-    gh.factory<_i1012.RecipeRepository>(
+    gh.factory<_i964.RecipeRepository>(
       () => _i766.RecipeRepositoryFirebaseImpl(),
       registerFor: {_prod},
     );
@@ -81,14 +106,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i809.UserBloc>(
       () => _i809.UserBloc(gh<_i587.UserRepository>()),
     );
-    gh.singleton<_i1048.GetTonightCookCubit>(
-      () => _i1048.GetTonightCookCubit(gh<_i76.RecipeRepository>()),
-    );
-    gh.singleton<_i296.GetTagsCubit>(
-      () => _i296.GetTagsCubit(gh<_i76.RecipeRepository>()),
-    );
-    gh.singleton<_i414.GetRecipesCubit>(
-      () => _i414.GetRecipesCubit(gh<_i1012.RecipeRepository>()),
+    gh.lazySingleton<_i820.CreateReviewBloc>(
+      () => _i820.CreateReviewBloc(
+        gh<_i208.RecipeRepository>(),
+        gh<_i998.RecipeUploadFilesRepository>(),
+      ),
     );
     return this;
   }

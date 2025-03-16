@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:recipe_haven/features/recipe/domain/entities/cooking_step_entity.dart';
-import 'package:recipe_haven/features/recipe/enums/recipe_step_font_size.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/cooking_step_entity.dart';
+import 'package:recipe_haven/features/view_recipe/enums/recipe_step_font_size.dart';
 
 part 'cooking_step_model.g.dart';
 

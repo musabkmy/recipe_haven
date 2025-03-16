@@ -20,14 +20,14 @@ class AuthGuard extends AutoRouteGuard {
     final userBloc = getIt<UserBloc>();
 
     debugPrint(
-      'userBloc is UserDataSuccess: ${userBloc.state is UserDataSuccess} \n resolver.route: ${resolver.route.name}',
+      'userBloc is UserDataFetched: ${userBloc.state is UserDataFetched} \n resolver.route: ${resolver.route.name}',
     );
 
     if (publicRoutes.contains(route.name)) {
       resolver.next(true); // Allow navigation
       return;
     }
-    if (userBloc.state is UserDataSuccess) {
+    if (userBloc.state is UserDataFetched) {
       resolver.next(true);
     } else {
       router.push(RegisterRoute());

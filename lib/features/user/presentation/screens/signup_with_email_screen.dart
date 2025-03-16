@@ -34,7 +34,7 @@ class SignupWithEmailScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is UserDataLoading) {
             LoadingOverlay.show(context);
-          } else if (state is UserDataSuccess) {
+          } else if (state is UserDataFetched) {
             LoadingOverlay.hide(context);
             context.router.replace(AppRoute());
           } else if (state is UserDataFailure) {

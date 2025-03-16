@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
-import 'package:recipe_haven/features/recipe/presentation/layouts/layouts.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/layouts/layouts.dart';
 
 void main() {
   setUpAll(() async {

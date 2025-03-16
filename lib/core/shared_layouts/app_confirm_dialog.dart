@@ -5,9 +5,11 @@ import 'package:recipe_haven/config/extensions/object_extension.dart';
 Future<bool?> appConfirmDialog(
   BuildContext context, {
   required String title,
+  String actionTitle = 'Confirm',
+  String cancelTitle = 'Cancel',
   String? content,
   required void Function() onAction,
-  required void Function() onCancel,
+  void Function()? onCancel,
 }) {
   return showCupertinoDialog<bool>(
     context: context,
@@ -17,17 +19,29 @@ Future<bool?> appConfirmDialog(
           content: content.let(
             (content) => Text(content, style: context.bodyMedium),
           ),
-          actions: [
-            CupertinoDialogAction(
-              onPressed: onCancel,
-              child: Text('Cancel', style: context.bodySmallCancelAction),
-            ),
-            CupertinoDialogAction(
-              onPressed: onAction,
-              isDestructiveAction: true,
-              child: Text('Confirm', style: context.bodySmallAction),
-            ),
-          ],
+          actions:
+              onCancel != null
+                  ? [
+                    CupertinoDialogAction(
+                      onPressed: onCancel,
+                      child: Text(
+                        cancelTitle,
+                        style: context.bodySmallCancelAction,
+                      ),
+                    ),
+                    CupertinoDialogAction(
+                      onPressed: onAction,
+                      isDestructiveAction: true,
+                      child: Text(actionTitle, style: context.bodySmallAction),
+                    ),
+                  ]
+                  : [
+                    CupertinoDialogAction(
+                      onPressed: onAction,
+                      isDefaultAction: true,
+                      child: Text(actionTitle, style: context.bodySmall),
+                    ),
+                  ],
         ),
   );
 }

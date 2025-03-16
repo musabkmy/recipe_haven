@@ -24,7 +24,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     final userData = await _userRepository.getUserData();
     logger.info(userData.toString());
     userData.when(
-      success: (value) => emit(UserDataSuccess(value)),
+      success: (value) => emit(UserDataFetched(value)),
       failure: (error) => emit(UserDataFailure(error.message)),
     );
   }
@@ -46,7 +46,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     userData.when(
       success: (value) {
         logger.info(value.toString());
-        emit(UserDataSuccess(value));
+        emit(UserDataFetched(value));
       },
       failure: (error) {
         logger.warning(error.message);

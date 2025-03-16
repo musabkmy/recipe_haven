@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/core/data/mocking_sources/recipe_mock_source.dart';
-import 'package:recipe_haven/features/recipe/recipe.dart';
+import 'package:recipe_haven/features/view_recipe/recipe.dart';
 
 part 'get_recipes_state.dart';
 
@@ -42,7 +42,7 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
 
     final randomRecipe = Random().nextInt(recipes.length);
     debugPrint('createRecipe, in index: $randomRecipe');
-    await _recipeRepository.createRecipe(recipes[randomRecipe].toJson());
+    await _recipeRepository.createRecipe(recipes[randomRecipe]);
     // emit(previousState);
   }
 

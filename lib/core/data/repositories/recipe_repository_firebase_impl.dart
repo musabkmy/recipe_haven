@@ -3,9 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
+import 'package:recipe_haven/core/data/models/create_review_model.dart';
 import 'package:recipe_haven/core/exceptions/recipe_exceptions.dart';
 import 'package:recipe_haven/core/data/models/tag_model.dart';
-import 'package:recipe_haven/features/recipe/recipe.dart';
+import 'package:recipe_haven/core/exceptions/upload_exceptions.dart';
+import 'package:recipe_haven/features/view_recipe/recipe.dart';
 import 'package:recipe_haven/features/user/data/models/user_fetch_model.dart';
 
 @Injectable(as: RecipeRepository, env: [Env.prod])
@@ -33,8 +35,9 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
   }
 
   @override
-  Future<void> createRecipe(Map<String, dynamic> recipe) async {
+  Future<void> createRecipe(RecipeModel recipeModel) async {
     final Logger logger = Logger('RecipeRepositoryFirebaseImpl/createRecipe');
+    final recipe = recipeModel.toJson();
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       throw RecipeException('No authenticated user found.');
@@ -136,6 +139,12 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
     } catch (e) {
       return Failure(RecipeException(e.toString()));
     }
+  }
+
+  @override
+  Future<GetIsReviewUploaded> addRecipeReview(CreateReviewModel review) {
+    //TODO: addReview implemtation
+    return Future.value(Failure(UploadException('un implemented')));
   }
 
   // final _cache = <String, Recipe>{};

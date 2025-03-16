@@ -38,3 +38,10 @@ class Failure<T, K> extends Result<T, K> {
   @override
   String toString() => 'Failure(error: $error)';
 }
+
+extension ResultExtensions<T, K> on Result<T, K> {
+  bool get isSuccess => this is Success<T, K>;
+  bool get isFailure => this is Failure<T, K>;
+  T get successData => (this as Success<T, K>).value;
+  K get failureData => (this as Failure<T, K>).error;
+}

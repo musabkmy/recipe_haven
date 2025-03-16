@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:recipe_haven/features/recipe/domain/entities/tag_entity.dart';
-import 'package:recipe_haven/features/recipe/domain/repositories/recipe_repository.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/tag_entity.dart';
+import 'package:recipe_haven/features/view_recipe/domain/repositories/recipe_repository.dart';
 
 part 'get_tags_state.dart';
 

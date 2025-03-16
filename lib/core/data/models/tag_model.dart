@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:recipe_haven/features/recipe/domain/entities/tag_entity.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/tag_entity.dart';
 part 'tag_model.g.dart';
 
 typedef TagModels = List<TagModel>;

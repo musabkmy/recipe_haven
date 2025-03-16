@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
-import 'package:recipe_haven/features/recipe/domain/entities/details/details_entity.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/details/details_entity.dart';
 import 'models_details.dart';
 
 part 'details_model.g.dart';

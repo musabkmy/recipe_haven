@@ -3,7 +3,7 @@ import 'package:recipe_haven/config/dependency_injection/dependency_injection.da
 import 'package:recipe_haven/core/data/mocking_sources/user_mock_source.dart';
 import 'package:recipe_haven/core/data/models/models.dart';
 import 'package:recipe_haven/core/exceptions/user_exceptions.dart';
-import 'package:recipe_haven/features/recipe/domain/repositories/repositories.dart';
+import 'package:recipe_haven/features/view_recipe/domain/repositories/repositories.dart';
 import 'package:recipe_haven/features/user/data/models/user_creation_model.dart';
 import 'package:recipe_haven/features/user/data/models/user_fetch_model.dart';
 import 'package:recipe_haven/features/user/domain/repositories/user_repository.dart';

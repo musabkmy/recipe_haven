@@ -11,7 +11,7 @@ import 'package:recipe_haven/core/shared_layouts/app_item_network_image.dart';
 import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
 import 'package:recipe_haven/core/shared_layouts/app_section_title.dart';
 
-import 'package:recipe_haven/features/recipe/domain/entities/entities.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/entities.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 
 class BuildLatestRecipes extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:recipe_haven/features/recipe/recipe.dart';
+import 'package:recipe_haven/features/view_recipe/recipe.dart';
 
 part 'recipe_model.g.dart';
 

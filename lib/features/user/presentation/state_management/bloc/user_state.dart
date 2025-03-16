@@ -11,9 +11,9 @@ final class UserDataInitial extends UserState {}
 
 final class UserDataLoading extends UserState {}
 
-final class UserDataSuccess extends UserState {
+final class UserDataFetched extends UserState {
   final UserData userData;
-  const UserDataSuccess(this.userData);
+  const UserDataFetched(this.userData);
 
   @override
   List<Object> get props => [userData];

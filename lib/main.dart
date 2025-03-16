@@ -11,8 +11,8 @@ import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubi
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
-import 'package:recipe_haven/features/recipe/presentation/blocs/create_comment_bloc/create_comment_bloc.dart';
-import 'package:recipe_haven/features/recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/blocs/create_review_bloc/create_review_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/providers/form_provider.dart';
@@ -35,7 +35,7 @@ void main() async {
   final completer = Completer();
   late final StreamSubscription subscription;
   subscription = userBloc.stream.listen((state) {
-    if (state is UserDataFailure || state is UserDataSuccess) {
+    if (state is UserDataFailure || state is UserDataFetched) {
       if (!completer.isCompleted) {
         completer.complete();
       }

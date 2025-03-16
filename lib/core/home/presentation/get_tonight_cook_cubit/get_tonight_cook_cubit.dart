@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:recipe_haven/features/recipe/domain/entities/recipe_entity.dart';
-import 'package:recipe_haven/features/recipe/domain/repositories/recipe_repository.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/recipe_entity.dart';
+import 'package:recipe_haven/features/view_recipe/domain/repositories/recipe_repository.dart';
 
 part 'get_tonight_cook_state.dart';
 

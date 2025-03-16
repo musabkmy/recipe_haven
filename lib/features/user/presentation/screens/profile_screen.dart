@@ -14,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
-          if (state case UserDataSuccess success) {
+          if (state case UserDataFetched success) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -1,12 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:recipe_haven/features/recipe/domain/entities/review_entity.dart';
+import 'package:recipe_haven/features/view_recipe/domain/entities/review_entity.dart';
 
 part 'review_model.g.dart';
 
 typedef ReviewModels = List<ReviewModel>;
 
+//TODO: remove toJson when full migrate reviews to a feature
 @JsonSerializable()
 class ReviewModel {
   final String id;
