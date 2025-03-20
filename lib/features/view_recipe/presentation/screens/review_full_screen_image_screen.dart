@@ -7,6 +7,7 @@ import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/constants/app_icons.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
+import 'package:recipe_haven/core/services/animation/animation_service.dart';
 import 'package:recipe_haven/core/shared_layouts/app_recipe_image_layout.dart';
 import 'package:recipe_haven/features/view_recipe/domain/entities/review_entity.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
@@ -28,7 +29,8 @@ class ReviewFullScreenImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // final logger = Logger('ReviewFullScreenImageScreen');
     // logger.info(reviewId);
-    final routeAnimation = ModalRoute.of(context)!.animation!;
+    //with animated builder
+    // final routeAnimation = ModalRoute.of(context)!.animation!;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -44,11 +46,11 @@ class ReviewFullScreenImageScreen extends StatelessWidget {
         },
         builder: (context, review) {
           debugPrint(review.userName);
-          final curvedAnimation = CurvedAnimation(
-            parent: routeAnimation,
-            curve: Curves.easeIn,
-            reverseCurve: Curves.easeInSine,
-          );
+          // final curvedAnimation = CurvedAnimation(
+          //   parent: routeAnimation,
+          //   curve: Curves.easeIn,
+          //   reverseCurve: Curves.easeOutSine,
+          // );
           return Stack(
             children: [
               Center(
@@ -60,7 +62,6 @@ class ReviewFullScreenImageScreen extends StatelessWidget {
                   child: Hero(
                     tag: tag,
                     transitionOnUserGestures: true,
-
                     child: AppImageLayout(
                       height: double.infinity,
                       width: double.infinity,
@@ -75,66 +76,54 @@ class ReviewFullScreenImageScreen extends StatelessWidget {
                 top: 0,
                 left: AppSpacing.minHorizontal,
                 right: AppSpacing.minHorizontal,
-                child: AnimatedBuilder(
-                  builder: (context, _) {
-                    return SizedBox(
-                      height: 1.sh,
-                      child: SafeArea(
-                        child: Column(
+                child: SizedBox(
+                  height: 1.sh,
+                  child: SafeArea(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildTop(context),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Opacity(
-                              opacity: curvedAnimation.value,
-                              child: _buildTop(context),
-                            ),
-                            Opacity(
-                              opacity: curvedAnimation.value,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                            Text.rich(
+                              TextSpan(
+                                text: '${review.userName} \n',
+                                style: context.displayLarge.copyWith(
+                                  height: 1.6,
+                                  color: AppColors.background,
+                                ),
                                 children: [
-                                  Text.rich(
-                                    TextSpan(
-                                      text: '${review.userName} \n',
-                                      style: context.displayLarge.copyWith(
-                                        height: 1.6,
-                                        color: AppColors.background,
-                                      ),
-                                      children: [
-                                        WidgetSpan(
-                                          child: Icon(
-                                            AppIcons.time,
-                                            color: AppColors.background,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text:
-                                              ' ${review.publishedAt.toTimeAgoHumanFormat()}',
-                                          style: context.bodyLarge.copyWith(
-                                            color: AppColors.background,
-                                          ),
-                                        ),
-                                      ],
+                                  WidgetSpan(
+                                    child: Icon(
+                                      AppIcons.time,
+                                      color: AppColors.background,
                                     ),
                                   ),
-                                  GestureDetector(
-                                    //TODO:on tap fav
-                                    child: Icon(
-                                      AppIcons.favorite,
+                                  TextSpan(
+                                    text:
+                                        ' ${review.publishedAt.toTimeAgoHumanFormat()}',
+                                    style: context.bodyMedium.copyWith(
                                       color: AppColors.background,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            // AppSpacing.sm.verticalSpace,
+                            GestureDetector(
+                              //TODO:on tap fav
+                              child: Icon(
+                                AppIcons.favorite,
+                                color: AppColors.background,
+                              ),
+                            ),
                           ],
-                        ),
-                      ),
-                    );
-                  },
-                  animation: routeAnimation,
+                        ).fadeOutIn(durationInMilSec: 500),
+                        // AppSpacing.sm.verticalSpace,
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -144,20 +133,17 @@ class ReviewFullScreenImageScreen extends StatelessWidget {
     );
   }
 
-  Row _buildTop(BuildContext context) {
+  Widget _buildTop(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
       children: [
         GestureDetector(
+          onTap: context.router.pop,
           child: Icon(color: AppColors.background, AppIcons.backArrow),
-          onTap: () {
-            context.router.pop();
-          },
         ),
 
         Icon(AppIcons.flag, color: AppColors.background),
       ],
-    );
+    ).fadeBlur();
   }
 }

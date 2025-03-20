@@ -8,10 +8,12 @@ class AppLoadingLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircularProgressIndicator(
-      color: color ?? AppColors.lightOrange,
-      value: value,
-      constraints: BoxConstraints.tight(Size(24, 24)),
+    return Center(
+      child: CircularProgressIndicator(
+        color: color ?? AppColors.grey700,
+        value: value,
+        constraints: BoxConstraints.tight(Size(24, 24)),
+      ),
     );
   }
 }

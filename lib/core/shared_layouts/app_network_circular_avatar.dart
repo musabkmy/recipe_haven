@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
+import 'package:recipe_haven/core/services/image/network_image_service.dart';
 
 class AppNetworkCircularAvatar extends StatelessWidget {
   ///imageUrl != null || name != null
@@ -26,7 +26,7 @@ class AppNetworkCircularAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return imageUrl != null
-        ? CachedNetworkImage(
+        ? AppNetworkImage(
           imageUrl: imageUrl!,
           imageBuilder:
               (context, imageProvider) => _BuildCircularLayout(

@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/constants/constants.dart';
+import 'package:recipe_haven/core/services/image/network_image_service.dart';
 
 class AppItemNetworkImage extends StatelessWidget {
   const AppItemNetworkImage({
@@ -18,7 +18,7 @@ class AppItemNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
+    return AppNetworkImage(
       imageUrl: imageUrl,
       height: height ?? .3.sh,
       width: width ?? .5.sw,

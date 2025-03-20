@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show ListEquality;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +14,11 @@ class BuildBestCreators extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetCreatorsCubit, GetCreatorsState>(
+      buildWhen:
+          (previous, current) =>
+              current is GetCreatorsSuccess &&
+              previous is GetCreatorsSuccess &&
+              !ListEquality().equals(previous.creators, current.creators),
       builder: (context, state) {
         if (state is GetCreatorsSuccess && state.creators.isNotEmpty) {
           final creators = state.creators;

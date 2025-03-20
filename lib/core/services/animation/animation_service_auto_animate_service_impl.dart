@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/config/extensions/object_extension.dart';
-import 'package:recipe_haven/core/animation/animation_service.dart';
+import 'package:recipe_haven/core/services/animation/animation_service.dart';
 
 @Injectable(as: AnimationService)
 class AutoAnimateServiceImpl extends AnimationService {
@@ -40,17 +40,48 @@ class AutoAnimateServiceImpl extends AnimationService {
     ScrollController? scrollController,
   ) {
     return child.animate(
-      key: ValueKey(key),
+      key: key.let((key) => ValueKey(key)),
       effects: [
         FadeEffect(
           begin: 0.3, // Start slightly faded
           end: 1, // Fully visible
           duration: durationInMilSec.ms,
+          delay: Duration(microseconds: 0),
           // reverseCurve: Curves.easeInOut, // Ensures smooth fade in-out effect
         ),
       ],
       adapter: scrollController.let((controller) => ScrollAdapter(controller)),
     );
+  }
+
+  @override
+  Widget fadeBlur(
+    Widget child,
+    double durationInMilSec,
+    String? key,
+    ScrollController? scrollController,
+  ) {
+    return child
+        .animate(
+          key: key.let((key) => ValueKey(key)),
+          effects: [
+            ThenEffect(delay: Duration(milliseconds: 200)),
+
+            FadeEffect(
+              duration: durationInMilSec.ms,
+              delay: Duration(milliseconds: 1),
+            ),
+            // SwapEffect(builder: (context, child) => Text('data')),
+          ],
+
+          // onComplete: (controller) {
+          //   controller.reset();
+          // },
+          adapter: scrollController.let(
+            (controller) => ScrollAdapter(controller),
+          ),
+        )
+        .blurXY(begin: 8, end: 0, duration: durationInMilSec.ms);
   }
 
   @override

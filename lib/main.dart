@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logging/logging.dart';
@@ -11,7 +12,6 @@ import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubi
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/create_review_bloc/create_review_bloc.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
@@ -19,6 +19,9 @@ import 'package:recipe_haven/features/user/presentation/state_management/provide
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //shows rainbow when repaint a widget
+  debugRepaintRainbowEnabled = true;
+  debugProfileBuildsEnabled = true;
   await configurationDependency(Env.dev);
 
   //Initialize logging

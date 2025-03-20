@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
@@ -14,19 +15,59 @@ import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info
 
 // ignore: must_be_immutable
 class BuildRecipeDetails extends StatelessWidget {
-  const BuildRecipeDetails({
-    super.key,
-    required this.recipeDetails,
-    required this.selectedPortion,
-    required this.hasPrevious,
-    required this.hasNext,
-  });
+  const BuildRecipeDetails({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    Logger logger = Logger('BuildRecipeDetails');
+
+    return BlocSelector<
+      RecipeInfoBloc,
+      RecipeInfoState,
+      (Details?, PortionBasedRecipe?, bool, bool)
+    >(
+      selector: (state) {
+        if (state is RecipeInfoSuccess) {
+          return (
+            state.recipe.details,
+            state.selectedPortion,
+            state.hasPrevious,
+            state.hasNext,
+          );
+        }
+        return (null, null, false, false);
+      },
+      builder: (context, data) {
+        final recipeDetails = data.$1;
+        final selectedPortion = data.$2;
+        logger.info('selectedPortion ${selectedPortion.toString()}  ');
+        if (recipeDetails != null && selectedPortion != null) {
+          final hasPrevious = data.$3;
+          final hasNext = data.$4;
+          return _BuildRecipeDetailsView(
+            recipeDetails,
+            selectedPortion,
+            hasPrevious,
+            hasNext,
+          );
+        }
+        return SizedBox.shrink();
+      },
+    );
+  }
+}
+
+class _BuildRecipeDetailsView extends StatelessWidget {
+  const _BuildRecipeDetailsView(
+    this.recipeDetails,
+    this.selectedPortion,
+    this.hasPrevious,
+    this.hasNext,
+  );
   final Details recipeDetails;
   final PortionBasedRecipe selectedPortion;
   final bool hasPrevious;
   final bool hasNext;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -63,7 +104,7 @@ class BuildRecipeDetails extends StatelessWidget {
     );
   }
 
-  Row _buildIngredientsList(BuildContext context) {
+  Widget _buildIngredientsList(BuildContext context) {
     return Row(
       spacing: AppSpacing.x4l,
       children: [
@@ -100,7 +141,7 @@ class BuildRecipeDetails extends StatelessWidget {
     );
   }
 
-  Row _buildChangeSelectedPortion(BuildContext context) {
+  Widget _buildChangeSelectedPortion(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

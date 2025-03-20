@@ -1,14 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logging/logging.dart';
 import 'package:recipe_haven/core/utils/find_id_index.dart';
 import 'package:recipe_haven/features/view_recipe/domain/entities/entities.dart';
 
 part 'recipe_info_event.dart';
 part 'recipe_info_state.dart';
 
-@singleton
+@lazySingleton
 class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
   RecipeInfoBloc() : super(RecipeInfoInitial()) {
     on<RecipeLoadEvent>(_onLoadRecipe);
@@ -17,7 +16,7 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
   }
 
   void _onLoadRecipe(RecipeLoadEvent event, Emitter<RecipeInfoState> emit) {
-    Logger logger = Logger('_onLoadRecipe');
+    // Logger logger = Logger('_onLoadRecipe');
     emit(RecipeInfoLoading());
     final receiveDetails = event.recipe.details;
     final selectedPortion = event.recipe.selectedPortion;
@@ -28,7 +27,7 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
     final hasPrevious = (selectedPortionIndex - 1) >= 0;
     final hasNext = (selectedPortionIndex + 1) < receiveDetails.servings.length;
     final reviewsMap = _getReviewsMap(event.recipe.reviews);
-    logger.info(reviewsMap.toString());
+    // logger.info(reviewsMap.toString());
     emit(
       RecipeInfoSuccess(
         event.recipe,

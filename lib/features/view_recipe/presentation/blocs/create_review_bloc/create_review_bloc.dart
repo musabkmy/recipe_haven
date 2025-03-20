@@ -76,33 +76,33 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
       emit(state.copyWith(isLoading: true));
 
       await Future.delayed(Duration(seconds: 3));
-      //   try {
-      //     if (state.comment == null) {
-      //       emit(CreateReviewFailure(previousState, 'add a comment'));
-      //     } else {
-      //       final uploadResult = await _uploadImages(state.images);
-      //       if (uploadResult.isFailure) {
-      //         emit(CreateReviewFailure(state, 'unable to upload'));
-      //       } else {
-      //         final review = CreateReviewModel.fromRecipeReview(
-      //           userData: event.userData,
-      //           comment: state.comment!,
-      //           imagesUrl: uploadResult.successData,
-      //           recipeRef: event.recipeRef,
-      //         );
-      //         final result = await recipeRepository.addRecipeReview(review);
-      //         result.when(
-      //           success: (value) => emit(CreateReviewSuccess(value)),
-      //           failure:
-      //               (error) =>
-      //                   emit(CreateReviewFailure(previousState, error.message)),
-      //         );
-      //       }
-      //     }
-      //   } catch (e) {
-      //     emit(CreateReviewFailure(previousState, e.toString()));
-      //   }
-      // } else {
+      try {
+        if (state.comment == null) {
+          emit(CreateReviewFailure(previousState, 'add a comment'));
+        } else {
+          final uploadResult = await _uploadImages(state.images);
+          if (uploadResult.isFailure) {
+            emit(CreateReviewFailure(state, 'unable to upload'));
+          } else {
+            final review = CreateReviewModel.fromRecipeReview(
+              userData: event.userData,
+              comment: state.comment!,
+              imagesUrl: uploadResult.successData,
+              recipeRef: event.recipeRef,
+            );
+            final result = await recipeRepository.addRecipeReview(review);
+            result.when(
+              success: (value) => emit(CreateReviewSuccess(value)),
+              failure:
+                  (error) =>
+                      emit(CreateReviewFailure(previousState, error.message)),
+            );
+          }
+        }
+      } catch (e) {
+        emit(CreateReviewFailure(previousState, e.toString()));
+      }
+    } else {
       emit(CreateReviewFailure(state, 'unexpected error occurred'));
     }
   }

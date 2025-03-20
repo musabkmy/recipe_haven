@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_haven/constants/app_styles.dart';
+import 'package:recipe_haven/core/services/image/network_image_service.dart';
 import 'package:recipe_haven/core/shared_layouts/app_loading_layout.dart';
 
 class AppImageLayout extends StatelessWidget {
@@ -23,7 +23,7 @@ class AppImageLayout extends StatelessWidget {
   final BoxFit? fit;
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
+    return AppNetworkImage(
       imageUrl: imageUrl,
       imageBuilder: (context, imageProvider) {
         return Container(
@@ -36,7 +36,6 @@ class AppImageLayout extends StatelessWidget {
           child: child,
         );
       },
-      placeholder: (context, url) => AppLoadingLayout(),
     );
   }
 }

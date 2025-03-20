@@ -12,9 +12,6 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../../core/animation/animation_service.dart' as _i644;
-import '../../core/animation/animation_service_auto_animate_service_impl.dart'
-    as _i513;
 import '../../core/data/mocking_sources/recipe_mock_source.dart' as _i779;
 import '../../core/data/mocking_sources/user_mock_source.dart' as _i430;
 import '../../core/data/repositories/recipe_repository_firebase_impl.dart'
@@ -32,6 +29,12 @@ import '../../core/home/presentation/get_tags_cubit/get_tags_cubit.dart'
     as _i296;
 import '../../core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart'
     as _i1048;
+import '../../core/services/animation/animation_service.dart' as _i121;
+import '../../core/services/animation/animation_service_auto_animate_service_impl.dart'
+    as _i382;
+import '../../core/services/image/network_image_service.dart' as _i952;
+import '../../core/services/image/network_image_service_cached_image_impl.dart'
+    as _i830;
 import '../../features/user/data/repositories/user_repository_firebase_impl.dart'
     as _i431;
 import '../../features/user/data/repositories/user_repository_test_impl.dart'
@@ -65,12 +68,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i430.UserMockSource>(() => _i430.UserMockSource());
     gh.singleton<_i779.RecipeMockSource>(() => _i779.RecipeMockSource());
     gh.singleton<_i307.FormProvider>(() => _i307.FormProvider());
-    gh.singleton<_i35.RecipeInfoBloc>(() => _i35.RecipeInfoBloc());
+    gh.lazySingleton<_i35.RecipeInfoBloc>(() => _i35.RecipeInfoBloc());
     gh.factory<_i998.RecipeUploadFilesRepository>(
       () => _i938.RecipeUploadFilesRepositoryTestImpl(),
       registerFor: {_dev},
     );
-    gh.factory<_i644.AnimationService>(() => _i513.AutoAnimateServiceImpl());
+    gh.factory<_i121.AnimationService>(() => _i382.AutoAnimateServiceImpl());
+    gh.factory<_i952.NetworkImageService>(
+      () => _i830.NetworkImageServiceCachedImageImpl(),
+    );
     gh.factory<_i237.UserRepository>(
       () => _i890.UserRepositoryTestImpl(gh<_i430.UserMockSource>()),
       registerFor: {_dev},

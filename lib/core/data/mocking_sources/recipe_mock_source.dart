@@ -1461,8 +1461,7 @@ Remove the __utensil_ute-8 from heat and quickly stir in the egg mixture. Add re
       userData: CreatorModel(
         id: 'creator-4',
         name: 'Lily Green',
-        profilePic:
-            'https://i.pinimg.com/474x/3a/4b/5c/3a4b5c6d7e8f9g0h1i2j3k4l5m6n7o8p.jpg',
+        profilePic: null,
         profession: 'Nutritionist',
         portfolioLink: 'lily-green.com',
         recipesRef: [],

@@ -75,7 +75,7 @@ class _AppScreenState extends State<AppScreen> {
           onTap: (index) {
             if (tabsRouter.activeIndex == index) {
               final innerRouter = tabsRouter.innerRouterOf(
-                tabsRouter.current.name,
+                tabsRouter.current.name
               );
               if (innerRouter != null && innerRouter.canPop()) {
                 innerRouter.popTop();

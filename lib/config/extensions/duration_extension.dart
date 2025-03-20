@@ -40,7 +40,7 @@ extension DurationEx on Duration {
   }
 
   double inDurationPercentage() {
-    Logger('ininDurationPercentage').info((inMinutes / 60).toStringAsFixed(1));
+    // Logger('ininDurationPercentage').info((inMinutes / 60).toStringAsFixed(1));
 
     if (this == Duration.zero) {
       return 0;

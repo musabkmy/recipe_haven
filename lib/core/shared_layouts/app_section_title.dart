@@ -22,7 +22,13 @@ class AppSectionTitle extends StatelessWidget {
     return Padding(
       padding:
           withPadding
-              ? EdgeInsetsDirectional.only(start: AppSpacing.minHorizontal)
+              ? EdgeInsetsDirectional.only(
+                start: AppSpacing.minHorizontal,
+                end: onActionLabel.letOrElse(
+                  (_) => AppSpacing.minHorizontal,
+                  orElse: () => 0,
+                ),
+              )
               : EdgeInsets.zero,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

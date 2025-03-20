@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
+import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart'
+    show getIt;
 import 'package:recipe_haven/config/extensions/date_time_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
@@ -41,39 +42,48 @@ class ReviewsScreen extends StatelessWidget {
           }
           return getIt<CreateReviewBloc>();
         },
-        child: BlocSelector<CreateReviewBloc, CreateReviewState, Review?>(
-          selector: (CreateReviewState state) {
-            if (state is CreateReviewSuccess) {
-              return state.addedReview;
-            }
-            return null;
-          },
-          builder: (context, review) {
-            final reviews = review.letOrElse(
-              (review) => [...currentReviews, review],
-              orElse: () => currentReviews,
-            );
-            return Stack(
-              children: [
-                reviews.isNotEmpty
-                    ? BuildCommentsListLayout(reviews: reviews)
-                    : Center(child: Text('There is no Reviews yet')),
-                BuildInReviewsCreateReviewLayout(
-                  recipeRef,
-                  _commentSectionHeight,
-                  _createCommentImageSectionHeight,
-                ),
-              ],
-            );
-          },
+        child: Stack(
+          children: [
+            _BuildCommentsListLayout(currentReviews),
+            BuildInReviewsCreateReviewLayout(
+              recipeRef,
+              _commentSectionHeight,
+              _createCommentImageSectionHeight,
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class BuildCommentsListLayout extends StatelessWidget {
-  const BuildCommentsListLayout({super.key, required this.reviews});
+class _BuildCommentsListLayout extends StatelessWidget {
+  const _BuildCommentsListLayout(this.currentReviews);
+  final Reviews currentReviews;
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<CreateReviewBloc, CreateReviewState, Review?>(
+      selector: (CreateReviewState state) {
+        if (state is CreateReviewSuccess) {
+          return state.addedReview;
+        }
+        return null;
+      },
+      builder: (context, review) {
+        final reviews = review.letOrElse(
+          (review) => [...currentReviews, review],
+          orElse: () => currentReviews,
+        );
+        return reviews.isNotEmpty
+            ? _BuildCommentsListLayoutBody(reviews)
+            : Center(child: Text('There is no Reviews yet'));
+      },
+    );
+  }
+}
+
+class _BuildCommentsListLayoutBody extends StatelessWidget {
+  const _BuildCommentsListLayoutBody(this.reviews);
 
   final Reviews reviews;
 
@@ -97,7 +107,7 @@ class BuildCommentsListLayout extends StatelessWidget {
           // Use ListView.builder for better performance
           SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
-              return BuildCommentLayout(reviews[index]);
+              return _BuildCommentLayout(reviews[index]);
             }, childCount: reviews.length),
           ),
           SliverPadding(
@@ -111,8 +121,8 @@ class BuildCommentsListLayout extends StatelessWidget {
   }
 }
 
-class BuildCommentLayout extends StatelessWidget {
-  BuildCommentLayout(this.review, {super.key}) : imagesUrl = review.imagesUrl;
+class _BuildCommentLayout extends StatelessWidget {
+  _BuildCommentLayout(this.review) : imagesUrl = review.imagesUrl;
   final Review review;
   final List<String> imagesUrl;
   final PageController controller = PageController();

@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-
 import 'measuring_unit_entity.dart';
 
 typedef Ingredients = List<Ingredient>;
@@ -16,8 +15,5 @@ class Ingredient extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-        id,
-        name,
-      ];
+  List<Object?> get props => [id, name];
 }

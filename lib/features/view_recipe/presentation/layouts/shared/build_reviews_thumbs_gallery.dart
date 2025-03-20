@@ -35,20 +35,14 @@ class BuildReviewsThumbsGallery extends StatelessWidget {
                           .asMap()
                           .entries
                           .map(
-                            (element) => Expanded(
-                              child: AppImageLayout(
-                                height: itemSize,
-                                width: itemSize,
-                                imageUrl: element.value,
-                                child:
-                                    element.key == 3 &&
-                                            reviewsImages.length >= 5
-                                        ? _buildToGalleryImage(
-                                          itemSize,
-                                          context,
-                                        )
-                                        : SizedBox.shrink(),
-                              ),
+                            (element) => AppImageLayout(
+                              height: itemSize,
+                              width: itemSize,
+                              imageUrl: element.value,
+                              child:
+                                  element.key == 3 && reviewsImages.length >= 5
+                                      ? _buildToGalleryImage(itemSize, context)
+                                      : SizedBox.shrink(),
                             ),
                           )
                           .toList(),

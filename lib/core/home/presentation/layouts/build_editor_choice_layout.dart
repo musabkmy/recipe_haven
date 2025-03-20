@@ -1,3 +1,5 @@
+import 'dart:async' show Timer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,72 +13,60 @@ import 'package:recipe_haven/core/shared_layouts/app_text_button.dart';
 
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 
-class BuildEditorChoiceLayout extends StatelessWidget {
+class BuildEditorChoiceLayout extends StatefulWidget {
   const BuildEditorChoiceLayout({super.key});
 
   @override
+  State<BuildEditorChoiceLayout> createState() =>
+      _BuildEditorChoiceLayoutState();
+}
+
+class _BuildEditorChoiceLayoutState extends State<BuildEditorChoiceLayout> {
+  final ScrollController _scrollController = ScrollController();
+  // final ValueNotifier<double> mainDishCardPosition = ValueNotifier(0.0);
+
+  // double maxMainDishCardPosition = 100.0; // Adjust based on your UI
+  // double minMainDishCardPosition = 20.0;  // Adjust based on your UI
+  final mainDishImageHeight = .6.sh;
+  final maxMainDishCardPosition = .45.sh;
+  late final double minMainDishCardPosition;
+  late final ValueNotifier<double> mainDishCardPosition;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      minMainDishCardPosition = context.isTablet ? .27.sh : .35.sh;
+    });
+    mainDishCardPosition = ValueNotifier(maxMainDishCardPosition);
+    _scrollController.addListener(_handleScroll);
+  }
+
+  void _handleScroll() {
+    final double newPosition = (maxMainDishCardPosition -
+            _scrollController.offset)
+        .clamp(minMainDishCardPosition, maxMainDishCardPosition);
+
+    if (mainDishCardPosition.value != newPosition) {
+      mainDishCardPosition.value = newPosition;
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_handleScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // final mainDishImageHeight = .6.sh;
+    // final maxMainDishCardPosition = .45.sh;
+    // final minMainDishCardPosition = context.isTablet ? .27.sh : .35.sh;
+
     // Logger logger = Logger('Editor\'s Choice');
-    return BlocConsumer<GetRecipesCubit, GetRecipesState>(
-      builder: (context, state) {
-        if (state is GetRecipesSuccess) {
-          // logger.info('state is: ${state.runtimeType}');
-          // debugPrintStack();
-          final recipes = state.recipes;
-          final mainDishImageHeight = .6.sh;
-          final maxMainDishCardPosition = .45.sh;
-          final minMainDishCardPosition = context.isTablet ? .27.sh : .35.sh;
-          final ValueNotifier<double> mainDishCardPosition = ValueNotifier(
-            maxMainDishCardPosition,
-          );
-
-          return NotificationListener<ScrollNotification>(
-            onNotification: (notification) {
-              if (notification is ScrollUpdateNotification) {
-                if (mainDishCardPosition.value != minMainDishCardPosition ||
-                    notification.metrics.pixels == 0) {
-                  mainDishCardPosition.value =
-                      maxMainDishCardPosition - notification.metrics.pixels;
-                  mainDishCardPosition.value = mainDishCardPosition.value.clamp(
-                    minMainDishCardPosition,
-                    maxMainDishCardPosition,
-                  );
-                }
-              }
-              return false;
-            },
-            child: SingleChildScrollView(
-              child: Column(
-                spacing: AppSpacing.xl,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Wrap only _buildTop with ValueListenableBuilder
-                  // to not building unnecessary widgets
-                  ValueListenableBuilder<double>(
-                    valueListenable: mainDishCardPosition,
-                    builder: (context, cardValue, child) {
-                      return _buildTop(
-                        context,
-                        mainDishImageHeight,
-                        maxMainDishCardPosition,
-                        cardValue,
-                      );
-                    },
-                  ),
-                  BuildLatestRecipes(state: state, recipes: recipes),
-                  BuildBestCreators(),
-                  BuildTodaysRecipe(),
-                  BuildTonightCook(),
-                  BuildTagsQuickLinks(),
-
-                  SizedBox(),
-                ],
-              ),
-            ),
-          );
-        }
-        return SizedBox.shrink(); // Handle other states if needed
-      },
+    return BlocListener<GetRecipesCubit, GetRecipesState>(
+      listenWhen: (previous, current) => current is GetRecipesLoading,
       listener: (BuildContext context, GetRecipesState state) {
         if (state is GetRecipesLoading) {
           LoadingOverlay.show(context);
@@ -84,15 +74,49 @@ class BuildEditorChoiceLayout extends StatelessWidget {
           LoadingOverlay.hide(context);
         }
       },
+
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        child: Column(
+          spacing: AppSpacing.xl,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Wrap only _buildTop with ValueListenableBuilder
+            // to not building unnecessary widgets
+            ValueListenableBuilder<double>(
+              valueListenable: mainDishCardPosition,
+              builder: (context, cardValue, child) {
+                return _BuildTop(
+                  mainDishImageHeight,
+                  maxMainDishCardPosition,
+                  cardValue,
+                );
+              },
+            ),
+            BuildLatestRecipes(),
+            BuildBestCreators(),
+            BuildTodaysRecipe(),
+            BuildTonightCook(),
+            BuildTagsQuickLinks(),
+            SizedBox(),
+          ],
+        ),
+      ),
     );
   }
+}
 
-  Widget _buildTop(
-    BuildContext context,
-    double imageHeight,
-    double maxMainDishCardPosition,
-    double cardValue,
-  ) {
+class _BuildTop extends StatelessWidget {
+  const _BuildTop(
+    this.imageHeight,
+    this.maxMainDishCardPosition,
+    this.cardValue,
+  );
+  final double imageHeight;
+  final double maxMainDishCardPosition;
+  final double cardValue;
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       height: imageHeight + (context.isTablet ? cardValue / 5 : cardValue / 6),
       child: Stack(
@@ -103,13 +127,13 @@ class BuildEditorChoiceLayout extends StatelessWidget {
             width: double.maxFinite,
             fit: BoxFit.cover,
           ),
-          AnimatedContainer(
-            duration: Duration(milliseconds: 300),
-            child: Positioned(
-              top: cardValue,
-              left: 0,
-              right: 0,
-              // height: .25.sh,
+          Positioned(
+            top: cardValue,
+            left: 0,
+            right: 0,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeOut,
               child: Container(
                 width: double.maxFinite,
                 margin: EdgeInsets.symmetric(horizontal: AppSpacing.lg),
