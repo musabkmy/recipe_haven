@@ -85,5 +85,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'recipe-haven-c8169.firebasestorage.app',
     measurementId: 'G-F6Z40DHD6X',
   );
-
 }

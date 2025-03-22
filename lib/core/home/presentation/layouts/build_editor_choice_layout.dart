@@ -75,32 +75,39 @@ class _BuildEditorChoiceLayoutState extends State<BuildEditorChoiceLayout> {
         }
       },
 
-      child: SingleChildScrollView(
+      child: ListView.separated(
         controller: _scrollController,
-        child: Column(
-          spacing: AppSpacing.xl,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Wrap only _buildTop with ValueListenableBuilder
-            // to not building unnecessary widgets
-            ValueListenableBuilder<double>(
-              valueListenable: mainDishCardPosition,
-              builder: (context, cardValue, child) {
-                return _BuildTop(
-                  mainDishImageHeight,
-                  maxMainDishCardPosition,
-                  cardValue,
-                );
-              },
-            ),
-            BuildLatestRecipes(),
-            BuildBestCreators(),
-            BuildTodaysRecipe(),
-            BuildTonightCook(),
-            BuildTagsQuickLinks(),
-            SizedBox(),
-          ],
-        ),
+        padding: EdgeInsets.zero, // Ensure no extra padding
+        itemCount: 6, // Number of widgets (excluding separators)
+        separatorBuilder:
+            (context, index) => SizedBox(height: AppSpacing.xl), // Add spacing
+        itemBuilder: (context, index) {
+          switch (index) {
+            case 0:
+              return ValueListenableBuilder<double>(
+                valueListenable: mainDishCardPosition,
+                builder: (context, cardValue, child) {
+                  return _BuildTop(
+                    mainDishImageHeight,
+                    maxMainDishCardPosition,
+                    cardValue,
+                  );
+                },
+              );
+            case 1:
+              return BuildLatestRecipes();
+            case 2:
+              return BuildBestCreators();
+            case 3:
+              return BuildTodaysRecipe();
+            case 4:
+              return BuildTonightCook();
+            case 5:
+              return BuildTagsQuickLinks();
+            default:
+              return SizedBox.shrink();
+          }
+        },
       ),
     );
   }

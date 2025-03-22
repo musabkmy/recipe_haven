@@ -12,22 +12,22 @@ final class CreateReviewInitial extends CreateReviewState {
   const CreateReviewInitial({this.comment, this.images, this.isLoading = false})
     : super(null);
   final String? comment;
-  final List<File>? images;
+  final List<XFile>? images;
   final bool isLoading;
 
   CreateReviewInitial copyWith({
     String? comment,
-    List<File>? images,
+    List<XFile>? images,
     bool? isLoading,
   }) {
     return CreateReviewInitial(
-      comment: comment ?? comment,
-      images: images ?? images,
+      comment: comment ?? this.comment,
+      images: images ?? this.images,
       isLoading: isLoading ?? false,
     );
   }
 
-  CreateReviewInitial addImage(File image) {
+  CreateReviewInitial addImage(XFile image) {
     return copyWith(
       images: images.letOrElse(
         (images) => [...images, image],
@@ -41,7 +41,7 @@ final class CreateReviewInitial extends CreateReviewState {
     // logger.info('remove: $imagePath');
     return copyWith(
       images: images.letOrElse((images) {
-        final List<File> newImages = List.from(images)
+        final List<XFile> newImages = List.from(images)
           ..removeWhere((element) => element.path == imagePath);
         return newImages;
       }, orElse: () => images),
@@ -50,6 +50,10 @@ final class CreateReviewInitial extends CreateReviewState {
 
   @override
   List<Object?> get props => [comment, images];
+}
+
+final class CreateReviewLoading extends CreateReviewState {
+  const CreateReviewLoading() : super(null);
 }
 
 final class CreateReviewFailure extends CreateReviewState {

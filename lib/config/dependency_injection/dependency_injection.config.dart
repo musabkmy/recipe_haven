@@ -19,8 +19,6 @@ import '../../core/data/repositories/recipe_repository_firebase_impl.dart'
 import '../../core/data/repositories/recipe_repository_test_impl.dart' as _i650;
 import '../../core/data/repositories/recipe_upload_files_repository_supabase_impl.dart'
     as _i682;
-import '../../core/data/repositories/recipe_upload_files_repository_test_impl.dart'
-    as _i938;
 import '../../core/home/presentation/get_creators_cubit/get_creators_cubit.dart'
     as _i579;
 import '../../core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart'
@@ -70,8 +68,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i307.FormProvider>(() => _i307.FormProvider());
     gh.lazySingleton<_i35.RecipeInfoBloc>(() => _i35.RecipeInfoBloc());
     gh.factory<_i998.RecipeUploadFilesRepository>(
-      () => _i938.RecipeUploadFilesRepositoryTestImpl(),
-      registerFor: {_dev},
+      () => _i682.RecipeUploadFilesRepositorySupabaseImpl(),
     );
     gh.factory<_i121.AnimationService>(() => _i382.AutoAnimateServiceImpl());
     gh.factory<_i952.NetworkImageService>(
@@ -80,10 +77,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i237.UserRepository>(
       () => _i890.UserRepositoryTestImpl(gh<_i430.UserMockSource>()),
       registerFor: {_dev},
-    );
-    gh.factory<_i998.RecipeUploadFilesRepository>(
-      () => _i682.RecipeUploadFilesRepositorySupabaseImpl(),
-      registerFor: {_prod},
     );
     gh.factory<_i964.RecipeRepository>(
       () => _i650.RecipeRepositoryTestImpl(gh<_i779.RecipeMockSource>()),

@@ -11,14 +11,14 @@ final class PreviousState extends CreateReviewEvent {}
 
 final class AddImage extends CreateReviewEvent {
   const AddImage(this.image);
-  final File image;
+  final XFile image;
   @override
   List<Object> get props => [image];
 }
 
 final class RemoveImage extends CreateReviewEvent {
   const RemoveImage(this.removeImage);
-  final File removeImage;
+  final XFile removeImage;
   @override
   List<Object> get props => [removeImage];
 }

@@ -3,6 +3,7 @@ import 'dart:io' show File;
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:image_picker/image_picker.dart' show XFile;
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
@@ -73,14 +74,17 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
     Logger logger = Logger('_onAddRecipeReview');
     if (state case CreateReviewInitial state) {
       final previousState = state;
-      emit(state.copyWith(isLoading: true));
+      emit(CreateReviewLoading());
 
-      await Future.delayed(Duration(seconds: 3));
+      // await Future.delayed(Duration(seconds: 1));
       try {
         if (state.comment == null) {
           emit(CreateReviewFailure(previousState, 'add a comment'));
         } else {
-          final uploadResult = await _uploadImages(state.images);
+          final uploadResult = await _uploadImages(
+            event.recipeRef.toString(),
+            state.images,
+          );
           if (uploadResult.isFailure) {
             emit(CreateReviewFailure(state, 'unable to upload'));
           } else {
@@ -107,10 +111,13 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
     }
   }
 
-  Future<GetUploadedImageUrl> _uploadImages(List<File>? imagesFile) async {
+  Future<GetUploadedImageUrl> _uploadImages(
+    String id,
+    List<XFile>? imagesFile,
+  ) async {
     if (imagesFile != null && imagesFile.isNotEmpty) {
       try {
-        final imagesUrl = await uploadRepository.uploadImages(imagesFile);
+        final imagesUrl = await uploadRepository.uploadImages(id, imagesFile);
         return imagesUrl;
       } catch (e) {
         return Future.value(Failure(UploadException(e.toString())));

@@ -71,7 +71,7 @@ class RecipeLayout extends StatelessWidget {
             creator.name,
             style: context.bodySmallAction,
             maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+            // overflow: TextOverflow.ellipsis,
           ),
         ),
       ],

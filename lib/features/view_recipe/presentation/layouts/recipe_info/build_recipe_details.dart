@@ -19,7 +19,7 @@ class BuildRecipeDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Logger logger = Logger('BuildRecipeDetails');
+    // Logger logger = Logger('BuildRecipeDetails');
 
     return BlocSelector<
       RecipeInfoBloc,
@@ -40,7 +40,7 @@ class BuildRecipeDetails extends StatelessWidget {
       builder: (context, data) {
         final recipeDetails = data.$1;
         final selectedPortion = data.$2;
-        logger.info('selectedPortion ${selectedPortion.toString()}  ');
+        // logger.info('selectedPortion ${selectedPortion.toString()}  ');
         if (recipeDetails != null && selectedPortion != null) {
           final hasPrevious = data.$3;
           final hasNext = data.$4;

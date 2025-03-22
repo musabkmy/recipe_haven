@@ -44,6 +44,11 @@ class BuildLatestRecipes extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
                   itemCount: length,
+                  prototypeItem: _BuildItem(
+                    ValueKey('prototypeItem'),
+                    recipes[0],
+                    length,
+                  ),
                   itemBuilder: (context, index) {
                     return _BuildItem(
                       ValueKey(recipes[index].id),
@@ -123,7 +128,7 @@ class _BuildRecipeCreatorName extends StatelessWidget {
               creator?.name ?? '',
               style: context.bodySmallAction,
               maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+              // overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
