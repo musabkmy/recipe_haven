@@ -1,18 +1,13 @@
-import 'dart:io';
-
 import 'package:image_picker/image_picker.dart' show XFile;
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
-import 'package:recipe_haven/core/exceptions/upload_exceptions.dart';
-import 'package:recipe_haven/core/recourses/data_state.dart';
-import 'package:recipe_haven/features/view_recipe/domain/repositories/recipe_upload_files_repository.dart';
+import 'package:recipe_haven/features/recipe_review/domain/repositories/upload_review_images_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-@Injectable(as: RecipeUploadFilesRepository)
+@Injectable(as: UploadReviewImagesRepository, env: [Env.prod])
 // @Injectable(as: RecipeUploadFilesRepository, env: [Env.prod])
-class RecipeUploadFilesRepositorySupabaseImpl
-    implements RecipeUploadFilesRepository {
+class UploadReviewImagesSupabaseImpl implements UploadReviewImagesRepository {
   @override
   Future<GetUploadedImageUrl> uploadImages(
     String id,

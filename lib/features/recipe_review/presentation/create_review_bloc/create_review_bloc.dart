@@ -1,28 +1,23 @@
 import 'dart:async';
-import 'dart:io' show File;
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart' show XFile;
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
-import 'package:recipe_haven/core/exceptions/upload_exceptions.dart';
-import 'package:recipe_haven/core/recourses/data_state.dart';
-import 'package:recipe_haven/core/data/models/create_review_model.dart';
+import 'package:recipe_haven/features/recipe_review/data/models/create_review_model.dart';
+import 'package:recipe_haven/features/recipe_review/domain/repositories/repositories.dart';
 import 'package:recipe_haven/features/user/domain/entities/user_data_entity.dart';
-import 'package:recipe_haven/features/view_recipe/domain/entities/review_entity.dart';
-import 'package:recipe_haven/features/view_recipe/domain/repositories/recipe_repository.dart';
-import 'package:recipe_haven/features/view_recipe/domain/repositories/recipe_upload_files_repository.dart';
+import 'package:recipe_haven/features/recipe_review/domain/entities/entities.dart';
 
 part 'create_review_event.dart';
 part 'create_review_state.dart';
 
 @lazySingleton
 class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
-  final RecipeRepository recipeRepository;
-  final RecipeUploadFilesRepository uploadRepository;
-  CreateReviewBloc(this.recipeRepository, this.uploadRepository)
+  final ReviewRepository reviewRepository;
+  final UploadReviewImagesRepository uploadRepository;
+  CreateReviewBloc(this.reviewRepository, this.uploadRepository)
     : super(CreateReviewInitial()) {
     // on<CreateReviewEvent>((event, emit) {});
     on<PreviousState>(_onPreviousState);
@@ -33,11 +28,11 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
   }
 
   void _onPreviousState(PreviousState event, Emitter<CreateReviewState> emit) {
-    if (state is CreateReviewFailure) {
-      emit(state.previousState!);
-    } else if (state is CreateReviewSuccess) {
-      emit(CreateReviewInitial());
-    }
+    (state) => switch (state) {
+      CreateReviewFailure failure => emit(failure.previousState!),
+      CreateReviewSuccess _ => emit(CreateReviewInitial()),
+      _ => null,
+    };
   }
 
   void _onAddComment(AddComment event, Emitter<CreateReviewState> emit) {
@@ -94,7 +89,7 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
               imagesUrl: uploadResult.successData,
               recipeRef: event.recipeRef,
             );
-            final result = await recipeRepository.addRecipeReview(review);
+            final result = await reviewRepository.addRecipeReview(review);
             result.when(
               success: (value) => emit(CreateReviewSuccess(value)),
               failure:

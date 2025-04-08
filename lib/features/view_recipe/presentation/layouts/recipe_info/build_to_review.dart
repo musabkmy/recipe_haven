@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/constants.dart';
-import 'package:recipe_haven/features/view_recipe/domain/entities/review_entity.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/recipe_review/domain/entities/review_entity.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/layouts/shared/build_reviews_thumbs_gallery.dart';
 
 class BuildToReviews extends StatelessWidget {

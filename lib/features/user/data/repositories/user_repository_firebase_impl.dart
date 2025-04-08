@@ -10,6 +10,7 @@ import 'package:recipe_haven/core/recourses/data_state.dart';
 import 'package:recipe_haven/core/data/data.dart';
 import 'package:recipe_haven/features/user/data/models/models.dart';
 import 'package:recipe_haven/features/user/domain/repositories/user_repository.dart';
+import 'package:recipe_haven/features/view_recipe/data/models/creator_model.dart';
 
 @Injectable(as: UserRepository, env: [Env.prod])
 class UserRepositoryFirebaseImpl extends UserRepository {

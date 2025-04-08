@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/features/view_recipe/domain/entities/engagement_entity.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/layouts/shared/build_circular_button.dart';
 
 class BuildTopInfos extends StatelessWidget {

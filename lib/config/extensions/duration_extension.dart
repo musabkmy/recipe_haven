@@ -1,5 +1,3 @@
-import 'package:logging/logging.dart';
-
 extension DurationEx on Duration {
   String inJsonDuration() {
     if (this == Duration.zero) {

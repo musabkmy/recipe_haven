@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/core/data/mocking_sources/user_mock_source.dart';
-import 'package:recipe_haven/core/data/models/models.dart';
+import 'package:recipe_haven/features/view_recipe/data/models/models.dart';
 import 'package:recipe_haven/core/exceptions/user_exceptions.dart';
 import 'package:recipe_haven/features/view_recipe/domain/repositories/repositories.dart';
 import 'package:recipe_haven/features/user/data/models/user_creation_model.dart';

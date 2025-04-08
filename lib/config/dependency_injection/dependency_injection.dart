@@ -18,9 +18,9 @@ final getIt = GetIt.instance;
 )
 FutureOr<void> configurationDependency(String env) async {
   if (env == Env.prod) {
-    setupFirebase();
+    await setupFirebase();
   }
-  setupSupabase();
+  await setupSupabase();
   getIt.init(environment: env);
   getIt.registerSingleton<AppRouter>(AppRouter());
 }
@@ -42,7 +42,7 @@ Future<void> setupSupabase() async {
   );
   final supabase = Supabase.instance.client;
 
-  await supabase.auth.signInAnonymously();
+  // await supabase.auth.signInAnonymously();
 }
 
 abstract class Env {

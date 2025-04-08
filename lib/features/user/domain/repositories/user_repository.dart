@@ -1,6 +1,6 @@
 import 'package:recipe_haven/core/exceptions/creator_exceptions.dart';
 import 'package:recipe_haven/core/exceptions/user_exceptions.dart';
-import 'package:recipe_haven/features/view_recipe/recipe.dart';
+import 'package:recipe_haven/features/view_recipe/view_recipe.dart';
 import 'package:recipe_haven/features/user/data/models/models.dart';
 import 'package:recipe_haven/features/user/domain/entities/user_data_entity.dart';
 

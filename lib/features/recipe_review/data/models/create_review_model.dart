@@ -53,5 +53,6 @@ class CreateReviewModel {
     );
   }
 
+  //TODO: to json
   //TODO: factory CreateReviewModel.fromReviewReply
 }

@@ -12,10 +12,10 @@ import 'package:recipe_haven/core/shared_layouts/app_icon_text.dart';
 import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
 import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
 import 'package:recipe_haven/core/shared_layouts/app_text_button.dart';
-import 'package:recipe_haven/features/view_recipe/domain/entities/review_entity.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/create_review_bloc/create_review_bloc.dart';
+import 'package:recipe_haven/features/recipe_review/domain/entities/review_entity.dart';
+import 'package:recipe_haven/features/recipe_review/presentation/create_review_bloc/create_review_bloc.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/layouts/layouts.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/layouts/reviews/reviews_layouts.dart';
+import 'package:recipe_haven/features/recipe_review/presentation/layouts/reviews_layouts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 const double _profileImageSize = 42;
@@ -63,12 +63,11 @@ class _BuildCommentsListLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocSelector<CreateReviewBloc, CreateReviewState, Review?>(
-      selector: (CreateReviewState state) {
-        if (state is CreateReviewSuccess) {
-          return state.addedReview;
-        }
-        return null;
-      },
+      selector:
+          (state) => switch (state) {
+            CreateReviewSuccess(addedReview: final addedReview) => addedReview,
+            _ => null,
+          },
       builder: (context, review) {
         final reviews = review.letOrElse(
           (review) => [...currentReviews, review],

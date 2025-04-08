@@ -5,7 +5,7 @@ import 'package:recipe_haven/config/extensions/context_extension.dart';
 import 'package:recipe_haven/config/extensions/object_extension.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/core/shared_layouts/read_more_text.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 
 class BuildDescription extends StatelessWidget {
   const BuildDescription({super.key});

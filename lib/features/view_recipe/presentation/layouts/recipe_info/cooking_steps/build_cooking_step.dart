@@ -9,7 +9,7 @@ import 'package:recipe_haven/features/view_recipe/domain/entities/cooking_step_e
 import 'package:recipe_haven/features/view_recipe/domain/entities/details/ingredient_entity.dart';
 import 'package:recipe_haven/features/view_recipe/domain/entities/details/utensil_entity.dart';
 import 'package:recipe_haven/features/view_recipe/domain/entities/details/weight_count_entity.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/layouts/shared/shared_layouts.dart';
 
 class BuildCookingStep extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/layouts/recipe_info/cooking_steps/build_cooking_step.dart';
 
 class BuildCookingSteps extends StatelessWidget {

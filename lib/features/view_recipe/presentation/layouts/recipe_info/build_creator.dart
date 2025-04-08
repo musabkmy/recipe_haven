@@ -6,7 +6,7 @@ import 'package:recipe_haven/config/extensions/object_extension.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_network_circular_avatar.dart';
 import 'package:recipe_haven/features/view_recipe/domain/entities/creator_entity.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 
 class BuildCreator extends StatelessWidget {
   const BuildCreator({super.key});
@@ -15,7 +15,10 @@ class BuildCreator extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocSelector<RecipeInfoBloc, RecipeInfoState, Creator?>(
       selector:
-          (state) => state is RecipeInfoSuccess ? state.recipe.creator : null,
+          (state) => switch (state) {
+            RecipeInfoSuccess(recipe: final recipe) => recipe.creator,
+            _ => null,
+          },
       builder: (context, creator) {
         return creator.letOrElse(
           (creator) => Padding(

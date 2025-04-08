@@ -5,7 +5,7 @@ import 'package:recipe_haven/config/extensions/object_extension.dart';
 import 'package:recipe_haven/config/extensions/string_extension.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/features/view_recipe/domain/entities/details/utensil_entity.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 
 class BuildUtensils extends StatelessWidget {
   const BuildUtensils({super.key});

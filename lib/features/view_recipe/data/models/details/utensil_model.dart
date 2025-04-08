@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../features/view_recipe/domain/entities/details/utensil_entity.dart';
+import '../../../domain/entities/details/utensil_entity.dart';
 
 part 'utensil_model.g.dart';
 

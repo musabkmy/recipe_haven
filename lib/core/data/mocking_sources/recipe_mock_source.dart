@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:recipe_haven/core/data/models/details/measuring_unit_model.dart';
-import 'package:recipe_haven/core/data/models/models.dart';
-import 'package:recipe_haven/core/data/models/tag_model.dart';
+import 'package:recipe_haven/features/view_recipe/data/models/details/measuring_unit_model.dart';
+import 'package:recipe_haven/features/view_recipe/data/models/models.dart';
+import 'package:recipe_haven/features/view_recipe/data/models/tag_model.dart';
 import 'package:recipe_haven/features/view_recipe/enums/recipe_step_font_size.dart';
 
 @singleton

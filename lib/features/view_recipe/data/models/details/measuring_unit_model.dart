@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../features/view_recipe/domain/entities/details/measuring_unit_entity.dart';
+import '../../../domain/entities/details/measuring_unit_entity.dart';
 
 part 'measuring_unit_model.g.dart';
 

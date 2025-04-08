@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:recipe_haven/config/extensions/object_extension.dart';
-import '../../../../features/view_recipe/domain/entities/details/weight_count_entity.dart';
+import '../../../domain/entities/details/weight_count_entity.dart';
 import 'measuring_unit_model.dart';
 
 part 'weight_count_model.g.dart';

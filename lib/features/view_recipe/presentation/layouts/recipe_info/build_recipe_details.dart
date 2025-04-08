@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/duration_extension.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
@@ -11,7 +10,7 @@ import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
 
 import 'package:recipe_haven/features/view_recipe/domain/entities/details/entities_details.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/layouts/shared/shared_layouts.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 
 // ignore: must_be_immutable
 class BuildRecipeDetails extends StatelessWidget {

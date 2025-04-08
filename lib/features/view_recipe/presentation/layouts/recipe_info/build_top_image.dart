@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/constants/app_colors.dart';
 import 'package:recipe_haven/core/services/image/network_image_service.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/layouts/shared/recipe_shared_layouts.dart';
 
 class BuildTopImage extends StatelessWidget {

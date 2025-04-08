@@ -12,7 +12,7 @@ import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubi
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
-import 'package:recipe_haven/features/view_recipe/presentation/blocs/recipe_info_bloc/recipe_info_bloc.dart';
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/providers/form_provider.dart';
@@ -20,9 +20,9 @@ import 'package:recipe_haven/features/user/presentation/state_management/provide
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //shows rainbow when repaint a widget
-  debugRepaintRainbowEnabled = true;
-  debugProfileBuildsEnabled = true;
-  await configurationDependency(Env.dev);
+  // debugRepaintRainbowEnabled = true;
+  // debugProfileBuildsEnabled = true;
+  await configurationDependency(Env.prod);
 
   //Initialize logging
   Logger.root.level = Level.ALL;

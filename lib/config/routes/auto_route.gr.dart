@@ -17,6 +17,14 @@ import 'package:recipe_haven/core/home/presentation/screens/creators_screen.dart
     as _i2;
 import 'package:recipe_haven/core/home/presentation/screens/home_screen.dart'
     as _i4;
+import 'package:recipe_haven/features/recipe_review/domain/entities/review_entity.dart'
+    as _i18;
+import 'package:recipe_haven/features/recipe_review/presentation/screens/review_full_screen_image_screen.dart'
+    as _i10;
+import 'package:recipe_haven/features/recipe_review/presentation/screens/reviews_images_gallery_screen.dart'
+    as _i11;
+import 'package:recipe_haven/features/recipe_review/presentation/screens/reviews_screen.dart'
+    as _i12;
 import 'package:recipe_haven/features/user/presentation/screens/profile_screen.dart'
     as _i5;
 import 'package:recipe_haven/features/user/presentation/screens/profile_settings_screen.dart'
@@ -29,18 +37,10 @@ import 'package:recipe_haven/features/user/presentation/screens/signup_with_emai
     as _i14;
 import 'package:recipe_haven/features/view_recipe/domain/entities/entities.dart'
     as _i17;
-import 'package:recipe_haven/features/view_recipe/domain/entities/review_entity.dart'
-    as _i18;
 import 'package:recipe_haven/features/view_recipe/presentation/screens/recipe_info_screen.dart'
     as _i7;
 import 'package:recipe_haven/features/view_recipe/presentation/screens/recipe_parent_route.dart'
     as _i8;
-import 'package:recipe_haven/features/view_recipe/presentation/screens/review_full_screen_image_screen.dart'
-    as _i10;
-import 'package:recipe_haven/features/view_recipe/presentation/screens/reviews_images_gallery_screen.dart'
-    as _i11;
-import 'package:recipe_haven/features/view_recipe/presentation/screens/reviews_screen.dart'
-    as _i12;
 import 'package:recipe_haven/tabs_parent_route.dart' as _i3;
 
 /// generated route for
