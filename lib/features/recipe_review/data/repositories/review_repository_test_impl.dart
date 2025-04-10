@@ -13,12 +13,12 @@ class ReviewRepositoryTestImpl implements ReviewRepository {
       Success(
         Review(
           id: Random().nextInt(44).toString(),
-          userID: review.userID,
-          userName: review.userName,
-          userProfilePic: review.userPhotoUrl,
+          userID: 'Ahmed',
+          userName: 'Ali',
+          userProfilePic: null,
           imagesUrl: review.imagesUrl,
           publishedAt: DateTime.now(),
-          description: review.comment,
+          comment: review.comment,
         ),
       ),
     );

@@ -5,6 +5,7 @@ class UserData {
   final String? photoUrl;
   final String? bio;
   final DateTime? joinedDate;
+  final dynamic userRef;
   final List<dynamic> recipesRef;
   final List<dynamic> savedRecipesRef;
   final List<dynamic> followersRef;
@@ -19,6 +20,7 @@ class UserData {
     required this.photoUrl,
     required this.bio,
     required this.joinedDate,
+    required this.userRef,
     required this.recipesRef,
     required this.savedRecipesRef,
     required this.followersRef,

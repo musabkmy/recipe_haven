@@ -8,9 +8,7 @@ part of 'create_review_model.dart';
 
 Map<String, dynamic> _$CreateReviewModelToJson(CreateReviewModel instance) =>
     <String, dynamic>{
-      'userID': instance.userID,
-      'userPhotoUrl': instance.userPhotoUrl,
-      'userName': instance.userName,
+      'userRef': instance.userRef,
       'comment': instance.comment,
       'imagesUrl': instance.imagesUrl,
       'recipeRef': instance.recipeRef,

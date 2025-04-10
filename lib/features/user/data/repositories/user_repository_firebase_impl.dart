@@ -34,7 +34,10 @@ class UserRepositoryFirebaseImpl extends UserRepository {
         return Failure(UserException('No user record found.'));
       }
 
-      final fetchedUser = UserFetchModel.fromJson(userDoc.data()!);
+      final fetchedUser = UserFetchModel.fromJson(
+        userDoc.reference,
+        userDoc.data()!,
+      );
 
       return Success(fetchedUser.toEntity());
     } catch (e) {
@@ -103,7 +106,10 @@ class UserRepositoryFirebaseImpl extends UserRepository {
       if (snapshot.exists) {
         final Map<String, dynamic> jsonData =
             snapshot.data() as Map<String, dynamic>;
-        final UserFetchModel fetchedUser = UserFetchModel.fromJson(jsonData);
+        final UserFetchModel fetchedUser = UserFetchModel.fromJson(
+          snapshot.reference,
+          jsonData,
+        );
         return Success(fetchedUser.toEntity());
       }
       return Failure(UserException('Unknown Error.'));

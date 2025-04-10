@@ -40,6 +40,7 @@ dependencies:
   flutter_dotenv: ^5.2.1
   # identify file type
   mime: ^2.0.0
+  hive: ^2.2.3
 
 dev_dependencies:
   flutter_test:

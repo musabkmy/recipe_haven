@@ -33,6 +33,5 @@ Map<String, dynamic> _$RecipeModelToJson(RecipeModel instance) =>
       'utensils': UtensilModel.toJsonS(instance.utensils),
       'details': DetailsModel.toJson(instance.details),
       'tags': instance.tags,
-      'reviews': ReviewModel.toJsonS(instance.reviews),
       'cookingStepsMap': CookingStepModel.toJsonS(instance.cookingStepsMap),
     };

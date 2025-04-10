@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:recipe_haven/features/user/domain/entities/user_data_entity.dart';
 
 part 'create_review_model.g.dart';
 
@@ -7,9 +6,7 @@ enum ReviewType { recipeReview, recipeReply }
 
 @JsonSerializable(createFactory: false)
 class CreateReviewModel {
-  final String userID;
-  final String? userPhotoUrl;
-  final String userName;
+  final String userRef;
   final String comment;
   final List<String> imagesUrl;
   final dynamic recipeRef;
@@ -19,9 +16,7 @@ class CreateReviewModel {
   // final DateTime publishedAt;
 
   CreateReviewModel._({
-    required this.userID,
-    required this.userPhotoUrl,
-    required this.userName,
+    required this.userRef,
     required this.comment,
     // required this.publishedAt,
     required this.imagesUrl,
@@ -36,7 +31,7 @@ class CreateReviewModel {
        rating = null;
 
   factory CreateReviewModel.fromRecipeReview({
-    required UserData userData,
+    required dynamic userRef,
     required String comment,
     required List<String> imagesUrl,
     required dynamic recipeRef,
@@ -44,9 +39,7 @@ class CreateReviewModel {
     return CreateReviewModel._(
       reviewType: ReviewType.recipeReview,
       parentReviewRef: [],
-      userID: userData.id,
-      userPhotoUrl: userData.photoUrl,
-      userName: userData.name,
+      userRef: userRef,
       comment: comment,
       imagesUrl: imagesUrl,
       recipeRef: recipeRef,

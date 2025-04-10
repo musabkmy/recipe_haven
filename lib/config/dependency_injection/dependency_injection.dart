@@ -3,9 +3,13 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:async';
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
+import 'package:recipe_haven/config/adapters/reviewer_model_adapter.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.config.dart';
 import 'package:recipe_haven/config/routes/auto_route.dart';
+import 'package:recipe_haven/core/services/cache/hive_cache_service.dart';
+import 'package:recipe_haven/features/recipe_review/data/models/reviewer_model.dart';
 import 'package:recipe_haven/firebase_options.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -17,6 +21,8 @@ final getIt = GetIt.instance;
   asExtension: true,
 )
 FutureOr<void> configurationDependency(String env) async {
+  setupHive();
+
   if (env == Env.prod) {
     await setupFirebase();
   }
@@ -43,6 +49,12 @@ Future<void> setupSupabase() async {
   final supabase = Supabase.instance.client;
 
   // await supabase.auth.signInAnonymously();
+}
+
+void setupHive() async {
+  Hive.init('hive_storage');
+  Hive.registerAdapter(ReviewerModelAdapter());
+  // getIt.registerSingleton(HiveCacheService<ReviewerModel>);
 }
 
 abstract class Env {

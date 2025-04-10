@@ -181,7 +181,7 @@ class _BuildCommentLayout extends StatelessWidget {
                   spacing: AppSpacing.lg,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(review.description, style: context.bodyMedium),
+                    Text(review.comment, style: context.bodyMedium),
                     if (imagesUrl.isNotEmpty)
                       SizedBox(
                         height: .4.sh,

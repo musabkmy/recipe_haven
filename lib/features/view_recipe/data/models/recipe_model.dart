@@ -24,7 +24,7 @@ class RecipeModel {
   @JsonKey(fromJson: DetailsModel.fromJson, toJson: DetailsModel.toJson)
   final DetailsModel details;
   final List<String> tags;
-  @JsonKey(fromJson: ReviewModel.fromJsonS, toJson: ReviewModel.toJsonS)
+  @JsonKey(fromJson: ReviewModel.fromJsonS, includeToJson: false)
   final ReviewModels reviews;
   @JsonKey(
     fromJson: CookingStepModel.fromJsonS,

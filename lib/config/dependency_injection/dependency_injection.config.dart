@@ -28,15 +28,19 @@ import '../../core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cub
 import '../../core/services/animation/animation_service.dart' as _i121;
 import '../../core/services/animation/animation_service_auto_animate_service_impl.dart'
     as _i382;
+import '../../core/services/cache/hive_cache_service.dart' as _i109;
 import '../../core/services/image/network_image_service.dart' as _i952;
 import '../../core/services/image/network_image_service_cached_image_impl.dart'
     as _i830;
+import '../../features/recipe_review/data/models/reviewer_model.dart' as _i814;
 import '../../features/recipe_review/data/repositories/recipe_upload_files_repository_test_impl.dart'
     as _i659;
 import '../../features/recipe_review/data/repositories/review_repository_firebase_impl.dart'
     as _i613;
 import '../../features/recipe_review/data/repositories/review_repository_test_impl.dart'
     as _i57;
+import '../../features/recipe_review/data/repositories/reviewers_cache_service.dart'
+    as _i956;
 import '../../features/recipe_review/data/repositories/upload_review_images_supabase_impl.dart'
     as _i656;
 import '../../features/recipe_review/domain/repositories/repositories.dart'
@@ -68,32 +72,41 @@ const String _prod = 'prod';
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
+  }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final hiveModule = _$HiveModule();
+    await gh.factoryAsync<_i109.HiveCacheService<_i814.ReviewerModel>>(
+      () => hiveModule.provideReviewerCache(),
+      preResolve: true,
+    );
     gh.singleton<_i430.UserMockSource>(() => _i430.UserMockSource());
     gh.singleton<_i779.RecipeMockSource>(() => _i779.RecipeMockSource());
     gh.singleton<_i307.FormProvider>(() => _i307.FormProvider());
     gh.lazySingleton<_i907.RecipeInfoBloc>(() => _i907.RecipeInfoBloc());
     gh.factory<_i121.AnimationService>(() => _i382.AutoAnimateServiceImpl());
-
-    gh.factory<_i952.NetworkImageService>(
-      () => _i830.NetworkImageServiceCachedImageImpl(),
-    );
-
-    gh.factory<_i935.UploadReviewImagesRepository>(
-      () => _i656.UploadReviewImagesSupabaseImpl(),
-      registerFor: {_prod},
-    );
     gh.factory<_i935.UploadReviewImagesRepository>(
       () => _i659.RecipeUploadFilesRepositoryTestImpl(),
       registerFor: {_dev},
     );
+    await gh.factoryAsync<_i956.ReviewersCacheService>(
+      () => hiveModule.provideReviewersCache(
+        gh<_i109.HiveCacheService<_i814.ReviewerModel>>(),
+      ),
+      preResolve: true,
+    );
     gh.factory<_i735.ReviewRepository>(
       () => _i57.ReviewRepositoryTestImpl(),
       registerFor: {_dev},
+    );
+    gh.factory<_i952.NetworkImageService>(
+      () => _i830.NetworkImageServiceCachedImageImpl(),
+    );
+    gh.factory<_i935.UploadReviewImagesRepository>(
+      () => _i656.UploadReviewImagesSupabaseImpl(),
+      registerFor: {_prod},
     );
     gh.factory<_i149.ReviewRepository>(
       () => _i613.ReviewRepositoryFirebaseImpl(),
@@ -103,14 +116,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i890.UserRepositoryTestImpl(gh<_i430.UserMockSource>()),
       registerFor: {_dev},
     );
-
-    gh.factory<_i237.UserRepository>(
-      () => _i431.UserRepositoryFirebaseImpl(),
-      registerFor: {_prod},
-    );
     gh.factory<_i1062.RecipeRepository>(
       () => _i650.RecipeRepositoryTestImpl(gh<_i779.RecipeMockSource>()),
       registerFor: {_dev},
+    );
+    gh.factory<_i237.UserRepository>(
+      () => _i431.UserRepositoryFirebaseImpl(),
+      registerFor: {_prod},
     );
     gh.factory<_i1062.RecipeRepository>(
       () => _i766.RecipeRepositoryFirebaseImpl(),
@@ -140,3 +152,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$HiveModule extends _i109.HiveModule {}

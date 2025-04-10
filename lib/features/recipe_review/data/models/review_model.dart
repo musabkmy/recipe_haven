@@ -1,5 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
+import 'package:recipe_haven/features/recipe_review/data/models/review_base_model.dart';
+import 'package:recipe_haven/features/recipe_review/data/models/reviewer_model.dart';
+import 'package:recipe_haven/features/recipe_review/data/models/sub_review_model.dart';
 
 import 'package:recipe_haven/features/recipe_review/domain/entities/review_entity.dart';
 
@@ -7,59 +9,52 @@ part 'review_model.g.dart';
 
 typedef ReviewModels = List<ReviewModel>;
 
-//TODO: remove toJson when full migrate reviews to a feature
-@JsonSerializable()
-class ReviewModel {
-  final String id;
-  final String userID;
-  final String? userProfilePic;
-  final String userName;
+@JsonSerializable(createToJson: false)
+class ReviewModel extends ReviewBaseModel {
   final List<String> imagesUrl;
+  final List<dynamic> subsRef;
+  @JsonKey(includeFromJson: false)
+  final SubReviewModelMaps subReviews;
   final double? rating;
-  //change to hard typed
-  //Ex: a month ago, a year ago
-  final DateTime publishedAt;
-  final String description;
 
   const ReviewModel({
-    required this.id,
-    required this.userID,
-    required this.userName,
-    this.userProfilePic,
+    required String id,
+    required ReviewerModel reviewerModel,
+    required DateTime publishedAt,
+    required String comment,
     required this.imagesUrl,
     required this.rating,
-    required this.publishedAt,
-    required this.description,
-  });
+    this.subsRef = const [],
+    this.subReviews = const {},
+  }) : super(id, reviewerModel, publishedAt, comment);
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) =>
       _$ReviewModelFromJson(json);
 
   factory ReviewModel.fromEntity(Review entity) => ReviewModel(
     id: entity.id,
-    userID: entity.userID,
-    userName: entity.userName,
-    userProfilePic: entity.userProfilePic,
+    reviewerModel: ReviewerModel.fromReviewEntity(entity),
+    publishedAt: entity.publishedAt,
+    comment: entity.comment,
     imagesUrl: entity.imagesUrl,
     rating: entity.rating,
-    publishedAt: entity.publishedAt,
-    description: entity.description,
+    subsRef: [],
   );
 
   static ReviewModels fromEntities(Reviews entities) =>
       entities.map((element) => ReviewModel.fromEntity(element)).toList();
 
-  Map<String, dynamic> toJson() => _$ReviewModelToJson(this);
+  // Map<String, dynamic> toJson() => _$ReviewModelToJson(this);
 
   Review toEntity() => Review(
     id: id,
-    userID: userID,
-    userName: userName,
-    userProfilePic: userProfilePic,
+    userID: reviewerModel.id,
+    userName: reviewerModel.name,
+    userProfilePic: reviewerModel.profilePic,
     imagesUrl: imagesUrl,
     rating: rating,
     publishedAt: publishedAt,
-    description: description,
+    comment: comment,
   );
 
   static ReviewModels fromJsonS(List<dynamic> json) {
@@ -68,13 +63,13 @@ class ReviewModel {
         .toList();
   }
 
-  static List<Map<String, dynamic>> toJsonS(ReviewModels reviewModels) {
-    return reviewModels.map((e) => e.toJson()).toList();
-  }
+  // static List<Map<String, dynamic>> toJsonS(ReviewModels reviewModels) {
+  //   return reviewModels.map((e) => e.toJson()).toList();
+  // }
 
   @override
   String toString() {
-    return 'ReviewModel(id: $id, userID: $userID, userProfilePic: $userProfilePic, userName: $userName, imagesUrl: $imagesUrl, rating: $rating, publishedAt: $publishedAt, description: $description)';
+    return 'ReviewModel(id: $id, reviewerModel: ${reviewerModel.toString()}, imagesUrl: $imagesUrl, rating: $rating, publishedAt: $publishedAt, comment: $comment)';
   }
 }
 

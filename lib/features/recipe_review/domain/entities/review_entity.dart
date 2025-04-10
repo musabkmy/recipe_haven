@@ -11,7 +11,7 @@ class Review extends Equatable {
   final List<String> imagesUrl;
   final double? rating;
   final DateTime publishedAt;
-  final String description;
+  final String comment;
   final int favCount;
 
   const Review({
@@ -22,7 +22,7 @@ class Review extends Equatable {
     required this.imagesUrl,
     this.rating,
     required this.publishedAt,
-    required this.description,
+    required this.comment,
     this.favCount = 0,
   });
 
@@ -37,7 +37,7 @@ class Review extends Equatable {
       userProfilePic: '',
       imagesUrl: [],
       publishedAt: DateTime.now(),
-      description: '',
+      comment: '',
     );
   }
 

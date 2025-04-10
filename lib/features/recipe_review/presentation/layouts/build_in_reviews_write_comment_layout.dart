@@ -172,19 +172,19 @@ class _BuildSendButton extends StatelessWidget {
         return state is CreateReviewInitial ? state.comment : null;
       },
       builder: (context, comment) {
-        return BlocSelector<UserBloc, UserState, UserData?>(
+        return BlocSelector<UserBloc, UserState, dynamic>(
           selector: (state) {
-            return state is UserDataFetched ? state.userData : null;
+            return state is UserDataFetched ? state.userData.userRef : null;
           },
-          builder: (context, userData) {
+          builder: (context, userRef) {
             return AppTextButton(
               label: 'Send',
               onPressed: comment.let((comment) {
                 return () {
-                  userData.letOrElse((userData) {
+                  userRef.letOrElse((userRef) {
                     _commentController.clear();
                     context.read<CreateReviewBloc>().add(
-                      AddRecipeReview(userData, recipeRef),
+                      AddRecipeReview(userRef, recipeRef),
                     );
                   }, orElse: () => AppDialog(body: 'unauthorized access'));
                 };

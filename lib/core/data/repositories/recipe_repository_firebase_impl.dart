@@ -94,6 +94,7 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
       for (final doc in querySnapshot.docs) {
         final recipeData = doc.data();
         final creatorRef = recipeData['creatorRef'] as DocumentReference?;
+        final reviewrs = recipeData['reviews'] as List<dynamic>?;
 
         Map<String, dynamic>? userData;
         if (creatorRef != null) {

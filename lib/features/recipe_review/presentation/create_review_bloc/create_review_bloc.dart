@@ -84,7 +84,7 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
             emit(CreateReviewFailure(state, 'unable to upload'));
           } else {
             final review = CreateReviewModel.fromRecipeReview(
-              userData: event.userData,
+              userRef: event.userRef,
               comment: state.comment!,
               imagesUrl: uploadResult.successData,
               recipeRef: event.recipeRef,

@@ -56,6 +56,7 @@ class UserMockSource {
 I thrive in fast-paced environments and enjoy experimenting with bold flavors and innovative techniques. Whether it’s crafting a perfectly balanced sushi roll or baking a decadent chocolate soufflé, I believe that food is an art form that brings people together.''',
     id: '43593',
     joinedDate: DateTime(2024, 3, 22),
+    userRef: '',
     followersRef: [],
     followingRef: [],
     recipesRef: [],

@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:recipe_haven/features/recipe_review/data/models/reviewer_model.dart';
 import 'package:recipe_haven/features/view_recipe/data/models/details/measuring_unit_model.dart';
 import 'package:recipe_haven/features/view_recipe/data/models/models.dart';
 import 'package:recipe_haven/features/view_recipe/data/models/tag_model.dart';
@@ -191,59 +192,58 @@ class RecipeMockSource {
       reviews: [
         ReviewModel(
           id: 'rev-1',
-          userID: 'userID-1',
-          userName: 'Muhab',
-          userProfilePic:
-              'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-1',
+            'Muhab',
+            'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
+          ),
+
           imagesUrl: [
             'https://i.pinimg.com/474x/0e/51/e3/0e51e3190ff7fab23e83713e554c2468.jpg',
             'https://i.pinimg.com/236x/d0/e2/0d/d0e20d6ca492365803a8da9dbd07d17b.jpg',
           ],
           rating: 4.5,
           publishedAt: DateTime(2024, 3, 4),
-          description: 'Great recipe idea! eh The taste persisted',
+          comment: 'Great recipe idea! eh The taste persisted',
         ),
         ReviewModel(
           id: 'rev-2',
-          userID: 'userID-2',
-          userName: 'Alice',
+          reviewerModel: ReviewerModel('userID-2', 'Alice'),
           imagesUrl: [
             'https://i.pinimg.com/236x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
             'https://i.pinimg.com/236x/f7/c6/24/f7c6242addd8a1ebc91e07c69c2954e0.jpg',
           ],
           rating: 5.0,
           publishedAt: DateTime(2024, 8, 5),
-          description:
+          comment:
               'Absolutely loved it! The flavors were amazing and the instructions were easy to follow.',
         ),
         ReviewModel(
           id: 'rev-3',
-          userID: 'userID-3',
-          userName: 'Bob',
+          reviewerModel: ReviewerModel('userID-3', 'Bob'),
+
           imagesUrl: [
             'https://i.pinimg.com/236x/30/70/d1/3070d19e87a69acca2e2fed1e2695138.jpg',
           ],
           rating: 3.5,
           publishedAt: DateTime(2023, 5, 2),
-          description:
+          comment:
               'Good recipe, but it took longer to cook than expected. The taste was decent though.',
         ),
         ReviewModel(
           id: 'rev-4',
-          userID: 'userID-4',
-          userName: 'Charlie',
+          reviewerModel: ReviewerModel('userID-4', 'Charlie'),
           imagesUrl: [
             'https://i.pinimg.com/236x/8d/cb/e7/8dcbe74e933d192bd2029874d9a30578.jpg',
           ],
           rating: 4.0,
           publishedAt: DateTime(2020, 5, 1),
-          description:
+          comment:
               'Solid recipe. I would recommend adding a bit more seasoning for extra flavor.',
         ),
         ReviewModel(
           id: 'rev-5',
-          userID: 'userID-5',
-          userName: 'Diana',
+          reviewerModel: ReviewerModel('userID-5', 'Diana'),
           imagesUrl: [
             'https://i.pinimg.com/236x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
             'https://i.pinimg.com/236x/9f/b6/e2/9fb6e200b3be5848f23cfaf8fc0f9e9b.jpg',
@@ -251,21 +251,22 @@ class RecipeMockSource {
           ],
           rating: 2.0,
           publishedAt: DateTime(2024, 4, 30),
-          description:
+          comment:
               'Not a fan. The dish was too bland and the instructions were unclear.',
         ),
         ReviewModel(
           id: 'rev-6',
-          userID: 'userID-6',
-          userName: 'Eve',
-          userProfilePic:
-              'https://i.pinimg.com/236x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-6',
+            'Eve',
+            'https://i.pinimg.com/236x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg',
+          ),
           imagesUrl: [
             'https://i.pinimg.com/236x/ff/b1/36/ffb136af8fc1c2125a2fbf2b5eca8d0f.jpg',
           ],
           rating: 4.8,
           publishedAt: DateTime(2024, 4, 29),
-          description:
+          comment:
               'Fantastic recipe! The dish was a hit at my Packed dinner party. Will definitely make it again.',
         ),
       ],
@@ -466,26 +467,27 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
       reviews: [
         ReviewModel(
           id: 'rev-1',
-          userID: 'userID-7',
-          userName: 'Marco',
-          userProfilePic:
-              'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-7',
+            'Marco',
+
+            'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
+          ),
           imagesUrl: [],
           rating: 5.0,
           publishedAt: DateTime(2024, 5, 4),
-          description:
+          comment:
               'Perfect recipe! Tastes just like my grandmother\'s carbonara.',
         ),
         ReviewModel(
           id: 'rev-2',
-          userID: 'userID-8',
-          userName: 'Sophia',
+          reviewerModel: ReviewerModel('userID-8', 'Sophia'),
           imagesUrl: [
             'https://i.pinimg.com/236x/bb/6a/6c/bb6a6c91c579bac5e3088de29299b459.jpg',
           ],
           rating: 4.5,
           publishedAt: DateTime(2024, 5, 3),
-          description:
+          comment:
               'Delicious and easy to make. I added a bit more cheese for extra flavor.',
         ),
       ],
@@ -646,14 +648,16 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
       reviews: [
         ReviewModel(
           id: 'rev-1',
-          userID: 'userID-9',
-          userName: 'Emma',
-          userProfilePic:
-              'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-9',
+            'Emma',
+
+            'https://i.pinimg.com/236x/e6/22/fb/e622fbfee64bbe2a9ea36adb7a1620b5.jpg',
+          ),
           imagesUrl: [],
           rating: 5.0,
           publishedAt: DateTime(2024, 5, 4),
-          description: 'Absolutely divine! The molten center is perfect.',
+          comment: 'Absolutely divine! The molten center is perfect.',
         ),
       ],
       cookingStepsMap: [
@@ -865,38 +869,40 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
       reviews: [
         ReviewModel(
           id: 'rev-1',
-          userID: 'userID-10',
-          userName: 'James',
-          userProfilePic:
-              'https://i.pinimg.com/236x/7c/19/99/7c1999c9b66a24b58207b4c5d639edad.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-10',
+            'James',
+
+            'https://i.pinimg.com/236x/7c/19/99/7c1999c9b66a24b58207b4c5d639edad.jpg',
+          ),
           imagesUrl: [
             'https://i.pinimg.com/236x/11/80/d0/1180d08e44209b9b9774720e4555c3b2.jpg',
           ],
           rating: 5.0,
           publishedAt: DateTime(2024, 4, 28),
-          description:
+          comment:
               'Bursting with authentic flavors! Reminds me of my trip to Thailand. A favorite in our household now.',
         ),
         ReviewModel(
           id: 'rev-2',
-          userID: 'userID-11',
-          userName: 'Lila',
+          reviewerModel: ReviewerModel('userID-11', 'Lila'),
           imagesUrl: [],
           rating: 4.5,
           publishedAt: DateTime(2024, 4, 20),
-          description:
+          comment:
               'Delicious and fairly easy to make! I had trouble finding kaffir lime leaves so used lime zest instead.',
         ),
         ReviewModel(
           id: 'rev-3',
-          userID: 'userID-12',
-          userName: 'Michael',
-          userProfilePic:
-              'https://i.pinimg.com/236x/4c/8d/e5/4c8de5e103723d152c072c7a5795ac11.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-12',
+            'Michael',
+            'https://i.pinimg.com/236x/4c/8d/e5/4c8de5e103723d152c072c7a5795ac11.jpg',
+          ),
           imagesUrl: [],
           rating: 4.0,
           publishedAt: DateTime(2024, 4, 15),
-          description:
+          comment:
               'Great flavors but a bit too spicy for my taste. Will reduce the curry paste next time.',
         ),
       ],
@@ -1115,39 +1121,38 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
       reviews: [
         ReviewModel(
           id: 'rev-1',
-          userID: 'userID-13',
-          userName: 'Sarah',
-          userProfilePic:
-              'https://i.pinimg.com/236x/29/8d/22/298d227d55e78f2985803ad79f3a6f08.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-13',
+            'Sarah',
+            'https://i.pinimg.com/236x/29/8d/22/298d227d55e78f2985803ad79f3a6f08.jpg',
+          ),
           imagesUrl: [
             'https://i.pinimg.com/474x/51/0d/2e/510d2e84bfb8a156e9538847935fa392.jpg',
             'https://i.pinimg.com/236x/e2/a3/71/e2a371c196f3f2b7e8869b34bbecbd48.jpg',
           ],
           rating: 5.0,
           publishedAt: DateTime(2024, 4, 10),
-          description:
+          comment:
               'So much easier than a traditional pie but tastes just as good! The pastry was perfectly flaky.',
         ),
         ReviewModel(
           id: 'rev-2',
-          userID: 'userID-14',
-          userName: 'Daniel',
+          reviewerModel: ReviewerModel('userID-14', 'Daniel'),
           imagesUrl: [],
           rating: 4.0,
           publishedAt: DateTime(2024, 4, 5),
-          description:
+          comment:
               'Delicious flavor but my crust leaked a bit. Will try chilling it longer next time.',
         ),
         ReviewModel(
           id: 'rev-3',
-          userID: 'userID-15',
-          userName: 'Olivia',
+          reviewerModel: ReviewerModel('userID-15', 'Olivia'),
           imagesUrl: [
             'https://i.pinimg.com/236x/aa/ba/6e/aaba6ec5335f914ef5e37177fdd0e431.jpg',
           ],
           rating: 5.0,
           publishedAt: DateTime(2024, 3, 20),
-          description:
+          comment:
               'Perfect for autumn! I used a mix of Honeycrisp and Granny Smith apples which gave a nice balance of sweet and tart.',
         ),
       ],
@@ -1369,16 +1374,17 @@ Let cool slightly before serving.
       reviews: [
         ReviewModel(
           id: 'rev-7',
-          userID: 'userID-7',
-          userName: 'Sophia',
-          userProfilePic:
-              'https://i.pinimg.com/474x/ec/ef/a8/ecefa8c572d71770ecc3318141ad3b37.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-7',
+            'Sophia',
+            'https://i.pinimg.com/474x/ec/ef/a8/ecefa8c572d71770ecc3318141ad3b37.jpg',
+          ),
           imagesUrl: [
             'https://i.pinimg.com/474x/83/7e/54/837e54f6c97f2e5d7436a5e0d7cc4bda.jpg',
           ],
           rating: 5.0,
           publishedAt: DateTime(2024, 5, 5),
-          description:
+          comment:
               'Absolutely delicious! The recipe was easy to follow, and the result was amazing.',
         ),
       ],
@@ -1585,16 +1591,17 @@ Remove the __utensil_ute-8 from heat and quickly stir in the egg mixture. Add re
       reviews: [
         ReviewModel(
           id: 'rev-9',
-          userID: 'userID-9',
-          userName: 'Emma',
-          userProfilePic:
-              'https://i.pinimg.com/236x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-9',
+            'Emma',
+            'https://i.pinimg.com/236x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg',
+          ),
           imagesUrl: [
             'https://i.pinimg.com/236x/ff/b1/36/ffb136af8fc1c2125a2fbf2b5eca8d0f.jpg',
           ],
           rating: 4.8,
           publishedAt: DateTime(2024, 5, 7),
-          description:
+          comment:
               'This bowl is so delicious and filling! The tahini dressing is the perfect touch.',
         ),
       ],
@@ -1838,38 +1845,39 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
       reviews: [
         ReviewModel(
           id: 'rev-1',
-          userID: 'userID-10',
-          userName: 'James',
-          userProfilePic:
-              'https://i.pinimg.com/236x/7c/19/99/7c1999c9b66a24b58207b4c5d639edad.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-10',
+            'James',
+            'https://i.pinimg.com/236x/7c/19/99/7c1999c9b66a24b58207b4c5d639edad.jpg',
+          ),
           imagesUrl: [
             'https://i.pinimg.com/236x/11/80/d0/1180d08e44209b9b9774720e4555c3b2.jpg',
           ],
           rating: 5.0,
           publishedAt: DateTime(2024, 4, 28),
-          description:
+          comment:
               'Bursting with authentic flavors! Reminds me of my trip to Thailand. A favorite in our household now.',
         ),
         ReviewModel(
           id: 'rev-2',
-          userID: 'userID-11',
-          userName: 'Lila',
+          reviewerModel: ReviewerModel('userID-11', 'Lila'),
           imagesUrl: [],
           rating: 4.5,
           publishedAt: DateTime(2024, 4, 20),
-          description:
+          comment:
               'Delicious and fairly easy to make! I had trouble finding kaffir lime leaves so used lime zest instead.',
         ),
         ReviewModel(
           id: 'rev-3',
-          userID: 'userID-12',
-          userName: 'Michael',
-          userProfilePic:
-              'https://i.pinimg.com/236x/4c/8d/e5/4c8de5e103723d152c072c7a5795ac11.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-12',
+            'Michael',
+            'https://i.pinimg.com/236x/4c/8d/e5/4c8de5e103723d152c072c7a5795ac11.jpg',
+          ),
           imagesUrl: [],
           rating: 4.0,
           publishedAt: DateTime(2024, 4, 15),
-          description:
+          comment:
               'Great flavors but a bit too spicy for my taste. Will reduce the curry paste next time.',
         ),
       ],
@@ -2088,39 +2096,38 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
       reviews: [
         ReviewModel(
           id: 'rev-1',
-          userID: 'userID-13',
-          userName: 'Sarah',
-          userProfilePic:
-              'https://i.pinimg.com/236x/29/8d/22/298d227d55e78f2985803ad79f3a6f08.jpg',
+          reviewerModel: ReviewerModel(
+            'userID-13',
+            'Sarah',
+            'https://i.pinimg.com/236x/29/8d/22/298d227d55e78f2985803ad79f3a6f08.jpg',
+          ),
           imagesUrl: [
             'https://i.pinimg.com/474x/51/0d/2e/510d2e84bfb8a156e9538847935fa392.jpg',
             'https://i.pinimg.com/236x/e2/a3/71/e2a371c196f3f2b7e8869b34bbecbd48.jpg',
           ],
           rating: 5.0,
           publishedAt: DateTime(2024, 4, 10),
-          description:
+          comment:
               'So much easier than a traditional pie but tastes just as good! The pastry was perfectly flaky.',
         ),
         ReviewModel(
           id: 'rev-2',
-          userID: 'userID-14',
-          userName: 'Daniel',
+          reviewerModel: ReviewerModel('userID-14', 'Daniel'),
           imagesUrl: [],
           rating: 4.0,
           publishedAt: DateTime(2024, 4, 5),
-          description:
+          comment:
               'Delicious flavor but my crust leaked a bit. Will try chilling it longer next time.',
         ),
         ReviewModel(
           id: 'rev-3',
-          userID: 'userID-15',
-          userName: 'Olivia',
+          reviewerModel: ReviewerModel('userID-15', 'Olivia'),
           imagesUrl: [
             'https://i.pinimg.com/236x/aa/ba/6e/aaba6ec5335f914ef5e37177fdd0e431.jpg',
           ],
           rating: 5.0,
           publishedAt: DateTime(2024, 3, 20),
-          description:
+          comment:
               'Perfect for autumn! I used a mix of Honeycrisp and Granny Smith apples which gave a nice balance of sweet and tart.',
         ),
       ],

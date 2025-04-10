@@ -5,11 +5,12 @@ import 'package:recipe_haven/features/user/data/models/user_creation_model.dart'
 import 'package:recipe_haven/features/user/domain/entities/user_data_entity.dart';
 part 'user_fetch_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class UserFetchModel extends UserBaseModel {
   final String id;
   @JsonKey(includeToJson: false, fromJson: _fromTimestamp)
   final DateTime? joinedDate;
+  final dynamic userRef;
   @JsonKey(toJson: _toEmptyArrayJson)
   final List<dynamic> recipesRef;
   @JsonKey(toJson: _toEmptyArrayJson)
@@ -28,6 +29,7 @@ class UserFetchModel extends UserBaseModel {
     required super.bio,
     required this.id,
     required this.joinedDate,
+    required this.userRef,
     required this.followersRef,
     required this.followingRef,
     required this.recipesRef,
@@ -37,13 +39,28 @@ class UserFetchModel extends UserBaseModel {
   });
   static const String collectionId = 'users';
 
-  factory UserFetchModel.fromJson(Map<String, dynamic> json) =>
-      _$UserFetchModelFromJson(json);
+  factory UserFetchModel.fromJson(dynamic userRef, Map<String, dynamic> json) =>
+      UserFetchModel(
+        name: json['name'],
+        email: json['email'],
+        photoUrl: json['photoUrl'],
+        bio: json['bio'],
+        id: json['id'],
+        joinedDate: json['joinedDate'],
+        userRef: userRef,
+        followersRef: json['followersRef'],
+        followingRef: json['followingRef'],
+        recipesRef: json['recipesRef'],
+        savedRecipesRef: json['savedRecipesRef'],
+        reviewsCount: json['reviewsCount'],
+        ratingsCount: json['ratingsCount'],
+      );
 
   Map<String, dynamic> toJson() => _$UserFetchModelToJson(this);
-
+  //temp operation
   factory UserFetchModel.fromCreation(
     String id,
+    // String userRef,
     UserCreationModel userCreationModel,
   ) => UserFetchModel(
     id: id,
@@ -52,6 +69,7 @@ class UserFetchModel extends UserBaseModel {
     photoUrl: userCreationModel.photoUrl,
     bio: userCreationModel.bio,
     joinedDate: null,
+    userRef: '',
     recipesRef: [],
     savedRecipesRef: [],
     followersRef: [],
@@ -67,6 +85,7 @@ class UserFetchModel extends UserBaseModel {
     photoUrl: photoUrl,
     bio: bio,
     joinedDate: joinedDate,
+    userRef: userRef,
     recipesRef: recipesRef,
     savedRecipesRef: savedRecipesRef,
     followersRef: followersRef,
