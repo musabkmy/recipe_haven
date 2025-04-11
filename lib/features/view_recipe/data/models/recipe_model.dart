@@ -1,5 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:recipe_haven/config/firestore_config/convertors.dart';
+
 import 'package:recipe_haven/features/view_recipe/data/models/models.dart';
 import 'package:recipe_haven/features/view_recipe/view_recipe.dart';
 
@@ -13,7 +17,7 @@ class RecipeModel {
   final String title;
   final String description;
   final String imageUrl;
-  @JsonKey(includeToJson: false, fromJson: _fromTimestamp)
+  @JsonKey(includeToJson: false, fromJson: Convertors.fromTimestamp)
   final DateTime? joinedDate;
   @JsonKey(fromJson: EngagementModel.fromJson, toJson: EngagementModel.toJson)
   final EngagementModel usersEngagement;
@@ -85,8 +89,10 @@ class RecipeModel {
     reviews: reviews.toEntity(),
     cookingStepsMap: cookingStepsMap.toEntity(),
   );
-  static DateTime? _fromTimestamp(Timestamp? timestamp) {
-    return timestamp?.toDate();
+
+  @override
+  String toString() {
+    return 'RecipeModel(id: $id, title: $title, description: $description, imageUrl: $imageUrl, joinedDate: $joinedDate, usersEngagement: $usersEngagement, userData: $userData, utensils: $utensils, details: $details, tags: $tags, reviews: $reviews, cookingStepsMap: $cookingStepsMap)';
   }
 }
 

@@ -11,7 +11,7 @@ ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) => ReviewModel(
   reviewerModel: ReviewerModel.fromJson(
     json['reviewerModel'] as Map<String, dynamic>,
   ),
-  publishedAt: DateTime.parse(json['publishedAt'] as String),
+  publishedAt: json['publishedAt'],
   comment: json['comment'] as String,
   imagesUrl:
       (json['imagesUrl'] as List<dynamic>).map((e) => e as String).toList(),

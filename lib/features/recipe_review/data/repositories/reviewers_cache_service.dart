@@ -30,8 +30,8 @@ final class ReviewersCacheService {
     }
   }
 
-  Future<ReviewerModel?> get(String key) async {
-    return _cache[key];
+  Future<Map<String, dynamic>?> hasData(String key) async {
+    return _cache.containsKey(key) ? _cache[key]!.toJson() : null;
   }
 
   Future<void> remove(String key) async {

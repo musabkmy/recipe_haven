@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:async';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/config/adapters/reviewer_model_adapter.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.config.dart';
@@ -27,7 +28,7 @@ FutureOr<void> configurationDependency(String env) async {
     await setupFirebase();
   }
   await setupSupabase();
-  getIt.init(environment: env);
+  await getIt.init(environment: env);
   getIt.registerSingleton<AppRouter>(AppRouter());
 }
 
@@ -52,8 +53,10 @@ Future<void> setupSupabase() async {
 }
 
 void setupHive() async {
-  Hive.init('hive_storage');
-  Hive.registerAdapter(ReviewerModelAdapter());
+  await Hive.initFlutter();
+
+  // Hive.init('hive_storage');
+  // Hive.registerAdapter(ReviewerModelAdapter());
   // getIt.registerSingleton(HiveCacheService<ReviewerModel>);
 }
 

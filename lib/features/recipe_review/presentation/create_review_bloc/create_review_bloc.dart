@@ -7,7 +7,6 @@ import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/create_review_model.dart';
 import 'package:recipe_haven/features/recipe_review/domain/repositories/repositories.dart';
-import 'package:recipe_haven/features/user/domain/entities/user_data_entity.dart';
 import 'package:recipe_haven/features/recipe_review/domain/entities/entities.dart';
 
 part 'create_review_event.dart';

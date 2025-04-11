@@ -11,7 +11,7 @@ class ReviewerModelAdapter extends TypeAdapter<ReviewerModel> {
   void write(BinaryWriter writer, ReviewerModel obj) {
     writer.write(obj.id);
     writer.write(obj.name);
-    writer.write(obj.profilePic);
+    writer.write(obj.photoUrl);
   }
 
   @override

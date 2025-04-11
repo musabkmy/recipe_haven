@@ -29,6 +29,7 @@ import '../../core/services/animation/animation_service.dart' as _i121;
 import '../../core/services/animation/animation_service_auto_animate_service_impl.dart'
     as _i382;
 import '../../core/services/cache/hive_cache_service.dart' as _i109;
+import '../../core/services/cache/hive_module.dart' as _i93;
 import '../../core/services/image/network_image_service.dart' as _i952;
 import '../../core/services/image/network_image_service_cached_image_impl.dart'
     as _i830;
@@ -97,6 +98,11 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.factory<_i1062.RecipeRepository>(
+      () =>
+          _i766.RecipeRepositoryFirebaseImpl(gh<_i956.ReviewersCacheService>()),
+      registerFor: {_prod},
+    );
     gh.factory<_i735.ReviewRepository>(
       () => _i57.ReviewRepositoryTestImpl(),
       registerFor: {_dev},
@@ -124,10 +130,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i431.UserRepositoryFirebaseImpl(),
       registerFor: {_prod},
     );
-    gh.factory<_i1062.RecipeRepository>(
-      () => _i766.RecipeRepositoryFirebaseImpl(),
-      registerFor: {_prod},
-    );
     gh.singleton<_i1048.GetTonightCookCubit>(
       () => _i1048.GetTonightCookCubit(gh<_i208.RecipeRepository>()),
     );
@@ -153,4 +155,4 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$HiveModule extends _i109.HiveModule {}
+class _$HiveModule extends _i93.HiveModule {}

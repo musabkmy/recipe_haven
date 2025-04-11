@@ -14,14 +14,14 @@ class UserRepositoryTestImpl extends UserRepository {
   UserRepositoryTestImpl(this._userMockSource);
   @override
   Future<UserResponse> createUserRecord(UserFetchModel userFetch) {
-    return Future.value(Failure(UserException('no implementation')));
+    return Future.value(Failure(UnknownUserException('no implementation')));
   }
 
   @override
   Future<UserResponse> createUserWithEmailAndPassword(
     UserCreationModel userCreation,
   ) {
-    return Future.value(Failure(UserException('no implementation')));
+    return Future.value(Failure(UnknownUserException('no implementation')));
   }
 
   @override

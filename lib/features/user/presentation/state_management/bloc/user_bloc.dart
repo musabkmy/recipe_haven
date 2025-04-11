@@ -20,7 +20,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   Future<void> _onGetUser(GetUser event, Emitter<UserState> emit) async {
     Logger logger = Logger('_onGetUser');
-    logger.info('entered');
     final userData = await _userRepository.getUserData();
     logger.info(userData.toString());
     userData.when(
@@ -33,10 +32,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     CreateAccountWithEmailAndPassword event,
     Emitter<UserState> emit,
   ) async {
-    //TODO: uncomment
-    // if (!(state is UserDataInitial || state is UserDataFailure)) {
-    //   return;
-    // }
+    if (!(state is UserDataInitial || state is UserDataFailure)) {
+      return;
+    }
     Logger logger = Logger('_onCreateAccountWithEmailAndPassword');
     emit(UserDataLoading());
 

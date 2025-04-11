@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
 import 'package:json_annotation/json_annotation.dart';
+import 'package:recipe_haven/config/firestore_config/convertors.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/review_base_model.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/reviewer_model.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/sub_review_model.dart';
@@ -17,16 +19,23 @@ class ReviewModel extends ReviewBaseModel {
   final SubReviewModelMaps subReviews;
   final double? rating;
 
-  const ReviewModel({
+  ReviewModel({
     required String id,
     required ReviewerModel reviewerModel,
-    required DateTime publishedAt,
+    required dynamic publishedAt,
     required String comment,
     required this.imagesUrl,
     required this.rating,
     this.subsRef = const [],
     this.subReviews = const {},
-  }) : super(id, reviewerModel, publishedAt, comment);
+  }) : super(
+         id,
+         reviewerModel,
+         publishedAt is Timestamp
+             ? Convertors.fromTimestamp(publishedAt)
+             : publishedAt,
+         comment,
+       );
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) =>
       _$ReviewModelFromJson(json);
@@ -34,7 +43,7 @@ class ReviewModel extends ReviewBaseModel {
   factory ReviewModel.fromEntity(Review entity) => ReviewModel(
     id: entity.id,
     reviewerModel: ReviewerModel.fromReviewEntity(entity),
-    publishedAt: entity.publishedAt,
+    publishedAt: Convertors.toTimestamp(entity.publishedAt),
     comment: entity.comment,
     imagesUrl: entity.imagesUrl,
     rating: entity.rating,
@@ -50,7 +59,7 @@ class ReviewModel extends ReviewBaseModel {
     id: id,
     userID: reviewerModel.id,
     userName: reviewerModel.name,
-    userProfilePic: reviewerModel.profilePic,
+    userProfilePic: reviewerModel.photoUrl,
     imagesUrl: imagesUrl,
     rating: rating,
     publishedAt: publishedAt,

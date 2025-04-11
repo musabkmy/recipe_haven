@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
 import 'package:json_annotation/json_annotation.dart';
+import 'package:recipe_haven/config/firestore_config/convertors.dart';
 import 'package:recipe_haven/features/user/data/models/user_base_model.dart';
 import 'package:recipe_haven/features/user/data/models/user_creation_model.dart';
 import 'package:recipe_haven/features/user/domain/entities/user_data_entity.dart';
@@ -8,7 +8,7 @@ part 'user_fetch_model.g.dart';
 @JsonSerializable(createFactory: false)
 class UserFetchModel extends UserBaseModel {
   final String id;
-  @JsonKey(includeToJson: false, fromJson: _fromTimestamp)
+  @JsonKey(includeToJson: false, fromJson: Convertors.fromTimestamp)
   final DateTime? joinedDate;
   final dynamic userRef;
   @JsonKey(toJson: _toEmptyArrayJson)
@@ -46,7 +46,7 @@ class UserFetchModel extends UserBaseModel {
         photoUrl: json['photoUrl'],
         bio: json['bio'],
         id: json['id'],
-        joinedDate: json['joinedDate'],
+        joinedDate: Convertors.fromTimestamp(json['joinedDate']),
         userRef: userRef,
         followersRef: json['followersRef'],
         followingRef: json['followingRef'],
@@ -94,8 +94,4 @@ class UserFetchModel extends UserBaseModel {
     ratingsCount: ratingsCount,
   );
   static List<dynamic> _toEmptyArrayJson(List<dynamic> list) => [];
-
-  static DateTime? _fromTimestamp(Timestamp? timestamp) {
-    return timestamp?.toDate();
-  }
 }

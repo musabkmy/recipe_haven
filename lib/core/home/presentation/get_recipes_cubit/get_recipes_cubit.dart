@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/core/data/mocking_sources/recipe_mock_source.dart';
 import 'package:recipe_haven/features/view_recipe/view_recipe.dart';
 
@@ -17,12 +18,14 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
   StreamSubscription? _subscription;
 
   void getLatestRecipes() {
+    Logger logger = Logger('GetRecipesCubit');
     emit(GetRecipesLoading());
     _subscription?.cancel();
     //  emit.forEach(stream, onData: onData)
 
     _subscription = _recipeRepository.getAllRecipes().listen(
       (response) {
+        logger.info('response: ${response.toString()}');
         response.when(
           success: (value) => emit(GetRecipesSuccess(value)),
           failure: (error) => emit(GetRecipesFailure(error.message)),

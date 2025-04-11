@@ -20,7 +20,7 @@ class Success<T, K> extends Result<T, K> {
   }
 
   @override
-  String toString() => 'Success(value: $value)';
+  String toString() => 'Success(value: ${value.toString()})';
 }
 
 class Failure<T, K> extends Result<T, K> {
@@ -36,7 +36,7 @@ class Failure<T, K> extends Result<T, K> {
   }
 
   @override
-  String toString() => 'Failure(error: $error)';
+  String toString() => 'Failure(error: ${error.toString()})';
 }
 
 extension ResultExtensions<T, K> on Result<T, K> {
