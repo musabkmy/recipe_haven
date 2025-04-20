@@ -3,6 +3,7 @@ import 'dart:async' show Timer;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/extensions/extensions.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/home/presentation/layouts/editors_choice_layouts/editors_choice_layouts.dart';
@@ -66,9 +67,12 @@ class _BuildEditorChoiceLayoutState extends State<BuildEditorChoiceLayout> {
 
     // Logger logger = Logger('Editor\'s Choice');
     return BlocListener<GetRecipesCubit, GetRecipesState>(
-      listenWhen: (previous, current) => current is GetRecipesLoading,
+      // listenWhen:
+      //     (previous, current) =>
+      //         current is GetRecipesInitial || current is GetRecipesLoading,
       listener: (BuildContext context, GetRecipesState state) {
-        if (state is GetRecipesLoading) {
+        Logger('listen to status: ${state.runtimeType}');
+        if (state is GetRecipesInitial || state is GetRecipesLoading) {
           LoadingOverlay.show(context);
         } else {
           LoadingOverlay.hide(context);

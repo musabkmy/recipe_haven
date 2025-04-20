@@ -16,5 +16,6 @@ ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) => ReviewModel(
   imagesUrl:
       (json['imagesUrl'] as List<dynamic>).map((e) => e as String).toList(),
   rating: (json['rating'] as num?)?.toDouble(),
+  ref: json['ref'],
   subsRef: json['subsRef'] as List<dynamic>? ?? const [],
 );

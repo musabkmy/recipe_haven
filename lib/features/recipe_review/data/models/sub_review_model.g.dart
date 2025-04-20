@@ -12,7 +12,7 @@ SubReviewModel _$SubReviewModelFromJson(Map<String, dynamic> json) =>
       reviewerModel: ReviewerModel.fromJson(
         json['reviewerModel'] as Map<String, dynamic>,
       ),
-      publishedAt: DateTime.parse(json['publishedAt'] as String),
+      publishedAt: json['publishedAt'],
       comment: json['comment'] as String,
       mainReviewId: json['mainReviewId'] as String,
     );

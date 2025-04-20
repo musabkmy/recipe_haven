@@ -27,9 +27,10 @@ class BuildLatestRecipes extends StatelessWidget {
     return BlocBuilder<GetRecipesCubit, GetRecipesState>(
       buildWhen:
           (previous, current) =>
-              current is GetRecipesSuccess &&
-              previous is GetRecipesSuccess &&
-              !ListEquality().equals(previous.recipes, current.recipes),
+              (current != previous) ||
+              (current is GetRecipesSuccess &&
+                  previous is GetRecipesSuccess &&
+                  !ListEquality().equals(previous.recipes, current.recipes)),
       builder: (context, state) {
         if (state is GetRecipesSuccess) {
           final recipes = state.recipes;

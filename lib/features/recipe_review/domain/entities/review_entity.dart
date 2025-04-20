@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
+///key: id, value: review
+typedef ReviewsMap = Map<String, Review>;
 typedef Reviews = List<Review>;
 
 class Review extends Equatable {
@@ -13,6 +15,8 @@ class Review extends Equatable {
   final DateTime publishedAt;
   final String comment;
   final int favCount;
+  final dynamic ref;
+  final List<dynamic> subsRef;
 
   const Review({
     required this.id,
@@ -23,6 +27,8 @@ class Review extends Equatable {
     this.rating,
     required this.publishedAt,
     required this.comment,
+    required this.ref,
+    required this.subsRef,
     this.favCount = 0,
   });
 
@@ -37,6 +43,8 @@ class Review extends Equatable {
       userProfilePic: '',
       imagesUrl: [],
       publishedAt: DateTime.now(),
+      subsRef: [],
+      ref: null,
       comment: '',
     );
   }
@@ -49,9 +57,11 @@ extension ReviewsEx on Reviews {
   bool get hasImages => numOfReviewsImages() > 0;
   int numOfReviewsImages() {
     int count = 0;
-    forEach((review) {
-      count += review.imagesUrl.length;
-    });
+    for (final review in this) {
+      if (review.imagesUrl.isNotEmpty) {
+        count++;
+      }
+    }
     return count;
   }
 

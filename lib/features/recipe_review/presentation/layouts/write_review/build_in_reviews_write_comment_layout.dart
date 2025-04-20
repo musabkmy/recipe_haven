@@ -13,7 +13,6 @@ import 'package:recipe_haven/core/shared_layouts/app_dialog.dart';
 import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
 import 'package:recipe_haven/core/shared_layouts/app_text_button.dart';
 import 'package:recipe_haven/core/shared_layouts/app_text_form_field.dart';
-import 'package:recipe_haven/features/user/domain/entities/user_data_entity.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
 import 'package:recipe_haven/features/recipe_review/presentation/create_review_bloc/create_review_bloc.dart';
 import 'package:recipe_haven/features/recipe_review/presentation/layouts/take_or_choose_photo_dialog.dart';

@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:recipe_haven/config/firestore_config/convertors.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/review_base_model.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/reviewer_model.dart';
-import 'package:recipe_haven/features/recipe_review/data/models/sub_review_model.dart';
 
 import 'package:recipe_haven/features/recipe_review/domain/entities/review_entity.dart';
 
@@ -14,9 +13,8 @@ typedef ReviewModels = List<ReviewModel>;
 @JsonSerializable(createToJson: false)
 class ReviewModel extends ReviewBaseModel {
   final List<String> imagesUrl;
+  final dynamic ref;
   final List<dynamic> subsRef;
-  @JsonKey(includeFromJson: false)
-  final SubReviewModelMaps subReviews;
   final double? rating;
 
   ReviewModel({
@@ -26,8 +24,8 @@ class ReviewModel extends ReviewBaseModel {
     required String comment,
     required this.imagesUrl,
     required this.rating,
+    required this.ref,
     this.subsRef = const [],
-    this.subReviews = const {},
   }) : super(
          id,
          reviewerModel,
@@ -47,11 +45,12 @@ class ReviewModel extends ReviewBaseModel {
     comment: entity.comment,
     imagesUrl: entity.imagesUrl,
     rating: entity.rating,
+    ref: entity.ref,
     subsRef: [],
   );
 
-  static ReviewModels fromEntities(Reviews entities) =>
-      entities.map((element) => ReviewModel.fromEntity(element)).toList();
+  static ReviewModels fromEntities(ReviewsMap reviews) =>
+      reviews.values.map((element) => ReviewModel.fromEntity(element)).toList();
 
   // Map<String, dynamic> toJson() => _$ReviewModelToJson(this);
 
@@ -64,6 +63,8 @@ class ReviewModel extends ReviewBaseModel {
     rating: rating,
     publishedAt: publishedAt,
     comment: comment,
+    ref: ref,
+    subsRef: subsRef,
   );
 
   static ReviewModels fromJsonS(List<dynamic> json) {
@@ -83,5 +84,7 @@ class ReviewModel extends ReviewBaseModel {
 }
 
 extension ReviewModelEx on ReviewModels {
-  Reviews toEntity() => map((element) => element.toEntity()).toList();
+  ReviewsMap toEntity() => {
+    for (var element in this) element.id: element.toEntity(),
+  };
 }

@@ -18,7 +18,8 @@ final class ReviewersCacheService {
 
   ReviewersCacheService._(this._hiveCacheService, this._cache);
 
-  Future<void> add(ReviewerModel reviewer) async {
+  Future<void> add(Map<String, dynamic> json) async {
+    final reviewer = ReviewerModel.fromJson(json);
     final key = reviewer.id;
     if (!_cache.containsKey(key)) {
       try {

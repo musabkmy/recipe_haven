@@ -25,7 +25,7 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
 
     _subscription = _recipeRepository.getAllRecipes().listen(
       (response) {
-        logger.info('response: ${response.toString()}');
+        // logger.info('response: ${response.toString()}');
         response.when(
           success: (value) => emit(GetRecipesSuccess(value)),
           failure: (error) => emit(GetRecipesFailure(error.message)),
@@ -44,7 +44,7 @@ class GetRecipesCubit extends Cubit<GetRecipesState> {
     final recipes = RecipeMockSource().getAllRecipes;
 
     final randomRecipe = Random().nextInt(recipes.length);
-    debugPrint('createRecipe, in index: $randomRecipe');
+    // debugPrint('createRecipe, in index: $randomRecipe');
     await _recipeRepository.createRecipe(recipes[randomRecipe]);
     // emit(previousState);
   }

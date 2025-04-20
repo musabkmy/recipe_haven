@@ -14,7 +14,7 @@ class Recipe extends Equatable {
   final Details details;
   final Utensils utensils;
   final List<String> tags;
-  final Reviews reviews;
+  final ReviewsMap reviews;
   final CookingStepsMap cookingStepsMap;
 
   Recipe({

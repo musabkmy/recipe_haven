@@ -26,7 +26,7 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
     );
     final hasPrevious = (selectedPortionIndex - 1) >= 0;
     final hasNext = (selectedPortionIndex + 1) < receiveDetails.servings.length;
-    final reviewsMap = _getReviewsMap(event.recipe.reviews);
+    final reviewsMap = event.recipe.reviews;
     // logger.info(reviewsMap.toString());
     emit(
       RecipeInfoSuccess(
@@ -95,11 +95,11 @@ class RecipeInfoBloc extends Bloc<RecipeInfoEvent, RecipeInfoState> {
     }
   }
 
-  Map<String, Review> _getReviewsMap(Reviews reviews) {
-    final Map<String, Review> reviewsMap = {};
-    for (var element in reviews) {
-      reviewsMap[element.id] = element;
-    }
-    return reviewsMap;
-  }
+  // Map<String, Review> _getReviewsMap(Reviews reviews) {
+  //   final Map<String, Review> reviewsMap = {};
+  //   for (var element in reviews) {
+  //     reviewsMap[element.id] = element;
+  //   }
+  //   return reviewsMap;
+  // }
 }

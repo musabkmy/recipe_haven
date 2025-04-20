@@ -12,14 +12,18 @@ class BuildToReviews extends StatelessWidget {
   const BuildToReviews({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<RecipeInfoBloc, RecipeInfoState, (Reviews?, dynamic)>(
+    return BlocSelector<
+      RecipeInfoBloc,
+      RecipeInfoState,
+      (ReviewsMap?, dynamic)
+    >(
       selector:
           (state) =>
               state is RecipeInfoSuccess
                   ? (state.recipe.reviews, state.recipe.id)
                   : (null, null),
       builder: (context, data) {
-        final reviews = data.$1;
+        final reviews = data.$1?.values.toList();
         final recipeRef = data.$2;
         return reviews != null && recipeRef != null
             ? Padding(

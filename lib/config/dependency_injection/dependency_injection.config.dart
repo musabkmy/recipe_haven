@@ -52,6 +52,8 @@ import '../../features/recipe_review/domain/repositories/upload_review_images_re
     as _i935;
 import '../../features/recipe_review/presentation/create_review_bloc/create_review_bloc.dart'
     as _i468;
+import '../../features/recipe_review/presentation/get_reviews_data_bloc/get_reviews_data_bloc.dart'
+    as _i537;
 import '../../features/user/data/repositories/user_repository_firebase_impl.dart'
     as _i431;
 import '../../features/user/data/repositories/user_repository_test_impl.dart'
@@ -103,10 +105,6 @@ extension GetItInjectableX on _i174.GetIt {
           _i766.RecipeRepositoryFirebaseImpl(gh<_i956.ReviewersCacheService>()),
       registerFor: {_prod},
     );
-    gh.factory<_i735.ReviewRepository>(
-      () => _i57.ReviewRepositoryTestImpl(),
-      registerFor: {_dev},
-    );
     gh.factory<_i952.NetworkImageService>(
       () => _i830.NetworkImageServiceCachedImageImpl(),
     );
@@ -114,9 +112,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i656.UploadReviewImagesSupabaseImpl(),
       registerFor: {_prod},
     );
-    gh.factory<_i149.ReviewRepository>(
-      () => _i613.ReviewRepositoryFirebaseImpl(),
-      registerFor: {_prod},
+    gh.factory<_i735.ReviewRepository>(
+      () => _i57.ReviewRepositoryTestImpl(gh<_i779.RecipeMockSource>()),
+      registerFor: {_dev},
     );
     gh.factory<_i237.UserRepository>(
       () => _i890.UserRepositoryTestImpl(gh<_i430.UserMockSource>()),
@@ -125,6 +123,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1062.RecipeRepository>(
       () => _i650.RecipeRepositoryTestImpl(gh<_i779.RecipeMockSource>()),
       registerFor: {_dev},
+    );
+    gh.lazySingleton<_i537.GetReviewsDataBloc>(
+      () => _i537.GetReviewsDataBloc(gh<_i149.ReviewRepository>()),
     );
     gh.factory<_i237.UserRepository>(
       () => _i431.UserRepositoryFirebaseImpl(),
@@ -138,6 +139,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i414.GetRecipesCubit>(
       () => _i414.GetRecipesCubit(gh<_i1062.RecipeRepository>()),
+    );
+    gh.factory<_i149.ReviewRepository>(
+      () =>
+          _i613.ReviewRepositoryFirebaseImpl(gh<_i956.ReviewersCacheService>()),
+      registerFor: {_prod},
     );
     gh.singleton<_i579.GetCreatorsCubit>(
       () => _i579.GetCreatorsCubit(gh<_i237.UserRepository>()),

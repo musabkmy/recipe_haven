@@ -1,13 +1,13 @@
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/reviewer_model.dart';
+import 'package:recipe_haven/features/recipe_review/data/models/sub_review_model.dart';
 import 'package:recipe_haven/features/view_recipe/data/models/details/measuring_unit_model.dart';
 import 'package:recipe_haven/features/view_recipe/data/models/models.dart';
-import 'package:recipe_haven/features/view_recipe/data/models/tag_model.dart';
 import 'package:recipe_haven/features/view_recipe/enums/recipe_step_font_size.dart';
 
 @singleton
 class RecipeMockSource {
-  final RecipeModels getAllRecipes = [
+  final getAllRecipes = [
     RecipeModel(
       id: 'recipe-1',
       title: 'Chicken Marbella',
@@ -191,6 +191,7 @@ class RecipeMockSource {
       tags: ['herbs', 'Packed dinner', '2024 trends'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-1',
           reviewerModel: ReviewerModel(
             'userID-1',
@@ -207,6 +208,7 @@ class RecipeMockSource {
           comment: 'Great recipe idea! eh The taste persisted',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-2',
           reviewerModel: ReviewerModel('userID-2', 'Alice'),
           imagesUrl: [
@@ -219,6 +221,7 @@ class RecipeMockSource {
               'Absolutely loved it! The flavors were amazing and the instructions were easy to follow.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-3',
           reviewerModel: ReviewerModel('userID-3', 'Bob'),
 
@@ -231,6 +234,7 @@ class RecipeMockSource {
               'Good recipe, but it took longer to cook than expected. The taste was decent though.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-4',
           reviewerModel: ReviewerModel('userID-4', 'Charlie'),
           imagesUrl: [
@@ -242,6 +246,7 @@ class RecipeMockSource {
               'Solid recipe. I would recommend adding a bit more seasoning for extra flavor.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-5',
           reviewerModel: ReviewerModel('userID-5', 'Diana'),
           imagesUrl: [
@@ -255,6 +260,7 @@ class RecipeMockSource {
               'Not a fan. The dish was too bland and the instructions were unclear.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-6',
           reviewerModel: ReviewerModel(
             'userID-6',
@@ -466,6 +472,7 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
       tags: ['pasta', 'Italian', 'quick meal'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-1',
           reviewerModel: ReviewerModel(
             'userID-7',
@@ -480,6 +487,7 @@ Simple yet rich in flavor, this recipe is perfect for a quick and satisfying mea
               'Perfect recipe! Tastes just like my grandmother\'s carbonara.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-2',
           reviewerModel: ReviewerModel('userID-8', 'Sophia'),
           imagesUrl: [
@@ -647,6 +655,7 @@ A decadent dessert with a gooey, molten chocolate center. Perfect for chocolate 
       tags: ['dessert', 'chocolate', 'baking'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-1',
           reviewerModel: ReviewerModel(
             'userID-9',
@@ -868,6 +877,7 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
       tags: ['Thai', 'spicy', 'curry', 'Packed dinner', 'Asian'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-1',
           reviewerModel: ReviewerModel(
             'userID-10',
@@ -884,6 +894,7 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
               'Bursting with authentic flavors! Reminds me of my trip to Thailand. A favorite in our household now.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-2',
           reviewerModel: ReviewerModel('userID-11', 'Lila'),
           imagesUrl: [],
@@ -893,6 +904,7 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
               'Delicious and fairly easy to make! I had trouble finding kaffir lime leaves so used lime zest instead.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-3',
           reviewerModel: ReviewerModel(
             'userID-12',
@@ -1120,6 +1132,7 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
       tags: ['dessert', 'fruit', 'pastry', 'baking', 'fall'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-1',
           reviewerModel: ReviewerModel(
             'userID-13',
@@ -1136,6 +1149,7 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
               'So much easier than a traditional pie but tastes just as good! The pastry was perfectly flaky.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-2',
           reviewerModel: ReviewerModel('userID-14', 'Daniel'),
           imagesUrl: [],
@@ -1145,6 +1159,7 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
               'Delicious flavor but my crust leaked a bit. Will try chilling it longer next time.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-3',
           reviewerModel: ReviewerModel('userID-15', 'Olivia'),
           imagesUrl: [
@@ -1265,7 +1280,7 @@ Let cool slightly before serving.
     ),
   ];
 
-  final RecipeModels getTonightRecipes = [
+  final getTonightRecipes = [
     RecipeModel(
       id: 'recipe-6',
       title: 'Spaghetti Carbonara',
@@ -1373,6 +1388,7 @@ Let cool slightly before serving.
       tags: ['Italian', 'Pasta', 'Quick Dinner'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-7',
           reviewerModel: ReviewerModel(
             'userID-7',
@@ -1590,6 +1606,7 @@ Remove the __utensil_ute-8 from heat and quickly stir in the egg mixture. Add re
       tags: ['Vegetarian', 'Healthy', 'Bowl'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-9',
           reviewerModel: ReviewerModel(
             'userID-9',
@@ -1844,6 +1861,7 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
       tags: ['Thai', 'spicy', 'curry', 'Packed dinner', 'Asian'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-1',
           reviewerModel: ReviewerModel(
             'userID-10',
@@ -1859,6 +1877,7 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
               'Bursting with authentic flavors! Reminds me of my trip to Thailand. A favorite in our household now.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-2',
           reviewerModel: ReviewerModel('userID-11', 'Lila'),
           imagesUrl: [],
@@ -1868,6 +1887,7 @@ A fragrant and flavorful Thai curry with a perfect balance of spicy, sweet, and 
               'Delicious and fairly easy to make! I had trouble finding kaffir lime leaves so used lime zest instead.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-3',
           reviewerModel: ReviewerModel(
             'userID-12',
@@ -2095,6 +2115,7 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
       tags: ['dessert', 'fruit', 'pastry', 'baking', 'fall'],
       reviews: [
         ReviewModel(
+          ref: null,
           id: 'rev-1',
           reviewerModel: ReviewerModel(
             'userID-13',
@@ -2111,6 +2132,7 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
               'So much easier than a traditional pie but tastes just as good! The pastry was perfectly flaky.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-2',
           reviewerModel: ReviewerModel('userID-14', 'Daniel'),
           imagesUrl: [],
@@ -2120,6 +2142,7 @@ A simple yet elegant free-form apple tart with a flaky, buttery crust and sweet-
               'Delicious flavor but my crust leaked a bit. Will try chilling it longer next time.',
         ),
         ReviewModel(
+          ref: null,
           id: 'rev-3',
           reviewerModel: ReviewerModel('userID-15', 'Olivia'),
           imagesUrl: [
@@ -2240,7 +2263,7 @@ Let cool slightly before serving.
     ),
   ];
 
-  final TagModels getAllTags = [
+  final getAllTags = [
     TagModel(
       name: 'packed dinner',
       backgroundImage:
@@ -2266,4 +2289,25 @@ Let cool slightly before serving.
       recipes: [],
     ),
   ];
+
+  ReviewModel createReviews(CreateReviewModel review) => ReviewModel(
+    id: '1',
+    reviewerModel: ReviewerModel('userID-1', 'Ali Mohamed'),
+    ref: null,
+    subsRef: [],
+    imagesUrl: review.imagesUrl,
+    publishedAt: DateTime.now(),
+    comment: review.comment,
+    rating: null,
+  );
+
+  final getSubReviews = {
+    'sub-1': SubReviewModel(
+      id: 'sub-1',
+      reviewerModel: ReviewerModel('1', 'Ali Mohamed'),
+      publishedAt: DateTime(2024, 5, 1),
+      comment: 'agree',
+      mainReviewId: 'rev-1',
+    ),
+  };
 }

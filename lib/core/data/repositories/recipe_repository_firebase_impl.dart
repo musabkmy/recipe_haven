@@ -6,7 +6,6 @@ import 'package:recipe_haven/features/recipe_review/data/repositories/reviewers_
 import 'package:recipe_haven/features/view_recipe/data/models/models.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/core/exceptions/recipe_exceptions.dart';
-import 'package:recipe_haven/core/exceptions/upload_exceptions.dart';
 import 'package:recipe_haven/features/view_recipe/view_recipe.dart';
 import 'package:recipe_haven/features/user/data/models/user_fetch_model.dart';
 
@@ -130,9 +129,9 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
             // logger.info('utensils: ${recipeData['utensils']}');
             // logger.info('details: ${recipeData['details']}');
             // logger.info('tags: ${recipeData['tags']}');
-            logger.info(
-              'reviews: ${ReviewModel.fromJsonS(recipeData['reviews']).toString()}',
-            );
+            // logger.info(
+            //   'reviews: ${ReviewModel.fromJsonS(recipeData['reviews']).toString()}',
+            // );
             // logger.info('cookingStepsMap: ${recipeData['cookingStepsMap']}');
 
             final recipe = RecipeModel.fromJson(recipeData);
@@ -161,9 +160,11 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
       // logger.info('reviewDoc.exists: ${reviewDoc.exists}');
       // logger.info('reviewData: $reviewData');
       if (reviewData != null) {
+        final ref = reviewDoc.reference;
         final reviewerRef = reviewData['userRef'];
         final reviewerData = await _getJsonReviewer(reviewerRef);
         // logger.info(reviewerData);
+        reviewData['ref'] = ref;
         reviewData['reviewerModel'] = reviewerData;
 
         reviewsData.add(reviewData);
@@ -187,10 +188,11 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
     final reviewerDoc = await userRef.get();
     final reviewerData = reviewerDoc.data() as Map<String, dynamic>?;
     if (reviewerData != null) {
-      logger.info('reviewerData: ${reviewerData['id']}');
+      // logger.info('reviewerData: ${reviewerData['id']}');
+      await _reviewersCacheService.add(reviewerData);
       return reviewerData;
     } else {
-      logger.info('no reviewer found');
+      // logger.info('no reviewer found');
       throw RecipeException('no reviewer found.');
     }
   }

@@ -5,7 +5,6 @@ import 'package:logging/logging.dart';
 import 'package:recipe_haven/core/home/presentation/layouts/home_layouts.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/core/shared_layouts/app_dialog.dart';
-import 'package:recipe_haven/core/shared_layouts/app_loading_layout.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -41,7 +40,6 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _BuildTabView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
