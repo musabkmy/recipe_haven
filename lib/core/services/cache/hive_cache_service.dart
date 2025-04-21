@@ -1,77 +1,89 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:logging/logging.dart';
+import 'package:recipe_haven/core/services/cache/cache_item.dart';
 import 'package:recipe_haven/core/services/cache/cache_service.dart';
+import 'package:synchronized/synchronized.dart';
 
+/// Main Hive-based cache service
 final class HiveCacheService<T extends HiveObject> implements CacheService<T> {
   final String boxName;
-  final TypeAdapter<T>? adapter;
+  // To prevent race conditions
+  final Lock _lock = Lock();
+  Box<T>? _box;
 
-  HiveCacheService({required this.boxName, this.adapter}) {
-    if (adapter != null) {
-      Hive.registerAdapter(adapter!);
-    }
+  HiveCacheService({required this.boxName});
+
+  // Lazy initialization of the Hive box
+  // The Hive box opens only on first use
+  // Thread-safe initialization with synchronized
+  Future<Box<T>> get _boxInternal async {
+    return await _lock.synchronized(() async {
+      _box ??= await Hive.openBox<T>(boxName);
+      return _box!;
+    });
   }
 
-  Future<Box<T>> get _box async => await Hive.openBox(boxName);
-
   @override
-  Future<void> save({required String key, required T data}) async {
+  Future<void> save({
+    required String key,
+    required T data,
+    // Duration? ttl,
+  }) async {
     try {
-      final box = await _box;
-      await box.put(key, data);
+      // final expiresAt = ttl != null ? DateTime.now().add(ttl) : null;
+      await (await _boxInternal).put(key, data);
     } catch (e) {
-      throw CacheCantBeAddedException(e.toString());
+      Logger(
+        'Hive cache/save',
+      ).warning('Failed to save "$key": ${e.toString()}');
     }
   }
 
   @override
   Future<T?> get(String key) async {
-    final box = await _contains(key);
-    if (box == null) return null;
     try {
-      final item = box.get(key);
-      if (item == null) return null;
+      final item = (await _boxInternal).get(key);
+      if (item == null) {
+        await remove(key);
+        return null;
+      }
       return item;
     } catch (e) {
-      throw CacheNotFoundException(e.toString());
+      throw CacheNotFoundException('Failed to get "$key": ${e.toString()}');
     }
   }
 
   @override
   Future<List<T>> getAll() async {
     try {
-      final box = await _box;
-      return box.values.toList();
+      final box = await _boxInternal;
+      return box.values.map((item) => item).toList();
+    } on HiveError catch (e) {
+      // Critical failure
+      throw CacheNotFoundException('Hive error: ${e.message}');
     } catch (e) {
+      debugPrint('Error: $e');
+      // Return empty list for non-critical issues (e.g., no items)
       return [];
     }
   }
 
   @override
   Future<void> remove(String key) async {
-    final box = await _contains(key);
-    if (box == null) return;
     try {
-      await box.delete(key);
+      await (await _boxInternal).delete(key);
     } catch (e) {
-      throw CacheCantBeRemovedException(e.toString());
+      throw CacheCantBeRemovedException(
+        'Failed to remove "$key": ${e.toString()}',
+      );
     }
   }
 
-  Future<Box<T>?> _contains(String key) async {
-    try {
-      final box = await _box;
-      if (!box.containsKey(key)) return box;
-      return null;
-    } catch (e) {
-      throw CacheNotFoundException(e.toString());
-    }
+  /// Closes the underlying Hive box (call this when done)
+  @override
+  Future<void> close() async {
+    await _box?.close();
+    _box = null;
   }
-
-  // class T {
-  //   final T data;
-  //   final DateTime? expiresAt;
-
-  //   _CacheItem(this.data, this.expiresAt);
-
-  //   bool get isExpired => expiresAt != null && DateTime.now().isAfter(expiresAt!);}
 }

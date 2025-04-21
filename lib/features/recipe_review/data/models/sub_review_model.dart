@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' show Timestamp;
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:recipe_haven/config/firestore_config/convertors.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/review_base_model.dart';
@@ -10,7 +11,9 @@ part 'sub_review_model.g.dart';
 typedef SubReviewModelsMap = Map<String, SubReviewModel?>;
 
 @JsonSerializable(createToJson: false)
+@HiveType(typeId: 2, adapterName: 'SubReviewModelAdapter')
 class SubReviewModel extends ReviewBaseModel {
+  @HiveField(4)
   final String mainReviewId;
   SubReviewModel({
     required String id,

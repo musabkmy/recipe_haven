@@ -15,9 +15,9 @@ part 'sub_review_state.dart';
 @lazySingleton
 class GetReviewsDataBloc
     extends Bloc<GetReviewsDataEvent, GetReviewsDataState> {
-  final ReviewRepository reviewRepository;
+  final ReviewRepository _reviewRepository;
 
-  GetReviewsDataBloc(this.reviewRepository) : super(GetReviewsDataState()) {
+  GetReviewsDataBloc(this._reviewRepository) : super(GetReviewsDataState()) {
     // on<GetReviewsDataEvent>((event, emit) {});
     on<GetSubReviewsEvent>(_onGetSubReviewsEvent);
   }
@@ -27,6 +27,8 @@ class GetReviewsDataBloc
     Emitter<GetReviewsDataState> emit,
   ) async {
     Logger logger = Logger('_onGetSubReviewsEvent');
+    logger.info('state.subReviewStates: ${state.subReviewStates}');
+
     if (state.subReviewStates.containsKey(event.reviewId)) {
       logger.info('has the recipe sub reviews');
     }
@@ -34,7 +36,7 @@ class GetReviewsDataBloc
       state.copyWith(subReviewStates: {event.reviewId: SubReviewsLoading()}),
     );
     try {
-      final subReviews = await reviewRepository.getSubReviews(
+      final subReviews = await _reviewRepository.getSubReviews(
         event.reviewId,
         event.subsRef,
       );

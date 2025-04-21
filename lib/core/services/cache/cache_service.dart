@@ -14,4 +14,5 @@ abstract class CacheService<T> {
   // Future<bool> _contains(String key);
 
   Future<void> remove(String key);
+  Future<void> close();
 }

@@ -46,7 +46,7 @@ class NetworkImageServiceCachedImageImpl implements NetworkImageService {
   //           child: const Center(child: CircularProgressIndicator()),
   //         );
   //       }
-  //       if (snapshot.hasError || !snapshot.hasData) {
+  //       if (snapshot.hasError || !snapshot.get) {
   //         return SizedBox(
   //           height: height,
   //           width: width,

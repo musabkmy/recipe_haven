@@ -3,8 +3,8 @@ import 'package:recipe_haven/constants/app_icons.dart';
 import 'package:recipe_haven/constants/app_spacing.dart';
 import 'package:recipe_haven/core/shared_layouts/app_icon_text.dart';
 
-class BuildActions extends StatelessWidget {
-  const BuildActions({
+class BuildReviewActions extends StatelessWidget {
+  const BuildReviewActions({
     super.key,
     required this.reviewRef,
     required this.favCount,

@@ -44,9 +44,9 @@ class BuildToReviews extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          debugPrint(
-                            context.routeData.parent?.name ?? 'no parent',
-                          );
+                          // debugPrint(
+                          //   context.routeData.parent?.name ?? 'no parent',
+                          // );
                           context.navigateTo(
                             ReviewsRoute(
                               currentReviews: reviews,

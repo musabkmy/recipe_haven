@@ -46,7 +46,7 @@ class _BuildReviewLayoutState extends State<BuildReviewLayout> {
                   children: [
                     BuildCommentText(comment: review.comment),
                     BuildImages(controller: controller, imagesUrl: imagesUrl),
-                    BuildActions(
+                    BuildReviewActions(
                       reviewRef: review.ref,
                       favCount: review.favCount,
                     ),
