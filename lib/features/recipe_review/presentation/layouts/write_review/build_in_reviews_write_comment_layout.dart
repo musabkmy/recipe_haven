@@ -13,22 +13,22 @@ import 'package:recipe_haven/core/shared_layouts/app_dialog.dart';
 import 'package:recipe_haven/core/shared_layouts/app_overlay.dart';
 import 'package:recipe_haven/core/shared_layouts/app_text_button.dart';
 import 'package:recipe_haven/core/shared_layouts/app_text_form_field.dart';
+import 'package:recipe_haven/features/recipe_review/presentation/screens/review_head.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
 import 'package:recipe_haven/features/recipe_review/presentation/create_review_bloc/create_review_bloc.dart';
 import 'package:recipe_haven/features/recipe_review/presentation/layouts/take_or_choose_photo_dialog.dart';
 
 class BuildInReviewsCreateReviewLayout extends StatelessWidget {
   const BuildInReviewsCreateReviewLayout(
-    this.recipeRef,
     this.commentSectionHeight,
     this.createCommentImageSectionHeight, {
     super.key,
   });
-  final dynamic recipeRef;
   final double commentSectionHeight;
   final double createCommentImageSectionHeight;
   @override
   Widget build(BuildContext context) {
+    final recipeRef = ReviewsHead.of(context)?.recipeRef;
     return BlocListener<CreateReviewBloc, CreateReviewState>(
       listener: (context, state) {
         if (state is CreateReviewLoading) {

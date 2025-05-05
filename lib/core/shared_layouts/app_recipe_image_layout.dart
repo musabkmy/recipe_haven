@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_haven/constants/app_styles.dart';
 import 'package:recipe_haven/core/services/image/network_image_service.dart';
-import 'package:recipe_haven/core/shared_layouts/app_loading_layout.dart';
 
 class AppImageLayout extends StatelessWidget {
   const AppImageLayout({

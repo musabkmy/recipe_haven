@@ -18,20 +18,19 @@ class BuildReviewActions extends StatelessWidget {
     return Row(
       spacing: AppSpacing.lg,
       children: [
-        GestureDetector(
+        AppIconText(
           onTap: () {
             //TODO: add fav comment
           },
-          child: AppIconText(
-            icon: AppIcons.favorite,
-            label: favCount.toString(),
-          ),
+          icon: AppIcons.favorite,
+          label: favCount.toString(),
         ),
-        GestureDetector(
+        AppIconText(
           onTap: () {
             //TODO: add reply
           },
-          child: AppIconText(icon: AppIcons.reply, label: 'Reply'),
+          icon: AppIcons.reply,
+          label: 'Reply',
         ),
       ],
     );

@@ -65,7 +65,7 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
     AddRecipeReview event,
     Emitter<CreateReviewState> emit,
   ) async {
-    Logger logger = Logger('_onAddRecipeReview');
+    // Logger logger = Logger('_onAddRecipeReview');
     if (state case CreateReviewInitial state) {
       final previousState = state;
       emit(CreateReviewLoading());

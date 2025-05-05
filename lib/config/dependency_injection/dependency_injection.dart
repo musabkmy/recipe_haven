@@ -13,12 +13,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 final getIt = GetIt.instance;
 
-@InjectableInit(
-  initializerName: 'init',
-  preferRelativeImports: true,
-  asExtension: true,
-)
-FutureOr<void> configurationDependency(String env) async {
+@InjectableInit(initializerName: 'init')
+Future<void> configurationDependency(String env) async {
   await setupHive();
 
   if (env == Env.prod) {

@@ -50,7 +50,7 @@ class AppRouter extends RootStackRouter {
       // guards: [AuthGuard()],
     ),
     AutoRoute(path: '/recipeInfoRoute', page: RecipeInfoRoute.page),
-    AutoRoute(path: '/reviewsRoute', page: ReviewsRoute.page),
+    AutoRoute(path: '/reviewsRoute', page: ReviewsHead.page),
     AutoRoute(
       path: '/reviewsImagesGalleryRoute',
       page: ReviewsImagesGalleryRoute.page,

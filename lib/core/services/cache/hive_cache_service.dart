@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
-import 'package:recipe_haven/core/services/cache/cache_item.dart';
 import 'package:recipe_haven/core/services/cache/cache_service.dart';
 import 'package:synchronized/synchronized.dart';
 

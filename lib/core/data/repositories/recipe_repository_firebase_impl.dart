@@ -91,7 +91,7 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
   Future<GetAllRecipesResponse> _getRecipeResponse(
     QuerySnapshot<Map<String, dynamic>> querySnapshot,
   ) async {
-    Logger logger = Logger('RecipeRepositoryFirebaseImpl/_getRecipeResponse');
+    // Logger logger = Logger('RecipeRepositoryFirebaseImpl/_getRecipeResponse');
     try {
       final List<RecipeModel> recipes = [];
       for (final doc in querySnapshot.docs) {

@@ -1,28 +1,25 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart'
     show getIt;
 import 'package:recipe_haven/config/extensions/extensions.dart';
-import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_base_bar.dart';
 import 'package:recipe_haven/core/shared_layouts/app_spacer.dart';
 import 'package:recipe_haven/features/recipe_review/domain/entities/review_entity.dart';
 import 'package:recipe_haven/features/recipe_review/presentation/create_review_bloc/create_review_bloc.dart';
 import 'package:recipe_haven/features/recipe_review/presentation/get_reviews_data_bloc/get_reviews_data_bloc.dart';
-import 'package:recipe_haven/features/recipe_review/presentation/layouts/build_review_layout.dart';
+import 'package:recipe_haven/features/recipe_review/presentation/screens/review_head.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/layouts/layouts.dart';
 import 'package:recipe_haven/features/recipe_review/presentation/layouts/reviews_layouts.dart';
 
 final _commentSectionHeight = .14.sh;
 final _createCommentImageSectionHeight = .07.sh;
 
-@RoutePage()
 class ReviewsScreen extends StatelessWidget {
-  const ReviewsScreen(this.recipeRef, this.currentReviews, {super.key});
-  final dynamic recipeRef;
-  final Reviews currentReviews;
+  const ReviewsScreen({super.key});
+  // final dynamic recipeRef;
+  // final Reviews currentReviews;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,9 +50,8 @@ class ReviewsScreen extends StatelessWidget {
         ],
         child: Stack(
           children: [
-            _BuildCommentsListLayout(currentReviews),
+            _BuildCommentsListLayout(),
             BuildInReviewsCreateReviewLayout(
-              recipeRef,
               _commentSectionHeight,
               _createCommentImageSectionHeight,
             ),
@@ -67,10 +63,10 @@ class ReviewsScreen extends StatelessWidget {
 }
 
 class _BuildCommentsListLayout extends StatelessWidget {
-  const _BuildCommentsListLayout(this.currentReviews);
-  final Reviews currentReviews;
+  const _BuildCommentsListLayout();
   @override
   Widget build(BuildContext context) {
+    final currentReviews = ReviewsHead.of(context)?.currentReviews ?? [];
     return BlocSelector<CreateReviewBloc, CreateReviewState, Review?>(
       selector:
           (state) => switch (state) {

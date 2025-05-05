@@ -8,24 +8,29 @@ class AppIconText extends StatelessWidget {
     required this.label,
     this.iconSize,
     this.labelStyle,
+    this.onTap,
   });
   final IconData icon;
   final String label;
   final double? iconSize;
   final TextStyle? labelStyle;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        // text: '♡ ',
-        // style: context.bodyLarge,
-        children: [
-          WidgetSpan(child: Icon(icon, size: iconSize ?? 18)),
-          TextSpan(text: ' $label', style: labelStyle ?? context.bodySmall),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Text.rich(
+        TextSpan(
+          // text: '♡ ',
+          // style: context.bodyLarge,
+          children: [
+            WidgetSpan(child: Icon(icon, size: iconSize ?? 18)),
+            TextSpan(text: ' $label', style: labelStyle ?? context.bodySmall),
+          ],
+        ),
+        textAlign: TextAlign.center,
       ),
-      textAlign: TextAlign.center,
     );
   }
 }

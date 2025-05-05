@@ -10,20 +10,21 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i15;
-import 'package:flutter/cupertino.dart' as _i19;
+import 'package:flutter/cupertino.dart' as _i20;
 import 'package:flutter/material.dart' as _i16;
+import 'package:flutter/widgets.dart' as _i18;
 import 'package:recipe_haven/app.dart' as _i1;
 import 'package:recipe_haven/core/home/presentation/screens/creators_screen.dart'
     as _i2;
 import 'package:recipe_haven/core/home/presentation/screens/home_screen.dart'
     as _i4;
 import 'package:recipe_haven/features/recipe_review/domain/entities/review_entity.dart'
-    as _i18;
+    as _i19;
 import 'package:recipe_haven/features/recipe_review/presentation/screens/review_full_screen_image_screen.dart'
     as _i10;
-import 'package:recipe_haven/features/recipe_review/presentation/screens/reviews_images_gallery_screen.dart'
+import 'package:recipe_haven/features/recipe_review/presentation/screens/review_head.dart'
     as _i11;
-import 'package:recipe_haven/features/recipe_review/presentation/screens/reviews_screen.dart'
+import 'package:recipe_haven/features/recipe_review/presentation/screens/reviews_images_gallery_screen.dart'
     as _i12;
 import 'package:recipe_haven/features/user/presentation/screens/profile_screen.dart'
     as _i5;
@@ -291,7 +292,65 @@ class ReviewFullRouteImageRouteArgs {
 }
 
 /// generated route for
-/// [_i11.ReviewsImagesGalleryScreen]
+/// [_i11.ReviewsHead]
+class ReviewsHead extends _i15.PageRouteInfo<ReviewsHeadArgs> {
+  ReviewsHead({
+    _i18.Key? key,
+    required dynamic recipeRef,
+    required _i19.Reviews currentReviews,
+    required _i18.Widget child,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
+         ReviewsHead.name,
+         args: ReviewsHeadArgs(
+           key: key,
+           recipeRef: recipeRef,
+           currentReviews: currentReviews,
+           child: child,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'ReviewsHead';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ReviewsHeadArgs>();
+      return _i11.ReviewsHead(
+        key: args.key,
+        recipeRef: args.recipeRef,
+        currentReviews: args.currentReviews,
+        child: args.child,
+      );
+    },
+  );
+}
+
+class ReviewsHeadArgs {
+  const ReviewsHeadArgs({
+    this.key,
+    required this.recipeRef,
+    required this.currentReviews,
+    required this.child,
+  });
+
+  final _i18.Key? key;
+
+  final dynamic recipeRef;
+
+  final _i19.Reviews currentReviews;
+
+  final _i18.Widget child;
+
+  @override
+  String toString() {
+    return 'ReviewsHeadArgs{key: $key, recipeRef: $recipeRef, currentReviews: $currentReviews, child: $child}';
+  }
+}
+
+/// generated route for
+/// [_i12.ReviewsImagesGalleryScreen]
 class ReviewsImagesGalleryRoute
     extends _i15.PageRouteInfo<ReviewsImagesGalleryRouteArgs> {
   ReviewsImagesGalleryRoute({
@@ -313,7 +372,7 @@ class ReviewsImagesGalleryRoute
     name,
     builder: (data) {
       final args = data.argsAs<ReviewsImagesGalleryRouteArgs>();
-      return _i11.ReviewsImagesGalleryScreen(args.reviewsImages, key: args.key);
+      return _i12.ReviewsImagesGalleryScreen(args.reviewsImages, key: args.key);
     },
   );
 }
@@ -328,58 +387,6 @@ class ReviewsImagesGalleryRouteArgs {
   @override
   String toString() {
     return 'ReviewsImagesGalleryRouteArgs{reviewsImages: $reviewsImages, key: $key}';
-  }
-}
-
-/// generated route for
-/// [_i12.ReviewsScreen]
-class ReviewsRoute extends _i15.PageRouteInfo<ReviewsRouteArgs> {
-  ReviewsRoute({
-    required dynamic recipeRef,
-    required _i18.Reviews currentReviews,
-    _i16.Key? key,
-    List<_i15.PageRouteInfo>? children,
-  }) : super(
-         ReviewsRoute.name,
-         args: ReviewsRouteArgs(
-           recipeRef: recipeRef,
-           currentReviews: currentReviews,
-           key: key,
-         ),
-         initialChildren: children,
-       );
-
-  static const String name = 'ReviewsRoute';
-
-  static _i15.PageInfo page = _i15.PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<ReviewsRouteArgs>();
-      return _i12.ReviewsScreen(
-        args.recipeRef,
-        args.currentReviews,
-        key: args.key,
-      );
-    },
-  );
-}
-
-class ReviewsRouteArgs {
-  const ReviewsRouteArgs({
-    required this.recipeRef,
-    required this.currentReviews,
-    this.key,
-  });
-
-  final dynamic recipeRef;
-
-  final _i18.Reviews currentReviews;
-
-  final _i16.Key? key;
-
-  @override
-  String toString() {
-    return 'ReviewsRouteArgs{recipeRef: $recipeRef, currentReviews: $currentReviews, key: $key}';
   }
 }
 
@@ -403,7 +410,7 @@ class SignupOptionsRoute extends _i15.PageRouteInfo<void> {
 /// [_i14.SignupWithEmailScreen]
 class SignupWithEmailRoute
     extends _i15.PageRouteInfo<SignupWithEmailRouteArgs> {
-  SignupWithEmailRoute({_i19.Key? key, List<_i15.PageRouteInfo>? children})
+  SignupWithEmailRoute({_i20.Key? key, List<_i15.PageRouteInfo>? children})
     : super(
         SignupWithEmailRoute.name,
         args: SignupWithEmailRouteArgs(key: key),
@@ -426,7 +433,7 @@ class SignupWithEmailRoute
 class SignupWithEmailRouteArgs {
   const SignupWithEmailRouteArgs({this.key});
 
-  final _i19.Key? key;
+  final _i20.Key? key;
 
   @override
   String toString() {
