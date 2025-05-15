@@ -10,8 +10,8 @@ import 'package:recipe_haven/features/user/domain/repositories/user_repository.d
 
 @Injectable(as: UserRepository, env: [Env.dev])
 class UserRepositoryTestImpl extends UserRepository {
-  final UserMockSource _userMockSource;
-  UserRepositoryTestImpl(this._userMockSource);
+  final UserMockSource _userMockSource = UserMockSource();
+  UserRepositoryTestImpl();
   @override
   Future<UserResponse> createUserRecord(UserFetchModel userFetch) {
     return Future.value(Failure(UnknownUserException('no implementation')));

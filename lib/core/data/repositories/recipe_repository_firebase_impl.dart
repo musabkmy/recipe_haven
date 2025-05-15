@@ -2,18 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
-import 'package:recipe_haven/features/recipe_review/data/repositories/cache_repositories/reviewers_cache_service.dart';
+import 'package:recipe_haven/features/recipe_review/domain/repositories/review_repository.dart';
 import 'package:recipe_haven/features/view_recipe/data/models/models.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
-import 'package:recipe_haven/core/exceptions/recipe_exceptions.dart';
+import 'package:recipe_haven/core/exceptions/fetch_element_exceptions.dart';
 import 'package:recipe_haven/features/view_recipe/view_recipe.dart';
 import 'package:recipe_haven/features/user/data/models/user_fetch_model.dart';
+// import 'package:test/scaffolding.dart';
 
 @Injectable(as: RecipeRepository, env: [Env.prod])
 class RecipeRepositoryFirebaseImpl implements RecipeRepository {
   // final RecipeMockSource RecipeMockSource;
-  final ReviewersCacheService _reviewersCacheService;
-  RecipeRepositoryFirebaseImpl(this._reviewersCacheService);
+  // final ReviewersCacheService _reviewersCacheService;
+  final ReviewRepository _reviewRepository;
+  RecipeRepositoryFirebaseImpl(this._reviewRepository);
 
   // @factoryMethod
   // const RecipeRepositoryFirebaseImpl(this.RecipeMockSource);
@@ -31,17 +33,17 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
     } catch (e) {
       logger.log(Level.WARNING, 'Error: ${e.toString()}');
 
-      yield Failure(RecipeException(e.toString()));
+      yield Failure(FetchElementException(e.toString()));
     }
   }
 
   @override
   Future<void> createRecipe(RecipeModel recipeModel) async {
-    final Logger logger = Logger('RecipeRepositoryFirebaseImpl/createRecipe');
+    // final Logger logger = Logger('RecipeRepositoryFirebaseImpl/createRecipe');
     final recipe = recipeModel.toJson();
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
-      throw RecipeException('No authenticated user found.');
+      throw FetchElementException('No authenticated user found.');
     }
     final db = FirebaseFirestore.instance;
     final creatorRef = db.collection('users').doc(user.uid);
@@ -55,9 +57,10 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
       await db.collection(UserFetchModel.collectionId).doc(user.uid).update({
         'createdRecipes': FieldValue.arrayUnion([recipeRef.id]),
       });
-      logger.info('ADDED RECIPE: ${recipeRef.id}');
+      // logger.info('ADDED RECIPE: ${recipeRef.id}');
     } catch (e) {
-      logger.log(Level.WARNING, 'e.code: ${e.toString()}');
+      throw Exception(e.toString());
+      // logger.log(Level.WARNING, 'e.code: ${e.toString()}');
     }
   }
 
@@ -84,7 +87,7 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
       return await _getRecipeResponse(querySnapshot);
     } catch (e) {
       logger.info(e);
-      return Failure(RecipeException(e.toString()));
+      return Failure(FetchElementException(e.toString()));
     }
   }
 
@@ -95,6 +98,7 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
     try {
       final List<RecipeModel> recipes = [];
       for (final doc in querySnapshot.docs) {
+        // logger.info('added recipe: ${doc.id}');
         final recipeData = doc.data() as Map<String, dynamic>? ?? {};
 
         final creatorRef =
@@ -105,9 +109,9 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
         final reviewsRef =
             (recipeData['reviewsRef'] is List)
                 ? (recipeData['reviewsRef'] as List)
-                    .whereType<DocumentReference>()
+                    .whereType<DocumentReference<Map<String, dynamic>>>()
                     .toList()
-                : <DocumentReference>[];
+                : <DocumentReference<Map<String, dynamic>>>[];
 
         Map<String, dynamic>? creatorData;
         List<Map<String, dynamic>> reviewsData;
@@ -120,8 +124,10 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
           if (creatorDoc.exists) {
             creatorData = creatorDoc.data() as Map<String, dynamic>;
 
+            recipeData['id'] = doc.id;
             recipeData['userData'] = creatorData;
             recipeData['reviews'] = reviewsData;
+
             // logger.info('userData: $userData');
 
             // logger.info('usersEngagement: ${recipeData['usersEngagement']}');
@@ -142,57 +148,29 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
       }
       return Success(recipes.toEntity());
     } catch (e) {
-      return Failure(RecipeException(e.toString()));
+      return Failure(FetchElementException(e.toString()));
     }
   }
 
   Future<List<Map<String, dynamic>>> _getJsonReviews(
-    List<DocumentReference> reviewsRef,
+    List<DocumentReference<Map<String, dynamic>>> reviewsRef,
   ) async {
-    // final Logger logger = Logger(
-    //   'RecipeRepositoryFirebaseImpl/_getJsonReviews',
-    // );
+    final Logger logger = Logger(
+      'RecipeRepositoryFirebaseImpl/_getJsonReviews',
+    );
     // logger.info('entered');
     final List<Map<String, dynamic>> reviewsData = [];
     for (final reviewRef in reviewsRef) {
-      final reviewDoc = await reviewRef.get();
-      final reviewData = reviewDoc.data() as Map<String, dynamic>?;
-      // logger.info('reviewDoc.exists: ${reviewDoc.exists}');
-      // logger.info('reviewData: $reviewData');
-      if (reviewData != null) {
-        final ref = reviewDoc.reference;
-        final reviewerRef = reviewData['userRef'];
-        final reviewerData = await _getJsonReviewer(reviewerRef);
-        // logger.info(reviewerData);
-        reviewData['ref'] = ref;
-        reviewData['reviewerModel'] = reviewerData;
-
-        reviewsData.add(reviewData);
-        // logger.info(ReviewModel.fromJson(reviewData).toString());
-      }
+      final reviewData = await _reviewRepository.getMapReview(reviewRef);
+      reviewData.when(
+        success: (value) => reviewsData.add(value),
+        failure: (_) {},
+      );
+    }
+    for (var element in reviewsData) {
+      logger.info('added: ${element['id']}');
     }
     return reviewsData;
-  }
-
-  Future<Map<String, dynamic>> _getJsonReviewer(
-    DocumentReference<Object?> userRef,
-  ) async {
-    // Logger logger = Logger('RecipeRepositoryFirebaseImpl/_getJsonReviewer');
-    final reviewerCacheData = await _reviewersCacheService.get(userRef.id);
-    if (reviewerCacheData != null) {
-      // logger.info('reviewerCacheData: $reviewerCacheData');
-      return reviewerCacheData.toJson();
-    }
-    final reviewerDoc = await userRef.get();
-    final reviewerData = reviewerDoc.data() as Map<String, dynamic>?;
-    if (reviewerData != null) {
-      // logger.info('reviewerData: ${reviewerData['id']}');
-      await _reviewersCacheService.add(reviewerData);
-      return reviewerData;
-    } else {
-      // logger.info('no reviewer found');
-      throw RecipeException('no reviewer found.');
-    }
   }
 
   @override
@@ -211,10 +189,10 @@ class RecipeRepositoryFirebaseImpl implements RecipeRepository {
         logger.info(tags.toEntity().toString());
         return Success(tags.toEntity());
       } else {
-        return Failure(RecipeException('There is no tags'));
+        return Failure(FetchElementException('There is no tags'));
       }
     } catch (e) {
-      return Failure(RecipeException(e.toString()));
+      return Failure(FetchElementException(e.toString()));
     }
   }
 

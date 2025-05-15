@@ -7,9 +7,9 @@ import 'package:recipe_haven/features/view_recipe/view_recipe.dart';
 
 @Injectable(as: RecipeRepository, env: [Env.dev])
 class RecipeRepositoryTestImpl implements RecipeRepository {
-  final RecipeMockSource recipeMockSource;
+  final recipeMockSource = RecipeMockSource();
   @factoryMethod
-  RecipeRepositoryTestImpl(this.recipeMockSource);
+  RecipeRepositoryTestImpl();
 
   @override
   Stream<GetAllRecipesResponse> getAllRecipes() async* {

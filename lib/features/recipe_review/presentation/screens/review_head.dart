@@ -4,11 +4,11 @@ import 'package:recipe_haven/features/recipe_review/domain/entities/review_entit
 
 @RoutePage()
 class ReviewsHead extends InheritedWidget {
-  final dynamic recipeRef;
+  final String recipeId;
   final Reviews currentReviews;
   const ReviewsHead({
     super.key,
-    required this.recipeRef,
+    required this.recipeId,
     required this.currentReviews,
     required super.child,
   });

@@ -296,7 +296,7 @@ class ReviewFullRouteImageRouteArgs {
 class ReviewsHead extends _i15.PageRouteInfo<ReviewsHeadArgs> {
   ReviewsHead({
     _i18.Key? key,
-    required dynamic recipeRef,
+    required String recipeId,
     required _i19.Reviews currentReviews,
     required _i18.Widget child,
     List<_i15.PageRouteInfo>? children,
@@ -304,7 +304,7 @@ class ReviewsHead extends _i15.PageRouteInfo<ReviewsHeadArgs> {
          ReviewsHead.name,
          args: ReviewsHeadArgs(
            key: key,
-           recipeRef: recipeRef,
+           recipeId: recipeId,
            currentReviews: currentReviews,
            child: child,
          ),
@@ -319,7 +319,7 @@ class ReviewsHead extends _i15.PageRouteInfo<ReviewsHeadArgs> {
       final args = data.argsAs<ReviewsHeadArgs>();
       return _i11.ReviewsHead(
         key: args.key,
-        recipeRef: args.recipeRef,
+        recipeId: args.recipeId,
         currentReviews: args.currentReviews,
         child: args.child,
       );
@@ -330,14 +330,14 @@ class ReviewsHead extends _i15.PageRouteInfo<ReviewsHeadArgs> {
 class ReviewsHeadArgs {
   const ReviewsHeadArgs({
     this.key,
-    required this.recipeRef,
+    required this.recipeId,
     required this.currentReviews,
     required this.child,
   });
 
   final _i18.Key? key;
 
-  final dynamic recipeRef;
+  final String recipeId;
 
   final _i19.Reviews currentReviews;
 
@@ -345,7 +345,7 @@ class ReviewsHeadArgs {
 
   @override
   String toString() {
-    return 'ReviewsHeadArgs{key: $key, recipeRef: $recipeRef, currentReviews: $currentReviews, child: $child}';
+    return 'ReviewsHeadArgs{key: $key, recipeId: $recipeId, currentReviews: $currentReviews, child: $child}';
   }
 }
 

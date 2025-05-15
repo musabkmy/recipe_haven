@@ -35,6 +35,8 @@ class ReviewModel extends ReviewBaseModel {
          comment,
        );
 
+  static String collectionId = 'reviews';
+
   factory ReviewModel.fromJson(Map<String, dynamic> json) =>
       _$ReviewModelFromJson(json);
 

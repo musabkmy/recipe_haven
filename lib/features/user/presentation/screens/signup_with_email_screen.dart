@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
+import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart'
+    show getIt;
 import 'package:recipe_haven/config/routes/auto_route.gr.dart';
 import 'package:recipe_haven/constants/constants.dart';
 import 'package:recipe_haven/core/shared_layouts/app_action_button.dart';
@@ -62,7 +64,7 @@ class SignupWithEmailScreen extends StatelessWidget {
                       horizontal: AppSpacing.minHorizontal,
                     ),
                     child: ChangeNotifierProvider(
-                      create: (BuildContext context) => FormProvider(),
+                      create: (_) => getIt<FormProvider>(),
                       child: Consumer<FormProvider>(
                         builder: (context, formProvider, _) {
                           return Form(

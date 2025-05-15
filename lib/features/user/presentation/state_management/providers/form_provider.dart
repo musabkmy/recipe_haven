@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/core/enums/validation_type.dart';
 
-@singleton
+@lazySingleton
 class FormProvider with ChangeNotifier {
   final Logger _logger = Logger('FormProvider');
   String _username = '';

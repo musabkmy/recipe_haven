@@ -11,68 +11,74 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-
-import '../../core/data/mocking_sources/recipe_mock_source.dart' as _i779;
-import '../../core/data/mocking_sources/user_mock_source.dart' as _i430;
-import '../../core/data/repositories/recipe_repository_firebase_impl.dart'
-    as _i766;
-import '../../core/data/repositories/recipe_repository_test_impl.dart' as _i650;
-import '../../core/home/presentation/get_creators_cubit/get_creators_cubit.dart'
-    as _i579;
-import '../../core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart'
-    as _i414;
-import '../../core/home/presentation/get_tags_cubit/get_tags_cubit.dart'
-    as _i296;
-import '../../core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart'
-    as _i1048;
-import '../../core/services/animation/animation_service.dart' as _i121;
-import '../../core/services/animation/animation_service_auto_animate_service_impl.dart'
-    as _i382;
-import '../../core/services/cache/hive_cache_service.dart' as _i109;
-import '../../core/services/cache/hive_module.dart' as _i93;
-import '../../core/services/image/network_image_service.dart' as _i952;
-import '../../core/services/image/network_image_service_cached_image_impl.dart'
-    as _i830;
-import '../../features/recipe_review/data/models/reviewer_model.dart' as _i814;
-import '../../features/recipe_review/data/models/sub_review_model.dart'
-    as _i754;
-import '../../features/recipe_review/data/repositories/cache_repositories/reviewers_cache_service.dart'
-    as _i981;
-import '../../features/recipe_review/data/repositories/cache_repositories/sub_reviews_cache_service.dart'
-    as _i750;
-import '../../features/recipe_review/data/repositories/recipe_upload_files_repository_test_impl.dart'
-    as _i659;
-import '../../features/recipe_review/data/repositories/review_repository_firebase_impl.dart'
-    as _i613;
-import '../../features/recipe_review/data/repositories/review_repository_test_impl.dart'
-    as _i57;
-import '../../features/recipe_review/data/repositories/upload_review_images_supabase_impl.dart'
-    as _i656;
-import '../../features/recipe_review/domain/repositories/repositories.dart'
-    as _i735;
-import '../../features/recipe_review/domain/repositories/review_repository.dart'
-    as _i149;
-import '../../features/recipe_review/domain/repositories/upload_review_images_repository.dart'
-    as _i935;
-import '../../features/recipe_review/presentation/create_review_bloc/create_review_bloc.dart'
-    as _i468;
-import '../../features/recipe_review/presentation/get_reviews_data_bloc/get_reviews_data_bloc.dart'
-    as _i537;
-import '../../features/user/data/repositories/user_repository_firebase_impl.dart'
-    as _i431;
-import '../../features/user/data/repositories/user_repository_test_impl.dart'
-    as _i890;
-import '../../features/user/domain/repositories/repositories.dart' as _i587;
-import '../../features/user/domain/repositories/user_repository.dart' as _i237;
-import '../../features/user/presentation/state_management/bloc/user_bloc.dart'
-    as _i809;
-import '../../features/user/presentation/state_management/providers/form_provider.dart'
-    as _i307;
-import '../../features/view_recipe/domain/repositories/recipe_repository.dart'
-    as _i208;
-import '../../features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart'
-    as _i907;
-import '../../features/view_recipe/view_recipe.dart' as _i1062;
+import 'package:recipe_haven/core/data/repositories/recipe_repository_firebase_impl.dart'
+    as _i445;
+import 'package:recipe_haven/core/data/repositories/recipe_repository_test_impl.dart'
+    as _i717;
+import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart'
+    as _i284;
+import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart'
+    as _i786;
+import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubit.dart'
+    as _i275;
+import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart'
+    as _i756;
+import 'package:recipe_haven/core/services/animation/animation_service.dart'
+    as _i726;
+import 'package:recipe_haven/core/services/animation/animation_service_auto_animate_service_impl.dart'
+    as _i1027;
+import 'package:recipe_haven/core/services/cache/hive_cache_service.dart'
+    as _i916;
+import 'package:recipe_haven/core/services/cache/hive_module.dart' as _i640;
+import 'package:recipe_haven/core/services/image/network_image_service.dart'
+    as _i779;
+import 'package:recipe_haven/core/services/image/network_image_service_cached_image_impl.dart'
+    as _i620;
+import 'package:recipe_haven/features/recipe_review/data/models/reviewer_model.dart'
+    as _i864;
+import 'package:recipe_haven/features/recipe_review/data/models/sub_review_model.dart'
+    as _i803;
+import 'package:recipe_haven/features/recipe_review/data/repositories/cache_repositories/reviewers_cache_service.dart'
+    as _i494;
+import 'package:recipe_haven/features/recipe_review/data/repositories/cache_repositories/sub_reviews_cache_service.dart'
+    as _i815;
+import 'package:recipe_haven/features/recipe_review/data/repositories/recipe_upload_files_repository_test_impl.dart'
+    as _i582;
+import 'package:recipe_haven/features/recipe_review/data/repositories/review_repository_firebase_impl.dart'
+    as _i611;
+import 'package:recipe_haven/features/recipe_review/data/repositories/review_repository_test_impl.dart'
+    as _i765;
+import 'package:recipe_haven/features/recipe_review/data/repositories/upload_review_images_supabase_impl.dart'
+    as _i567;
+import 'package:recipe_haven/features/recipe_review/domain/repositories/repositories.dart'
+    as _i439;
+import 'package:recipe_haven/features/recipe_review/domain/repositories/review_repository.dart'
+    as _i1018;
+import 'package:recipe_haven/features/recipe_review/domain/repositories/upload_review_images_repository.dart'
+    as _i150;
+import 'package:recipe_haven/features/recipe_review/presentation/create_review_bloc/create_review_bloc.dart'
+    as _i373;
+import 'package:recipe_haven/features/recipe_review/presentation/get_reviews_data_bloc/get_reviews_data_bloc.dart'
+    as _i704;
+import 'package:recipe_haven/features/recipe_review/presentation/providers/reviews_temp_data_provider.dart'
+    as _i882;
+import 'package:recipe_haven/features/user/data/repositories/user_repository_firebase_impl.dart'
+    as _i280;
+import 'package:recipe_haven/features/user/data/repositories/user_repository_test_impl.dart'
+    as _i445;
+import 'package:recipe_haven/features/user/domain/repositories/repositories.dart'
+    as _i531;
+import 'package:recipe_haven/features/user/domain/repositories/user_repository.dart'
+    as _i214;
+import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart'
+    as _i980;
+import 'package:recipe_haven/features/user/presentation/state_management/providers/form_provider.dart'
+    as _i708;
+import 'package:recipe_haven/features/view_recipe/domain/repositories/recipe_repository.dart'
+    as _i893;
+import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart'
+    as _i588;
+import 'package:recipe_haven/features/view_recipe/view_recipe.dart' as _i636;
 
 const String _dev = 'dev';
 const String _prod = 'prod';
@@ -85,96 +91,99 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final hiveModule = _$HiveModule();
-    gh.singleton<_i430.UserMockSource>(() => _i430.UserMockSource());
-    gh.singleton<_i779.RecipeMockSource>(() => _i779.RecipeMockSource());
-    await gh.singletonAsync<_i109.HiveCacheService<_i814.ReviewerModel>>(
+    await gh.singletonAsync<_i916.HiveCacheService<_i864.ReviewerModel>>(
       () => hiveModule.provideReviewersBox(),
       preResolve: true,
     );
-    await gh.singletonAsync<_i109.HiveCacheService<_i754.SubReviewModel>>(
+    await gh.singletonAsync<_i916.HiveCacheService<_i803.SubReviewModel>>(
       () => hiveModule.provideSubReviewsBox(),
       preResolve: true,
     );
-    gh.singleton<_i307.FormProvider>(() => _i307.FormProvider());
-    gh.lazySingleton<_i907.RecipeInfoBloc>(() => _i907.RecipeInfoBloc());
-    gh.factory<_i121.AnimationService>(() => _i382.AutoAnimateServiceImpl());
-    gh.factory<_i935.UploadReviewImagesRepository>(
-      () => _i659.RecipeUploadFilesRepositoryTestImpl(),
+    gh.lazySingleton<_i588.RecipeInfoBloc>(() => _i588.RecipeInfoBloc());
+    gh.lazySingleton<_i708.FormProvider>(() => _i708.FormProvider());
+    gh.lazySingleton<_i882.ReviewsTempDataProvider<dynamic>>(
+      () => _i882.ReviewsTempDataProvider<dynamic>(),
+    );
+    gh.factory<_i726.AnimationService>(() => _i1027.AutoAnimateServiceImpl());
+    gh.factory<_i214.UserRepository>(
+      () => _i280.UserRepositoryFirebaseImpl(),
+      registerFor: {_prod},
+    );
+    gh.factory<_i214.UserRepository>(
+      () => _i445.UserRepositoryTestImpl(),
       registerFor: {_dev},
     );
-    await gh.factoryAsync<_i981.ReviewersCacheService>(
+    gh.factory<_i636.RecipeRepository>(
+      () => _i445.RecipeRepositoryFirebaseImpl(gh<_i1018.ReviewRepository>()),
+      registerFor: {_prod},
+    );
+    gh.factory<_i636.RecipeRepository>(
+      () => _i717.RecipeRepositoryTestImpl(),
+      registerFor: {_dev},
+    );
+    gh.factory<_i150.UploadReviewImagesRepository>(
+      () => _i567.UploadReviewImagesSupabaseImpl(),
+      registerFor: {_prod},
+    );
+    gh.factory<_i150.UploadReviewImagesRepository>(
+      () => _i582.RecipeUploadFilesRepositoryTestImpl(),
+      registerFor: {_dev},
+    );
+    gh.singleton<_i284.GetCreatorsCubit>(
+      () => _i284.GetCreatorsCubit(gh<_i214.UserRepository>()),
+    );
+    await gh.factoryAsync<_i494.ReviewersCacheService>(
       () => hiveModule.provideReviewersCache(
-        gh<_i109.HiveCacheService<_i814.ReviewerModel>>(),
+        gh<_i916.HiveCacheService<_i864.ReviewerModel>>(),
       ),
       preResolve: true,
     );
-    await gh.factoryAsync<_i750.SubReviewsCacheService>(
+    await gh.factoryAsync<_i815.SubReviewsCacheService>(
       () => hiveModule.provideSubReviewsCache(
-        gh<_i109.HiveCacheService<_i754.SubReviewModel>>(),
+        gh<_i916.HiveCacheService<_i803.SubReviewModel>>(),
       ),
       preResolve: true,
     );
-    gh.factory<_i952.NetworkImageService>(
-      () => _i830.NetworkImageServiceCachedImageImpl(),
+    gh.singleton<_i980.UserBloc>(
+      () => _i980.UserBloc(gh<_i531.UserRepository>()),
     );
-    gh.factory<_i935.UploadReviewImagesRepository>(
-      () => _i656.UploadReviewImagesSupabaseImpl(),
-      registerFor: {_prod},
+
+    gh.factory<_i439.ReviewRepository>(
+      () => _i765.ReviewRepositoryTestImpl(),
+      registerFor: {_dev},
     );
-    gh.factory<_i1062.RecipeRepository>(
-      () =>
-          _i766.RecipeRepositoryFirebaseImpl(gh<_i981.ReviewersCacheService>()),
-      registerFor: {_prod},
+    gh.factory<_i779.NetworkImageService>(
+      () => _i620.NetworkImageServiceCachedImageImpl(),
     );
-    gh.factory<_i149.ReviewRepository>(
-      () => _i613.ReviewRepositoryFirebaseImpl(
-        gh<_i750.SubReviewsCacheService>(),
-        gh<_i981.ReviewersCacheService>(),
+
+    gh.factory<_i1018.ReviewRepository>(
+      () => _i611.ReviewRepositoryFirebaseImpl(
+        gh<_i815.SubReviewsCacheService>(),
+        gh<_i494.ReviewersCacheService>(),
       ),
       registerFor: {_prod},
     );
-    gh.factory<_i735.ReviewRepository>(
-      () => _i57.ReviewRepositoryTestImpl(gh<_i779.RecipeMockSource>()),
-      registerFor: {_dev},
+    gh.singleton<_i756.GetTonightCookCubit>(
+      () => _i756.GetTonightCookCubit(gh<_i893.RecipeRepository>()),
     );
-    gh.factory<_i237.UserRepository>(
-      () => _i890.UserRepositoryTestImpl(gh<_i430.UserMockSource>()),
-      registerFor: {_dev},
+    gh.singleton<_i275.GetTagsCubit>(
+      () => _i275.GetTagsCubit(gh<_i893.RecipeRepository>()),
     );
-    gh.factory<_i1062.RecipeRepository>(
-      () => _i650.RecipeRepositoryTestImpl(gh<_i779.RecipeMockSource>()),
-      registerFor: {_dev},
+    gh.singleton<_i786.GetRecipesCubit>(
+      () => _i786.GetRecipesCubit(gh<_i636.RecipeRepository>()),
     );
-    gh.factory<_i237.UserRepository>(
-      () => _i431.UserRepositoryFirebaseImpl(),
-      registerFor: {_prod},
+    gh.lazySingleton<_i704.GetReviewsDataBloc>(
+      () => _i704.GetReviewsDataBloc(gh<_i1018.ReviewRepository>()),
     );
-    gh.singleton<_i1048.GetTonightCookCubit>(
-      () => _i1048.GetTonightCookCubit(gh<_i208.RecipeRepository>()),
-    );
-    gh.singleton<_i296.GetTagsCubit>(
-      () => _i296.GetTagsCubit(gh<_i208.RecipeRepository>()),
-    );
-    gh.singleton<_i414.GetRecipesCubit>(
-      () => _i414.GetRecipesCubit(gh<_i1062.RecipeRepository>()),
-    );
-    gh.singleton<_i579.GetCreatorsCubit>(
-      () => _i579.GetCreatorsCubit(gh<_i237.UserRepository>()),
-    );
-    gh.lazySingleton<_i537.GetReviewsDataBloc>(
-      () => _i537.GetReviewsDataBloc(gh<_i149.ReviewRepository>()),
-    );
-    gh.lazySingleton<_i468.CreateReviewBloc>(
-      () => _i468.CreateReviewBloc(
-        gh<_i735.ReviewRepository>(),
-        gh<_i735.UploadReviewImagesRepository>(),
+    gh.lazySingleton<_i373.CreateReviewBloc>(
+      () => _i373.CreateReviewBloc(
+        gh<_i439.ReviewRepository>(),
+        gh<_i439.UploadReviewImagesRepository>(),
+        gh<_i882.ReviewsTempDataProvider<dynamic>>(),
       ),
-    );
-    gh.singleton<_i809.UserBloc>(
-      () => _i809.UserBloc(gh<_i587.UserRepository>()),
     );
     return this;
   }
 }
 
-class _$HiveModule extends _i93.HiveModule {}
+class _$HiveModule extends _i640.HiveModule {}

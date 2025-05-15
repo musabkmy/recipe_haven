@@ -1,11 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart' show DocumentReference;
+import 'package:cloud_firestore/cloud_firestore.dart'
+    show DocumentReference, FieldValue, FirebaseFirestore;
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
+import 'package:recipe_haven/core/exceptions/fetch_element_exceptions.dart';
 import 'package:recipe_haven/features/recipe_review/data/models/models.dart';
 import 'package:recipe_haven/features/recipe_review/data/repositories/cache_repositories/reviewers_cache_service.dart';
 import 'package:recipe_haven/features/recipe_review/data/repositories/cache_repositories/sub_reviews_cache_service.dart';
 import 'package:recipe_haven/features/recipe_review/domain/repositories/review_repository.dart';
+import 'package:recipe_haven/features/view_recipe/data/models/recipe_model.dart';
 
 @Injectable(as: ReviewRepository, env: [Env.prod])
 class ReviewRepositoryFirebaseImpl implements ReviewRepository {
@@ -16,9 +19,35 @@ class ReviewRepositoryFirebaseImpl implements ReviewRepository {
     this._reviewersCacheService,
   );
   @override
-  Future<GetIsReviewUploaded> addRecipeReview(CreateReviewModel review) {
-    //TODO: implement adding a review
-    return Future.value(Failure(UploadException('unimplemented')));
+  Future<GetIsReviewUploaded> addRecipeReview(CreateReviewModel review) async {
+    Logger logger = Logger('ReviewRepositoryFirebaseImpl/addRecipeReview');
+    final db = FirebaseFirestore.instance;
+    final reviewJson = review.toJson();
+    reviewJson['publishedAt'] = FieldValue.serverTimestamp();
+    try {
+      final reviewRef = await db
+          .collection('${ReviewModel.collectionId}/${review.recipeId}/main')
+          .add(reviewJson);
+      logger.info('ADDED REVIEW: ${reviewRef.id}');
+      // final reviewDoc = await reviewRef.get();
+      final reviewData = await getReview(reviewRef);
+
+      return reviewData.when(
+        success: (value) async {
+          final isRecipeReviewsUpdated = await updateRecipeReviews(
+            review.recipeId,
+            reviewRef,
+          );
+          if (isRecipeReviewsUpdated) {
+            return Success(value);
+          }
+          return Failure(UploadException('recipe reviews did not updated'));
+        },
+        failure: (_) => Failure(UploadException('something went wrong')),
+      );
+    } catch (e) {
+      return Failure(UploadException(e.toString()));
+    }
   }
 
   @override
@@ -49,6 +78,7 @@ class ReviewRepositoryFirebaseImpl implements ReviewRepository {
           if (reviewerData == null) {
             continue;
           }
+          subReviewData['id'] = subReview.id;
           subReviewData['mainReviewId'] = mainReviewId;
           subReviewData['reviewerModel'] = reviewerData;
 
@@ -71,8 +101,41 @@ class ReviewRepositoryFirebaseImpl implements ReviewRepository {
     }
   }
 
-  Future<Map<String, dynamic>?> _getJsonReviewer(
-    DocumentReference<Object?> userRef,
+  @override
+  Future<GetReview> getReview(
+    DocumentReference<Map<String, dynamic>> reviewRef,
+  ) async {
+    final reviewStatus = await getMapReview(reviewRef);
+    return reviewStatus.when(
+      success: (value) => Success(ReviewModel.fromJson(value).toEntity()),
+      failure: (error) => Failure(error),
+    );
+  }
+
+  @override
+  Future<GetMapReview> getMapReview(
+    DocumentReference<Map<String, dynamic>> reviewRef,
+  ) async {
+    final Logger logger = Logger('RecipeRepositoryFirebaseImpl/getMapReview');
+    final reviewDoc = await reviewRef.get();
+    final reviewData = reviewDoc.data();
+    // logger.info('reviewDoc.exists: ${reviewDoc.exists}');
+    // logger.info('reviewData: $reviewData');
+    if (reviewData != null) {
+      final ref = reviewDoc.reference;
+      final reviewerRef = reviewData['userRef'];
+      final reviewerData = await _getJsonReviewer(reviewerRef);
+      logger.info(reviewerData);
+      reviewData['id'] = reviewDoc.id;
+      reviewData['ref'] = ref;
+      reviewData['reviewerModel'] = reviewerData;
+      return Success(reviewData);
+    }
+    return Failure(FetchElementException(''));
+  }
+
+  Future<Map<String, dynamic>> _getJsonReviewer(
+    DocumentReference<Map<String, dynamic>> userRef,
   ) async {
     // Logger logger = Logger('RecipeRepositoryFirebaseImpl/_getJsonReviewer');
     final reviewerCacheData = await _reviewersCacheService.get(userRef.id);
@@ -81,12 +144,48 @@ class ReviewRepositoryFirebaseImpl implements ReviewRepository {
       return reviewerCacheData.toJson();
     }
     final reviewerDoc = await userRef.get();
-    final reviewerData = reviewerDoc.data() as Map<String, dynamic>?;
+    final reviewerData = reviewerDoc.data();
     if (reviewerData != null) {
+      // logger.info('reviewerData: ${reviewerData['id']}');
       await _reviewersCacheService.add(reviewerData);
       return reviewerData;
     } else {
-      return null;
+      // logger.info('no reviewer found');
+      throw FetchElementException('no reviewer found.');
+    }
+  }
+
+  // Future<Map<String, dynamic>?> _getJsonReviewer(
+  //   DocumentReference<Object?> userRef,
+  // ) async {
+  //   // Logger logger = Logger('RecipeRepositoryFirebaseImpl/_getJsonReviewer');
+  //   final reviewerCacheData = await _reviewersCacheService.get(userRef.id);
+  //   if (reviewerCacheData != null) {
+  //     // logger.info('reviewerCacheData: $reviewerCacheData');
+  //     return reviewerCacheData.toJson();
+  //   }
+  //   final reviewerDoc = await userRef.get();
+  //   final reviewerData = reviewerDoc.data() as Map<String, dynamic>?;
+  //   if (reviewerData != null) {
+  //     await _reviewersCacheService.add(reviewerData);
+  //     return reviewerData;
+  //   } else {
+  //     return null;
+  //   }
+  // }
+
+  Future<bool> updateRecipeReviews(
+    String recipeId,
+    DocumentReference reviewRef,
+  ) async {
+    try {
+      final db = FirebaseFirestore.instance;
+      await db.collection(RecipeModel.collectionId).doc(recipeId).update({
+        'reviewsRef': FieldValue.arrayUnion([reviewRef]),
+      });
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }

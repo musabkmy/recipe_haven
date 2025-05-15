@@ -16,7 +16,7 @@ class BuildToReviews extends StatelessWidget {
     return BlocSelector<
       RecipeInfoBloc,
       RecipeInfoState,
-      (ReviewsMap?, dynamic)
+      (ReviewsMap?, String?)
     >(
       selector:
           (state) =>
@@ -25,8 +25,8 @@ class BuildToReviews extends StatelessWidget {
                   : (null, null),
       builder: (context, data) {
         final reviews = data.$1?.values.toList();
-        final recipeRef = data.$2;
-        return reviews != null && recipeRef != null
+        final recipeId = data.$2;
+        return reviews != null && recipeId != null
             ? Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: AppSpacing.minHorizontal,
@@ -51,7 +51,7 @@ class BuildToReviews extends StatelessWidget {
                           context.navigateTo(
                             ReviewsHead(
                               currentReviews: reviews,
-                              recipeRef: recipeRef,
+                              recipeId: recipeId,
                               child: ReviewsScreen(),
                             ),
                           );

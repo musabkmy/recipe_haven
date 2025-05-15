@@ -63,9 +63,9 @@ final class CreateReviewFailure extends CreateReviewState {
   List<Object?> get props => [previousState, message];
 }
 
-final class CreateReviewSuccess extends CreateReviewState {
-  const CreateReviewSuccess(this.addedReview) : super(null);
-  final Review addedReview;
-  @override
-  List<Object?> get props => [addedReview];
-}
+// final class CreateReviewSuccess extends CreateReviewState {
+//   const CreateReviewSuccess(this.addedReview) : super(null);
+//   final Review addedReview;
+//   @override
+//   List<Object?> get props => [addedReview];
+// }

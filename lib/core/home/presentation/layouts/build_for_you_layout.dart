@@ -10,7 +10,9 @@ class BuildForYouLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = UserMockSource().getUserFetchModels[4];
+    final userMockSource = UserMockSource();
+
+    final user = userMockSource.getUserFetchModels[4];
 
     return Center(
       child: Column(

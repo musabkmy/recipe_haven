@@ -13,13 +13,13 @@ class BuildCookingSteps extends StatelessWidget {
     return BlocSelector<RecipeInfoBloc, RecipeInfoState, Iterable<int>?>(
       selector:
           (state) => switch (state) {
-            RecipeInfoSuccess(recipe: final recipe)
-                when recipe.cookingStepsMap.isNotEmpty =>
+            RecipeInfoSuccess(recipe: final recipe) =>
+              // when recipe.cookingStepsMap.isNotEmpty =>
               recipe.cookingStepsMap.keys,
             _ => null,
           },
       builder: (context, keys) {
-        return (keys != null)
+        return (keys != null && keys.isNotEmpty)
             ? CustomScrollView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),

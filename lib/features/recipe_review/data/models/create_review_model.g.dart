@@ -11,13 +11,6 @@ Map<String, dynamic> _$CreateReviewModelToJson(CreateReviewModel instance) =>
       'userRef': instance.userRef,
       'comment': instance.comment,
       'imagesUrl': instance.imagesUrl,
-      'recipeRef': instance.recipeRef,
-      'parentReviewRef': instance.parentReviewRef,
+      'subsRef': instance.subsRef,
       'rating': instance.rating,
-      'reviewType': _$ReviewTypeEnumMap[instance.reviewType]!,
     };
-
-const _$ReviewTypeEnumMap = {
-  ReviewType.recipeReview: 'recipeReview',
-  ReviewType.recipeReply: 'recipeReply',
-};

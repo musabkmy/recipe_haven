@@ -28,7 +28,7 @@ class BuildInReviewsCreateReviewLayout extends StatelessWidget {
   final double createCommentImageSectionHeight;
   @override
   Widget build(BuildContext context) {
-    final recipeRef = ReviewsHead.of(context)?.recipeRef;
+    final recipeId = ReviewsHead.of(context)?.recipeId;
     return BlocListener<CreateReviewBloc, CreateReviewState>(
       listener: (context, state) {
         if (state is CreateReviewLoading) {
@@ -65,7 +65,7 @@ class BuildInReviewsCreateReviewLayout extends StatelessWidget {
           child: Column(
             spacing: AppSpacing.sm,
             children: [
-              _BuildMiniWriteCommentLayout(recipeRef),
+              _BuildMiniWriteCommentLayout(recipeId),
               _BuildCommentImages(createCommentImageSectionHeight),
               SizedBox(height: AppSpacing.md),
             ],
@@ -77,9 +77,9 @@ class BuildInReviewsCreateReviewLayout extends StatelessWidget {
 }
 
 class _BuildMiniWriteCommentLayout extends StatefulWidget {
-  const _BuildMiniWriteCommentLayout(this.recipeRef);
+  const _BuildMiniWriteCommentLayout(this.recipeId);
 
-  final dynamic recipeRef;
+  final dynamic recipeId;
 
   @override
   State<_BuildMiniWriteCommentLayout> createState() =>
@@ -88,7 +88,7 @@ class _BuildMiniWriteCommentLayout extends StatefulWidget {
 
 class _BuildMiniWriteCommentLayoutState
     extends State<_BuildMiniWriteCommentLayout> {
-  final TextEditingController _commentController = TextEditingController();
+  final _commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +116,7 @@ class _BuildMiniWriteCommentLayoutState
             ),
           ),
           _BuildCommentTextFormField(_commentController),
-          _BuildSendButton(widget.recipeRef, _commentController),
+          _BuildSendButton(widget.recipeId, _commentController),
         ],
       ),
     );
@@ -157,11 +157,9 @@ class _BuildCommentTextFormField extends StatelessWidget {
 }
 
 class _BuildSendButton extends StatelessWidget {
-  const _BuildSendButton(
-    this.recipeRef,
-    TextEditingController commentController,
-  ) : _commentController = commentController;
-  final dynamic recipeRef;
+  const _BuildSendButton(this.recipeId, TextEditingController commentController)
+    : _commentController = commentController;
+  final String recipeId;
   final TextEditingController _commentController;
 
   @override
@@ -180,12 +178,14 @@ class _BuildSendButton extends StatelessWidget {
               label: 'Send',
               onPressed: comment.let((comment) {
                 return () {
-                  userRef.letOrElse((userRef) {
+                  if (userRef != null) {
                     _commentController.clear();
                     context.read<CreateReviewBloc>().add(
-                      AddRecipeReview(userRef, recipeRef),
+                      AddRecipeReview(userRef, recipeId),
                     );
-                  }, orElse: () => AppDialog(body: 'unauthorized access'));
+                  } else {
+                    AppDialog(body: 'unauthorized access');
+                  }
                 };
               }),
             );

@@ -1,7 +1,5 @@
 import 'package:recipe_haven/features/user/data/models/models.dart';
-import 'package:injectable/injectable.dart';
 
-@singleton
 class UserMockSource {
   final List<UserCreationModel> getUserFetchModels = [
     UserCreationModel(

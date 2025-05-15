@@ -1,10 +1,13 @@
 import 'package:flutter/widgets.dart';
+import 'package:logging/logging.dart';
 import 'package:recipe_haven/features/recipe_review/domain/entities/review_entity.dart';
 import 'package:recipe_haven/features/recipe_review/presentation/layouts/reviews_layouts.dart';
 
+@immutable
 class BuildReviewLayout extends StatefulWidget {
   const BuildReviewLayout(this.review, {super.key});
   final Review review;
+  // final ValueKey key;
 
   @override
   State<BuildReviewLayout> createState() => _BuildReviewLayoutState();
@@ -12,12 +15,34 @@ class BuildReviewLayout extends StatefulWidget {
 
 class _BuildReviewLayoutState extends State<BuildReviewLayout> {
   final PageController controller = PageController();
-  Review get review => widget.review;
+  //set it as late to compare them when updating the list of reviews
+  late Review _review;
+  late List<String> _imagesUrl;
 
-  List<String> get imagesUrl => review.imagesUrl;
+  Logger logger = Logger('BuildReviewLayout');
+
+  @override
+  void initState() {
+    super.initState();
+    _review = widget.review;
+    _imagesUrl = _review.imagesUrl;
+  }
+
+  //to prevent unnecessary rebuilds
+  @override
+  void didUpdateWidget(covariant BuildReviewLayout oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    debugPrint('didUpdateWidget called: ${widget.review != oldWidget.review}');
+    if (widget.review != oldWidget.review) {
+      logger.info('rebuilds: ${widget.review.id}');
+      _review = widget.review;
+      _imagesUrl = _review.imagesUrl;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    logger.info('built: ${_review.id}');
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: AppSpacing.minHorizontal,
@@ -28,8 +53,8 @@ class _BuildReviewLayoutState extends State<BuildReviewLayout> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BuildProfilePic(
-            name: review.userName,
-            profilePic: review.userProfilePic,
+            name: _review.userName,
+            profilePic: _review.userProfilePic,
           ),
           Expanded(
             child: Column(
@@ -37,22 +62,22 @@ class _BuildReviewLayoutState extends State<BuildReviewLayout> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BuildNameAndDate(
-                  name: review.userName,
-                  publishedAt: review.publishedAt,
+                  name: _review.userName,
+                  publishedAt: _review.publishedAt,
                 ),
                 Column(
                   spacing: AppSpacing.lg,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BuildCommentText(comment: review.comment),
-                    BuildImages(controller: controller, imagesUrl: imagesUrl),
+                    BuildCommentText(comment: _review.comment),
+                    BuildImages(controller: controller, imagesUrl: _imagesUrl),
                     BuildReviewActions(
-                      reviewRef: review.ref,
-                      favCount: review.favCount,
+                      reviewRef: _review.ref,
+                      favCount: _review.favCount,
                     ),
                     BuildSubReviews(
-                      reviewId: review.id,
-                      subsRef: review.subsRef,
+                      reviewId: _review.id,
+                      subsRef: _review.subsRef,
                     ),
                   ],
                 ),

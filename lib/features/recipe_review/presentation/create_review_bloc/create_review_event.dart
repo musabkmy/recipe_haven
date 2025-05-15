@@ -31,10 +31,10 @@ final class AddComment extends CreateReviewEvent {
 }
 
 final class AddRecipeReview extends CreateReviewEvent {
-  const AddRecipeReview(this.userRef, this.recipeRef);
+  const AddRecipeReview(this.userRef, this.recipeId);
   final dynamic userRef;
-  final dynamic recipeRef;
+  final String recipeId;
 
   @override
-  List<Object> get props => [userRef, recipeRef];
+  List<Object> get props => [userRef, recipeId];
 }

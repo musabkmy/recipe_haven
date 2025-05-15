@@ -11,6 +11,7 @@ import 'package:recipe_haven/core/home/presentation/get_tags_cubit/get_tags_cubi
 import 'package:recipe_haven/core/home/presentation/get_creators_cubit/get_creators_cubit.dart';
 import 'package:recipe_haven/core/home/presentation/get_tonight_cook_cubit/get_tonight_cook_cubit.dart';
 import 'package:recipe_haven/core/utils/app_bloc_observer.dart';
+import 'package:recipe_haven/features/recipe_review/presentation/providers/reviews_temp_data_provider.dart';
 import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
@@ -58,7 +59,8 @@ class MyApp extends StatelessWidget {
   final getCreatorsCubit = getIt<GetCreatorsCubit>();
   final getTonightCookCubit = getIt<GetTonightCookCubit>();
   final getTagsCubit = getIt<GetTagsCubit>();
-  final formProvider = getIt<FormProvider>();
+  // final formProvider = getIt<FormProvider>();
+  final reviewsTempDataProvider = getIt<ReviewsTempDataProvider>();
   MyApp({super.key});
 
   // This widget is the root of your application.
@@ -74,7 +76,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => getTagsCubit),
       ],
       child: MultiProvider(
-        providers: [ChangeNotifierProvider(create: (_) => formProvider)],
+        providers: [
+          // ChangeNotifierProvider(create: (_) => formProvider),
+          ChangeNotifierProvider(create: (_) => reviewsTempDataProvider),
+        ],
         child: ScreenUtilInit(
           designSize: Size(360, 690),
           // ensureScreenSize: true,

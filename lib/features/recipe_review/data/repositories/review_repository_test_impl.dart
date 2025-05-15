@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:recipe_haven/config/dependency_injection/dependency_injection.dart';
 import 'package:recipe_haven/core/data/mocking_sources/recipe_mock_source.dart';
@@ -6,9 +7,9 @@ import 'package:recipe_haven/features/recipe_review/domain/repositories/reposito
 
 @Injectable(as: ReviewRepository, env: [Env.dev])
 class ReviewRepositoryTestImpl implements ReviewRepository {
-  final RecipeMockSource recipeMockSource;
+  final recipeMockSource = RecipeMockSource();
   @factoryMethod
-  ReviewRepositoryTestImpl(this.recipeMockSource);
+  ReviewRepositoryTestImpl();
 
   @override
   Future<GetIsReviewUploaded> addRecipeReview(CreateReviewModel review) {
@@ -23,5 +24,21 @@ class ReviewRepositoryTestImpl implements ReviewRepository {
     List<dynamic> subReviewsRef,
   ) {
     return Future.value(Success(recipeMockSource.getSubReviews.toEntityMap()));
+  }
+
+  @override
+  Future<GetMapReview> getMapReview(
+    DocumentReference<Map<String, dynamic>> reviewRef,
+  ) {
+    // TODO: implement getMapReview
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<GetReview> getReview(
+    DocumentReference<Map<String, dynamic>> reviewRef,
+  ) {
+    // TODO: implement getReview
+    throw UnimplementedError();
   }
 }

@@ -1,14 +1,14 @@
-import 'dart:async';
+// import 'dart:async';
 
-import 'package:injectable/injectable.dart';
+// import 'package:injectable/injectable.dart';
 
-@microPackageInit
-initMicroPackage() {}
+// @microPackageInit
+// initMicroPackage() {}
 
-class AwesomePackageModule extends MicroPackageModule {
-  @override
-  FutureOr<void> init(GetItHelper gh) {
-    // TODO: implement init
-    throw UnimplementedError();
-  }
-}
+// class AwesomePackageModule extends MicroPackageModule {
+//   @override
+//   FutureOr<void> init(GetItHelper gh) {
+//     // TODO: implement init
+//     throw UnimplementedError();
+//   }
+// }
