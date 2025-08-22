@@ -15,7 +15,6 @@ import 'package:recipe_haven/features/recipe_review/presentation/providers/revie
 import 'package:recipe_haven/features/view_recipe/presentation/recipe_info_bloc/recipe_info_bloc.dart';
 import 'package:recipe_haven/core/home/presentation/get_recipes_cubit/get_recipes_cubit.dart';
 import 'package:recipe_haven/features/user/presentation/state_management/bloc/user_bloc.dart';
-import 'package:recipe_haven/features/user/presentation/state_management/providers/form_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,20 +51,20 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final appRouter = getIt<AppRouter>();
-  final getRecipesCubit = getIt<GetRecipesCubit>();
-  final recipeInfoBloc = getIt<RecipeInfoBloc>();
-  final userBloc = getIt<UserBloc>();
-  final getCreatorsCubit = getIt<GetCreatorsCubit>();
-  final getTonightCookCubit = getIt<GetTonightCookCubit>();
-  final getTagsCubit = getIt<GetTagsCubit>();
-  // final formProvider = getIt<FormProvider>();
-  final reviewsTempDataProvider = getIt<ReviewsTempDataProvider>();
-  MyApp({super.key});
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final appRouter = getIt<AppRouter>();
+    final getRecipesCubit = getIt<GetRecipesCubit>();
+    final recipeInfoBloc = getIt<RecipeInfoBloc>();
+    final userBloc = getIt<UserBloc>();
+    final getCreatorsCubit = getIt<GetCreatorsCubit>();
+    final getTonightCookCubit = getIt<GetTonightCookCubit>();
+    final getTagsCubit = getIt<GetTagsCubit>();
+    final reviewsTempDataProvider = getIt<ReviewsTempDataProvider>();
+    // final formProvider = getIt<FormProvider>();
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getRecipesCubit),
